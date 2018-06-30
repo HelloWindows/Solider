@@ -19,7 +19,6 @@ namespace Framework {
                 poolParent = new GameObject("ObjectPool").transform;
                 prefabDict = new Dictionary<string, GameObject>();          
                 objListDict = new Dictionary<string, List<GameObject>>();
-
             } // end AudioManager
 
             public GameObject GetGameObject(string name) {
@@ -43,7 +42,7 @@ namespace Framework {
 
                 if (!objListDict.ContainsKey(name)) {
                     Object.Destroy(Go);
-                    DebugTool.LogWarning("ObjectPool Recycling Name:" + name + " Don't exist!!");
+                    Debug.LogWarning("ObjectPool Recycling Name:" + name + " Don't exist!!");
                     return;
                 } // end if
                 objListDict[name].Add(Go);
@@ -53,14 +52,14 @@ namespace Framework {
             private void BuildPool(string name, string prefix, string suffix) {
 
                 if (objListDict.ContainsKey(name) || prefabDict.ContainsKey(name)) {
-                    DebugTool.LogWarning("ObjectPool BuildPool Name:" + name + " is exist!!");
+                    Debug.LogWarning("ObjectPool BuildPool Name:" + name + " is exist!!");
                     return;
                 } // end if
                 objListDict.Add(name, new List<GameObject>());
                 GameObject Go = Resources.Load<GameObject>(prefix + suffix);
 
                 if (null == Go) {
-                    DebugTool.LogWarning("Path: " + prefix + suffix + "Don't exsit!!");
+                    Debug.LogWarning("Path: " + prefix + suffix + "Don't exsit!!");
                     return;
                 } // end if
                 prefabDict.Add(name, Go);
