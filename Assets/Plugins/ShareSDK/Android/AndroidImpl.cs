@@ -13,7 +13,7 @@ namespace cn.sharesdk.unity3d
 		{
 			Debug.Log("AndroidImpl  ===>>>  AndroidImpl" );
 			try{
-				ssdk = new AndroidJavaObject("cn.sharesdk.unity3d.ShareSDKUtils", go.name, "_Callback");
+                ssdk = new AndroidJavaObject("cn.sharesdk.unity3d.ShareSDKUtils", go.name, "_Callback");
 			} catch(Exception e) {
 				Console.WriteLine("{0} Exception caught.", e);
 			}

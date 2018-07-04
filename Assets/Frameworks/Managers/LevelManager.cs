@@ -6,6 +6,8 @@
  *******************************************************************/
 using UnityEngine;
 using Framework.Middleware;
+using Framework.Tools;
+using Solider;
 
 namespace Framework {
     namespace Manager {
@@ -20,7 +22,12 @@ namespace Framework {
                 CanvasAdjustor adjustor = new CanvasAdjustor();
                 adjustor.Adjusting();
                 InstanceMgr.Init();
+
                 switch (LevelName) {
+
+                    case "MainGameLevel":
+                        ObjectTool.InstantiateEmptyGo("MainGameLevel").AddComponent<MainGameLevel>();
+                        break;
 
                     default:
                         Debug.LogWarning("LevelManager error! levelName is:" + LevelName);

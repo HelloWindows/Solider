@@ -18,6 +18,7 @@ namespace Framework {
 
             private void Awake() {
                 instance = this;
+                DontDestroyOnLoad(gameObject);
             } // end Awake
 
             private void Start() {

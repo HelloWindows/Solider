@@ -6,6 +6,7 @@
  *******************************************************************/
 using cn.sharesdk.unity3d;
 using Framework.Manager;
+using Framework.Middleware;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,7 @@ namespace Solider {
         void OnClickLoginBtn() {
 #if __MY_DEBUG__
             ConsoleTool.SetConsole("OnClickLoginBtn");
+            SceneLoader.LoadNextLevel("MainGameLevel");
 #endif
         } // end OnClickLoginBtn
 

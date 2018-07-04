@@ -33,45 +33,47 @@ namespace cn.sharesdk.unity3d
 		public EventHandler getFriendsHandler;
 		public EventHandler followFriendHandler;
 
-		void Awake() {				
+		void Awake()
+		{				
 			Type type = devInfo.GetType();
 			Hashtable platformConfigs = new Hashtable();
 			FieldInfo[] devInfoFields = type.GetFields();
-
-			foreach (FieldInfo devInfoField in devInfoFields) {	
+			foreach (FieldInfo devInfoField in devInfoFields) 
+			{	
 				DevInfo info = (DevInfo) devInfoField.GetValue(devInfo);
 				int platformId = (int) info.GetType().GetField("type").GetValue(info);
 				FieldInfo[] fields = info.GetType().GetFields();
 				Hashtable table = new Hashtable();
-
-				foreach (FieldInfo field in fields) {
+				foreach (FieldInfo field in fields) 
+				{
 					if ("type".EndsWith(field.Name)) {
 						continue;
 					} else if ("Enable".EndsWith(field.Name) || "ShareByAppClient".EndsWith(field.Name) || "BypassApproval".EndsWith(field.Name) || "WithShareTicket".EndsWith(field.Name)) {
 						table.Add(field.Name, Convert.ToString(field.GetValue(info)).ToLower());
 					} else {
 						table.Add(field.Name, Convert.ToString(field.GetValue(info)));
-					} // end if
-				} // end foreach
+					}
+				}
 				platformConfigs.Add(platformId, table);
-            } // end foreach
+			}
 
-#if UNITY_ANDROID
-            shareSDKUtils = new AndroidImpl(gameObject);
+			#if UNITY_ANDROID
+			shareSDKUtils = new AndroidImpl(gameObject);
 			shareSDKUtils.InitSDK(appKey,appSecret);
-#elif UNITY_IPHONE
+			#elif UNITY_IPHONE
 			shareSDKUtils = new iOSImpl(gameObject);
-#endif
-			shareSDKUtils.SetPlatformConfig(platformConfigs);
-        } // end Awake
+			#endif
 
-        /// <summary>
-        /// callback the specified data.
-        /// </summary>
-        /// <param name='data'>
-        /// Data.
-        /// </param>
-        private void _Callback (string data)
+			shareSDKUtils.SetPlatformConfig(platformConfigs);
+		}
+		
+		/// <summary>
+		/// callback the specified data.
+		/// </summary>
+		/// <param name='data'>
+		/// Data.
+		/// </param>
+		private void _Callback (string data)
 		{
 			if (data == null) 
 			{
