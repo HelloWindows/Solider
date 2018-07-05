@@ -10,10 +10,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Solider {
-	public class UIJoystick : EventTrigger {
+	public class UIJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler {
+
+        public static Vector3 dir { get; private set; }
 
         private float radius;
-
         private Vector2 downPos;
 
         private Transform pointTrans;
@@ -25,17 +26,18 @@ namespace Solider {
             pointTrans = joystickTrans.Find("Point");
         } // end Start
 
-        public override void OnDrag(PointerEventData data) {
-            Vector3 dir = data.position - downPos;
+        public void OnDrag(PointerEventData data) {
+            dir = (data.position - downPos).normalized;
             float dis = Vector3.Distance(data.position, downPos);
             pointTrans.localPosition = dir.normalized * Mathf.Clamp(dis, 0, radius);
         } // end OnDrag
 
-        public override void OnPointerDown(PointerEventData data) {
+        public void OnPointerDown(PointerEventData data) {
             downPos = data.position;
         } // end OnPointerDown
 
-        public override void OnPointerUp(PointerEventData data) {
+        public void OnPointerUp(PointerEventData data) {
+            dir = Vector3.zero;
             pointTrans.localPosition = Vector3.zero;
         } // end OnPointerUp
     } // end class UIJoystick 

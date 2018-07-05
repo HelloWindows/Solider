@@ -22,6 +22,7 @@ namespace Framework {
                 CanvasAdjustor adjustor = new CanvasAdjustor();
                 adjustor.Adjusting();
                 InstanceMgr.Init();
+                LevelName = "MainGameLevel";
 
                 switch (LevelName) {
 
