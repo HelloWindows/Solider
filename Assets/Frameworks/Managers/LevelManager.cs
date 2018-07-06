@@ -27,7 +27,7 @@ namespace Framework {
                 switch (LevelName) {
 
                     case "MainGameLevel":
-                        ObjectTool.InstantiateEmptyGo("MainGameLevel").AddComponent<MainGameLevel>();
+                        ObjectTool.InstantiateEmptyGo("").AddComponent<MainGameLevel>();
                         break;
 
                     default:
