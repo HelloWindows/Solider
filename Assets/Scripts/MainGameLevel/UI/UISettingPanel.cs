@@ -47,7 +47,6 @@ namespace Solider {
         } // end OnToggleEquipment
 
         private void OnClickCloseBtn() {
-
             if (null == gameObject) return;
             //end if
             Destroy(gameObject);

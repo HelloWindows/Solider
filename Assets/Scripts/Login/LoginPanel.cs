@@ -45,7 +45,7 @@ namespace Solider {
 #if __MY_DEBUG__
             ConsoleTool.SetConsole("OnClickLoginBtn");
 #endif
-            SceneLoader.LoadNextLevel("MainGameLevel");
+            SceneLoader.LoadNextLevel("SelectRoleLevel");
         } // end OnClickLoginBtn
 
         /// <summary>

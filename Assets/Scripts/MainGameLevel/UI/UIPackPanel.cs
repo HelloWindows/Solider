@@ -67,7 +67,6 @@ namespace Solider {
         } // end ClearPanel
 
         private void OnClickCloseBtn() {
-
             if (null == gameObject) return;
             //end if
             Destroy(gameObject);

@@ -22,12 +22,17 @@ namespace Framework {
                 CanvasAdjustor adjustor = new CanvasAdjustor();
                 adjustor.Adjusting();
                 InstanceMgr.Init();
-                LevelName = "MainGameLevel";
+                SqliteManager.Init();
+                //LevelName = "SelectRoleLevel";
 
                 switch (LevelName) {
 
+                    case "SelectRoleLevel":
+                        ObjectTool.InstantiateEmptyGo("SelectRoleLevel").AddComponent<SelectRoleLevel>();
+                        break;
+
                     case "MainGameLevel":
-                        ObjectTool.InstantiateEmptyGo("").AddComponent<MainGameLevel>();
+                        ObjectTool.InstantiateEmptyGo("MainGameLevel").AddComponent<MainGameLevel>();
                         break;
 
                     default:

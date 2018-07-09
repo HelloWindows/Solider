@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222474056123176198}
   - component: {fileID: 114863377880463366}
   m_Layer: 5
-  m_Name: PlayerDisplayRaw
+  m_Name: DisplayRaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

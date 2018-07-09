@@ -417,7 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4259287238255822}
   m_Layer: 2
-  m_Name: PlayerDisplay
+  m_Name: Solider
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1912406448167094
 GameObject:
   m_ObjectHideFlags: 1
@@ -517,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1924343910913516
 GameObject:
   m_ObjectHideFlags: 1
