@@ -130,6 +130,7 @@ namespace Framework {
                     reader = null;
                     ConsoleTool.SetConsole("CreateTable columns.Length != values.Length");
 #endif
+                    return reader;
                 } // end if
                 string query = "CREATE TABLE " + tableName + " (" + cols[0] + " " + colsType[0];
                 for (int i = 1; i < cols.Length; ++i) {
@@ -152,29 +153,66 @@ namespace Framework {
             /// <summary>
             /// 查询数据
             /// </summary>
-            /// <param name="tableName"></param>
-            /// <param name="items"></param>
-            /// <param name="col"></param>
-            /// <param name="operation"></param>
-            /// <param name="values"></param>
-            /// <returns></returns>
-            public SqliteDataReader SelectWhere(string tableName, string[] items, string[] col, string[] operation, string[] values) {
-                if (col.Length != operation.Length || operation.Length != values.Length) {
+            /// <param name="tableName"> 表名 </param>
+            /// <param name="items"> 查询项 </param>
+            /// <param name="cols"> 条件列 </param>
+            /// <param name="operation"> 条件 </param>
+            /// <param name="values"> 条件值 </param>
+            /// <returns> 结果读取器 </returns>
+            public SqliteDataReader SelectWhere(string tableName, string[] items, string[] cols, string[] operation, string[] values) {
+                if (cols.Length != operation.Length || operation.Length != values.Length) {
 #if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
 #endif
+                    return reader;
                 } // end if
                 string query = "SELECT " + items[0];
                 for (int i = 1; i < items.Length; ++i) {
                     query += ", " + items[i];
                 } // end for
-                query += " FROM " + tableName + " WHERE " + col[0] + operation[0] + "'" + values[0] + "' ";
-                for (int i = 1; i < col.Length; ++i) {
-                    query += " AND " + col[i] + operation[i] + "'" + values[0] + "' ";
+                query += " FROM " + tableName + " WHERE " + cols[0] + operation[0] + "'" + values[0] + "' ";
+                for (int i = 1; i < cols.Length; ++i) {
+                    query += " AND " + cols[i] + operation[i] + "'" + values[0] + "' ";
                 } // end for
                 return ExecuteQuery(query);
-            } // end 
+            } // end SelectWhere
+
+            /// <summary>
+            /// 升序查询
+            /// </summary>
+            /// <param name="tableName"> 表名 </param>
+            /// <param name="items"> 查询项 </param>
+            /// <param name="cols"> 排序列 </param>
+            /// <returns> 结果读取器 </returns>
+            public SqliteDataReader SelectOrderASC(string tableName, string[] items, string[] cols) {
+                return SelectOrder(tableName, items, cols, "ASC");
+            } // end SelectOrderASC
+
+            /// <summary>
+            /// 降序查询
+            /// </summary>
+            /// <param name="tableName"> 表名 </param>
+            /// <param name="items"> 查询项 </param>
+            /// <param name="cols"> 排序列 </param>
+            /// <returns> 结果读取器 </returns>
+            public SqliteDataReader SelectOrderDESC(string tableName, string[] items, string[] cols) {
+                return SelectOrder(tableName, items, cols, "DESC");
+            } // end SelectOrderASC
+
+            private SqliteDataReader SelectOrder(string tableName, string[] items, string[] cols, string order) {
+                string query = "SELECT " + items[0];
+
+                for (int i = 1; i < items.Length; ++i) {
+                    query += ", " + items[i];
+                } // end for
+                query += " FROM " + tableName + " ORDER BY " + cols[0];
+                for (int i = 1; i < cols.Length; ++i) {
+                    query += ", " + cols[i];
+                } // end for
+                query += " " + order;
+                return ExecuteQuery(query);
+            } // end SelectOrderASC
 
             /// <summary>
             /// 插入一条数据
@@ -257,7 +295,7 @@ namespace Framework {
             /// <param name="tableName"> 表名 </param>
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader DeleteTable(string tableName) {
-                string query = "DELETE FROM " + tableName;
+                string query = "DROP TABLE " + tableName;
                 return ExecuteQuery(query);
             } // end DeleteTable
         } // end class SqliteDatabase

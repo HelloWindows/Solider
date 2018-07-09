@@ -19,6 +19,9 @@ namespace Framework {
             } // end SetSceneName
 
             void Start() {
+                Debug.Log(Application.dataPath);
+                Debug.Log(Application.persistentDataPath);
+                Debug.Log(Application.streamingAssetsPath);
                 CanvasAdjustor adjustor = new CanvasAdjustor();
                 adjustor.Adjusting();
                 InstanceMgr.Init();
