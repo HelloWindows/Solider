@@ -21,15 +21,15 @@ namespace Solider {
         } // end Start
 
         private void OnClickInfoBtn() {
-            ObjectTool.InstantiateGo("InfoPanelUI", "UI/InfoPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIInfoPanel>();
+            ObjectTool.InstantiateGo("InfoPanelUI", "MainGameLevel/UI/InfoPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIInfoPanel>();
         } // end OnClickInfoBtn
 
         private void OnClickPackBtn() {
-            ObjectTool.InstantiateGo("PackPanelUI", "UI/PackPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIPackPanel>();
+            ObjectTool.InstantiateGo("PackPanelUI", "MainGameLevel/UI/PackPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIPackPanel>();
         } // end OnClickInfoBtn
 
         private void OnClickSettingBtn() {
-            ObjectTool.InstantiateGo("SettingPanelUI", "UI/SettingPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UISettingPanel>();
+            ObjectTool.InstantiateGo("SettingPanelUI", "MainGameLevel/UI/SettingPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UISettingPanel>();
         } // end OnClickSettingBtn
     } // end class UITownPanel 
 } // end namespace Solider

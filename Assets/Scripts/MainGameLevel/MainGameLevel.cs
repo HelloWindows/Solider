@@ -15,8 +15,11 @@ namespace Solider {
 
 		// Use this for initialization
 		void Start () {
-            ObjectTool.InstantiateGo("MainPanelUI", "UI/MainPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIMainPanel>();
-            ObjectTool.InstantiateGo("TownPanelUI", "UI/TownPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UITownPanel>();
+            ObjectTool.InstantiateGo("MainPanelUI", "MainGameLevel/UI/MainPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UIMainPanel>();
+            ObjectTool.InstantiateGo("TownPanelUI", "MainGameLevel/UI/TownPanelUI", CanvasManager.MainCanvasTrans).AddComponent<UITownPanel>();
+
+            if (null == gameObject) return;
+            Destroy(gameObject);
         } // end Start
 	} // end class MainGameLevel 
 } // end namespace Solider
