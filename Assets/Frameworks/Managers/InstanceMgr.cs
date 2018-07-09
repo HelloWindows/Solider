@@ -9,7 +9,6 @@ using Framework.Instances;
 namespace Framework {
     namespace Manager {
         public class InstanceMgr {
-            public static int CurrentID { get; private set; }
             private static ObjectPool _ObjectPool;
             private static AudioManager _AudioManager;
             private static ShareSDKManager _ShareSDKManager;
@@ -22,13 +21,11 @@ namespace Framework {
                 _ShareSDKManager = ShareSDKManager.instance;
             } // end GetInstance
 
-            public static void SetCurrentID(int id) { CurrentID = id; }
-
             public static AudioManager GetAudioManager() { return _AudioManager; }
 
             public static ObjectPool GetObjectPool() { return _ObjectPool; }
 
-            public static ShareSDKManager GetShareSDKManager() { return _ShareSDKManager; } 
+            public static ShareSDKManager GetShareSDKManager() { return _ShareSDKManager; }
         } // end class InstanceMgr
     } // end namespace Manager
 } // end namespace Framework
