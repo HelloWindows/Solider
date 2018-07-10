@@ -13,19 +13,16 @@ namespace Solider {
 	public class UIPackPanel : MonoBehaviour {
 
         private const int GRID_COUNT = 25;
-        private Text[] countTextArray;
         private Image[] gridImageArray;
 
 		// Use this for initialization
 		private void Start () {
-            countTextArray = new Text[GRID_COUNT];
             gridImageArray = new Image[GRID_COUNT];
             string prefix = "GridPanel/Grids/Item_";
 
             for (int i = 0; i < GRID_COUNT; i++) {
                 int temp = i;
                 gridImageArray[i] = transform.Find(prefix + i).GetComponent<Image>();
-                countTextArray[i] = transform.Find(prefix + i + "/Text").GetComponent<Text>();
                 gridImageArray[i].gameObject.AddComponent<UIButton>().AddAction(delegate() { OnClickGridBtn(temp); });
             } // end for
             transform.Find("GridPanel/ToggleGroup/Equipment").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleEquipment);
@@ -62,7 +59,6 @@ namespace Solider {
 
             for (int i = 0; i < GRID_COUNT; i++) {
                 gridImageArray[i].sprite = null;
-                countTextArray[i].text = "";
             } // end for
         } // end ClearPanel
 

@@ -79,12 +79,7 @@ namespace Framework {
                     for (int i = 0; i < 25; i++) {
                         reader.Read();
                         string result = reader.GetString(reader.GetOrdinal("id"));
-
-                        if (infoDict.ContainsKey(i)) {
-                            infoDict[i] = result;
-                        } else {
-                            infoDict.Add(i, result);
-                        } // end if
+                        infoDict[i] = result;
                     } // end for
                 } catch (Exception ex) {
                     sqliteDB.Disconnect();
