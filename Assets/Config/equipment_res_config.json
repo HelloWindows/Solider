@@ -5,7 +5,7 @@
       "name": "破损的手枪",
       "grade": "D",
       "role": "Shooter",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/pistol_D",
       "intro": "将就着用吧",
       "property": {
         "attmin": 10,
@@ -22,7 +22,7 @@
       "name": "普通的手枪",
       "grade": "C",
       "role": "Shooter",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/pistol_C",
       "intro": "据说红军就是靠它胜利的",
       "property": {
         "attmin": 12,
@@ -39,7 +39,7 @@
       "name": "精致的手枪",
       "grade": "B",
       "role": "Shooter",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/pistol_B",
       "intro": "应该还打不到飞机吧",
       "property": {
         "attmin": 15,
@@ -56,7 +56,7 @@
       "name": "完美的手枪",
       "grade": "A",
       "role": "Shooter",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/pistol_A",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
         "attmin": 20,
@@ -69,11 +69,79 @@
       }
     },
     {
+      "id": "100005",
+      "name": "破损的长剑",
+      "grade": "D",
+      "role": "Solider",
+      "spritepath": "Sprite/ItemSprite/sword_D",
+      "intro": "就是一根棍子！",
+      "property": {
+        "attmin": 20,
+        "attmax": 40,
+        "def": 0,
+        "attspeed": 1,
+        "movspeed": 0,
+        "crit": 10,
+        "clip": 0
+      }
+    },
+    {
+      "id": "100006",
+      "name": "普通的长剑",
+      "grade": "C",
+      "role": "Solider",
+      "spritepath": "Sprite/ItemSprite/sword_C",
+      "intro": "可以切西瓜了",
+      "property": {
+        "attmin": 30,
+        "attmax": 50,
+        "def": 0,
+        "attspeed": 1,
+        "movspeed": 0,
+        "crit": 10,
+        "clip": 0
+      }
+    },
+    {
+      "id": "100007",
+      "name": "精致的长剑",
+      "grade": "B",
+      "role": "Solider",
+      "spritepath": "Sprite/ItemSprite/sword_B",
+      "intro": "削铁如泥",
+      "property": {
+        "attmin": 40,
+        "attmax": 60,
+        "def": 0,
+        "attspeed": 1,
+        "movspeed": 0,
+        "crit": 10,
+        "clip": 0
+      }
+    },
+    {
+      "id": "100008",
+      "name": "完美的长剑",
+      "grade": "A",
+      "role": "Solider",
+      "spritepath": "Sprite/ItemSprite/sword_A",
+      "intro": "一起去屠龙",
+      "property": {
+        "attmin": 40,
+        "attmax": 60,
+        "def": 0,
+        "attspeed": 1,
+        "movspeed": 0,
+        "crit": 10,
+        "clip": 0
+      }
+    },
+    {
       "id": "100101",
       "name": "破损的盔甲",
       "grade": "D",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/armor_D",
       "intro": "能遮盖重要部位就行了",
       "property": {
         "attmin": 0,
@@ -90,7 +158,7 @@
       "name": "普通的盔甲",
       "grade": "C",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/armor_C",
       "intro": "嗯，有脸走出伊甸园了",
       "property": {
         "attmin": 0,
@@ -107,7 +175,7 @@
       "name": "精致的盔甲",
       "grade": "B",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/armor_B",
       "intro": "呵呵，看上去挺体面的哦",
       "property": {
         "attmin": 0,
@@ -124,7 +192,7 @@
       "name": "完美的盔甲",
       "grade": "A",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/armor_A",
       "intro": "魔镜啊！魔镜，还有比我更好看的吗？",
       "property": {
         "attmin": 0,
@@ -141,7 +209,7 @@
       "name": "破损的靴子",
       "grade": "D",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/shoes_D",
       "intro": "比没有强一丁点",
       "property": {
         "attmin": 0,
@@ -158,7 +226,7 @@
       "name": "普通的靴子",
       "grade": "C",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/shoes_C",
       "intro": "悠着点，走太远会磨出水泡",
       "property": {
         "attmin": 0,
@@ -175,7 +243,7 @@
       "name": "精致的靴子",
       "grade": "B",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/shoes_B",
       "intro": "感觉跟豹子赛跑，我能赢",
       "property": {
         "attmin": 0,
@@ -192,7 +260,7 @@
       "name": "完美的靴子",
       "grade": "A",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/shoes_A",
       "intro": "根本停不下来",
       "property": {
         "attmin": 0,

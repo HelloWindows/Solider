@@ -173,7 +173,7 @@ namespace Framework {
                 } // end for
                 query += " FROM " + tableName + " WHERE " + cols[0] + operation[0] + "'" + values[0] + "' ";
                 for (int i = 1; i < cols.Length; ++i) {
-                    query += " AND " + cols[i] + operation[i] + "'" + values[0] + "' ";
+                    query += " AND " + cols[i] + operation[i] + "'" + values[i] + "' ";
                 } // end for
                 return ExecuteQuery(query);
             } // end SelectWhere
@@ -265,12 +265,22 @@ namespace Framework {
             /// <param name="selectkey"></param>
             /// <param name="selectvalue"></param>
             /// <returns> 结果读取器 </returns>
-            public SqliteDataReader Update(string tableName, string[] cols, string[] colsvalues, string selectkey, string selectvalue) {
+            public SqliteDataReader Update(string tableName, string[] cols, string[] colsvalues, string[] selects, string[] operation, string[] values) {
+                if (selects.Length != operation.Length || operation.Length != values.Length) {
+#if __MY_DEBUG__
+                    reader = null;
+                    ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
+#endif
+                    return reader;
+                } // end if
                 string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + colsvalues[0];
                 for (int i = 1; i < colsvalues.Length; ++i) {
                     query += ", " + cols[i] + " =" + colsvalues[i];
                 } // end for
-                query += " WHERE " + selectkey + " = " + selectvalue + " ";
+                query += " WHERE " + selects[0] + operation[0] + "'" + values[0] + "' ";
+                for (int i = 1; i < selects.Length; ++i) {
+                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "' ";
+                } // end for
                 return ExecuteQuery(query);
             } // end Update
 
@@ -284,7 +294,7 @@ namespace Framework {
             public SqliteDataReader Delete(string tableName, string[] cols, string[] colsvalues) {
                 string query = "DELETE FROM " + tableName + " WHERE " + cols[0] + " = " + colsvalues[0];
                 for (int i = 1; i < colsvalues.Length; ++i) {
-                    query += " or " + cols[i] + " = " + colsvalues[i];
+                    query += " OR " + cols[i] + " = " + colsvalues[i];
                 } // end for
                 return ExecuteQuery(query);
             } // end Delete

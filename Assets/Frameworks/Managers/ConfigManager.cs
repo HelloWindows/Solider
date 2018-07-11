@@ -13,6 +13,13 @@ namespace Framework {
     namespace Manager {
         public class ConfigManager {
             private EquipConfig equipConfig;
+            private static ConfigManager instance;
+
+            public static ConfigManager GetInstance() {
+                if (null == instance) instance = new ConfigManager();
+                // end if
+                return instance;
+            } // end GetInstance
 
             private ConfigManager() {
                 equipConfig = new EquipConfig();

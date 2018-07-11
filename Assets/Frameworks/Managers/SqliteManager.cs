@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.Middleware;
 using Mono.Data.Sqlite;
 using System;
@@ -21,21 +22,29 @@ namespace Framework {
                 sqliteDB.Disconnect();
             } // end SqliteManager
 
+            private static string ToValue(string value) { return "'" + value + "'"; } // end ToValue
+            private static string ToValue(int value) { return "'" + value + "'"; } // end ToValue
+
             public static void CreateRole(string id, string name, string roleType) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Insert("role_list_table", new string[] { "'" + id + "'", "'" + name + "'", "'" + roleType + "'" });
-                sqliteDB.CreateTable("equipment_list_table_" + id, new string[] { "tid", "id", "grade" }, new string[] { "int", "text", "text" });
-                sqliteDB.CreateTable("consumable_list_table_" + id, new string[] { "tid", "id", "grade", "count" }, new string[] { "int", "text", "text", "text" });
-                sqliteDB.CreateTable("stuff_list_table_" + id, new string[] { "tid", "id", "grade", "count" }, new string[] { "int", "text", "text", "text" });
+                sqliteDB.Insert("role_list_table", new string[] { ToValue(id), ToValue(name), ToValue(roleType) });
+                sqliteDB.CreateTable("pack_list_table_" + id, new string[] { "tid", "id", "gid", "type", "grade", "count" }, new string[] { "int", "text", "int", "text", "text", "int" });
+                string[] types = { "equit", "consume", "stuff" };
+
+                for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
+                    for (int j = 0; j < types.Length; j++) {
+                        sqliteDB.Insert("pack_list_table_" + id, new string[] { "tid", "id", "gid", "type", "grade", "count" },
+                            new string[] { ToValue(i * 3 + j), ToValue("0"), ToValue(i), ToValue(types[j]), ToValue("Z"), ToValue(0) });
+                    } // end for
+                } // end for
+                SetPackInfoWithID(id, "equit", 0, "100001", "D", 1);
                 sqliteDB.Disconnect();
             } // end CreateRole
 
             public static void DeleteRole(string id) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 sqliteDB.Delete("role_list_table", new string[] { "id" }, new string[] { "'" + id + "'" });
-                sqliteDB.DeleteTable("equipment_list_table_" + id);
-                sqliteDB.DeleteTable("consumable_list_table_" + id);
-                sqliteDB.DeleteTable("stuff_list_table_" + id);
+                sqliteDB.DeleteTable("pack_list_table_" + id);
                 sqliteDB.Disconnect();
             } // end DeleteRole
 
@@ -65,29 +74,45 @@ namespace Framework {
                 return null;
             } // end GetRoleWithID
 
-            public static void GetPackInfoWithID(string id, string packName, ref Dictionary<int, string> infoDict) {
-                string tableName = packName + "_list_table_" + id;
+            public static void GetPackInfoWithID(string id, string type, ref Dictionary<int, string[]> idDict) {
+                string tableName = "pack_list_table_" + id;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "id" }, new string[] { "tid" }, new string[] { "<" }, new string[] { "25" });
+                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type });
 
                 if (null == reader) {
                     sqliteDB.Disconnect();
-                    infoDict = new Dictionary<int, string>();
+                    idDict = new Dictionary<int, string[]>();
+                    return;
                 } // end if
 
                 try {
-                    for (int i = 0; i < 25; i++) {
-                        reader.Read();
-                        string result = reader.GetString(reader.GetOrdinal("id"));
-                        infoDict[i] = result;
-                    } // end for
+                    while (reader.Read()) {
+                        int gid = reader.GetInt32(reader.GetOrdinal("gid"));
+                        idDict[gid] = new string[2];
+                        idDict[gid][0] = reader.GetString(reader.GetOrdinal("id"));
+                        idDict[gid][1] = reader.GetInt32(reader.GetOrdinal("count")).ToString();
+                    } // end while
                 } catch (Exception ex) {
-                    sqliteDB.Disconnect();
 #if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
 #endif
                 } // end try
+                sqliteDB.Disconnect();
             } // end GetEquipmentPackInfoWithID
+
+            public static void SetPackInfoWithID(string playerId, string type, int gid, string id, string grade, int count) {
+                string tableName = "pack_list_table_" + playerId;
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                try {
+                    sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { id, grade, count.ToString() }, 
+                        new string[] { "tid" }, new string[] { "=" }, new string[] { gid.ToString() });
+                } catch (Exception ex) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetConsole(ex.ToString());
+#endif
+                } // end try              
+                sqliteDB.Disconnect();
+            } // end SetPackInfoWithID
         } // end class SqliteManager
     } // end namespace Manager
 } // end namespace Custom 

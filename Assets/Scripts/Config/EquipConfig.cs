@@ -23,6 +23,7 @@ namespace Solider {
 #endif
                 AssetBundle assetbundle = AssetBundle.LoadFromFile(path);
                 string jsonStr = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
+                assetbundle.Unload(false);
                 JsonData data = JsonMapper.ToObject(jsonStr);
                 JsonData list = data["itemlist"];
 

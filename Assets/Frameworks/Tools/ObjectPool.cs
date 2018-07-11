@@ -40,11 +40,19 @@ namespace Framework {
 
             public void Recycling(string name, GameObject Go) {
 
+                if (null == Go) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetError("ObjectPool Recycling Go is NULL");
+#endif
+                    return;
+                } // end if
+
                 if (!objListDict.ContainsKey(name)) {
                     Object.Destroy(Go);
                     Debug.LogWarning("ObjectPool Recycling Name:" + name + " Don't exist!!");
                     return;
                 } // end if
+                Go.transform.SetParent(poolParent);
                 objListDict[name].Add(Go);
                 Go.SetActive(false);
             } // end Recycling

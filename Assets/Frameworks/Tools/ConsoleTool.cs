@@ -15,6 +15,7 @@ public class ConsoleTool : MonoBehaviour {
     private static ConsoleTool instance;
     private static Hashtable infoTable;
     private static string console;
+    private static string errorMsg;
     private GUIStyle fontStyle;
 
     private static ConsoleTool GetInstance() {
@@ -65,6 +66,11 @@ public class ConsoleTool : MonoBehaviour {
         console = msg;
     } // end 
 
+    public static void SetError(string msg) {
+        GetInstance();
+        errorMsg = msg;
+    } // end 
+
     private void OnGUI() {
         string info = "";
         fontStyle.fontSize = (int)(Screen.width / CanvasAdjustor.STANDARD_WIDTH * 20);
@@ -72,7 +78,8 @@ public class ConsoleTool : MonoBehaviour {
         foreach (DictionaryEntry de in infoTable) {
             info += de.Key + ": " + de.Value + '\n';
         } // end foreach
-        info += console;
+        info += console + '\n';
+        info += "[Error] " + errorMsg;
         GUI.Label(new Rect(5f, 5f, Screen.width, Screen.height), info, fontStyle);
     } // end OnGUI
 } // end class ConsoleTool 

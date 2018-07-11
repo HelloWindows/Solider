@@ -8,6 +8,7 @@ using UnityEngine;
 using Framework.Middleware;
 using Framework.Tools;
 using Solider;
+using Solider.Data;
 
 namespace Framework {
     namespace Manager {
@@ -19,9 +20,6 @@ namespace Framework {
             } // end SetSceneName
 
             void Start() {
-                Debug.Log(Application.dataPath);
-                Debug.Log(Application.persistentDataPath);
-                Debug.Log(Application.streamingAssetsPath);
                 CanvasAdjustor adjustor = new CanvasAdjustor();
                 adjustor.Adjusting();
                 InstanceMgr.Init();
@@ -35,6 +33,7 @@ namespace Framework {
                         break;
 
                     case "MainGameLevel":
+                        PlayerData.GetInstance();
                         ObjectTool.InstantiateEmptyGo("MainGameLevel").AddComponent<MainGameLevel>();
                         break;
 
