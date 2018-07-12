@@ -32,6 +32,19 @@ namespace Framework {
             public EquipProperty GetEquipPropertyWithID(string id) {
                 return equipConfig.GetEquipPropertyWithID(id);
             } // end GetEquipPropertyWithID
+
+            public string GetItemGradeWithID(string id) {
+                string grade = null;
+                if (equipConfig.GetEquipGradeWithID(id, out grade)) return grade;
+                // end if
+                return "Z";
+            } // end GetItemGradeWithID
+
+            public string GetItemTypeWithID(string id) {
+                if (equipConfig.CheckIsEquipWithID(id)) return "equip";
+                // end if
+                return "null";
+            } // end GetItemTypeWithID
         } // end class ConfigManager 
     } // end  namespace Manager
 } // end namespace Framework

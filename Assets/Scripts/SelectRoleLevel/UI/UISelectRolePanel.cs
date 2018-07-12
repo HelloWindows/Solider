@@ -7,6 +7,7 @@
 using Framework.Manager;
 using Framework.Middleware;
 using Framework.Tools;
+using Solider.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,23 +15,24 @@ using UnityEngine.UI;
 
 namespace Solider {
     public class UISelectRolePanel : MonoBehaviour {
-        private int currentID;
+        private string currentID;
         private Text t_roleName;
         private DisplayRaw display;
-        private Dictionary<int, string[]> roleDict;
+        private Dictionary<string, string[]> roleDict;
 
         // Use this for initialization
         private void Start () {
-            currentID = -1;
-            roleDict = new Dictionary<int, string[]>();
+            currentID = "miss";
+            PlayerManager.SetPlayerID("0");
+            roleDict = new Dictionary<string, string[]>();
             t_roleName = transform.Find("RoleName").GetComponent<Text>();
             t_roleName.text = "";
             display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
             string prefix = "RoleList/Role_";
 
             for (int i = 0; i < 3; i++) {
-                int id = i;
-                roleDict.Add(id, SqliteManager.GetRoleWithID(id.ToString()));
+                string id = i.ToString();
+                roleDict.Add(id, SqliteManager.GetRoleWithID(id));
                 transform.Find(prefix + i).gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(id); });
                 if (null != roleDict[id]) transform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[id][0];
                 // end if
@@ -41,23 +43,23 @@ namespace Solider {
         } // end Start     
 
         private void InitialSwitchRole() {
-            if (ChechExitID(InstanceMgr.CurrentID)) {
-                OnSwitchRole(InstanceMgr.CurrentID);
+            if (ChechExitID(PlayerManager.playerID)) {
+                OnSwitchRole(PlayerManager.playerID);
                 return;
             } // end if
 
             for (int i = 0; i < roleDict.Count; i++) {
-                if (ChechExitID(i)) {
-                    OnSwitchRole(i);
+                if (ChechExitID(i.ToString())) {
+                    OnSwitchRole(i.ToString());
                     break;
                 } // end if         
             } // end for
         } // end InitialSwitchRole
 
-        private void OnSwitchRole(int id) {
+        private void OnSwitchRole(string id) {
 
             if (!ChechExitID(id)) {
-                InstanceMgr.SetCurrentID(id);
+                PlayerManager.SetPlayerID(id);
                 ObjectTool.InstantiateGo("CreateRolePanelUI", "SelectRoleLevel/UI/CreateRolePanelUI", CanvasManager.MainCanvasTrans).AddComponent<UICreateRolePanel>();
                 if (null != gameObject) Destroy(gameObject);
                 // end if
@@ -66,13 +68,13 @@ namespace Solider {
             if (currentID == id) return;
             // end if
             currentID = id;
-            InstanceMgr.SetCurrentID(id);
+            PlayerManager.SetPlayerID(id);
             t_roleName.text = roleDict[id][0];
             display.ReplaceDisplayCurrentRole(roleDict[id][1]);
         } // end OnSwitchRole
 
         private void OnClickDeleteRoleBtn() {
-            if (!ChechExitID(InstanceMgr.CurrentID)) return;
+            if (!ChechExitID(PlayerManager.playerID)) return;
             // end if          
             UIDialogBox dialog = ObjectTool.InstantiateGo("DialogBoxUI", "UI/DialogBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIDialogBox>();
             dialog.SetMessage("确定删除角色!");
@@ -80,7 +82,7 @@ namespace Solider {
         } // end OnClickDeleteRole
 
         private void DeleteRole() {
-            int id = InstanceMgr.CurrentID;
+            string id = PlayerManager.playerID;
             SqliteManager.DeleteRole(id.ToString());
             if (roleDict.ContainsKey(id)) roleDict[id] = null;
             // end if
@@ -91,10 +93,11 @@ namespace Solider {
         } // end DeleteRole
 
         private void OnClickStartGameBtn() {
-            if (!ChechExitID(InstanceMgr.CurrentID)) {
+            if (!ChechExitID(PlayerManager.playerID)) {
                 ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                 return;
             } // end if
+            PlayerManager.InitPlayerManager(PlayerManager.playerID);
             SceneLoader.LoadNextLevel("MainGameLevel");
         } // end OnClickStartGameBtn
 
@@ -103,7 +106,7 @@ namespace Solider {
         /// </summary>
         /// <param name="id"> id </param>
         /// <returns> 存在返回 ture </returns>
-        private bool ChechExitID(int id) {
+        private bool ChechExitID(string id) {
             if (roleDict == null || !roleDict.ContainsKey(id) || null == roleDict[id]) return false;
             // end if
             return true;

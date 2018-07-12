@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Instances;
+using Framework.Instance;
 
 namespace Framework {
     namespace Manager {
@@ -23,8 +23,6 @@ namespace Framework {
                 _ConfigManager = ConfigManager.GetInstance();
                 _ShareSDKManager = ShareSDKManager.instance;
             } // end GetInstance
-
-            public static void SetCurrentID(int id) { CurrentID = id; } // end SetCurrentID
 
             public static ObjectPool GetObjectPool() { return _ObjectPool; } // end GetObjectPool
 

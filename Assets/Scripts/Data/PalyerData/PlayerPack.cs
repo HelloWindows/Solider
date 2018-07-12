@@ -7,6 +7,7 @@
 using Framework.Config;
 using Framework.Manager;
 using Solider.Config;
+using Solider.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,23 +23,56 @@ namespace Solider {
             private int[] consumeCountList;
             private int[] stuffCountList;
 
-            public PlayerPack() {
-                ResolveInfo("equit", ref equipIDList, ref equipCountList);
-                ResolveInfo("consume", ref consumeIDList, ref consumeCountList);
-                ResolveInfo("stuff", ref stuffIDList, ref stuffCountList);
+            public PlayerPack(string playerID) {
+                ResolvePackInfo(playerID, "equip", ref equipIDList, ref equipCountList);
+                ResolvePackInfo(playerID, "consume", ref consumeIDList, ref consumeCountList);
+                ResolvePackInfo(playerID, "stuff", ref stuffIDList, ref stuffCountList);
             } // end PlayerPack
 
+            /// <summary>
+            /// 获取对应格子的装备信息
+            /// </summary>
+            /// <param name="gid"> 格子id </param>
+            /// <returns> 装备信息 </returns>
             public EquipInfo GetEquipInfoWithGid(int gid) {
                 if (gid < 0 || gid >= equipIDList.Length) return null;
                 // end if
                 return InstanceMgr.GetConfigManager().GetEquipInfoWithID(equipIDList[gid]);
             } // end GetEquipInfoWithGid
 
-            private void ResolveInfo(string type, ref string[] idList, ref int[] countList) {
+            /// <summary>
+            /// 调换两个格子的装备信息
+            /// </summary>
+            /// <param name="gid"> 格子id </param>
+            /// <param name="target"> 目标格子id </param>
+            public void ExchangeEquipInfoWithGid(int gid, int target) {
+                ExchangeInfo("equip", gid, target, ref equipIDList, ref equipCountList);
+            } // end ExchangeInfoWithGid
+
+            private void ExchangeInfo(string type, int gid, int target, ref string[] idList, ref int[] countList) {
+                if (gid < 0 || gid >= idList.Length ||
+                    target < 0 || target >= idList.Length) return;
+                // end if
+                string tid = idList[gid];
+                int tcount = countList[gid];
+                idList[gid] = idList[target];
+                countList[gid] = countList[target];
+                idList[target] = tid;
+                countList[target] = tcount;
+                WriteGridInfo(type, gid, idList[gid], countList[gid]);
+                WriteGridInfo(type, target, idList[target], countList[target]);
+            } // end ExchangeInfo
+
+            private void WriteGridInfo(string type, int gid, string id, int count) {
+                string grade = InstanceMgr.GetConfigManager().GetItemGradeWithID(id);
+                SqliteManager.SetPackInfoWithID(PlayerManager.playerID, type, gid, id, grade, count);
+            } // end WriteGridInfo
+
+            private void ResolvePackInfo(string playerID, string type, ref string[] idList, ref int[] countList) {
                 idList = new string[ConstConfig.GRID_COUNT];
                 countList = new int[ConstConfig.GRID_COUNT];
                 Dictionary<int, string[]> dict = new Dictionary<int, string[]>();
-                SqliteManager.GetPackInfoWithID(InstanceMgr.CurrentID.ToString(), type, ref dict);
+                SqliteManager.GetPackInfoWithID(playerID, type, ref dict);
 
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     int count = 0;

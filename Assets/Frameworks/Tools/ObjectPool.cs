@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Framework {
-    namespace Instances {
+    namespace Instance {
         public class ObjectPool {
             private Transform poolParent;
             private Dictionary<string, GameObject> prefabDict;

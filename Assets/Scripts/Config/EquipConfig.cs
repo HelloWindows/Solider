@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Solider {
     namespace Config {
         public class EquipConfig {
-            public Dictionary<string, EquipInfo> dict { get; private set; }
+            private Dictionary<string, EquipInfo> dict;
 
             public EquipConfig() {
                 dict = new Dictionary<string, EquipInfo>();
@@ -31,6 +31,7 @@ namespace Solider {
                     EquipInfo info = new EquipInfo();
                     info.SetID((string)list[i]["id"]);
                     info.SetName((string)list[i]["name"]);
+                    info.SetGrade((string)list[i]["grade"]);
                     info.SetRole((string)list[i]["role"]);
                     info.SetSpritepath((string)list[i]["spritepath"]);
                     info.SetIntro((string)list[i]["intro"]);
@@ -63,6 +64,15 @@ namespace Solider {
                 // end if
                 return null;
             } // end GetEquipPropertyWithID
+
+            public bool GetEquipGradeWithID(string id, out string grade) {
+                if (CheckIsEquipWithID(id)) {
+                    grade = dict[id].grade;
+                    return true;
+                } // end if
+                grade = null;
+                return false;
+            } // end GetEquipGradeWithID
         } // end class EquipConfig 
     } // end namespace Config
 } // end namespace Custom

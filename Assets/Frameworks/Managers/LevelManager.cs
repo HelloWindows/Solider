@@ -33,7 +33,6 @@ namespace Framework {
                         break;
 
                     case "MainGameLevel":
-                        PlayerData.GetInstance();
                         ObjectTool.InstantiateEmptyGo("MainGameLevel").AddComponent<MainGameLevel>();
                         break;
 

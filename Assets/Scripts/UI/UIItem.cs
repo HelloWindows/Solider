@@ -14,22 +14,30 @@ namespace Solider {
 	public class UIItem : MonoBehaviour {
 
         private Image image;
-        private Text countText;
+        public Text countText;
+
+        public int count { get; private set; }
+        public Sprite sprite { get; private set; }
 
         private void Awake() {
             image = transform.Find("Image").GetComponent<Image>();
+            image.raycastTarget = false;
             countText = transform.Find("Text").GetComponent<Text>();
+            countText.raycastTarget = false;
         } // end Awake
 
         public void SetSprite(Sprite sprite) {
+            this.sprite = sprite;
             image.sprite = sprite;
         } // end SetSprite
 
         public void SetCount(int count) {
             if (count <= 0) {
+                this.count = 0;
                 countText.text = "";
                 return;
             } // end if
+            this.count = count;
             countText.text = count.ToString();
         } // end SetCount
     } // end class UIItem 

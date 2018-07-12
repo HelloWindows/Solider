@@ -9,7 +9,7 @@ using UnityEngine;
 using Framework.Config;
 
 namespace Framework {
-    namespace Instances {
+    namespace Instance {
         public class AudioManager {
             private AudioSource audioSource0;
             private AudioSource audioSource1;

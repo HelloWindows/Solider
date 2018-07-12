@@ -29,7 +29,7 @@ namespace Framework {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 sqliteDB.Insert("role_list_table", new string[] { ToValue(id), ToValue(name), ToValue(roleType) });
                 sqliteDB.CreateTable("pack_list_table_" + id, new string[] { "tid", "id", "gid", "type", "grade", "count" }, new string[] { "int", "text", "int", "text", "text", "int" });
-                string[] types = { "equit", "consume", "stuff" };
+                string[] types = { "equip", "consume", "stuff" };
 
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     for (int j = 0; j < types.Length; j++) {
@@ -39,10 +39,10 @@ namespace Framework {
                 } // end for
                 int index = 0;
                 for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(id, "equit", index++, "10000" + i, "D", 1);
-                    SetPackInfoWithID(id, "equit", index++, "10000" + (i + 4), "D", 1);
-                    SetPackInfoWithID(id, "equit", index++, "10010" + i, "D", 1);
-                    SetPackInfoWithID(id, "equit", index++, "10020" + i, "D", 1);
+                    SetPackInfoWithID(id, "equip", index++, "10000" + i, "D", 0);
+                    SetPackInfoWithID(id, "equip", index++, "10000" + (i + 4), "D", 0);
+                    SetPackInfoWithID(id, "equip", index++, "10010" + i, "D", 0);
+                    SetPackInfoWithID(id, "equip", index++, "10020" + i, "D", 0);
                 } // end for
                 sqliteDB.Disconnect();
             } // end CreateRole

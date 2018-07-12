@@ -13,6 +13,7 @@ namespace Solider {
         public class EquipInfo {
             public string id { get; private set; }
             public string name { get; private set; }
+            public string grade { get; private set; }
             public string role { get; private set; }
             public string spritepath { get; private set; }
             public string intro { get; private set; }
@@ -24,6 +25,7 @@ namespace Solider {
 
             public void SetID(string id) { this.id = id; } // end SetID
             public void SetName(string name) { this.name = name; } // end SetName
+            public void SetGrade(string grade) { this.grade = grade; } // end SetGrade
             public void SetRole(string role) { this.role = role; } // end SetRole
             public void SetSpritepath(string spritepath) { this.spritepath = spritepath; } // end SetSpritepaht
             public void SetIntro(string intro) { this.intro = intro; } // end SetIntro
@@ -40,6 +42,7 @@ namespace Solider {
                 return "EquipmentInfo: " + '\n' +
                     "id: " + id + '\n' +
                     "name: " + name + '\n' +
+                    "grade: " + grade + '\n' +
                     "role: " + role + '\n' +
                     "spritepaht: " + spritepath + '\n' +
                     "intro: " + intro + '\n' +

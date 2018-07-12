@@ -8,6 +8,7 @@ using Framework.Config;
 using Framework.Manager;
 using Solider.Config;
 using Solider.Data;
+using Solider.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Solider {
 
             for (int i = 0; i < gridArray.Length; i++) {
                 gridArray[i] = transform.Find(prefix + i).gameObject.AddComponent<UIGrid>();
-                gridArray[i].SetIndex(i);
+                gridArray[i].SetID(i);
             } // end for
             OnToggleEquipment(true);
             transform.Find("GridPanel/ToggleGroup/Equipment").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleEquipment);
@@ -38,12 +39,12 @@ namespace Solider {
             // end if
 
             for (int i = 0; i < gridArray.Length; i++) {
-                EquipInfo info = PlayerData.GetInstance().pack.GetEquipInfoWithGid(i);
+                EquipInfo info = PlayerManager.pack.GetEquipInfoWithGid(i);
                 if (null == info) {
                     gridArray[i].HideItem();
                     continue;
                 } // end 
-                gridArray[i].SetUIItem(info.spritepath, 0);
+                gridArray[i].SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
             } // end for
         } // end OnToggleEquipment
 

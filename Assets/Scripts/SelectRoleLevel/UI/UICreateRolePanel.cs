@@ -6,8 +6,7 @@
  *******************************************************************/
 using Framework.Manager;
 using Framework.Tools;
-using System.Collections;
-using System.Collections.Generic;
+using Solider.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,7 +41,7 @@ namespace Solider {
                 ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                 return;
             } // end if
-            SqliteManager.CreateRole(InstanceMgr.CurrentID.ToString(), nameInputField.text, roleType);
+            SqliteManager.CreateRole(PlayerManager.playerID, nameInputField.text, roleType);
             if (null == gameObject) return;
             // end if
             OnClickBackBtn();
