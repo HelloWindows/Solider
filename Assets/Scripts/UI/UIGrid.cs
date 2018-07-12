@@ -12,10 +12,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Solider {
-	public class UIGrid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
+	public class UIGrid : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
         public int Index { get; private set; }
         private UIItem item;
+        private Vector2 offset;
 
         public void SetIndex(int index) { Index = index; } // end SetIndex
 
@@ -35,16 +36,22 @@ namespace Solider {
         } // end HideItem
 
         public void OnBeginDrag(PointerEventData eventData) {
-
+            offset = new Vector2(Screen.width, Screen.height) / 2f;
+            item.transform.SetParent(CanvasManager.MainCanvasTrans);
         } // end OnBeginDrag
 
         public void OnDrag(PointerEventData eventData) {
             if (null == item) return;
             // end if
+            item.transform.localPosition = eventData.position - offset;
+            Debug.Log("data:" + eventData.position);
+            Debug.Log(item.transform.localPosition);
         } // end OnDrag
 
         public void OnEndDrag(PointerEventData eventData) {
             Debug.Log(gameObject.name + ": OnEndDrag " + eventData.pointerCurrentRaycast.gameObject.name);
+            item.transform.SetParent(transform);
+            item.transform.localPosition = Vector3.zero;
         } // end OnEndDrag
     } // end class UIGrid 
 } // end namespace Custom

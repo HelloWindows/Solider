@@ -7,6 +7,7 @@
 using Framework.Config;
 using Framework.Manager;
 using Solider.Config;
+using Solider.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,16 +36,9 @@ namespace Solider {
         private void OnToggleEquipment(bool isOn) {
             if (!isOn) return;
             // end if
-            Dictionary<int, string[]> idDict = new Dictionary<int, string[]>();
-            SqliteManager.GetPackInfoWithID(InstanceMgr.CurrentID.ToString(), "equip", ref idDict);
 
             for (int i = 0; i < gridArray.Length; i++) {
-                if (!idDict.ContainsKey(i)) {
-                    gridArray[i].HideItem();
-                    continue;
-                } // end if
-                EquipInfo info = InstanceMgr.GetConfigManager().GetEquipInfoWithID(idDict[i][0]);
-
+                EquipInfo info = PlayerData.GetInstance().pack.GetEquipInfoWithGid(i);
                 if (null == info) {
                     gridArray[i].HideItem();
                     continue;

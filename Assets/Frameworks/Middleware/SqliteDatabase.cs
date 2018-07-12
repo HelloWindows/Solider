@@ -273,13 +273,13 @@ namespace Framework {
 #endif
                     return reader;
                 } // end if
-                string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + colsvalues[0];
+                string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + "'" + colsvalues[0] + "' ";
                 for (int i = 1; i < colsvalues.Length; ++i) {
-                    query += ", " + cols[i] + " =" + colsvalues[i];
+                    query += ", " + cols[i] + " = " + "'" + colsvalues[i] + "'";
                 } // end for
-                query += " WHERE " + selects[0] + operation[0] + "'" + values[0] + "' ";
+                query += " WHERE " + selects[0] + operation[0] + "'" + values[0] + "'";
                 for (int i = 1; i < selects.Length; ++i) {
-                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "' ";
+                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "'";
                 } // end for
                 return ExecuteQuery(query);
             } // end Update

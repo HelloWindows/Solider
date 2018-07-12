@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 namespace Solider {
 	public class UIJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler {
 
-        public static Vector3 dir { get; private set; }
+        public static Vector2 dir { get; private set; }
 
         private float radius;
         private Vector2 downPos;
@@ -28,7 +28,7 @@ namespace Solider {
 
         public void OnDrag(PointerEventData data) {
             dir = (data.position - downPos).normalized;
-            float dis = Vector3.Distance(data.position, downPos);
+            float dis = Vector2.Distance(data.position, downPos);
             pointTrans.localPosition = dir.normalized * Mathf.Clamp(dis, 0, radius);
         } // end OnDrag
 

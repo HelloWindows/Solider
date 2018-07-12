@@ -15,6 +15,7 @@ namespace Solider {
             public PlayerPack pack { get; private set; }
 
             private static PlayerData instance;
+
             public static PlayerData GetInstance() {
                 if (null == instance) instance = new PlayerData();
                 // end if

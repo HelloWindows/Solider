@@ -37,7 +37,13 @@ namespace Framework {
                             new string[] { ToValue(i * 3 + j), ToValue("0"), ToValue(i), ToValue(types[j]), ToValue("Z"), ToValue(0) });
                     } // end for
                 } // end for
-                SetPackInfoWithID(id, "equit", 0, "100001", "D", 1);
+                int index = 0;
+                for (int i = 1; i < 5; i++) {
+                    SetPackInfoWithID(id, "equit", index++, "10000" + i, "D", 1);
+                    SetPackInfoWithID(id, "equit", index++, "10000" + (i + 4), "D", 1);
+                    SetPackInfoWithID(id, "equit", index++, "10010" + i, "D", 1);
+                    SetPackInfoWithID(id, "equit", index++, "10020" + i, "D", 1);
+                } // end for
                 sqliteDB.Disconnect();
             } // end CreateRole
 
@@ -105,7 +111,7 @@ namespace Framework {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 try {
                     sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { id, grade, count.ToString() }, 
-                        new string[] { "tid" }, new string[] { "=" }, new string[] { gid.ToString() });
+                        new string[] { "gid", "type" }, new string[] { "=", "=" }, new string[] { gid.ToString(), type });
                 } catch (Exception ex) {
 #if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());

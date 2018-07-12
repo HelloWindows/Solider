@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Manager;
+using Solider.Config;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,15 @@ namespace Solider {
 
             public PlayerPack() {
                 ResolveInfo("equit", ref equipIDList, ref equipCountList);
-                ResolveInfo("consume", ref equipIDList, ref equipCountList);
-                ResolveInfo("stuff", ref equipIDList, ref equipCountList);
+                ResolveInfo("consume", ref consumeIDList, ref consumeCountList);
+                ResolveInfo("stuff", ref stuffIDList, ref stuffCountList);
             } // end PlayerPack
+
+            public EquipInfo GetEquipInfoWithGid(int gid) {
+                if (gid < 0 || gid >= equipIDList.Length) return null;
+                // end if
+                return InstanceMgr.GetConfigManager().GetEquipInfoWithID(equipIDList[gid]);
+            } // end GetEquipInfoWithGid
 
             private void ResolveInfo(string type, ref string[] idList, ref int[] countList) {
                 idList = new string[ConstConfig.GRID_COUNT];
@@ -45,7 +52,6 @@ namespace Solider {
                             countList[i] = 0;
                         } // end if
                     } // end if
-                    Debug.Log("ID: " + idList[i] + " Count: " + countList[i]);
                 } // end for
             } // end ResolveInfo
         } // end class PlayerPack 
