@@ -6,7 +6,7 @@
       "name": "绷带",
       "grade": "D",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/binder",
       "intro": "赶紧止血，不然没命了",
       "property": {
         "hp": 100,
@@ -27,7 +27,7 @@
       "name": "消炎药",
       "grade": "C",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/allay",
       "intro": "再不消炎，会死掉的",
       "property": {
         "hp": 0,
@@ -48,7 +48,7 @@
       "name": "止痛药",
       "grade": "B",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/anodyne",
       "intro": "疼死了",
       "property": {
         "hp": 500,
@@ -69,7 +69,7 @@
       "name": "金疮药",
       "grade": "A",
       "role": "all",
-      "spritepath": "",
+      "spritepath": "Sprite/ItemSprite/reborn",
       "intro": "满血复活吧",
       "property": {
         "hp": 1000,

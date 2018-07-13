@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using LitJson;
 using Solider.Manager;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,29 +18,22 @@ namespace Solider {
             public string id { get; private set; }
             public string name { get; private set; }
             public string grade { get; private set; }
+            public string type { get; private set; }
             public string role { get; private set; }
             public string spritepath { get; private set; }
             public string intro { get; private set; }
             public EquipProperty property { get; private set; }
 
-            public EquipInfo() {
-                property = new EquipProperty();
+            public EquipInfo(JsonData data) {
+                id = (string)data["id"];
+                name = (string)data["name"];
+                grade = (string)data["grade"];
+                type = (string)data["type"];
+                role = (string)data["role"];
+                spritepath = (string)data["spritepath"];
+                intro = (string)data["intro"];
+                property = new EquipProperty(data["property"]);
             } // end EquipInfo
-
-            public void SetID(string id) { this.id = id; } // end SetID
-            public void SetName(string name) { this.name = name; } // end SetName
-            public void SetGrade(string grade) { this.grade = grade; } // end SetGrade
-            public void SetRole(string role) { this.role = role; } // end SetRole
-            public void SetSpritepath(string spritepath) { this.spritepath = spritepath; } // end SetSpritepaht
-            public void SetIntro(string intro) { this.intro = intro; } // end SetIntro
-
-            public void SetAttmin(int attmin) { property.SetAttmin(attmin); } // end SetAttmin
-            public void SetAttmax(int attmax) { property.SetAttmax(attmax); } // end SetAttmax
-            public void SetDef(int def) { property.SetDef(def); } // end SetDef
-            public void SetAttspeed(float attspeed) { property.SetAttspeed(attspeed); } // end SetAttspeed
-            public void SetMovspeed(float movspeed) { property.SetMovspeed(movspeed); } // end SetMovspeed
-            public void SetCrit(float crit) { property.SetCrit(crit); } // end SetCrit
-            public void SetClip(float clip) { property.SetClip(clip); } // end SetClip
 
             public override string ToString() {
                 infoBuilder.Length = 0;
@@ -70,6 +64,22 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=18>");
+
+                switch (type) {
+                    case "weapon":
+                        infoBuilder.Append("武器");
+                        break;
+                    case "armor":
+                        infoBuilder.Append("盔甲");
+                        break;
+                    case "shoes":
+                        infoBuilder.Append("战靴");
+                        break;
+                    default:
+                        infoBuilder.Append("无法使用");
+                        break;
+                } // end swtich
+                infoBuilder.Append("                                         ");
 
                 if (role != "all" && role != PlayerManager.roleType) {
                     infoBuilder.Append("<color=#FF0000FF>");
@@ -139,7 +149,9 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=16>");
+                infoBuilder.Append("<color=#90EE90FF>");
                 infoBuilder.Append(intro);
+                infoBuilder.Append("</color>");
                 infoBuilder.Append("</size>");
                 return infoBuilder.ToString();
             } // end ToString
@@ -154,13 +166,15 @@ namespace Solider {
             public float crit { get; private set; }
             public float clip { get; private set; }
 
-            public void SetAttmin(int attmin) { this.attmin = attmin; } // end SetAttmin
-            public void SetAttmax(int attmax) { this.attmax = attmax; } // end SetAttmax
-            public void SetDef(int def) { this.def = def; } // end SetDef
-            public void SetAttspeed(float attspeed) { this.attspeed = attspeed; } // end SetAttspeed
-            public void SetMovspeed(float movspeed) { this.movspeed = movspeed; } // end SetMovspeed
-            public void SetCrit(float crit) { this.crit = crit; } // end SetCrit
-            public void SetClip(float clip) { this.clip = clip; } // end SetClip
+            public EquipProperty(JsonData data) {
+                attmin = (int)data["attmin"];
+                attmax = (int)data["attmax"];
+                def = (int)data["def"];
+                attspeed = (float)data["attspeed"];
+                movspeed = (float)data["movspeed"];
+                crit = (float)data["crit"];
+                clip = (float)data["clip"];
+            } // end EquipProperty
         } // end class EquipProperty
     } // end namespace Config
 } // end namespace Custom

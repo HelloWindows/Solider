@@ -44,6 +44,14 @@ namespace Framework {
                     SetPackInfoWithID(id, "equip", index++, "10010" + i, "D", 0);
                     SetPackInfoWithID(id, "equip", index++, "10020" + i, "D", 0);
                 } // end for
+                index = 0;
+                for (int i = 1; i < 5; i++) {
+                    SetPackInfoWithID(id, "consume", index++, "20000" + i, "D", 66);
+                } // end for
+                index = 0;
+                for (int i = 1; i < 5; i++) {
+                    SetPackInfoWithID(id, "stuff", index++, "30000" + i, "D", 99);
+                } // end for
                 sqliteDB.Disconnect();
             } // end CreateRole
 
@@ -80,8 +88,8 @@ namespace Framework {
                 return null;
             } // end GetRoleWithID
 
-            public static void GetPackInfoWithID(string id, string type, ref Dictionary<int, string[]> idDict) {
-                string tableName = "pack_list_table_" + id;
+            public static void GetPackInfoWithID(string playerId, string type, ref Dictionary<int, string[]> idDict) {
+                string tableName = "pack_list_table_" + playerId;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type });
 
@@ -105,6 +113,33 @@ namespace Framework {
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetEquipmentPackInfoWithID
+
+            public static void GetArrangePackInfoWithID(string playerId, string type, ref Dictionary<int, string[]> idDict) {
+                string tableName = "pack_list_table_" + playerId;
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                SqliteDataReader reader = sqliteDB.SelectOrder(tableName, new string[] { "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type }, new string[] { "grade" }, "ASC");
+
+                if (null == reader) {
+                    sqliteDB.Disconnect();
+                    idDict = new Dictionary<int, string[]>();
+                    return;
+                } // end if
+
+                try {
+                    int gid = 0;
+                    while (reader.Read()) {
+                        idDict[gid] = new string[2];
+                        idDict[gid][0] = reader.GetString(reader.GetOrdinal("id"));
+                        idDict[gid][1] = reader.GetInt32(reader.GetOrdinal("count")).ToString();
+                        gid++;
+                    } // end while
+                } catch (Exception ex) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetConsole(ex.ToString());
+#endif
+                } // end try
+                sqliteDB.Disconnect();
+            } // end GetArrangePackInfoWithID
 
             public static void SetPackInfoWithID(string playerId, string type, int gid, string id, string grade, int count) {
                 string tableName = "pack_list_table_" + playerId;

@@ -29,6 +29,7 @@
  *      SqliteDatabase db = new SqliteDatabase(@"Data Source=" + appDBPath);
  * #endif
  */
+using Framework.Manager;
 using Mono.Data.Sqlite;
 using System;
 using System.Collections;
@@ -61,18 +62,7 @@ namespace Framework {
             /// </summary>
             /// <param name="connectionString"> 数据库名 </param>
             public void Connect(string connectionString) {
-                string path = "";
-#if UNITY_EDITOR
-                path = "data source=" + connectionString;
-#elif UNITY_STANDALONE_WIN
-                path = @"Data Source=" + Application.dataPath + "/" + connectionString;	    
-#elif UNITY_STANDALONE_OSX
-                path = @"Data Source=" + Application.dataPath + "/" + connectionString;	     
-#elif UNITY_ANDROID
-                path = "URI=file:" + Application.persistentDataPath + "/" + connectionString;	    
-#elif UNITY_IPHONE
-                path = @"Data Source=" + Application.persistentDataPath + "/" + connectionString;	    
-#endif
+                string path = PlatformManager.GetSqliteDatabasePath(connectionString);
                 try {
                     dbConnection = new SqliteConnection(path);
                     dbConnection.Open();
@@ -177,38 +167,37 @@ namespace Framework {
                 } // end for
                 return ExecuteQuery(query);
             } // end SelectWhere
-
             /// <summary>
-            /// 升序查询
+            /// 排序选择
             /// </summary>
             /// <param name="tableName"> 表名 </param>
-            /// <param name="items"> 查询项 </param>
-            /// <param name="cols"> 排序列 </param>
-            /// <returns> 结果读取器 </returns>
-            public SqliteDataReader SelectOrderASC(string tableName, string[] items, string[] cols) {
-                return SelectOrder(tableName, items, cols, "ASC");
-            } // end SelectOrderASC
-
-            /// <summary>
-            /// 降序查询
-            /// </summary>
-            /// <param name="tableName"> 表名 </param>
-            /// <param name="items"> 查询项 </param>
-            /// <param name="cols"> 排序列 </param>
-            /// <returns> 结果读取器 </returns>
-            public SqliteDataReader SelectOrderDESC(string tableName, string[] items, string[] cols) {
-                return SelectOrder(tableName, items, cols, "DESC");
-            } // end SelectOrderASC
-
-            private SqliteDataReader SelectOrder(string tableName, string[] items, string[] cols, string order) {
+            /// <param name="items"> 获取项 </param>
+            /// <param name="selects"> 筛选项 </param>
+            /// <param name="operation"> 操作符 </param>
+            /// <param name="values"> 筛选值 </param>
+            /// <param name="orderCols"> 排序列 </param>
+            /// <param name="order"> 升序 ASC, 降序 DESC </param>
+            /// <returns></returns>
+            public SqliteDataReader SelectOrder(string tableName, string[] items, string[] selects, string[] operation, string[] values, string[] orderCols, string order) {
+                if (selects.Length != operation.Length || operation.Length != values.Length) {
+#if __MY_DEBUG__
+                    reader = null;
+                    ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
+#endif
+                    return reader;
+                } // end if
                 string query = "SELECT " + items[0];
 
                 for (int i = 1; i < items.Length; ++i) {
                     query += ", " + items[i];
                 } // end for
-                query += " FROM " + tableName + " ORDER BY " + cols[0];
-                for (int i = 1; i < cols.Length; ++i) {
-                    query += ", " + cols[i];
+                query += " FROM " + tableName + " WHERE " + selects[0] + operation[0] + "'" + values[0] + "'";
+                for (int i = 1; i < selects.Length; ++i) {
+                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "'";
+                } // end for
+                query += " ORDER BY " + orderCols[0];
+                for (int i = 1; i < orderCols.Length; ++i) {
+                    query += ", " + orderCols[i];
                 } // end for
                 query += " " + order;
                 return ExecuteQuery(query);

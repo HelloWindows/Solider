@@ -1,220 +1,32 @@
 ﻿{
   "itemlist": [
     {
-      "id": "100001",
-      "name": "破损的手枪",
+      "id": "300001",
+      "name": "硝石",
       "grade": "D",
-      "type": "equipment",
-      "role": "Shooter",
-      "spritepath": "",
-      "intro": "将就着用吧",
-      "property": {
-        "attmin": 10,
-        "attmax": 20,
-        "def": 0,
-        "attspeed": 1,
-        "movspeed": 0,
-        "crit": 30,
-        "clip": 30
-      }
+      "spritepath": "Sprite/ItemSprite/nitre",
+      "intro": "制作子弹的材料"
     },
     {
-      "id": "100002",
-      "name": "普通的手枪",
+      "id": "300002",
+      "name": "铁矿",
       "grade": "C",
-      "type": "equipment",
-      "role": "Shooter",
-      "spritepath": "",
-      "intro": "据说红军就是靠它胜利的",
-      "property": {
-        "attmin": 12,
-        "attmax": 25,
-        "def": 0,
-        "attspeed": 1,
-        "movspeed": 0,
-        "crit": 30,
-        "clip": 30
-      }
+      "spritepath": "Sprite/ItemSprite/iron",
+      "intro": "只是铁矿，仅此而已！"
     },
     {
-      "id": "100003",
-      "name": "精致的手枪",
+      "id": "300003",
+      "name": "银矿",
       "grade": "B",
-      "type": "equipment",
-      "role": "Shooter",
-      "spritepath": "",
-      "intro": "应该还打不到飞机吧",
-      "property": {
-        "attmin": 15,
-        "attmax": 30,
-        "def": 0,
-        "attspeed": 1,
-        "movspeed": 0,
-        "crit": 30,
-        "clip": 30
-      }
+      "spritepath": "Sprite/ItemSprite/silver",
+      "intro": "听说用银弹打打僵尸挺爽！"
     },
-    {
-      "id": "100004",
-      "name": "完美的手枪",
+     {
+      "id": "300004",
+      "name": "金矿",
       "grade": "A",
-      "type": "equipment",
-      "role": "Shooter",
-      "spritepath": "",
-      "intro": "这把手枪的设计者真TM是个疯子！",
-      "property": {
-        "attmin": 20,
-        "attmax": 40,
-        "def": 0,
-        "attspeed": 1,
-        "movspeed": 0,
-        "crit": 30,
-        "clip": 30
-      }
-    },
-    {
-      "id": "100101",
-      "name": "破损的盔甲",
-      "grade": "D",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "能遮盖重要部位就行了",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 5,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100102",
-      "name": "普通的盔甲",
-      "grade": "C",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "嗯，有脸走出伊甸园了",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 8,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100103",
-      "name": "精致的盔甲",
-      "grade": "B",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "呵呵，看上去挺体面的哦",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 12,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100104",
-      "name": "完美的盔甲",
-      "grade": "A",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "魔镜啊！魔镜，还有比我更好看的吗？",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 18,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100201",
-      "name": "破损的靴子",
-      "grade": "D",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "比没有强一丁点",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 0,
-        "attspeed": 0,
-        "movspeed": 1,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100202",
-      "name": "普通的靴子",
-      "grade": "C",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "悠着点，走太远会磨出水泡",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 0,
-        "attspeed": 0,
-        "movspeed": 2,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100203",
-      "name": "精致的靴子",
-      "grade": "B",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "感觉跟猎狗赛跑，我能赢",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 0,
-        "attspeed": 0,
-        "movspeed": 3,
-        "crit": 0,
-        "clip": 0
-      }
-    },
-    {
-      "id": "100204",
-      "name": "完美的靴子",
-      "grade": "A",
-      "type": "equipment",
-      "role": "all",
-      "spritepath": "",
-      "intro": "根本停不下来",
-      "property": {
-        "attmin": 0,
-        "attmax": 0,
-        "def": 0,
-        "attspeed": 0,
-        "movspeed": 4,
-        "crit": 0,
-        "clip": 0
-      }
+      "spritepath": "Sprite/ItemSprite/gold",
+      "intro": "金子，人人都喜欢！"
     }
   ]
 }

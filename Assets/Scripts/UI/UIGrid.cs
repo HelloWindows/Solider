@@ -12,7 +12,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Solider {
-	public class UIGrid : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
+	public class UIGrid : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler {
+
+        private Action pointerDownCall;
+        private Action<int, int> dropCall;
 
         public int id { get; private set; }
         public UIItem item { get; private set; }
@@ -57,6 +60,29 @@ namespace Solider {
             item.transform.localPosition = Vector3.zero;
         } // end OnEndDrag
 
+        #region /*************** 选择格子 ******************/
+        public void AddAction(Action call) {
+            pointerDownCall += call;
+        } // end AddAction
+
+        public void RemoveAction(Action call) {
+            pointerDownCall -= call;
+        } // end RemoveAction
+        public void OnPointerDown(PointerEventData eventData) {
+            if (null == pointerDownCall) return;
+            // end if
+            pointerDownCall();
+        } // end OnPointerDown
+        #endregion
+
+        #region /*************** 置换格子 ******************/
+        public void AddAction(Action<int, int> call) {
+            dropCall += call;
+        } // end AddAction
+        public void RemoveAction(Action<int, int> call) {
+            dropCall -= call;
+        } // end RemoveAction
+
         public void OnDrop(PointerEventData eventData) {
             if (null == eventData.pointerDrag) return; 
             // end if
@@ -72,7 +98,15 @@ namespace Solider {
                 grid.SetUIItem(item.sprite, item.count);
             } // end if
             SetUIItem(sprite, count);
-            PlayerManager.pack.ExchangeEquipInfoWithGid(id, grid.id);
+            if (null == dropCall) return;
+            // end if
+            dropCall(id, grid.id);
         } // end OnDrop
+        #endregion
+
+        public void ClearAction() {
+            dropCall = null;
+            pointerDownCall = null;
+        } // end ClearAction
     } // end class UIGrid 
 } // end namespace Custom
