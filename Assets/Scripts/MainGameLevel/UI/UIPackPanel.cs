@@ -16,15 +16,21 @@ using UnityEngine.UI;
 
 namespace Solider {
 	public class UIPackPanel : MonoBehaviour {
+        private Text infoText;
         private UIGrid[] gridArray;
 
 		// Use this for initialization
 		private void Start () {
-            gridArray = new UIGrid[ConstConfig.GRID_COUNT];
             string prefix = "GridPanel/Grids/Grid_";
+            gridArray = new UIGrid[ConstConfig.GRID_COUNT];
+            infoText = transform.Find("InfoText").GetComponent<Text>();
+            infoText.fontSize = 10;
+            infoText.alignByGeometry = false;
 
             for (int i = 0; i < gridArray.Length; i++) {
+                int id = i;
                 gridArray[i] = transform.Find(prefix + i).gameObject.AddComponent<UIGrid>();
+                gridArray[i].gameObject.AddComponent<UIButton>().AddAction(delegate() { OnClickGrid(id); });
                 gridArray[i].SetID(i);
             } // end for
             OnToggleEquipment(true);
@@ -59,6 +65,15 @@ namespace Solider {
             ConsoleTool.SetConsole("OnToggleStuff Bool: " + isOn);
 #endif
         } // end OnToggleEquipment
+
+        private void OnClickGrid(int id) {
+            EquipInfo info = PlayerManager.pack.GetEquipInfoWithGid(id);
+            if (null == info) {
+                infoText.text = "";
+                return;
+            } // end if
+            infoText.text = info.ToString();
+        } // end OnClickGrid
 
         private void OnClickCloseBtn() {
             if (null == gameObject) return;

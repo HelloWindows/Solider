@@ -7,8 +7,7 @@
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Manager;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

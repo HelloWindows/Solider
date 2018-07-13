@@ -97,7 +97,7 @@ namespace Solider {
                 ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                 return;
             } // end if
-            PlayerManager.InitPlayerManager(PlayerManager.playerID);
+            PlayerManager.InitPlayerManager(PlayerManager.playerID, roleDict[PlayerManager.playerID][0], roleDict[PlayerManager.playerID][1]);
             SceneLoader.LoadNextLevel("MainGameLevel");
         } // end OnClickStartGameBtn
 
