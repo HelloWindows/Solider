@@ -5,17 +5,10 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
-using System.Text;
 
 namespace Solider {
-    namespace Config {
-        public class StuffInfo {
-            private static readonly StringBuilder infoBuilder = new StringBuilder();
-            public string id { get; private set; }
-            public string name { get; private set; }
-            public string grade { get; private set; }
-            public string spritepath { get; private set; }
-            public string intro { get; private set; }
+    namespace Model {
+        public class StuffInfo : ItemInfo {
 
             public StuffInfo(JsonData data) {
                 id = (string)data["id"];

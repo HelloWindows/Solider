@@ -12,27 +12,37 @@ using System.Text;
 using UnityEngine;
 
 namespace Solider {
-    namespace Config {
-        public class EquipInfo {
-            private static readonly StringBuilder infoBuilder = new StringBuilder();
-            public string id { get; private set; }
-            public string name { get; private set; }
-            public string grade { get; private set; }
+    namespace Model {
+        public class EquipInfo : ItemInfo {
             public string type { get; private set; }
             public string role { get; private set; }
-            public string spritepath { get; private set; }
-            public string intro { get; private set; }
-            public EquipProperty property { get; private set; }
+
+            public int attmin { get; private set; }
+            public int attmax { get; private set; }
+            public int def { get; private set; }
+            public float attspeed { get; private set; }
+            public float movspeed { get; private set; }
+            public float crit { get; private set; }
+            public float clip { get; private set; }
 
             public EquipInfo(JsonData data) {
                 id = (string)data["id"];
                 name = (string)data["name"];
                 grade = (string)data["grade"];
-                type = (string)data["type"];
-                role = (string)data["role"];
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];
-                property = new EquipProperty(data["property"]);
+
+                type = (string)data["type"];
+                role = (string)data["role"];
+
+                JsonData property = data["property"];
+                attmin = (int)property["attmin"];
+                attmax = (int)property["attmax"];
+                def = (int)property["def"];
+                attspeed = (float)property["attspeed"];
+                movspeed = (float)property["movspeed"];
+                crit = (float)property["crit"];
+                clip = (float)property["clip"];
             } // end EquipInfo
 
             public override string ToString() {
@@ -79,7 +89,7 @@ namespace Solider {
                         infoBuilder.Append("无法使用");
                         break;
                 } // end swtich
-                infoBuilder.Append("                                         ");
+                infoBuilder.Append("                          ");
 
                 if (role != "all" && role != PlayerManager.roleType) {
                     infoBuilder.Append("<color=#FF0000FF>");
@@ -107,41 +117,21 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=20>");
 
-                if (property.attmin != 0 || property.attmax != 0) {
+                if (attmin != 0 || attmax != 0) {
                     infoBuilder.Append("战斗力：");
-                    infoBuilder.Append(property.attmin);
+                    infoBuilder.Append(attmin);
                     infoBuilder.Append(" - ");
-                    infoBuilder.Append(property.attmax);
+                    infoBuilder.Append(attmax);
                     infoBuilder.Append('\n');
                 } // end if
+                AppendValue("防御力：", def);
+                AppendValue("攻速：", attspeed);
+                AppendValue("移速：", movspeed);
+                AppendValue("暴击率：", crit);
 
-                if (property.def != 0) {
-                    infoBuilder.Append("防御力：");
-                    infoBuilder.Append(property.def);
-                    infoBuilder.Append('\n');
-                } // end if
-
-                if (property.attspeed != 0) {
-                    infoBuilder.Append("攻速：");
-                    infoBuilder.Append(property.attspeed);
-                    infoBuilder.Append('\n');
-                } // end if
-
-                if (property.movspeed != 0) {
-                    infoBuilder.Append("移速：");
-                    infoBuilder.Append(property.movspeed);
-                    infoBuilder.Append('\n');
-                } // end if
-
-                if (property.crit != 0) {
-                    infoBuilder.Append("暴击率：");
-                    infoBuilder.Append(property.crit);
-                    infoBuilder.Append('\n');
-                } // end if
-
-                if (property.clip != 0) {
+                if (clip != 0) {
                     infoBuilder.Append("弹夹：");
-                    infoBuilder.Append(property.clip);
+                    infoBuilder.Append(clip);
                     infoBuilder.Append(" 发");
                     infoBuilder.Append('\n');
                 } // end if
@@ -156,25 +146,5 @@ namespace Solider {
                 return infoBuilder.ToString();
             } // end ToString
         } // end class EquipmentInfo 
-
-        public class EquipProperty {
-            public int attmin { get; private set; }
-            public int attmax { get; private set; }
-            public int def { get; private set; }
-            public float attspeed { get; private set; }
-            public float movspeed { get; private set; }
-            public float crit { get; private set; }
-            public float clip { get; private set; }
-
-            public EquipProperty(JsonData data) {
-                attmin = (int)data["attmin"];
-                attmax = (int)data["attmax"];
-                def = (int)data["def"];
-                attspeed = (float)data["attspeed"];
-                movspeed = (float)data["movspeed"];
-                crit = (float)data["crit"];
-                clip = (float)data["clip"];
-            } // end EquipProperty
-        } // end class EquipProperty
     } // end namespace Config
 } // end namespace Custom

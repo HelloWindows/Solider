@@ -11,17 +11,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Solider.Config;
+using Solider.Model;
 
 namespace Custom {
-    public class Test : MonoBehaviour, IDragHandler, IDropHandler {
-        public void OnDrag(PointerEventData eventData)
-        {
-
-        }
-
-        public void OnDrop(PointerEventData eventData)
-        {
-
+    public class Test : MonoBehaviour {
+        private void Start() {
+            AttributeInfo info = new AttributeInfo();
+            info.SetHP(100);
+            info.SetMinATk(10);
+            info.SetMaxATK(100);
+            AttackInfo att = new AttackInfo(info);
+            info += att;
+            Debug.Log(info.HP);
         }
     } // end class Test 
 } // end namespace Custom

@@ -8,7 +8,6 @@ using UnityEngine;
 using Framework.Middleware;
 using Framework.Tools;
 using Solider;
-using Solider.Data;
 
 namespace Framework {
     namespace Manager {

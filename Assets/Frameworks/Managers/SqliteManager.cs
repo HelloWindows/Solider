@@ -70,10 +70,9 @@ namespace Framework {
                     sqliteDB.Disconnect();
                     return null;
                 } // end if
-                string[] result = new string[2];
-
                 try {
                     while (reader.Read()) {
+                        string[] result = new string[2];
                         result[0] = reader.GetString(reader.GetOrdinal("name"));
                         result[1] = reader.GetString(reader.GetOrdinal("roletype"));
                         sqliteDB.Disconnect();
@@ -114,7 +113,7 @@ namespace Framework {
                 sqliteDB.Disconnect();
             } // end GetEquipmentPackInfoWithID
 
-            public static void GetArrangePackInfoWithID(string playerId, string type, ref Dictionary<int, string[]> idDict) {
+            public static void GetArrangePackInfo(string playerId, string type, ref Dictionary<int, string[]> idDict) {
                 string tableName = "pack_list_table_" + playerId;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader = sqliteDB.SelectOrder(tableName, new string[] { "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type }, new string[] { "grade" }, "ASC");

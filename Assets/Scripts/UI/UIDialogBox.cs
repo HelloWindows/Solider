@@ -5,8 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
