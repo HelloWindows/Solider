@@ -16,13 +16,7 @@ using Solider.Model;
 namespace Custom {
     public class Test : MonoBehaviour {
         private void Start() {
-            AttributeInfo info = new AttributeInfo();
-            info.SetHP(100);
-            info.SetMinATk(10);
-            info.SetMaxATK(100);
-            AttackInfo att = new AttackInfo(info);
-            info += att;
-            Debug.Log(info.HP);
+    
         }
     } // end class Test 
 } // end namespace Custom

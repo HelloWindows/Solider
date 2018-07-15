@@ -14,16 +14,18 @@ namespace Solider {
         public class ConsumeInfo : ItemInfo {
             public string role { get; private set; }
 
-            public int hp { get; private set; }
-            public int mp { get; private set; }
-            public int lasthp { get; private set; }
-            public int lastmp { get; private set; }
-            public float time { get; private set; }
-            public int att { get; private set; }
-            public float attspeed { get; private set; }
-            public float movspeed { get; private set; }
-            public float crit { get; private set; }
-            public float cooling { get; private set; }
+            public int HP { get; private set; }
+            public int MP { get; private set; }
+            public int HOT { get; private set; }
+            public int MOT { get; private set; }
+            public int ATK { get; private set; }
+            public int MGK { get; private set; }
+            public float ASP { get; private set; }
+            public float MSP { get; private set; }
+            public float CRT { get; private set; }
+
+            public float LOT { get; private set; }
+            public float CD { get; private set; }
 
             public ConsumeInfo(JsonData data) {
                 id = (string)data["id"];
@@ -33,17 +35,16 @@ namespace Solider {
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];
                 JsonData property = data["property"];
-
-                hp = (int)property["hp"];
-                mp = (int)property["mp"];
-                lasthp = (int)property["lasthp"];
-                lastmp = (int)property["lastmp"];
-                time = (float)property["time"];
-                att = (int)property["att"];
-                attspeed = (float)property["attspeed"];
-                movspeed = (float)property["movspeed"];
-                crit = (float)property["crit"];
-                cooling = (float)property["cooling"];
+                HP = (int)property["HP"];
+                MP = (int)property["MP"];
+                HOT = (int)property["HOT"];
+                MOT = (int)property["MOT"];
+                ATK = (int)property["ATK"];
+                ASP = (float)property["ASP"];
+                MSP = (float)property["MSP"];
+                CRT = (float)property["CRT"];
+                LOT = (float)property["LOT"];
+                CD = (float)property["CD"];
             } // end EquipInfo
 
             public override string ToString() {
@@ -103,16 +104,16 @@ namespace Solider {
                 infoBuilder.Append('\n');
 
                 infoBuilder.Append("<size=20>");
-                AppendValue("Hp:", hp);
-                AppendValue("Mp:", mp);
-                AppendValue("每秒Hp:", lasthp);
-                AppendValue("每秒Mp:", lastmp);
-                AppendValue("持续时间:", time);
-                AppendValue("攻击力:", att);
-                AppendValue("攻速:", attspeed);
-                AppendValue("移速:", movspeed);
-                AppendValue("暴击率:", crit);
-                AppendValue("冷却时间:", cooling);
+                AppendValue("Hp:", HP);
+                AppendValue("Mp:", MP);
+                AppendValue("每秒Hp:", HOT);
+                AppendValue("每秒Mp:", MOT);
+                AppendValue("持续时间:", LOT);
+                AppendValue("攻击力:", ATK);
+                AppendValue("攻速:", ASP);
+                AppendValue("移速:", MSP);
+                AppendValue("暴击率:", CRT);
+                AppendValue("冷却时间:", CD);
                 infoBuilder.Append("</size>");
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');

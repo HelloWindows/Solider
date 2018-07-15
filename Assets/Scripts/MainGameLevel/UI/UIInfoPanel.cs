@@ -4,9 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Tools;
-using System.Collections;
-using System.Collections.Generic;
+using Solider.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,7 @@ namespace Solider {
 
 		// Use this for initialization
 		private void Start () {
-            transform.Find("InfoText").GetComponent<Text>();
+            transform.Find("InfoText").GetComponent<Text>().text = PlayerManager.info.GetAttributeData().ToString();
             DisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
             display.ReplaceDisplayCurrentRole("Shooter");
             transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });

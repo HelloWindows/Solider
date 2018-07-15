@@ -17,12 +17,19 @@ namespace Solider {
             public string type { get; private set; }
             public string role { get; private set; }
 
-            public int attmin { get; private set; }
-            public int attmax { get; private set; }
-            public int def { get; private set; }
-            public float attspeed { get; private set; }
-            public float movspeed { get; private set; }
-            public float crit { get; private set; }
+            public int XHP { get; private set; }
+            public int XMP { get; private set; }
+            public int HOT { get; private set; }
+            public int MOT { get; private set; }
+            public int NATK { get; private set; }
+            public int XATK { get; private set; }
+            public int NMGK { get; private set; }
+            public int XMGK { get; private set; }
+            public int DEF { get; private set; }
+            public int RGS { get; private set; }
+            public float ASP { get; private set; }
+            public float MSP { get; private set; }
+            public float CRT { get; private set; }
             public float clip { get; private set; }
 
             public EquipInfo(JsonData data) {
@@ -36,12 +43,17 @@ namespace Solider {
                 role = (string)data["role"];
 
                 JsonData property = data["property"];
-                attmin = (int)property["attmin"];
-                attmax = (int)property["attmax"];
-                def = (int)property["def"];
-                attspeed = (float)property["attspeed"];
-                movspeed = (float)property["movspeed"];
-                crit = (float)property["crit"];
+                XHP = (int)property["XHP"];
+                XMP = (int)property["XMP"];
+                HOT = (int)property["HOT"];
+                MOT = (int)property["MOT"];
+                NATK = (int)property["NATK"];
+                XATK = (int)property["XATK"];
+                DEF = (int)property["DEF"];
+                RGS = (int)property["RGS"];
+                ASP = (float)property["ASP"];
+                MSP = (float)property["MSP"];
+                CRT = (float)property["CRT"];
                 clip = (float)property["clip"];
             } // end EquipInfo
 
@@ -116,18 +128,22 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=20>");
+                AppendValue("MaxHp：", XHP);
+                AppendValue("MaxMp：", XMP);
+                AppendValue("每秒Hp：", HOT);
+                AppendValue("每秒Mp：", MOT);
 
-                if (attmin != 0 || attmax != 0) {
-                    infoBuilder.Append("战斗力：");
-                    infoBuilder.Append(attmin);
+                if (NATK != 0 || XATK != 0) {
+                    infoBuilder.Append("物理攻击：");
+                    infoBuilder.Append(NATK);
                     infoBuilder.Append(" - ");
-                    infoBuilder.Append(attmax);
+                    infoBuilder.Append(XATK);
                     infoBuilder.Append('\n');
                 } // end if
-                AppendValue("防御力：", def);
-                AppendValue("攻速：", attspeed);
-                AppendValue("移速：", movspeed);
-                AppendValue("暴击率：", crit);
+                AppendValue("防御力：", DEF);
+                AppendValue("攻速：", ASP);
+                AppendValue("移速：", MSP);
+                AppendValue("暴击率：", CRT);
 
                 if (clip != 0) {
                     infoBuilder.Append("弹夹：");

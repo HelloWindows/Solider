@@ -9,16 +9,16 @@
       "spritepath": "Sprite/ItemSprite/binder",
       "intro": "赶紧止血，不然没命了",
       "property": {
-        "hp": 100,
-        "mp": 0,
-        "lasthp": 0,
-        "lastmp": 0,
-        "time": 0,
-        "att": 0,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "cooling": 5
+        "HP": 100,
+        "MP": 0,
+        "HOT": 0,
+        "MOT": 0,
+        "LOT": 0,
+        "ATK": 0,
+        "ASP": 0,
+        "MSP": 0,
+        "CRT": 0,
+        "CD": 5
       }
     },
     {
@@ -30,16 +30,16 @@
       "spritepath": "Sprite/ItemSprite/allay",
       "intro": "再不消炎，会死掉的",
       "property": {
-        "hp": 0,
-        "mp": 0,
-        "lasthp": 30,
-        "lastmp": 0,
-        "time": 10,
-        "att": 0,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "cooling": 10
+        "HP": 0,
+        "MP": 0,
+        "HOT": 30,
+        "MOT": 0,
+        "LOT": 10,
+        "ATK": 0,
+        "ASP": 0,
+        "MSP": 0,
+        "CRT": 0,
+        "CD": 10
       }
     },
     {
@@ -51,16 +51,16 @@
       "spritepath": "Sprite/ItemSprite/anodyne",
       "intro": "疼死了",
       "property": {
-        "hp": 500,
-        "mp": 0,
-        "lasthp": 50,
-        "lastmp": 0,
-        "time": 10,
-        "att": 0,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "cooling": 30
+        "HP": 500,
+        "MP": 0,
+        "HOT": 50,
+        "MOT": 0,
+        "LOT": 10,
+        "ATK": 0,
+        "ASP": 0,
+        "MSP": 0,
+        "CRT": 0,
+        "CD": 30
       }
     },
     {
@@ -72,16 +72,16 @@
       "spritepath": "Sprite/ItemSprite/reborn",
       "intro": "满血复活吧",
       "property": {
-        "hp": 1000,
-        "mp": 0,
-        "lasthp": 100,
-        "lastmp": 0,
-        "time": 10,
-        "att": 0,
-        "attspeed": 0,
-        "movspeed": 0,
-        "crit": 0,
-        "cooling": 60
+        "HP": 1000,
+        "MP": 0,
+        "HOT": 100,
+        "MOT": 0,
+        "LOT": 10,
+        "ATK": 0,
+        "ASP": 0,
+        "MSP": 0,
+        "CRT": 0,
+        "CD": 60
       }
     }
   ]

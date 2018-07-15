@@ -8,6 +8,7 @@ using Framework.Config;
 using Framework.Manager;
 using Solider.Interface;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Solider {
     namespace Model {
@@ -38,32 +39,45 @@ namespace Solider {
             } // end GetItemPack
 
             private class Pack : IPack {
-                private readonly string name;
+                private readonly string type;
                 private readonly string playerID;
                 private string[] idList;
                 private int[] countList;
 
-                public Pack(string playerID, string name) {
-                    this.name = name;
+                public Pack(string playerID, string type) {
+                    this.type = type;
                     this.playerID = playerID;
                     idList = new string[ConstConfig.GRID_COUNT];
                     countList = new int[ConstConfig.GRID_COUNT];
                     Dictionary<int, string[]> dict = new Dictionary<int, string[]>();
-                    SqliteManager.GetPackInfoWithID(playerID, name, ref dict);
+                    SqliteManager.GetPackInfoWithID(playerID, type, ref dict);
 
                     for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                         int count = 0;
-
-                        if (!dict.ContainsKey(i)) continue;
-                        idList[i] = dict[i][0];
-
-                        if (int.TryParse(dict[i][1], out count)) {
-                            countList[i] = count;
-                        } else {
-                            countList[i] = 0;
+                        if (!dict.ContainsKey(i)) {
+                            idList[i] = "0";
+                            continue;
                         } // end if
+                        idList[i] = dict[i][0];
+                        if (ConfigManager.itemConfig.GetItemType(idList[i]) != type) idList[i] = "0";
+                        // end if
+                        if (int.TryParse(dict[i][1], out count)) countList[i] = count;
+                        // end if
                     } // end for
                 } // end Pack
+
+                public void PackItem(string itemID, int count) {
+                    string type = ConfigManager.itemConfig.GetItemType(itemID);
+                    if (this.type != type) return;
+                    // end if
+                    for (int i = 0; i < idList.Length; i++) {
+                        if (idList[i] != "0") continue;
+                        // end if
+                        idList[i] = itemID;
+                        countList[i] = count;
+                        return;
+                    } // end for
+                } // end PackItem
 
                 public ItemInfo GetItemInfoForGrid(int gid) {
                     if (gid < 0 || gid >= idList.Length) return null;
@@ -92,7 +106,7 @@ namespace Solider {
 
                 public void ArrangePack() {
                     Dictionary<int, string[]> dict = new Dictionary<int, string[]>();
-                    SqliteManager.GetArrangePackInfo(playerID, name, ref dict);
+                    SqliteManager.GetArrangePackInfo(playerID, type, ref dict);
 
                     for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                         int count = 0;
@@ -128,7 +142,7 @@ namespace Solider {
 
                 private void WriteGridInfo(int gid, string id, int count) {
                     string grade = ConfigManager.itemConfig.GetItemGrade(id);
-                    SqliteManager.SetPackInfoWithID(playerID, name, gid, id, grade, count);
+                    SqliteManager.SetPackInfoWithID(playerID, type, gid, id, grade, count);
                 } // end WriteGridInfo
             } // end class Pack 
         } // end class PlayerPack

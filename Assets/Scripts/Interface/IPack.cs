@@ -10,6 +10,12 @@ namespace Solider {
     namespace Interface {
         public interface IPack {
             /// <summary>
+            /// 获取物品
+            /// </summary>
+            /// <param name="itemID"> 物品ID </param>
+            /// <param name="count"> 物品数量 </param>
+            void PackItem(string itemID, int count);
+            /// <summary>
             /// 获取对应格子的物品信息
             /// </summary>
             /// <param name="gid"> 格子id </param>
