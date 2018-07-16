@@ -4,13 +4,14 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Model;
+using System.Collections.Generic;
 
 namespace Solider {
     namespace Interface {
-        public interface IWearEquip {
-            void PutOnEquip(string type, string itemid);
+        public interface IWearInfo {
+            void GetWearEquip(out Dictionary<string, string> dict);
+            bool PutOnEquip(string id);
             void TakeOffEquip(string type);
-        } // end interface IWearEquip
+        } // end interface IWearInfo
     } // end namespace Interface
 } // end namespace Solider 

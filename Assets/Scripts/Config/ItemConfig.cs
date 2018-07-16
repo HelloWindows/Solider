@@ -54,7 +54,7 @@ namespace Solider {
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
                     EquipInfo info = new EquipInfo(list[i]);
-                    stuffInfo.Add((string)list[i]["id"], info);
+                    equipInfo.Add((string)list[i]["id"], info);
                 } // end for
             } // end InitEquipConfig
 
@@ -63,7 +63,7 @@ namespace Solider {
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
                     ConsumeInfo info = new ConsumeInfo(list[i]);
-                    stuffInfo.Add((string)list[i]["id"], info);
+                    consumeInfo.Add((string)list[i]["id"], info);
                 } // end for
             } // end InitConsumeConfig
             #endregion

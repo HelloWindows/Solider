@@ -9,8 +9,10 @@ using Framework.Config;
 
 namespace Framework {
     namespace Manager {
-        public class ConfigManager {
+        public static class ConfigManager {
             public static readonly ItemConfig itemConfig = ItemConfig.instance;
+            public static readonly string[] equipTypeList = { "weapon", "armor", "shoes" };
+            public static readonly string[] packTypeList = { "equip", "consume", "stuff" };
         } // end class ConfigManager 
     } // end  namespace Manager
 } // end namespace Framework

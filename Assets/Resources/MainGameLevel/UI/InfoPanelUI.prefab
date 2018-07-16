@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222648197054523060}
   - component: {fileID: 114128356495739902}
   m_Layer: 5
-  m_Name: Item_2
+  m_Name: Cell_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222970909611731406}
   - component: {fileID: 114252807548441828}
   m_Layer: 5
-  m_Name: Item_1
+  m_Name: Cell_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224116930369443332}
   m_Layer: 5
-  m_Name: Items
+  m_Name: Cells
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 222956769066063032}
   - component: {fileID: 114436757793219284}
   m_Layer: 5
-  m_Name: Item_0
+  m_Name: Cell_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,10 +333,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0

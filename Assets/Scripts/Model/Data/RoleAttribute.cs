@@ -15,11 +15,11 @@ namespace Solider {
                 private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
-                public RoleAttribute(string playerID, string name, string roleType) {
+                public RoleAttribute(string roleID, string name, string roleType) {
                     this.name = name;
                     this.roleType = roleType;
                     Dictionary<string, float> dict = new Dictionary<string, float>();
-                    SqliteManager.GetRoleInfoWithID(playerID, ref dict);
+                    SqliteManager.GetRoleInfoWithID(roleID, ref dict);
                     XHP = (int)dict["xhp"];
                     XMP = (int)dict["xmp"];
                     NATK = (int)dict["natk"];
@@ -189,12 +189,25 @@ namespace Solider {
 
                 public override string ToString() {
                     infoBuilder.Length = 0;
+                    infoBuilder.Append("<size=24>");
                     infoBuilder.Append("名字：");
                     infoBuilder.Append(name);
                     infoBuilder.Append('\n');
 
                     infoBuilder.Append("角色：");
-                    infoBuilder.Append(roleType);
+                    switch (roleType) {
+                        case "Shooter":
+                            infoBuilder.Append("射手");
+                        break;
+
+                        case "Solider":
+                            infoBuilder.Append("战士");
+                        break;
+
+                        default:
+                            infoBuilder.Append("全部");
+                        break;
+                    } // end switch
                     infoBuilder.Append('\n');
 
                     infoBuilder.Append("物理攻击：");
@@ -238,6 +251,7 @@ namespace Solider {
                     infoBuilder.Append("暴击率：");
                     infoBuilder.Append(CRT);
                     infoBuilder.Append('\n');
+                    infoBuilder.Append("</size>");
                     return infoBuilder.ToString();
                 } // end ToString        
             } // end class RoleAttribute

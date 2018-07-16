@@ -42,7 +42,7 @@ namespace Solider {
             transform.Find("GridPanel/ToggleGroup/Consumable").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleConsumable);
             transform.Find("GridPanel/ToggleGroup/Stuff").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleStuff);
             transform.Find("ArrangeBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnArrangeBtn(); });
-            transform.Find("UseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+            transform.Find("UseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickUseBtn(); });
             transform.Find("DiscardBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickDiscardBtn(); });
             transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
         } // end Start
@@ -73,7 +73,7 @@ namespace Solider {
         private void SwitchPack(string name) {
             LoseItem();
             packName = name;
-            currentPack = PlayerManager.pack.GetItemPack(name);
+            currentPack = RoleManager.pack.GetItemPack(name);
             for (int i = 0; i < gridArray.Length; i++) {
                 ItemInfo info = currentPack.GetItemInfoForGrid(i);
                 if (null == info) {
@@ -91,7 +91,6 @@ namespace Solider {
 
         private void OnSelectedGrid(int id) {
             ItemInfo info = currentPack.GetItemInfoForGrid(id);
-
             if (null != info) {
                 currentGid = id;
                 infoText.text = info.ToString();
@@ -104,6 +103,13 @@ namespace Solider {
             currentPack.ArrangePack();
             SwitchPack(packName);
         } // end OnArrangeBtn
+
+        private void OnClickUseBtn() {
+            if (currentGid == -1) return;
+            // end if
+            currentPack.UseItemWithGid(currentGid);
+            SwitchPack(packName);
+        } // end OnClickUseBtn
 
         private void OnClickDiscardBtn() {
             if (currentGid == -1) return;

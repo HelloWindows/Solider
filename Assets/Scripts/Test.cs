@@ -16,7 +16,9 @@ using Solider.Model;
 namespace Custom {
     public class Test : MonoBehaviour {
         private void Start() {
-    
+            ItemInfo info = null;
+            EquipInfo t = info as EquipInfo;
+            Debug.Log(t);
         }
     } // end class Test 
 } // end namespace Custom

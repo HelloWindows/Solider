@@ -13,7 +13,7 @@ using UnityEngine.UI;
 namespace Solider {
 	public class UICreateRolePanel : MonoBehaviour {
 
-        private string playerID;
+        private string roleID;
         private string roleType;
         private DisplayRaw display;
         private InputField nameInputField;
@@ -30,8 +30,8 @@ namespace Solider {
             OnSwitchRole("Shooter");
         } // end Start
 
-        public void SetPlayerID(string playerID) {
-            this.playerID = playerID;
+        public void SetPlayerID(string roleID) {
+            this.roleID = roleID;
         } // end SetPlayerID
 
         private void OnSwitchRole(string roleType) {
@@ -46,7 +46,7 @@ namespace Solider {
                 ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                 return;
             } // end if
-            SqliteManager.CreateRole(playerID, nameInputField.text, roleType);
+            SqliteManager.CreateRole(roleID, nameInputField.text, roleType);
             if (null == gameObject) return;
             // end if
             OnClickBackBtn();

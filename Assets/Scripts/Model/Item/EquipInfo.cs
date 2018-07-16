@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using LitJson;
 using Solider.Manager;
 using System.Collections;
@@ -103,7 +104,7 @@ namespace Solider {
                 } // end swtich
                 infoBuilder.Append("                          ");
 
-                if (role != "all" && role != PlayerManager.roleType) {
+                if (role != ConstConfig.ALLROLE && role != RoleManager.roleType) {
                     infoBuilder.Append("<color=#FF0000FF>");
 
                 } else {

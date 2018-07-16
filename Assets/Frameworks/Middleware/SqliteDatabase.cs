@@ -281,9 +281,9 @@ namespace Framework {
             /// <param name="colsvalues"></param>
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader Delete(string tableName, string[] cols, string[] colsvalues) {
-                string query = "DELETE FROM " + tableName + " WHERE " + cols[0] + " = " + colsvalues[0];
+                string query = "DELETE FROM " + tableName + " WHERE " + cols[0] + " = " + "'" + colsvalues[0] + "'";
                 for (int i = 1; i < colsvalues.Length; ++i) {
-                    query += " OR " + cols[i] + " = " + colsvalues[i];
+                    query += " OR " + cols[i] + " = " + "'" + colsvalues[i] + "'";
                 } // end for
                 return ExecuteQuery(query);
             } // end Delete

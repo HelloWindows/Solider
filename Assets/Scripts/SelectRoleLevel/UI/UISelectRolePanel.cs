@@ -15,16 +15,16 @@ using UnityEngine.UI;
 
 namespace Solider {
     public class UISelectRolePanel : MonoBehaviour {
-        private string playerID;
-        private string currentID;
+        private string roleID;
+        private string selectedID;
         private Text t_roleName;
         private DisplayRaw display;
         private Dictionary<string, string[]> roleDict;
 
         // Use this for initialization
         private void Start () {
-            playerID = "0";
-            currentID = "miss";
+            roleID = "0";
+            selectedID = "miss";
             roleDict = new Dictionary<string, string[]>();
             t_roleName = transform.Find("RoleName").GetComponent<Text>();
             t_roleName.text = "";
@@ -44,8 +44,8 @@ namespace Solider {
         } // end Start     
 
         private void InitialSwitchRole() {
-            if (ChechExitID(playerID)) {
-                OnSwitchRole(playerID);
+            if (ChechExitID(roleID)) {
+                OnSwitchRole(roleID);
                 return;
             } // end if
 
@@ -66,16 +66,16 @@ namespace Solider {
                 // end if
                 return;
             } // end if
-            if (currentID == id) return;
+            if (selectedID == id) return;
             // end if
-            playerID = id;
-            currentID = id;
+            roleID = id;
+            selectedID = id;
             t_roleName.text = roleDict[id][0];
             display.ReplaceDisplayCurrentRole(roleDict[id][1]);
         } // end OnSwitchRole
 
         private void OnClickDeleteRoleBtn() {
-            if (!ChechExitID(playerID)) return;
+            if (!ChechExitID(roleID)) return;
             // end if          
             UIDialogBox dialog = ObjectTool.InstantiateGo("DialogBoxUI", "UI/DialogBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIDialogBox>();
             dialog.SetMessage("确定删除角色!");
@@ -83,23 +83,23 @@ namespace Solider {
         } // end OnClickDeleteRole
 
         private void DeleteRole() {
-            if (!ChechExitID(playerID)) return;
+            if (!ChechExitID(roleID)) return;
             // end if     
-            SqliteManager.DeleteRole(playerID);
-            if (roleDict.ContainsKey(playerID)) roleDict[playerID] = null;
+            SqliteManager.DeleteRoleWithID(roleID);
+            if (roleDict.ContainsKey(roleID)) roleDict[roleID] = null;
             // end if
             t_roleName.text = "";
-            transform.Find("RoleList/Role_" + playerID + "/Text").GetComponent<Text>().text = "创建角色";
+            transform.Find("RoleList/Role_" + roleID + "/Text").GetComponent<Text>().text = "创建角色";
             display.ClearDiplay();
             InitialSwitchRole();
         } // end DeleteRole
 
         private void OnClickStartGameBtn() {
-            if (!ChechExitID(playerID)) {
+            if (!ChechExitID(roleID)) {
                 ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", CanvasManager.MainCanvasTrans).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                 return;
             } // end if
-            PlayerManager.InitPlayerManager(playerID, roleDict[playerID][0], roleDict[playerID][1]);
+            RoleManager.InitRoleManager(roleID, roleDict[roleID][0], roleDict[roleID][1]);
             SceneLoader.LoadNextLevel("MainGameLevel");
         } // end OnClickStartGameBtn
 

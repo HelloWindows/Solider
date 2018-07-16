@@ -11,6 +11,7 @@ namespace Framework {
     namespace Config {
         public static class ConstConfig {
             public const int GRID_COUNT = 25;
+            public const string ALLROLE = "all";
         } // end class ConstConfig 
     } // end namespace Config
 } // end namespace Custom

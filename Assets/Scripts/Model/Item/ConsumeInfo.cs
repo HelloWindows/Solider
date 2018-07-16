@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using LitJson;
 using Solider.Manager;
 using System.Text;
@@ -78,7 +79,7 @@ namespace Solider {
                 infoBuilder.Append("<size=18>");
                 infoBuilder.Append("消耗品");
                 infoBuilder.Append("                                     ");
-                if (role != "all" && role != PlayerManager.roleType) {
+                if (role != ConstConfig.ALLROLE && role != RoleManager.roleType) {
                     infoBuilder.Append("<color=#FF0000FF>");
 
                 } else {
