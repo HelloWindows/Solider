@@ -14,88 +14,82 @@ using Framework.Config;
 
 namespace Solider {
     namespace Model {
-        public class RoleInfo {
+        public class RoleInfo : IRoleInfo {
+            #region ******** 单例 ********
             private static RoleInfo instance;
             public static RoleInfo GetInstance(string roleID, string name, string roleType) {
                 if (null == instance) instance = new RoleInfo(roleID, name, roleType);
                 // end if
                 return instance;
             } // end GetInstance
+            #endregion
 
-            private WearInfo wearInfo;
+            private bool isLive;
+            private EquipPack equipPack;
+            private TreatData selfTreat;
             private RoleAttribute roleArribute;
+            private RoleAttribute tempArribute;
+            private RoleInitAttribute roleInitArribute;
+            private Dictionary<string, IPack> packDict;
+            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
 
             private RoleInfo(string roleID, string name, string roleType) {
-                wearInfo = new WearInfo(roleID, roleType);
-                roleArribute = new RoleAttribute(roleID, name, roleType);
+                packDict = new Dictionary<string, IPack>();
+                equipPack = new EquipPack(roleID, ConstConfig.EQUIP, roleType);
+                packDict.Add(ConstConfig.EQUIP, equipPack);
+                packDict.Add(ConstConfig.CONSUME, new Pack(roleID, ConstConfig.CONSUME));
+                packDict.Add(ConstConfig.STUFF, new Pack(roleID, ConstConfig.STUFF));
+
+                selfTreat = new TreatData();
+                roleArribute = new RoleAttribute(name, roleType);
+                tempArribute = new RoleAttribute(name, roleType);
+                roleInitArribute = new RoleInitAttribute(roleID);
+                GetAttributeData();
             } // end PlayerInfo
 
+            public bool IsLive() {
+                if (!isLive) return false;
+                // end if
+                if (roleArribute.HP <= 0) isLive = false;
+                // end if
+                return isLive;
+            } // end IsLive
+
+            public IWearInfo GetWearInfo() {
+                return equipPack;
+            } // end GetWearInfo
+
             public AttributeData GetAttributeData() {
+                tempArribute += roleInitArribute;
+                for (int i = 0; i < equipTypeList.Length; i++) {
+                    EquipInfo info = equipPack.GetEquipInfo(equipTypeList[i]);
+                    if (null == info) continue;
+                    // end if
+                    tempArribute += info;
+                } // end for
+                roleArribute += tempArribute;
                 return roleArribute;
             } // end GetAttributeData
 
-            public IWearInfo GetWearInfo() {
-                return wearInfo;
-            } // end GetWearInfo
+            public void PackItem(string id, int count) {
+                IPack pack = GetItemPack(ConfigManager.itemConfig.GetItemType(id));
+                if (null == pack) return;
+                // end if
+                pack.PackItem(id, count);
+            } // end PackItems
 
-            private class WearInfo : IWearInfo {
-                private readonly string roleID;
-                private readonly string roleType;
-                private Dictionary<string, string> wearDict;
+            public IPack GetItemPack(string name) {
+                if (packDict.ContainsKey(name)) {
+                    return packDict[name];
+                } // end if
+                return null;
+            } // end GetItemPack
 
-                public WearInfo(string roleID, string roleType) {
-                    this.roleID = roleID;
-                    this.roleType = roleType;
-                    Dictionary<string, string> dict = new Dictionary<string, string>();
-                    SqliteManager.GetWearInfoWithID(roleID, ref dict);
-                    wearDict = new Dictionary<string, string>();
-                    for (int i = 0; i < ConfigManager.equipTypeList.Length; i++) {
-                        string type = ConfigManager.equipTypeList[i];
-                        if (dict.ContainsKey(type)) {
-                            wearDict[type] = dict[type];
-                        } else {
-                            wearDict[type] = "0";
-                        } // end if
-                    } // end for
-                } // end WearInfo
-
-                public bool PutOnEquip(string id) {
-                    EquipInfo info = ConfigManager.itemConfig.GetItemInfo(id) as EquipInfo;
-                    if (null == info || (info.role != ConstConfig.ALLROLE && info.role != roleType)) return false;
-                    // end if
-                    string type = info.type;
-                    if (!wearDict.ContainsKey(type)) return false;
-                    // end if
-                    RoleManager.pack.PackItem(wearDict[type], 0);
-                    wearDict[type] = id;
-                    SqliteManager.SetWearInfoWithID(roleID, type, wearDict[type]);
-                    return true;
-                } // end WearEquip
-            
-                public void TakeOffEquip(string type) {
-                    if (!wearDict.ContainsKey(type)) return;
-                    // end if
-                    RoleManager.pack.PackItem(wearDict[type], 0);
-                    wearDict[type] = "0";
-                    SqliteManager.SetWearInfoWithID(roleID, type, wearDict[type]);
-                } // end TakeOffEquip
-
-                public EquipInfo GetEquipInfo(string type) {
-                    if (!wearDict.ContainsKey(type)) return null;
-                    // end if
-                    ItemInfo info = ConfigManager.itemConfig.GetItemInfo(wearDict[type]);
-                    if (null == info) return null;
-                    // end if
-                    return info as EquipInfo;
-                } // end GetItemInfo
-
-                public void GetWearEquip(out Dictionary<string, string> dict) {
-                    dict = new Dictionary<string, string>();
-                    foreach (KeyValuePair<string, string> pair in wearDict) {
-                        dict[pair.Key] = pair.Value;
-                    } // end foreach
-                } // end GetWearEquip
-            } // end class WearInfo
+            public void SelfHealing() {
+                GetAttributeData();
+                selfTreat += roleArribute;
+                roleArribute += selfTreat;
+            } // end SelfHealing
         } // end class RoleInfo 
     } // end namespace Data
 } // end namespace Solider

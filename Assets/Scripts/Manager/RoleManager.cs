@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Model;
+using Solider.Interface;
 
 namespace Solider {
     namespace Manager {
@@ -13,8 +14,7 @@ namespace Solider {
             public static string roleType { get; private set; }
             public static string roleID { get; private set; }
 
-            public static RoleInfo info { get; private set; }
-            public static RolePack pack { get; private set; }
+            public static IRoleInfo info { get; private set; }
 
             public static void InitRoleManager(string roleID, string name, string roleType) {
                 if (null == info) {
@@ -22,7 +22,6 @@ namespace Solider {
                     RoleManager.roleType = roleType;
                     RoleManager.roleID = roleID;
                     info = RoleInfo.GetInstance(roleID, name, roleType);
-                    pack = RolePack.GetInstance(roleID);
                 } // end if
             } // end InitPlayerManager
         } // end class RoleManager 

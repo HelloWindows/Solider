@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Manager;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Solider {
@@ -15,27 +13,56 @@ namespace Solider {
                 private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
-                public RoleAttribute(string roleID, string name, string roleType) {
+                public RoleAttribute(string name, string roleType) {
                     this.name = name;
                     this.roleType = roleType;
-                    Dictionary<string, float> dict = new Dictionary<string, float>();
-                    SqliteManager.GetRoleInfoWithID(roleID, ref dict);
-                    XHP = (int)dict["xhp"];
-                    XMP = (int)dict["xmp"];
-                    NATK = (int)dict["natk"];
-                    XATK = (int)dict["xatk"];
-                    NMGK = (int)dict["nmgk"];
-                    XMGK = (int)dict["xmgk"];
-                    HOT = (int)dict["hot"];
-                    MOT = (int)dict["mot"];
-                    DEF = (int)dict["def"];
-                    RGS = (int)dict["rgs"];
-                    ASP = dict["asp"];
-                    MSP = dict["msp"];
-                    CRT = dict["crt"];
-                    HP = XHP;
-                    MP = XMP;
                 } // end RoleAttribute
+
+                /// <summary>
+                /// 初始化角色数据
+                /// </summary>
+                /// <param name="role"> 角色数据 </param>
+                /// <param name="init"> 初始数据 </param>
+                /// <returns> 结果数据 </returns>
+                public static RoleAttribute operator +(RoleAttribute role, RoleInitAttribute init) {
+                    role.XHP = init.XHP;
+                    role.XMP = init.XMP;
+                    role.NATK = init.NATK;
+                    role.XATK = init.XATK;
+                    role.NMGK = init.NMGK;
+                    role.XMGK = init.XMGK;
+                    role.HOT = init.HOT;
+                    role.MOT = init.MOT;
+                    role.DEF = init.DEF;
+                    role.RGS = init.RGS;
+                    role.ASP = init.ASP;
+                    role.MSP = init.MSP;
+                    role.CRT = init.CRT;
+                    return role;
+                } // end operator +
+
+                /// <summary>
+                /// 置换临时数据角色数据
+                /// </summary>
+                /// <param name="role"> 角色数据 </param>
+                /// <param name="temp"> 临时数据 </param>
+                /// <returns> 结果数据 </returns>
+                public static RoleAttribute operator +(RoleAttribute role, RoleAttribute temp) {
+                    role.XHP = temp.XHP;
+                    role.XMP = temp.XMP;
+                    role.NATK = temp.NATK;
+                    role.XATK = temp.XATK;
+                    role.NMGK = temp.NMGK;
+                    role.XMGK = temp.XMGK;
+                    role.HOT = temp.HOT;
+                    role.MOT = temp.MOT;
+                    role.DEF = temp.DEF;
+                    role.RGS = temp.RGS;
+                    role.ASP = temp.ASP;
+                    role.MSP = temp.MSP;
+                    role.CRT = temp.CRT;
+                    return role;
+                } // end operator +
 
                 /// <summary>
                 /// 受到攻击
@@ -208,6 +235,18 @@ namespace Solider {
                             infoBuilder.Append("全部");
                         break;
                     } // end switch
+                    infoBuilder.Append('\n');
+
+                    infoBuilder.Append("HP：");
+                    infoBuilder.Append(HP);
+                    infoBuilder.Append(" / ");
+                    infoBuilder.Append(XHP);
+                    infoBuilder.Append('\n');
+
+                    infoBuilder.Append("MP：");
+                    infoBuilder.Append(MP);
+                    infoBuilder.Append(" / ");
+                    infoBuilder.Append(XMP);
                     infoBuilder.Append('\n');
 
                     infoBuilder.Append("物理攻击：");

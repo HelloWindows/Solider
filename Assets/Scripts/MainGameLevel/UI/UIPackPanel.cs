@@ -73,7 +73,7 @@ namespace Solider {
         private void SwitchPack(string name) {
             LoseItem();
             packName = name;
-            currentPack = RoleManager.pack.GetItemPack(name);
+            currentPack = RoleManager.info.GetItemPack(name);
             for (int i = 0; i < gridArray.Length; i++) {
                 ItemInfo info = currentPack.GetItemInfoForGrid(i);
                 if (null == info) {

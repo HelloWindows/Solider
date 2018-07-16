@@ -40,10 +40,11 @@ namespace Framework {
                 sqliteDB.Insert("role_equip_table", new string[] { ToValue(roleID), ToValue("0"), ToValue("0"), ToValue("0") });
                 sqliteDB.Insert("role_info_table", new string[] { ToValue(roleID), ToValue(100), ToValue(100), ToValue(100), ToValue(100), ToValue(5), ToValue(10), ToValue(5), ToValue(10), ToValue(1), ToValue(0), ToValue(5), ToValue(5), ToValue(1f), ToValue(0.8f), ToValue(0) });
                 sqliteDB.CreateTable("pack_list_table_" + roleID, new string[] { "tid", "id", "gid", "type", "grade", "count" }, new string[] { "int", "text", "int", "text", "text", "int" });
+                string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF };
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
-                    for (int j = 0; j < ConfigManager.packTypeList.Length; j++) {
+                    for (int j = 0; j < packTypeList.Length; j++) {
                         sqliteDB.Insert("pack_list_table_" + roleID, new string[] { "tid", "id", "gid", "type", "grade", "count" },
-                            new string[] { ToValue(i * 3 + j), ToValue("0"), ToValue(i), ToValue(ConfigManager.packTypeList[j]), ToValue("Z"), ToValue(0) });
+                            new string[] { ToValue(i * 3 + j), ToValue("0"), ToValue(i), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
                     } // end for
                 } // end for
                 sqliteDB.Disconnect();
@@ -152,13 +153,13 @@ namespace Framework {
             /// </summary>
             /// <param name="roleID"> 角色id </param>
             /// <param name="dict"> 穿戴的装备数据 </param>
-            public static void GetWearInfoWithID(string roleID, ref Dictionary<string, string> dict) {
+            public static void GetWearInfoWithID(string roleID, out Dictionary<string, string> dict) {
+                dict = new Dictionary<string, string>();
                 string tableName = "role_equip_table";
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "weapon", "armor", "shoes" }, new string[] { "id" }, new string[] { "=" }, new string[] { roleID });
                 if (null == reader) {
                     sqliteDB.Disconnect();
-                    dict = new Dictionary<string, string>();
                     return;
                 } // end if
 
@@ -198,16 +199,16 @@ namespace Framework {
             /// 获取对应背包的数据
             /// </summary>
             /// <param name="roleID"> 角色id </param>
-            /// <param name="type"> 背包类型 </param>
+            /// <param name="packType"> 背包类型 </param>
             /// <param name="dict"> 背包数据 </param>
-            public static void GetPackInfoWithID(string roleID, string type, ref Dictionary<int, string[]> dict) {
+            public static void GetPackInfoWithID(string roleID, string packType, out Dictionary<int, string[]> dict) {
+                dict = new Dictionary<int, string[]>();
                 string tableName = "pack_list_table_" + roleID;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type });
+                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", packType });
 
                 if (null == reader) {
                     sqliteDB.Disconnect();
-                    dict = new Dictionary<int, string[]>();
                     return;
                 } // end if
 
