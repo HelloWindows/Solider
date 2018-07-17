@@ -10,7 +10,7 @@ using Framework.Tools;
 using UnityEngine.EventSystems;
 
 namespace Solider {
-	public class UICell : MonoBehaviour, IPointerDownHandler {
+	public class UICell : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
         private Action pointerDownCall;
         public UIItem item { get; private set; }
 
@@ -47,5 +47,11 @@ namespace Solider {
             // end if
             pointerDownCall();
         } // end OnPointerDown
+
+        public void OnPointerUp(PointerEventData eventData) {
+            if (null == pointerDownCall) return;
+            // end if
+            pointerDownCall();
+        } // end OnPointerUp
     } // end class UICell 
 } // end namespace Solider

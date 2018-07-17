@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Manager;
 using Framework.Instance;
 
 namespace Framework {
@@ -16,7 +17,8 @@ namespace Framework {
 
             private InstanceMgr() {} // end InstanceMgr
 
-            public static void Init() {          
+            public static void Init() {
+                GameManager.Init();
                 _ObjectPool = new ObjectPool();
                 _AudioManager = new AudioManager();
                 _ShareSDKManager = ShareSDKManager.instance;

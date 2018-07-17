@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Manager;
+using Framework.Tools;
 using Solider.Interface;
 using Solider.Manager;
 using Solider.Model;
@@ -16,9 +17,11 @@ using UnityEngine.UI;
 
 namespace Solider {
 	public class UIInfoPanel : MonoBehaviour {
+        private Text cellText;
         private Text infoText;
         private string selected;
-        private UICell[] cellArray;
+        private GameObject infoPanel;
+        private Dictionary<string, UICell> cellDict;
         private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
         private Dictionary<string, string> dict;
 
@@ -29,12 +32,15 @@ namespace Solider {
             infoText.fontSize = 10;
             DisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
             display.ReplaceDisplayCurrentRole(RoleManager.roleType);
-            cellArray = new UICell[equipTypeList.Length];
+            cellDict = new Dictionary<string, UICell>();
             for (int i = 0; i < equipTypeList.Length; i++) {
                 string type = equipTypeList[i];
-                cellArray[i] = transform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
-                cellArray[i].AddAction(delegate () { OnSelectedCell(type); });
+                cellDict[type] = transform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
+                cellDict[type].AddAction(delegate () { OnSelectedCell(type); });
             } // end for
+            infoPanel = transform.Find("InfoPanel").gameObject;
+            cellText = infoPanel.transform.Find("InfoText").GetComponent<Text>();
+            infoPanel.SetActive(false);
             transform.Find("TakeOffBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickTakeOffBtn);
             transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
             UpdateShowInfo();
@@ -47,26 +53,31 @@ namespace Solider {
             for (int i = 0; i < equipTypeList.Length; i++) {
                 string type = equipTypeList[i];
                 if (null == dict || !dict.ContainsKey(type)) {
-                    cellArray[i].HideItem();
+                    cellDict[type].HideItem();
                     continue;
                 } // end if
                 ItemInfo info = ConfigManager.itemConfig.GetItemInfo(dict[type]);
                 if (null == info) {
-                    cellArray[i].HideItem();
+                    cellDict[type].HideItem();
                     continue;
                 } // end if
-                cellArray[i].SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
+                cellDict[type].SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
             } // end for
         } // end UpdateShowInfo
 
         private void OnSelectedCell(string type) {
             selected = type;
+            if (true == infoPanel.activeSelf) {
+                infoPanel.SetActive(false);
+                return;
+            } // end if
             if (null == dict || !dict.ContainsKey(type)) return;
             // end if
             ItemInfo info = ConfigManager.itemConfig.GetItemInfo(dict[type]);
             if (null == info) return;
             // end if
-            infoText.text = info.ToString();
+            infoPanel.SetActive(true);
+            cellText.text = info.ToString();
         } // end OnPointerDownCell
 
         private void OnClickTakeOffBtn() {

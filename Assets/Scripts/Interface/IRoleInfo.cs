@@ -13,7 +13,7 @@ namespace Solider {
             /// 是否存活
             /// </summary>
             /// <returns> 是否存活 </returns>
-            bool IsLive();
+            bool IsLive { get; }
             /// <summary>
             /// 自愈
             /// </summary>

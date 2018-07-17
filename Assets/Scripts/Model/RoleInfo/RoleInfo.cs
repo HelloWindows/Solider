@@ -24,6 +24,15 @@ namespace Solider {
             } // end GetInstance
             #endregion
 
+            public bool IsLive {
+               get {
+                    if (!isLive) return false;
+                    // end if
+                    if (roleArribute.HP <= 0) isLive = false;
+                    // end if
+                    return isLive;
+                } // end get
+            } // end IsLive
             private bool isLive;
             private EquipPack equipPack;
             private TreatData selfTreat;
@@ -46,14 +55,6 @@ namespace Solider {
                 roleInitArribute = new RoleInitAttribute(roleID);
                 GetAttributeData();
             } // end PlayerInfo
-
-            public bool IsLive() {
-                if (!isLive) return false;
-                // end if
-                if (roleArribute.HP <= 0) isLive = false;
-                // end if
-                return isLive;
-            } // end IsLive
 
             public IWearInfo GetWearInfo() {
                 return equipPack;
