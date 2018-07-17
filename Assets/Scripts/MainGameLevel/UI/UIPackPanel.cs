@@ -7,9 +7,9 @@
 using Framework.Config;
 using Framework.Manager;
 using Framework.Tools;
+using Solider.Config;
 using Solider.Interface;
 using Solider.Manager;
-using Solider.Model;
 using UnityEngine;
 using UnityEngine.UI;
 

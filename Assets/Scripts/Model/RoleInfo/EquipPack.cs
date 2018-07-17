@@ -4,11 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Config;
 using Framework.Config;
 using Framework.Manager;
 using Solider.Interface;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Solider {
     namespace Model {

@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System.Text;
+using Solider.Config;
 
 namespace Solider {
     namespace Model {
@@ -13,7 +14,8 @@ namespace Solider {
                 private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
-                public RoleAttribute(string name, string roleType) {
+                public RoleAttribute(string roleID, string name, string roleType) {
+                    id = roleID;
                     this.name = name;
                     this.roleType = roleType;
                 } // end RoleAttribute
@@ -92,28 +94,28 @@ namespace Solider {
                 /// <param name="role"> 角色数据 </param>
                 /// <param name="data"> HP 与 MP 数据 </param>
                 /// <returns> 结果数据 </returns>
-                public static RoleAttribute operator +(RoleAttribute role, TreatData data) {
+                public static RoleAttribute operator +(RoleAttribute role, FairData data) {
                     role.HP += data.HP;
                     role.MP += data.MP;
 
-                    if (data.HPR > 0) {
+                    if (data.HPP > 0) {
                         int value = role.XHP - role.HP;
-                        value = (int)(value * data.HPR / 100f);
+                        value = (int)(value * data.HPP / 100f);
                         role.HP += value;
                     } // end if
 
-                    if (data.MPR > 0) {
+                    if (data.MPP > 0) {
                         int value = role.XMP - role.MP;
-                        value = (int)(value * data.MPR / 100f);
+                        value = (int)(value * data.MPP / 100f);
                         role.MP += value;
                     } // end if
 
-                    if (data.XHPR > 0) {
-                        role.HP += (int)(role.XHP * data.XHPR / 100f);
+                    if (data.XHPP > 0) {
+                        role.HP += (int)(role.XHP * data.XHPP / 100f);
                     } // end if
 
-                    if (data.XMPR > 0) {
-                        role.MP += (int)(role.XMP * data.XMPR / 100f);
+                    if (data.XMPP > 0) {
+                        role.MP += (int)(role.XMP * data.XMPP / 100f);
                     } // end if
 
                     if (role.HP < 0) role.HP = 0;
@@ -126,47 +128,6 @@ namespace Solider {
                     // end if
                     return role;
                 } // end operator +
-
-                /// <summary>
-                /// HP 和 MP 损失
-                /// </summary>
-                /// <param name="role"> 角色数据 </param>
-                /// <param name="data"> HP 与 MP 数据 </param>
-                /// <returns> 结果数据 </returns>
-                public static RoleAttribute operator -(RoleAttribute role, TreatData data) {
-                    role.HP -= data.HP;
-                    role.MP -= data.MP;
-
-                    if (data.HPR > 0) {
-                        int value = role.XHP - role.HP;
-                        value = (int)(value * data.HPR / 100f);
-                        role.HP -= value;
-                    } // end if
-
-                    if (data.MPR > 0) {
-                        int value = role.XMP - role.MP;
-                        value = (int)(value * data.MPR / 100f);
-                        role.MP -= value;
-                    } // end if
-
-                    if (data.XHPR > 0) {
-                        role.HP -= (int)(role.XHP * data.XHPR / 100f);
-                    } // end if
-
-                    if (data.XMPR > 0) {
-                        role.MP -= (int)(role.XMP * data.XMPR / 100f);
-                    } // end if
-
-                    if (role.HP < 0) role.HP = 0;
-                    // end if
-                    if (role.HP > role.XHP) role.HP = role.XHP;
-                    // end if
-                    if (role.MP < 0) role.MP = 0;
-                    // end if
-                    if (role.MP > role.XMP) role.MP = role.XMP;
-                    // end if
-                    return role;
-                } // end operator -
 
                 /// <summary>
                 /// 穿戴装备

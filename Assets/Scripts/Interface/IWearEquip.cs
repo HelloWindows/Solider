@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Model;
+using Solider.Config;
 using System.Collections.Generic;
 
 namespace Solider {

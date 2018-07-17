@@ -6,11 +6,9 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Manager;
-using Framework.Tools;
+using Solider.Config;
 using Solider.Interface;
 using Solider.Manager;
-using Solider.Model;
-using Solider.Model.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

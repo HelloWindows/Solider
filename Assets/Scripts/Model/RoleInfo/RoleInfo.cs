@@ -8,9 +8,8 @@ using Framework.Manager;
 using System.Collections.Generic;
 using Solider.Model.Data;
 using Solider.Interface;
-using Solider.Manager;
-using System;
 using Framework.Config;
+using Solider.Config;
 
 namespace Solider {
     namespace Model {
@@ -35,7 +34,7 @@ namespace Solider {
             } // end IsLive
             private bool isLive;
             private EquipPack equipPack;
-            private TreatData selfTreat;
+            private FairData selfTreat;
             private RoleAttribute roleArribute;
             private RoleAttribute tempArribute;
             private RoleInitAttribute roleInitArribute;
@@ -49,9 +48,9 @@ namespace Solider {
                 packDict.Add(ConstConfig.CONSUME, new Pack(roleID, ConstConfig.CONSUME));
                 packDict.Add(ConstConfig.STUFF, new Pack(roleID, ConstConfig.STUFF));
 
-                selfTreat = new TreatData();
-                roleArribute = new RoleAttribute(name, roleType);
-                tempArribute = new RoleAttribute(name, roleType);
+                selfTreat = new FairData();
+                roleArribute = new RoleAttribute(roleID, name, roleType);
+                tempArribute = new RoleAttribute(roleID, name, roleType);
                 roleInitArribute = new RoleInitAttribute(roleID);
                 GetAttributeData();
             } // end PlayerInfo
