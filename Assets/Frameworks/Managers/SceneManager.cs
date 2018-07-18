@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using UnityEngine;
-using Framework.Middleware;
 using Framework.Interface;
 
 namespace Framework {
