@@ -5,9 +5,7 @@
  * Copyright (c) 2017-xxxx 
  *******************************************************************/
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Framework {
     namespace Tools {
@@ -30,4 +28,4 @@ namespace Framework {
             } // end CheckNullList
         } // end class DebugTools
     } // end namespace Tools
-} // end namespace Custem
+} // end namespace Framework

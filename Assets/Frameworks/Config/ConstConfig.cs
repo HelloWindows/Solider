@@ -10,6 +10,9 @@ using UnityEngine;
 namespace Framework {
     namespace Config {
         public static class ConstConfig {
+            public const float STANDARD_WIDTH = 1024f;
+            public const float STANDARD_HEIGHT = 640f;
+
             public const int GRID_COUNT = 25;
             public static readonly string[] packTypeList = { "equip", "consume", "stuff" };
             public const string ALLROLE = "all";

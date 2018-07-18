@@ -162,6 +162,22 @@ namespace Framework {
                 return InstantiateButton(name, parent, path == "" ? null : Resources.Load<Sprite>(path),
                     localPos, sizeDel, touchDel, colors);
             } // end InstantiateButton
+
+            public static void ConfigureText(Text text, Font font, TextAnchor textAnchor, VerticalWrapMode verticalWrapMode, HorizontalWrapMode horizontalWrapMode) {
+                text.raycastTarget = false;
+                text.alignment = textAnchor;
+                text.verticalOverflow = verticalWrapMode;
+                text.horizontalOverflow = horizontalWrapMode;
+                text.font = font;
+            } // end ConfigureText
+
+            public static void ConfigureBasicText(Text text, Font font, TextAnchor textAnchor, int fontSize, Color color) {
+                text.raycastTarget = false;
+                text.alignment = textAnchor;
+                text.fontSize = fontSize;
+                text.color = color;
+                text.font = font;
+            } // end ConfigureBasicText
         } // end class CanvasTool
     } // end namespace Tools
 } // end namespace Framework

@@ -5,10 +5,9 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 #if __MY_DEBUG__
-using Framework.Middleware;
+using Framework.Config;
 using Framework.Tools;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConsoleTool : MonoBehaviour {
@@ -73,7 +72,7 @@ public class ConsoleTool : MonoBehaviour {
 
     private void OnGUI() {
         string info = "";
-        fontStyle.fontSize = (int)(Screen.width / CanvasAdjustor.STANDARD_WIDTH * 20);
+        fontStyle.fontSize = (int)(Screen.width / ConstConfig.STANDARD_WIDTH * 20);
 
         foreach (DictionaryEntry de in infoTable) {
             info += de.Key + ": " + de.Value + '\n';
