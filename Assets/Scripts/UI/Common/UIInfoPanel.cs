@@ -57,7 +57,7 @@ namespace Solider {
                             cellDict[type].HideItem();
                             continue;
                         } // end if
-                        ItemInfo info = ConfigManager.itemConfig.GetItemInfo(dict[type]);
+                        ItemInfo info = ConfigMgr.itemConfig.GetItemInfo(dict[type]);
                         if (null == info) {
                             cellDict[type].HideItem();
                             continue;
@@ -74,7 +74,7 @@ namespace Solider {
                     } // end if
                     if (null == dict || !dict.ContainsKey(type)) return;
                     // end if
-                    ItemInfo info = ConfigManager.itemConfig.GetItemInfo(dict[type]);
+                    ItemInfo info = ConfigMgr.itemConfig.GetItemInfo(dict[type]);
                     if (null == info) return;
                     // end if
                     infoPanel.SetActive(true);

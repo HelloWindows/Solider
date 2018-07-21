@@ -5227,7 +5227,7 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 30
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0.4201194, y: 1.059719, z: 0.29648495}
     m_Extent: {x: 0.80220103, y: 1.4178783, z: 1.4027376}
@@ -5239,7 +5239,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.8000001
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -32199,34 +32199,4 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
-  m_Events:
-  - time: 0.033333335
-    functionName: playEffect
-    data: 
-    objectReferenceParameter: {fileID: 100000, guid: 273d72bb6a6aa4b41961d90161c28259,
-      type: 2}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.13333334
-    functionName: playAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: a66fd65646d803447bf4f98280d17238,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.46666667
-    functionName: shakeCameraUpDown
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.8
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
-    functionName: GeneradeCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

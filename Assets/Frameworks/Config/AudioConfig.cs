@@ -4,38 +4,30 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Tools;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Framework {
     namespace Config {
-        public class AudioConfig {
-            private static Dictionary<string, AudioClip> musicDict;
-            private static Dictionary<string, AudioClip> soundEffectDict;
+        namespace Audio {
+            public class AudioConfig {
+                private static AudioConfig config;
+                public static AudioConfig instance {
+                    get {
+                        if (null == config) config = new AudioConfig();
+                        // end if
+                        return config;
+                    } // end get
+                } // end instance
+                public readonly Dictionary<string, string> MusicPath;
+                public readonly Dictionary<string, string> SoundPath;
 
-            public static Dictionary<string, AudioClip> MusicDict {
-                get {
-                    if (null == musicDict) {
-                        musicDict = new Dictionary<string, AudioClip>();
-
-                        DebugTool.CheckNullDictionary(musicDict);
-                    } // end if
-                    return musicDict;
-                } // end get
-            } // end MusicDict
-
-            public static Dictionary<string, AudioClip> SoundEffectDict {
-                get {
-                    if (null == soundEffectDict) {
-                        soundEffectDict = new Dictionary<string, AudioClip>();
-
-                        DebugTool.CheckNullDictionary(soundEffectDict);
-                    } // end if
-                    return soundEffectDict;
-                } // end get
-            } // end SoundEffectDict
-        } // end class AudioConfig
+                private AudioConfig() {
+                    MusicPath = new Dictionary<string, string>();
+                    SoundPath = new Dictionary<string, string>();
+                    string prefix = "Character/Hero/Sound/";
+                    SoundPath["heroRun"] = prefix + "heroRun";
+                } // end AudioConfig
+            } // end class AudioConfig
+        } // end namespace Audio
     } // end namespace Config 
 } // end namespace HiiGo

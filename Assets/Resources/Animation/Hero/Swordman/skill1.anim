@@ -23044,27 +23044,4 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
-  m_Events:
-  - time: 0
-    functionName: playEffect
-    data: 
-    objectReferenceParameter: {fileID: 100000, guid: 1a61795c50f00cb4f8051f5dc4e850ae,
-      type: 2}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: playAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 0154a491b27aebc42b741cafdc178775,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.1
-    functionName: ShakeCameraFrontBack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 2
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

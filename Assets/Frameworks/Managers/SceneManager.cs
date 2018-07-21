@@ -5,7 +5,9 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using UnityEngine;
-using Framework.Interface;
+using Framework.Interface.Scene;
+using Framework.Interface.View;
+using Framework.Interface.UI;
 
 namespace Framework {
     namespace Manager {

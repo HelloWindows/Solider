@@ -6,7 +6,7 @@
  *******************************************************************/
 using UnityEngine;
 using System.Collections;
-using Framework.Interface;
+using Framework.Interface.Scene;
 
 namespace Framework {
     namespace Middleware {

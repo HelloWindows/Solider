@@ -4,14 +4,17 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Framework.FSM.Interface;
+using Framework.Interface.Audio;
+
 namespace Solider {
     namespace Character {
         namespace Interface {
             public interface ICharacter {
+                IFSM fsm { get; }
                 IAvatar avatar { get; }
+                IAudioSound audio { get; }
+                ICharacterMove move { get; }
             } // end interface ICharacter
         } // end namespace Interface
     } // end namespace Character

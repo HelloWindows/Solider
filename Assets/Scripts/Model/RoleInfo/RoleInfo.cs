@@ -61,7 +61,7 @@ namespace Solider {
 
             public AttributeData GetAttributeData() {
                 tempArribute += roleInitArribute;
-                for (int i = 0; i < equipTypeList.Length; i++) {
+                for (int i = 0; i < equipTypeList.Length; i++) { // 累加所有已穿戴的装备的属性
                     EquipInfo info = equipPack.GetEquipInfo(equipTypeList[i]);
                     if (null == info) continue;
                     // end if
@@ -72,7 +72,7 @@ namespace Solider {
             } // end GetAttributeData
 
             public void PackItem(string id, int count) {
-                IPack pack = GetItemPack(ConfigManager.itemConfig.GetItemType(id));
+                IPack pack = GetItemPack(ConfigMgr.itemConfig.GetItemType(id));
                 if (null == pack) return;
                 // end if
                 pack.PackItem(id, count);

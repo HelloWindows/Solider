@@ -16610,42 +16610,4 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
-  m_Events:
-  - time: 0
-    functionName: playEffect
-    data: 
-    objectReferenceParameter: {fileID: 100008, guid: 5fc35e24559ba3b499632496f9dbf47f,
-      type: 2}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: playAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 847db7b0684a7f2469e6ddec688c604b,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: clearMonsterFightDirty
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.033333335
-    functionName: playAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: afeed349ef860e2498b64552f6b82e7a,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.13333334
-    functionName: shakeCameraLeftRight
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.06
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

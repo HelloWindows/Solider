@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Interface;
+using Framework.Interface.View;
 using UnityEngine;
 
 namespace Framework {

@@ -4,9 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 namespace Framework {
     namespace FSM {
         namespace Interface {
@@ -22,10 +19,10 @@ namespace Framework {
                 /// <param name="name"> 状态名 </param>
                 void RemoveState(string name);
                 /// <summary>
-                /// 却换状态
+                /// 运行
                 /// </summary>
-                /// <param name="name"> 状态名 </param>
-                void PerformTransition(string name);
+                /// <param name="deltaTime"> 时间变量 </param>
+                void Update(float deltaTime);
             } // end class IFSMSystem 
         } // end namespace Interface 
     } // end namespace FSM

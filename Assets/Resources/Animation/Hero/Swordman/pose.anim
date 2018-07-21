@@ -7494,7 +7494,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5
+    m_StopTime: 1.5000001
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -50670,41 +50670,4 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
-  m_Events:
-  - time: 0
-    functionName: playEffect
-    data: 
-    objectReferenceParameter: {fileID: 100000, guid: e8095d6d0fc08cb4388877fc2001782e,
-      type: 2}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: playAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: a66fd65646d803447bf4f98280d17238,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8
-    functionName: clearMonsterFightDirty
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8333333
-    functionName: GeneradeCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8666667
-    functionName: shakeCameraSmall
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.5
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

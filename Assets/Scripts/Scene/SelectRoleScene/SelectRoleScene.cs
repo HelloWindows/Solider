@@ -5,9 +5,10 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Custom;
-using Framework.Interface;
+using Framework.Interface.Scene;
+using Framework.Interface.View;
+using Framework.Interface.UI;
 using Framework.Tools;
-using Framework.Manager;
 using Solider.Scene.UI;
 
 namespace Solider {

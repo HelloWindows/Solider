@@ -5,8 +5,9 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Custom;
-using Framework.Interface;
-using Framework.Manager;
+using Framework.Interface.Scene;
+using Framework.Interface.View;
+using Framework.Interface.UI;
 using Framework.Tools;
 using Solider.Manager;
 using Solider.UI.Common;

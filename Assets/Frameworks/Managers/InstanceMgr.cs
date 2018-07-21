@@ -12,7 +12,6 @@ namespace Framework {
         public class InstanceMgr {
             public static int CurrentID { get; private set; }
             private static ObjectPool _ObjectPool;
-            private static AudioManager _AudioManager;
             private static ShareSDKManager _ShareSDKManager;
 
             private InstanceMgr() {} // end InstanceMgr
@@ -20,13 +19,10 @@ namespace Framework {
             public static void Init() {
                 GameManager.Init();
                 _ObjectPool = new ObjectPool();
-                _AudioManager = new AudioManager();
                 _ShareSDKManager = ShareSDKManager.instance;
             } // end GetInstance
 
             public static ObjectPool GetObjectPool() { return _ObjectPool; } // end GetObjectPool
-
-            public static AudioManager GetAudioManager() { return _AudioManager; } // end GetAudioManager
 
             public static ShareSDKManager GetShareSDKManager() { return _ShareSDKManager; } // end GetShareSDKManager
         } // end class InstanceMgr

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Framework {
     namespace FSM {
-        public class FSMSystem : IFSMSystem {
+        public class FSMSystem : IFSM, IFSMSystem {
             private IFSMState currentState;
             private Dictionary<string, IFSMState> stateMap;
 
@@ -25,8 +25,10 @@ namespace Framework {
                     return;
 #endif
                 } // end if
-                if (null == currentState) currentState = state;
-                // end if
+                if (null == currentState) {
+                    currentState = state;
+                    currentState.DoBeforeEntering();
+                } // end if
                 stateMap[state.name] = state;
             } // end AddState
 
