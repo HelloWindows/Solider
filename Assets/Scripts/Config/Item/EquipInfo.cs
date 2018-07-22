@@ -5,7 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
-using Framework.Config;
+using Framework.Config.Const;
 using Solider.Manager;
 
 namespace Solider {

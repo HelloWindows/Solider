@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Framework {
     namespace Tools {
-        public class DebugTool {
+        public static class DebugTool {
 
             public static void CheckNullDictionary<T, V>(Dictionary<T, V> dict) {
 

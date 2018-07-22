@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Framework {
     namespace Tools {
-        public class CanvasTool {
+        public static class CanvasTool {
             public static GameObject InstantiateEmptyUI(string name, RectTransform parent, Vector3 localPos) {
                 return InstantiateEmptyUI(name, parent, localPos, Vector3.zero, Vector3.one);
             } // end InstantiateEmptyGo

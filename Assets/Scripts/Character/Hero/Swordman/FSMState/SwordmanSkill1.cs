@@ -22,6 +22,7 @@ namespace Solider {
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
+                    character.audio.PlaySoundCache("swordman_skill_1");
                     character.avatar.Play("skill1");
                 } // end DoBeforeEntering
 

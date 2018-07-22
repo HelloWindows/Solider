@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Manager;
+using Framework.Config.Const;
 using System.Collections.Generic;
 using Solider.Model.Data;
 using Solider.Interface;
@@ -72,7 +72,7 @@ namespace Solider {
             } // end GetAttributeData
 
             public void PackItem(string id, int count) {
-                IPack pack = GetItemPack(ConfigMgr.itemConfig.GetItemType(id));
+                IPack pack = GetItemPack(Configs.itemConfig.GetItemType(id));
                 if (null == pack) return;
                 // end if
                 pack.PackItem(id, count);

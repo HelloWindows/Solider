@@ -23,6 +23,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.avatar.Play("skill3");
+                    character.audio.PlaySoundCache("swordman_skill_3");
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {

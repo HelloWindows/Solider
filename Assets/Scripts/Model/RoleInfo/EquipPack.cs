@@ -6,6 +6,7 @@
  *******************************************************************/
 using Solider.Config;
 using Framework.Config;
+using Framework.Config.Const;
 using Framework.Manager;
 using Solider.Interface;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Solider {
                         continue;
                     } // end if
                     idList[i] = idDict[i][0];
-                    if (ConfigMgr.itemConfig.GetItemType(idList[i]) != packType) idList[i] = "0";
+                    if (Configs.itemConfig.GetItemType(idList[i]) != packType) idList[i] = "0";
                     // end if
                 } // end for
                 #endregion
@@ -57,7 +58,7 @@ namespace Solider {
             } // end Pack
 
             public void PackItem(string itemID, int count) {
-                string type = ConfigMgr.itemConfig.GetItemType(itemID);
+                string type = Configs.itemConfig.GetItemType(itemID);
                 if (this.packType != type) return;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
@@ -72,7 +73,7 @@ namespace Solider {
             public void UseItemWithGid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return;
                 // end if
-                EquipInfo info = ConfigMgr.itemConfig.GetItemInfo(idList[gid]) as EquipInfo;
+                EquipInfo info = Configs.itemConfig.GetItemInfo(idList[gid]) as EquipInfo;
                 if (null == info || (info.role != ConstConfig.ALLROLE && info.role != roleType)) return; // 检测是否是装备，是否符合当前角色类型
                 // end if
                 string type = info.type;
@@ -88,7 +89,7 @@ namespace Solider {
             public ItemInfo GetItemInfoForGrid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return null;
                 // end if
-                return ConfigMgr.itemConfig.GetItemInfo(idList[gid]);
+                return Configs.itemConfig.GetItemInfo(idList[gid]);
             } // end GetItemInfoWithGid
 
             public int GetCountForGrid(int gid) {
@@ -145,11 +146,11 @@ namespace Solider {
                 if (!wearDict.ContainsKey(type)) {
                     return null;
                 } // end if
-                return ConfigMgr.itemConfig.GetItemInfo(wearDict[type]) as EquipInfo;
+                return Configs.itemConfig.GetItemInfo(wearDict[type]) as EquipInfo;
             } // end GetItemInfo
 
             private void WriteGridInfo(int gid, string id, int count) {
-                string grade = ConfigMgr.itemConfig.GetItemGrade(id);
+                string grade = Configs.itemConfig.GetItemGrade(id);
                 SqliteManager.SetPackInfoWithID(roleID, packType, gid, id, grade, count);
             } // end WriteGridInfo
         } // end class EquipPack

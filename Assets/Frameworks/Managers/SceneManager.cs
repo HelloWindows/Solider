@@ -13,11 +13,14 @@ namespace Framework {
     namespace Manager {
         public class SceneManager : MonoBehaviour {
             private static IScene m_scene;
-            public static IScene scene { get { return m_scene; } }
             public static ICamera mainCamera { get { return m_scene.mainCamera; } }
             public static ICanvas mainCanvas { get { return m_scene.mainCanvas; } }
 
             public static void SetScene(IScene scene) {
+                if (null != m_scene) { // 清理当前场景
+                    m_scene.Dispose();
+                } // end if
+
                 if (null == scene) {
 #if __MY_DEBUG__
                     ConsoleTool.SetError("SceneManager SetScene scene is null!");
@@ -33,7 +36,7 @@ namespace Framework {
             } // end Start
 
             private void Update() {
-                if (scene.IsDispose) return;
+                if (m_scene.isDispose) return;
                 // end if
                 m_scene.Update(Time.deltaTime);
             } // end Update

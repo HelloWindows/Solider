@@ -4,13 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
+using Framework.Config.Const;
 using Framework.Middleware;
 using Mono.Data.Sqlite;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Framework {
     namespace Manager {

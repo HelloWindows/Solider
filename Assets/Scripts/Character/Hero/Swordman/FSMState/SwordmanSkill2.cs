@@ -25,11 +25,12 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.avatar.Play("skill2");
+                    character.audio.PlaySoundCache("swordman_skill_2");
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
                     AnimationState state = character.avatar.GetCurrentState("skill2");
-                    if (null != state && state.normalizedTime >= 5) {
+                    if (null != state && state.normalizedTime >= 7) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason

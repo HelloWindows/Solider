@@ -4,8 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.Interface.Audio;
-using Framework.Manager;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +14,11 @@ namespace Solider {
         public class CharacterAduio : IAudioSound {
             private float valume;
             private AudioSource audio;
-            private Transform characterTrans;
             private static Dictionary<string, AudioClip> clipCache;
 
-            public CharacterAduio(AudioSource audio, Transform characterTrans) {
+            public CharacterAduio(AudioSource audio) {
                 valume = 1;
                 this.audio = audio;
-                this.characterTrans = characterTrans;
                 if (null == clipCache) clipCache = new Dictionary<string, AudioClip>();
                 // end if
             } // end CharacterAduio
@@ -30,17 +28,17 @@ namespace Solider {
             } // end PlaySoundCache
 
             public void PlaySoundOnce(string name) {
-                AudioClip clip = Resources.Load<AudioClip>(ConfigMgr.aduioConfig.SoundPath[name]);
+                AudioClip clip = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
                 audio.PlayOneShot(clip, valume);
             } // end PlaySoundOnce
 
-            public void PlaySoundCacheAtPoint(string name) {
-                AudioSource.PlayClipAtPoint(GetClipAtCache(name), characterTrans.position, valume);
+            public void PlaySoundCacheAtPoint(string name, Vector3 position) {
+                AudioSource.PlayClipAtPoint(GetClipAtCache(name), position, valume);
             } // end PlaySoundCacheAtPoint
 
-            public void PlaySoundOnceAtPoint(string name) {
-                AudioClip clip = Resources.Load<AudioClip>(ConfigMgr.aduioConfig.SoundPath[name]);
-                AudioSource.PlayClipAtPoint(clip, characterTrans.position, valume);
+            public void PlaySoundOnceAtPoint(string name, Vector3 position) {
+                AudioClip clip = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
+                AudioSource.PlayClipAtPoint(clip, position, valume);
             } // end PlaySoundOnceAtPoint
 
             public void SetSoundValume(float valume) {
@@ -53,7 +51,7 @@ namespace Solider {
 
             private AudioClip GetClipAtCache(string name) {
                 if (clipCache.ContainsKey(name) == false) {
-                    clipCache[name] = Resources.Load<AudioClip>(ConfigMgr.aduioConfig.SoundPath[name]);
+                    clipCache[name] = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
                 } // end if
                 return clipCache[name];
             } // end GetClipAtCache

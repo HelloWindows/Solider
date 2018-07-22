@@ -15,13 +15,13 @@ using UnityEngine;
 namespace Solider {
     namespace Scene {
         public class LoginScene : IScene {
-            public bool IsDispose { get; private set; }
+            public bool isDispose { get; private set; }
             public string sceneName { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
 
             public LoginScene() {
-                IsDispose = true; // 初始化之前是销毁状态
+                isDispose = true; // 初始化之前是销毁状态
                 sceneName = "Level";
             } // end LoginScene
 
@@ -32,17 +32,17 @@ namespace Solider {
                     null, new Vector3(0, 0, 5), Vector3.zero, Vector3.one);
                 ObjectTool.InstantiateGo("LoginPanelUI", "Scene/LoginScene/LoginPanelUI",
                     mainCanvas.rectTransform).AddComponent<UILoginPanel>();
-                IsDispose = false;
+                isDispose = false;
             } // end Initialize
 
             public void Update(float deltaTime) {
-                if (IsDispose) return; // 已经销毁
+                if (isDispose) return; // 已经销毁
                 // end if
                 mainCamera.Update(Time.deltaTime);
             } // end Update
 
             public void Dispose() {
-                IsDispose = true;
+                isDispose = true;
             } // end Dispose
         } // end class LoginScene 
     } // end namespace Scene

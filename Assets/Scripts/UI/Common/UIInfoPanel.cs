@@ -5,11 +5,11 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
-using Framework.Manager;
 using Solider.Config;
 using Solider.Interface;
 using Solider.Manager;
 using Solider.UI.Custom;
+using Framework.Config.Const;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +57,7 @@ namespace Solider {
                             cellDict[type].HideItem();
                             continue;
                         } // end if
-                        ItemInfo info = ConfigMgr.itemConfig.GetItemInfo(dict[type]);
+                        ItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
                         if (null == info) {
                             cellDict[type].HideItem();
                             continue;
@@ -74,7 +74,7 @@ namespace Solider {
                     } // end if
                     if (null == dict || !dict.ContainsKey(type)) return;
                     // end if
-                    ItemInfo info = ConfigMgr.itemConfig.GetItemInfo(dict[type]);
+                    ItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
                     if (null == info) return;
                     // end if
                     infoPanel.SetActive(true);

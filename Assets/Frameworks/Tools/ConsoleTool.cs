@@ -5,7 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 #if __MY_DEBUG__
-using Framework.Config;
+using Framework.Config.Const;
 using Framework.Tools;
 using System.Collections;
 using UnityEngine;
@@ -17,10 +17,10 @@ public class ConsoleTool : MonoBehaviour {
     private static string errorMsg;
     private GUIStyle fontStyle;
 
-    private static ConsoleTool GetInstance() {
+    public static ConsoleTool GetInstance() {
 
         if (null == instance) {
-            instance = ObjectTool.InstantiateEmptyGo("ConsoleTool").AddComponent<ConsoleTool>();
+            ObjectTool.InstantiateEmptyGo("ConsoleTool").AddComponent<ConsoleTool>();
             DontDestroyOnLoad(instance.gameObject);
         } // end if
         return instance;
@@ -33,12 +33,18 @@ public class ConsoleTool : MonoBehaviour {
             Debug.LogError("[ERROR] Have tow ConsoleTool!");
             return;
         } // end if
+        instance = this;
         infoTable = new Hashtable();
         fontStyle = new GUIStyle();
         fontStyle.normal.textColor = new Color(1, 1, 1);   //设置字体颜色  
         fontStyle.fontSize = 14;       //字体大小 
         fontStyle.wordWrap = true;
+        AddInfoTable("FPS");
     } // end Awake
+
+    private void Update() {
+        SetInfo("FPS", (1f / Time.deltaTime).ToString("f0"));
+    } // end Update
 
     public static void AddInfoTable(string key) {
         GetInstance();

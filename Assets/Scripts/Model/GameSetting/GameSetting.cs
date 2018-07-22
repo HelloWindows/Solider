@@ -21,7 +21,7 @@ namespace Solider {
 
             public GameSetting() {
                 currentQuality = "Simple";
-                path = PlatformManager.GetPersistentDataPath("GameSetting.bin");
+                path = PlatformTool.GetPersistentDataPath("GameSetting.bin");
                 GameSetting setting = SerializeTool.GetDataWithPath<GameSetting>(path);
                 if (setting == null) {
                     musicValue = 0.5f;

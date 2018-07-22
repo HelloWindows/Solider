@@ -8,6 +8,7 @@ using Solider.Config;
 using Framework.Config;
 using Framework.Manager;
 using Solider.Interface;
+using Framework.Config.Const;
 using System.Collections.Generic;
 
 namespace Solider {
@@ -33,7 +34,7 @@ namespace Solider {
                         continue;
                     } // end if
                     idList[i] = dict[i][0];
-                    if (ConfigMgr.itemConfig.GetItemType(idList[i]) != packType) idList[i] = "0";
+                    if (Configs.itemConfig.GetItemType(idList[i]) != packType) idList[i] = "0";
                     // end if
                     if (int.TryParse(dict[i][1], out count)) countList[i] = count;
                     // end if
@@ -41,7 +42,7 @@ namespace Solider {
             } // end Pack
 
             public void PackItem(string itemID, int count) {
-                string type = ConfigMgr.itemConfig.GetItemType(itemID);
+                string type = Configs.itemConfig.GetItemType(itemID);
                 if (packType != type) return;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
@@ -62,7 +63,7 @@ namespace Solider {
             public ItemInfo GetItemInfoForGrid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return null;
                 // end if
-                return ConfigMgr.itemConfig.GetItemInfo(idList[gid]);
+                return Configs.itemConfig.GetItemInfo(idList[gid]);
             } // end GetItemInfoWithGid
 
             public int GetCountForGrid(int gid) {
@@ -121,7 +122,7 @@ namespace Solider {
             } // end DiscardItem
 
             private void WriteGridInfo(int gid, string id, int count) {
-                string grade = ConfigMgr.itemConfig.GetItemGrade(id);
+                string grade = Configs.itemConfig.GetItemGrade(id);
                 SqliteManager.SetPackInfoWithID(roleID, packType, gid, id, grade, count);
             } // end WriteGridInfo
         } // end class Pack 

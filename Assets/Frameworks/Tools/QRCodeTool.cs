@@ -10,7 +10,7 @@ using ZXing.QrCode;
 
 namespace Framework {
     namespace Tools {
-        public class QRCodeTool {
+        public static class QRCodeTool {
 
             //定义方法生成二维码  
             public static Color32[] Encode(string textForEncoding, int width, int height) {

@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
+using Framework.Config.Const;
 using Framework.Interface.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;

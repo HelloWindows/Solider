@@ -16,13 +16,13 @@ namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
             private float timer;
-            public bool IsDispose { get; private set; }
+            public bool isDispose { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
             public string sceneName { get; private set; }
 
             public NoviceVillage() {
-                IsDispose = true;
+                isDispose = true;
                 sceneName = "Level";
             } // end NoviceVillage
 
@@ -34,11 +34,11 @@ namespace Solider {
                     mainCanvas.rectTransform).AddComponent<UIMainPanel>();
                 ObjectTool.InstantiateGo("TownPanelUI", "UI/Common/TownPanelUI", 
                     mainCanvas.rectTransform).AddComponent<UITownPanel>();
-                IsDispose = false;
+                isDispose = false;
             } // end Initialize
 
             public void Update(float deltaTime) {
-                if (IsDispose) return;
+                if (isDispose) return;
                 // end if
                 timer += deltaTime;
                 if (timer > 1) {
@@ -48,7 +48,7 @@ namespace Solider {
             } // end Update
 
             public void Dispose() {
-                IsDispose = true;
+                isDispose = true;
             } // end Dispose
         } // end class NoviceVillage 
     } // end namespace Scene

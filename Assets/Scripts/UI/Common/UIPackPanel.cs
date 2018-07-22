@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
+using Framework.Config.Const;
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Config;

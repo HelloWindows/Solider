@@ -16,12 +16,13 @@ namespace Solider {
                 private ICharacter character;
 
                 public SwordmanAttack4(string name, ICharacter character) {
-                    step = 1f;
+                    step = 2f;
                     this.name = name;
                     this.character = character;
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
+                    character.audio.PlaySoundCache("swordman_attack_4");
                     character.avatar.PlayQueued(new string[] { "attack_10", "attack_11", "attack_12" });
                 } // end DoBeforeEntering
 

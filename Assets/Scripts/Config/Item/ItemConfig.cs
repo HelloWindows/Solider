@@ -4,9 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Manager;
+using Framework.Tools;
 using LitJson;
-using Solider.Model;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +29,7 @@ namespace Solider {
                 stuffInfo = new Dictionary<string, ItemInfo>();
                 equipInfo = new Dictionary<string, ItemInfo>();
                 consumeInfo = new Dictionary<string, ItemInfo>();
-                AssetBundle assetbundle = PlatformManager.LoadFromStreamingAssets("config/res_config.unity3d");
+                AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                 string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
                 string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
                 string consumeJson = assetbundle.LoadAsset<TextAsset>("assets/config/consumable_res_config.json").text;

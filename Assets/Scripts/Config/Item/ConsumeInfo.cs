@@ -6,7 +6,7 @@
  *******************************************************************/
 using LitJson;
 using Solider.Manager;
-using Framework.Config;
+using Framework.Config.Const;
 
 namespace Solider {
     namespace Config {

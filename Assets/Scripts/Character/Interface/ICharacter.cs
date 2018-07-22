@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.FSM.Interface;
 using Framework.Interface.Audio;
+using UnityEngine;
 
 namespace Solider {
     namespace Character {
@@ -13,8 +14,10 @@ namespace Solider {
             public interface ICharacter {
                 IFSM fsm { get; }
                 IAvatar avatar { get; }
+                ISurface surface { get; }
                 IAudioSound audio { get; }
                 ICharacterMove move { get; }
+                Vector3 position { get; }
             } // end interface ICharacter
         } // end namespace Interface
     } // end namespace Character

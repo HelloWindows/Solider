@@ -41,6 +41,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mode = AttackMode.DEFAULT;
+                    character.audio.PlaySoundCache("swordman_attack_3");
                     character.avatar.PlayQueued(new string[] { "attack_7", "attack_8" });
                 } // end DoBeforeEntering
 

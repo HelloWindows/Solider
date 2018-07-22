@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Framework {
     namespace Tools {
-        public class ObjectTool {
+        public static class ObjectTool {
 
             public static GameObject InstantiateEmptyGo(string name) {
                 return new GameObject(name);

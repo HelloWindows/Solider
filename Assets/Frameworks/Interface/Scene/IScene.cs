@@ -11,7 +11,7 @@ namespace Framework {
     namespace Interface {
         namespace Scene {
             public interface IScene {
-                bool IsDispose { get; }
+                bool isDispose { get; }
                 ICamera mainCamera { get; }
                 ICanvas mainCanvas { get; }
                 string sceneName { get; }

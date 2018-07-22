@@ -12,11 +12,24 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Solider.Config;
 using Solider.Model;
+using Framework.Manager;
 
-namespace Custom {
+namespace Solider {
     public class Test : MonoBehaviour {
         public Transform target;//目标物体
         public float smoothing = 3;//平滑系数
+
+        private void Start()
+        {
+            Application.targetFrameRate = 45;
+            InstanceMgr.Init();
+            ConsoleTool.GetInstance();
+        }
+
+        private void Update()
+        {
+            InstanceMgr.GetObjectManager().Update(Time.deltaTime);
+        }
 
         void LateUpdate()
         {
@@ -30,4 +43,4 @@ namespace Custom {
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, angle, smoothing * Time.deltaTime);
         }
     } // end class Test 
-} // end namespace Custom
+} // end namespace Solider

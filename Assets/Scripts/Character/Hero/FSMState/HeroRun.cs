@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Tools;
 using Framework.FSM.Interface;
 using Framework.Interface.Input;
 using Solider.Character.Interface;
@@ -77,6 +78,7 @@ namespace Solider {
                     // end if
                     signArr[index] = true;
                     character.audio.PlaySoundCache("heroRun");
+                    EffectTool.ShowEffectCache("runEffect", 0.5f, character.position);
                 } // end PlayRunSound
             } // end class HeroWalk
         } // end namespaceFSMState

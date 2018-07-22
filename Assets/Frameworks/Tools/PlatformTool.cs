@@ -4,12 +4,10 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace Framework {
-    namespace Manager {
-        public static class PlatformManager {
+    namespace Tools {
+        public static class PlatformTool {
             public static string GetStreamingAssetsPath(string path) {
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_IPHONE
                 path = Application.streamingAssetsPath + "/" + path;
@@ -58,6 +56,6 @@ namespace Framework {
             public static AssetBundle LoadFromPersistantDataPath(string assetbundle) {
                 return AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + assetbundle);
             } // end LoadFromPersistantDataPath
-        } // end class PlatformManager 
-    } // end namespace Manager
+        } // end class PlatformTool 
+    } // end namespace Tools
 } // end namespace Framework

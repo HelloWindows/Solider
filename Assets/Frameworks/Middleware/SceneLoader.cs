@@ -18,9 +18,6 @@ namespace Framework {
                 if (isLoaded) return;
                 // end if
                 isLoaded = true;
-                if(null != Manager.SceneManager.scene) { // 清理当前场景
-                    Manager.SceneManager.scene.Dispose();
-                } // edn if
                 sceneName = scene.sceneName; // 加载的场景名
                 Manager.SceneManager.SetScene(scene); // 设置场景资料
                 UnityEngine.SceneManagement.SceneManager.LoadScene("SceneLoader");

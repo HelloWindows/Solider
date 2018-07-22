@@ -16,11 +16,11 @@ namespace Solider {
         public class SelectRoleScene : IScene {
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
-            public bool IsDispose { get; private set; }
+            public bool isDispose { get; private set; }
             public string sceneName{ get; private set; }
 
             public SelectRoleScene() {
-                IsDispose = true; 
+                isDispose = true; 
                 sceneName = "Level";
             } // end SelectRoleScene
 
@@ -29,14 +29,14 @@ namespace Solider {
                 mainCanvas = new MainCanvas(mainCamera.camera);
                 ObjectTool.InstantiateGo("SelectRolePanelUI", "Scene/SelectRoleScene/SelectRolePanelUI", 
                     mainCanvas.rectTransform).AddComponent<UISelectRolePanel>();
-                IsDispose = false;
+                isDispose = false;
             } // end Initialize
 
             public void Update(float deltaTime) {
             } // end Update
 
             public void Dispose() {
-                IsDispose = true;
+                isDispose = true;
             } // end Dispose
         } // end class SelectRoleScene 
     } // end namespace Scene

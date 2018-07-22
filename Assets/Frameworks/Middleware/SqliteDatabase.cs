@@ -29,12 +29,9 @@
  *      SqliteDatabase db = new SqliteDatabase(@"Data Source=" + appDBPath);
  * #endif
  */
-using Framework.Manager;
+using Framework.Tools;
 using Mono.Data.Sqlite;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Framework {
     namespace Middleware {
@@ -62,7 +59,7 @@ namespace Framework {
             /// </summary>
             /// <param name="connectionString"> 数据库名 </param>
             public void Connect(string connectionString) {
-                string path = PlatformManager.GetSqliteDatabasePath(connectionString);
+                string path = PlatformTool.GetSqliteDatabasePath(connectionString);
                 try {
                     dbConnection = new SqliteConnection(path);
                     dbConnection.Open();
