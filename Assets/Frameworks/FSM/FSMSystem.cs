@@ -35,7 +35,7 @@ namespace Framework {
             public void RemoveState(string name) {
                 if (!stateMap.ContainsKey(name)) {
 #if __MY_DEBUG__
-                    throw new System.Exception("FSMSystem RemoveState state don't exist!");
+                    throw new System.Exception("FSMSystem RemoveState state don't exist! name: " + name);
 #else
                     return;
 #endif
@@ -46,7 +46,7 @@ namespace Framework {
             public void PerformTransition(string name) {
                 if (!stateMap.ContainsKey(name)) {
 #if __MY_DEBUG__
-                    throw new System.Exception("FSMSystem PerformTransition state don't exist!");
+                    throw new System.Exception("FSMSystem PerformTransition state don't exist! name: " + name);
 #else
                     return;
 #endif

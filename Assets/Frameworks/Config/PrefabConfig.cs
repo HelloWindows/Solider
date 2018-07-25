@@ -31,6 +31,12 @@ namespace Framework {
                     pathDict["bow4"] = prefix + "bow4";
                     pathDict["bow5"] = prefix + "bow5";
                     pathDict["bow6"] = prefix + "bow6";
+                    pathDict["staff1"] = prefix + "staff1";
+                    pathDict["staff2"] = prefix + "staff2";
+                    pathDict["staff3"] = prefix + "staff3";
+                    pathDict["staff4"] = prefix + "staff4";
+                    pathDict["staff5"] = prefix + "staff5";
+                    pathDict["staff6"] = prefix + "staff6";
                 } // end PrefabConfig
             } // end class PrefabConfig
         } // end namespace Prefab 

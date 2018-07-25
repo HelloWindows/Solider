@@ -40,6 +40,15 @@ namespace Framework {
                     pathDict["skill3"] = prefix + "skill3";
                     pathDict["archer_die"] = prefix + "archer_die";
                     pathDict["archer_hurt"] = prefix + "archer_hurt";
+
+                    prefix = "Character/Hero/Magician/Sound/";
+                    pathDict["magician_attack1"] = prefix + "magician_attack1";
+                    pathDict["magician_attack2"] = prefix + "magician_attack2";
+                    pathDict["magician_skill1"] = prefix + "magician_skill1";
+                    pathDict["magician_skill2"] = prefix + "magician_skill2";
+                    pathDict["magician_skill3"] = prefix + "magician_skill3";
+                    pathDict["magician_die"] = prefix + "magician_die";
+                    pathDict["magician_hurt"] = prefix + "magician_hurt";
                 } // end AudioConfig
             } // end class SoundConfig
         } // end namespace Audio
