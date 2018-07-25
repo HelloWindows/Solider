@@ -20,7 +20,7 @@ namespace Framework {
                 } // end instance
 
                 private EffectConfig() : base() {
-                    string prefix = "Character/Hero/Effect/";
+                    string prefix = "Character/Hero/Common/Effect/";
                     pathDict["runEffect"] = prefix + "runEffect";
                 } // end AudioConfig
             } // end class EffectConfig

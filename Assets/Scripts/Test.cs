@@ -23,7 +23,7 @@ namespace Solider {
         {
             Application.targetFrameRate = 45;
             InstanceMgr.Init();
-            ConsoleTool.GetInstance();
+            ConsoleTool.SetConsole("Test");
         }
 
         private void Update()

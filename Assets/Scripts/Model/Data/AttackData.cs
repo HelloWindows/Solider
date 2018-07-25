@@ -20,6 +20,7 @@ namespace Solider {
                 public bool ismiss { get; private set; } // 失误
 
                 public AttackData(AttributeData data) {
+                    id = data.id;
                     HIT = data.HIT;
                     iscrit = Random.Range(0, 100f) < data.CRT ? true : false;
                     ATK = Random.Range(data.NATK, data.XATK) * (iscrit ? 2 : 1);

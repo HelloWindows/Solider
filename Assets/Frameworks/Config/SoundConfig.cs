@@ -19,7 +19,7 @@ namespace Framework {
 
 
                 private SoundConfig() : base() {
-                    string prefix = "Character/Hero/Sound/";
+                    string prefix = "Character/Hero/Common/Sound/";
                     pathDict["heroRun"] = prefix + "heroRun";
                     prefix = "Character/Hero/Swordman/Sound/";
                     pathDict["swordman_attack_1"] = prefix + "swordman_attack_1";
@@ -29,6 +29,17 @@ namespace Framework {
                     pathDict["swordman_skill_1"] = prefix + "swordman_skill_1";
                     pathDict["swordman_skill_2"] = prefix + "swordman_skill_2";
                     pathDict["swordman_skill_3"] = prefix + "swordman_skill_3";
+                    pathDict["swordman_die"] = prefix + "swordman_die";
+                    pathDict["swordman_hurt"] = prefix + "swordman_hurt";
+
+                    prefix = "Character/Hero/Archer/Sound/";
+                    pathDict["archer_attack"] = prefix + "archer_attack";
+                    pathDict["archer_crit"] = prefix + "archer_crit";
+                    pathDict["skill1"] = prefix + "skill1";
+                    pathDict["skill2"] = prefix + "skill2";
+                    pathDict["skill3"] = prefix + "skill3";
+                    pathDict["archer_die"] = prefix + "archer_die";
+                    pathDict["archer_hurt"] = prefix + "archer_hurt";
                 } // end AudioConfig
             } // end class SoundConfig
         } // end namespace Audio

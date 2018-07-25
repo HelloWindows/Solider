@@ -100,15 +100,10 @@ namespace Solider {
                     if (null != displayGo) Destroy(displayGo);
                     // end if
                     displayGo = null;
-                    try
-                    {
+                    try {
                         displayGo = ObjectTool.InstantiateGo("PlayerDisplay", "Display/Role/" + roleType, m_camera.transform, localPos, localRot, localSca);
-                    }
-                    catch (Exception ex)
-                    {
-#if __MY_DEBUG__
+                    } catch (Exception ex) {
                         ConsoleTool.SetConsole(ex.ToString());
-#endif
                     } // end try
                 } // end ReplaceDisplayInitialRole
 
@@ -119,9 +114,7 @@ namespace Solider {
                     try {
                         displayGo = ObjectTool.InstantiateGo("PlayerDisplay", "Display/Role/" + roleType, m_camera.transform, localPos, localRot, localSca);
                     } catch (Exception ex) {
-#if __MY_DEBUG__
                         ConsoleTool.SetConsole(ex.ToString());
-#endif
                     } // end try
                 } // end ReplaceDisplayInitialRole
 

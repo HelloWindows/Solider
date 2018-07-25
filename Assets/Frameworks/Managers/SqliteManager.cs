@@ -98,9 +98,7 @@ namespace Framework {
                     } // end while
                 } catch (Exception ex) {
                     sqliteDB.Disconnect();
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 return null;
             } // end GetRoleWithID
@@ -140,9 +138,7 @@ namespace Framework {
                         dict["crt"] = reader.GetFloat(reader.GetOrdinal("crt"));
                     } // end while
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetRoleInfoWithID
@@ -168,9 +164,7 @@ namespace Framework {
                         dict["shoes"] = reader.GetString(reader.GetOrdinal("shoes"));
                     } // end while
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetWearInfoWithID
@@ -187,9 +181,7 @@ namespace Framework {
                     sqliteDB.Update(tableName, new string[] { type }, new string[] { id }, 
                         new string[] { "id" }, new string[] { "=" }, new string[] { roleID });
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try              
                 sqliteDB.Disconnect();
             } // end SetWearInfoWithID
@@ -218,9 +210,7 @@ namespace Framework {
                         dict[gid][1] = reader.GetInt32(reader.GetOrdinal("count")).ToString();
                     } // end while
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetEquipmentPackInfoWithID
@@ -250,9 +240,7 @@ namespace Framework {
                         gid++;
                     } // end while
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetArrangePackInfoWithID
@@ -273,9 +261,7 @@ namespace Framework {
                     sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { id, grade, count.ToString() }, 
                         new string[] { "gid", "type" }, new string[] { "=", "=" }, new string[] { gid.ToString(), type });
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try              
                 sqliteDB.Disconnect();
             } // end SetPackInfoWithID

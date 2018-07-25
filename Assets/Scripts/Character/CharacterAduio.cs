@@ -28,7 +28,7 @@ namespace Solider {
             } // end PlaySoundCache
 
             public void PlaySoundOnce(string name) {
-                AudioClip clip = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
+                AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
                 audio.PlayOneShot(clip, valume);
             } // end PlaySoundOnce
 
@@ -37,7 +37,7 @@ namespace Solider {
             } // end PlaySoundCacheAtPoint
 
             public void PlaySoundOnceAtPoint(string name, Vector3 position) {
-                AudioClip clip = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
+                AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
                 AudioSource.PlayClipAtPoint(clip, position, valume);
             } // end PlaySoundOnceAtPoint
 
@@ -51,7 +51,7 @@ namespace Solider {
 
             private AudioClip GetClipAtCache(string name) {
                 if (clipCache.ContainsKey(name) == false) {
-                    clipCache[name] = Resources.Load<AudioClip>(Configs.aduioConfig.GetPath(name));
+                    clipCache[name] = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
                 } // end if
                 return clipCache[name];
             } // end GetClipAtCache

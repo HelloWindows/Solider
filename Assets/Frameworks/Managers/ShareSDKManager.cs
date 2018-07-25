@@ -61,18 +61,12 @@ namespace Framework {
             void AuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result) {
 
                 if (state == ResponseState.Success) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("authorize success !");
-#endif
                 } else if (state == ResponseState.Fail) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("fail! throwable stack = " + result["stack"] + "; error msg = " + result["msg"]);
-#endif
                 }
                 else if (state == ResponseState.Cancel) {
-#if __MY_DEBUG__
-                    ConsoleTool.SetConsole("cancel");
-#endif
+                    ConsoleTool.SetConsole("authorize cancel");
                 } // end if
             } // end AuthResultHandler
 

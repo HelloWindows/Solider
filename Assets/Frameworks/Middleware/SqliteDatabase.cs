@@ -64,9 +64,7 @@ namespace Framework {
                     dbConnection = new SqliteConnection(path);
                     dbConnection.Open();
                 } catch (Exception ex) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
             } // end Open
 
@@ -97,9 +95,7 @@ namespace Framework {
                     reader = dbCommand.ExecuteReader();
                 } catch (Exception ex) {
                     reader = null;
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(ex.ToString());
-#endif
                 } // end try
                 return reader;
             } // end SqliteDataReader
@@ -113,10 +109,8 @@ namespace Framework {
             /// <returns></returns>
             public SqliteDataReader CreateTable(string tableName, string[] cols, string[] colsType) {
                 if (cols.Length != colsType.Length) {
-#if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("CreateTable columns.Length != values.Length");
-#endif
                     return reader;
                 } // end if
                 string query = "CREATE TABLE " + tableName + " (" + cols[0] + " " + colsType[0];
@@ -148,10 +142,8 @@ namespace Framework {
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader SelectWhere(string tableName, string[] items, string[] cols, string[] operation, string[] values) {
                 if (cols.Length != operation.Length || operation.Length != values.Length) {
-#if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
-#endif
                     return reader;
                 } // end if
                 string query = "SELECT " + items[0];
@@ -177,10 +169,8 @@ namespace Framework {
             /// <returns></returns>
             public SqliteDataReader SelectOrder(string tableName, string[] items, string[] selects, string[] operation, string[] values, string[] orderCols, string order) {
                 if (selects.Length != operation.Length || operation.Length != values.Length) {
-#if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
-#endif
                     return reader;
                 } // end if
                 string query = "SELECT " + items[0];
@@ -224,10 +214,8 @@ namespace Framework {
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader Insert(string tableName, string[] cols, string[] values) {
                 if (cols.Length != values.Length) {
-#if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("Insert columns.Length != values.Length");
-#endif
                     return reader;
                 } // end if
                 string query = "INSERT INTO " + tableName + "(" + cols[0];
@@ -253,10 +241,8 @@ namespace Framework {
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader Update(string tableName, string[] cols, string[] colsvalues, string[] selects, string[] operation, string[] values) {
                 if (selects.Length != operation.Length || operation.Length != values.Length) {
-#if __MY_DEBUG__
                     reader = null;
                     ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
-#endif
                     return reader;
                 } // end if
                 string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + "'" + colsvalues[0] + "' ";

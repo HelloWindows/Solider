@@ -38,34 +38,26 @@ namespace Solider {
 
                 void OnMusicSliderChange(float value) {
                     GameManager.gameSetting.SetMusicValue(value);
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnMusicSliderChange Value: " + value);
-#endif
                 } // end OnMusicSliderChange
 
                 void OnSoundSliderChange(float value) {
                     GameManager.gameSetting.SetSoundValue(value);
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnSoundSliderChange Value: " + value);
-#endif
                 } // end OnMusicSliderChange
 
                 private void OnToggleNormal(bool isOn) {
                     if (!isOn) return;
                     // end if
                     GameManager.gameSetting.SetQuality("Simple");
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnToggleNormal Bool: " + isOn);
-#endif
                 } // end OnToggleEquipment
 
                 private void OnToggleGood(bool isOn) {
                     if (!isOn) return;
                     // end if
                     GameManager.gameSetting.SetQuality("Good");
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnToggleGood Bool: " + isOn);
-#endif
                 } // end OnToggleEquipment
 
                 private void OnClickCloseBtn() {

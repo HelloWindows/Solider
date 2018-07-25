@@ -30,7 +30,9 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
-                    signArr = new bool[] { false, false };
+                    for (int i = 0; i < signArr.Length; i++) {
+                        signArr[i] = false;
+                    } // end for
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
@@ -65,8 +67,9 @@ namespace Solider {
                     AnimationState state = character.avatar.GetCurrentState(name);
                     if (null == state) return;
                     // end if
-                    PlayRunEffect(0, state.normalizedTime);
-                    PlayRunEffect(1, state.normalizedTime);
+                    for (int i = 0; i < signArr.Length; i++) {
+                        PlayRunEffect(i, state.normalizedTime);
+                    } // end for
                 } // end Act
 
                 public void DoBeforeLeaving() {
@@ -78,7 +81,7 @@ namespace Solider {
                     // end if
                     signArr[index] = true;
                     character.audio.PlaySoundCache("heroRun");
-                    EffectTool.ShowEffectCache("runEffect", 0.5f, character.position);
+                    EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
                 } // end PlayRunSound
             } // end class HeroWalk
         } // end namespaceFSMState

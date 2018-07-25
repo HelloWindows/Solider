@@ -48,10 +48,11 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     surface = new CharacterSurface(liftTrans, furlTrans, meshRenderer);
-                    surface.ReloadWeapon("sword1");
-                    surface.LiftWeapon();
                     fsmSystem = new SwordmanFSM(this, input);
                     fsm = fsmSystem as IFSM;
+
+                    surface.ReloadWeapon("sword1");
+                    surface.LiftWeapon();
                 } // end Start
 
                 private void Update() {

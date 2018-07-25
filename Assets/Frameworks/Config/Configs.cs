@@ -14,7 +14,7 @@ namespace Framework {
     namespace Config {
         public static class Configs {
             public static readonly ItemConfig itemConfig = ItemConfig.instance;
-            public static readonly SoundConfig aduioConfig = SoundConfig.instance;
+            public static readonly SoundConfig soundConfig = SoundConfig.instance;
             public static readonly EffectConfig effectConfig = EffectConfig.instance;
             public static readonly PrefabConfig prefabConfig = PrefabConfig.instance;
             public static readonly MaterialConfig materialConfig = MaterialConfig.instance;

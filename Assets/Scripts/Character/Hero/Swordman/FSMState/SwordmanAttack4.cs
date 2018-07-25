@@ -23,23 +23,17 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.audio.PlaySoundCache("swordman_attack_4");
-                    character.avatar.PlayQueued(new string[] { "attack_10", "attack_11", "attack_12" });
+                    character.avatar.PlayQueued(new string[] { "attack4_1", "attack4_2", "attack4_3" });
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (character.avatar.IsPlaying("attack_10")) return;
-                    // end if
-                    if (character.avatar.IsPlaying("attack_11")) return;
-                    // end if
-                    if (character.avatar.IsPlaying("attack_12")) return;
-                    // end if
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
                 public void Act(float deltaTime) {
-                    if (character.avatar.IsPlaying("attack_11")) {
+                    if (character.avatar.IsPlaying("attack4_2")) {
                         character.move.StepForward(step, deltaTime);
                     } // end if
                 } // end Act

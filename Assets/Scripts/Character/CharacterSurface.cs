@@ -7,8 +7,6 @@
 using Framework.Config;
 using Framework.Tools;
 using Solider.Character.Interface;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Solider {
@@ -44,12 +42,9 @@ namespace Solider {
             public void ReloadWeapon(string name) {
                 GameObject Go = ObjectTool.InstantiateGo("name", Configs.prefabConfig.GetPath(name));
                 if (null == Go) {
-#if __MY_DEBUG__
-                    throw new System.Exception("ReloadWeapon name: " + name + " path: " +
+                    DebugTool.ThrowException("ReloadWeapon name: " + name + " path: " +
                         Configs.prefabConfig.GetPath(name) + " prefab is don't exsit!");
-#else
                     return;
-#endif
                 } // end if
                 if (null != weaponGo) Object.Destroy(weaponGo);
                 // end if
@@ -60,12 +55,9 @@ namespace Solider {
             public void ReloadArmor(string name) {
                 Material material = Resources.Load<Material>(Configs.materialConfig.GetPath(name));
                 if (null == material) {
-#if __MY_DEBUG__
-                    throw new System.Exception("ReloadArmor name: " + name + " path: " +
+                    DebugTool.ThrowException("ReloadArmor name: " + name + " path: " +
                         Configs.materialConfig.GetPath(name) + " prefab is don't exsit!");
-#else
                     return;
-#endif
                 } // end if
                 renderer.material = material;
             } // end ReloadArmor

@@ -4,20 +4,20 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-#if __MY_DEBUG__
 using Framework.Config.Const;
 using Framework.Tools;
 using System.Collections;
 using UnityEngine;
 
 public class ConsoleTool : MonoBehaviour {
+#if __MY_DEBUG__
     private static ConsoleTool instance;
     private static Hashtable infoTable;
     private static string console;
     private static string errorMsg;
     private GUIStyle fontStyle;
 
-    public static ConsoleTool GetInstance() {
+    private static ConsoleTool GetInstance() {
 
         if (null == instance) {
             ObjectTool.InstantiateEmptyGo("ConsoleTool").AddComponent<ConsoleTool>();
@@ -27,7 +27,6 @@ public class ConsoleTool : MonoBehaviour {
     } // end GetInstance
 
     private void Awake() {
-
         if (null != instance) {
             enabled = false;
             Debug.LogError("[ERROR] Have tow ConsoleTool!");
@@ -45,37 +44,45 @@ public class ConsoleTool : MonoBehaviour {
     private void Update() {
         SetInfo("FPS", (1f / Time.deltaTime).ToString("f0"));
     } // end Update
+#endif
 
     public static void AddInfoTable(string key) {
+#if __MY_DEBUG__
         GetInstance();
-
         if (!infoTable.ContainsKey(key)) {
             infoTable.Add(key, "");
             return;
         } // end if
         Debug.Log("InfoTable " + key + "is exist!");
+#endif
     } // end AddInfoTable
 
     public static void SetInfo(string key, string info) {
+#if __MY_DEBUG__
         GetInstance();
-
         if (!infoTable.ContainsKey(key) || null == info) {
             Debug.Log("InfoTable " + key + "is don't exist!");
             return;
         } // end if
         infoTable[key] = info;
+#endif
     } // end SetInfo
 
     public static void SetConsole(string msg) {
+#if __MY_DEBUG__
         GetInstance();
         console = msg;
-    } // end 
+#endif
+    } // end SetConsole
 
     public static void SetError(string msg) {
+#if __MY_DEBUG__
         GetInstance();
         errorMsg = msg;
-    } // end 
+#endif
+    } // end SetError
 
+#if __MY_DEBUG__
     private void OnGUI() {
         string info = "";
         fontStyle.fontSize = (int)(Screen.width / ConstConfig.STANDARD_WIDTH * 20);
@@ -87,5 +94,5 @@ public class ConsoleTool : MonoBehaviour {
         info += "[Error] " + errorMsg;
         GUI.Label(new Rect(5f, 5f, Screen.width, Screen.height), info, fontStyle);
     } // end OnGUI
-} // end class ConsoleTool 
 #endif
+} // end class ConsoleTool 

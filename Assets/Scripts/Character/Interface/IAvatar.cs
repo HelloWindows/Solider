@@ -36,7 +36,6 @@ namespace Solider {
                 /// <param name="name"> 动画名 </param>
                 /// <returns> 当前动画状态 </returns>
                 AnimationState GetCurrentState(string name);
-                void SetWrapMode(string name, WrapMode wrapMode);
             } // end interface IAvatar
         } // end namespace Interface
     } // end namespace Character

@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using System.Collections.Generic;
 
 namespace Framework {
@@ -17,11 +18,9 @@ namespace Framework {
 
             public string GetPath(string name) {
                 if (pathDict.ContainsKey(name)) return pathDict[name];
-#if __MY_DEBUG__
-                throw new System.Exception("PathConfig GetPath name: " + name +" is don't config!");
-#else
+                // end if
+                DebugTool.ThrowException("PathConfig GetPath name: " + name + " is don't config!");
                 return null;
-#endif
             } // end GetPath
         } // end class PathConfig
     } // end namespace Config 

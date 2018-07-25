@@ -13,7 +13,8 @@ namespace Solider {
                 void StepForward(float step, float deltaTime);
                 void StepForward(Vector2 dir, float deltaTime);
                 void MoveForward(Vector2 dir, float deltaTime);
-                void MoveBackward();
+                void StepBackward(float step, float deltaTime);
+                void MoveBackward(Vector2 dir, float deltaTime);
             } // end class ICharacterMove
         } // end namespace Interface 
     } // end namespace Character

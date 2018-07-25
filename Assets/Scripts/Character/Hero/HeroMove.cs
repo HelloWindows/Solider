@@ -21,7 +21,7 @@ namespace Solider {
                     transform = rgd.transform;
                 } // end HeroMove
 
-                public void StepForward( float step, float deltaTime) {
+                public void StepForward(float step, float deltaTime) {
                     rgd.MovePosition(transform.position + transform.forward * step * deltaTime);
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end StepForward
@@ -39,7 +39,16 @@ namespace Solider {
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end MoveForward
 
-                public void MoveBackward() {
+                public void StepBackward(float step, float deltaTime) {
+                    rgd.MovePosition(transform.position - transform.forward * step * deltaTime);
+                    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                } // end StepBackward
+
+                public void MoveBackward(Vector2 dir, float deltaTime) {
+                    Vector3 forward = new Vector3(-dir.x, 0, -dir.y);
+                    rgd.MovePosition(transform.position + forward * speed * deltaTime);
+                    rgd.MoveRotation(Quaternion.LookRotation(forward));
+                    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end MoveBackward
             } // end class HeroMove
         } // end namespace Hero

@@ -18,6 +18,8 @@ namespace Solider {
                     AddState(new HeroWalk("walk", character, input));
                     AddState(new HeroWait("wait", character, input));
                     AddState(new HeroRun("run", character, input));
+                    AddState(new HeroHurt("hurt", character));
+                    AddState(new HeroDie("die", character));
                     AddState(new SwordmanAttack1("atkStep1", character, input));
                     AddState(new SwordmanAttack2("atkStep2", character, input));
                     AddState(new SwordmanAttack3("atkStep3", character, input));

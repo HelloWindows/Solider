@@ -31,18 +31,14 @@ namespace Solider {
                 /// 点击注册按钮
                 /// </summary>
                 void OnClickRegisterBtn() {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnClickRegisterBtn");
-#endif
                 } // end OnClickRegisterBtn
 
                 /// <summary>
                 /// 点击登录按钮
                 /// </summary>
                 void OnClickLoginBtn() {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnClickLoginBtn");
-#endif
                     SceneLoader.LoadNextLevel(new SelectRoleScene());
                 } // end OnClickLoginBtn
 
@@ -50,9 +46,7 @@ namespace Solider {
                 /// 点击QQ登录按钮
                 /// </summary>
                 void OnClickQQLoginBtn() {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnClickQQLoginBtn");
-#endif
                     InstanceMgr.GetShareSDKManager().Authorize(PlatformType.QQ);
                 } // end OnClickQQLoginBtn
 
@@ -60,27 +54,21 @@ namespace Solider {
                 /// 点击微信登录按钮
                 /// </summary>
                 void OnClickWXLoginBtn() {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnClickWXLoginBtn");
-#endif
                 } // end OnClickWXLoginBtn
 
                 /// <summary>
                 /// 点击退出按钮
                 /// </summary>
                 void OnClickQuitBtn() {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole("OnClickQuitBtn");
-#endif
                 } // end OnClickQuitBtn
 
                 /// <summary>
                 /// 点击自动登录
                 /// </summary>
                 void OnChangeAutoLoginToggle(bool isOn) {
-#if __MY_DEBUG__
                     ConsoleTool.SetConsole(isOn.ToString());
-#endif
                 } // end OnChangeAutoLoginToggle
             } // end class UILoginPanel 
         } // end namespace UI

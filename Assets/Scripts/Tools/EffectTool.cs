@@ -17,13 +17,13 @@ namespace Solider {
                 ObjectTool.InstantiateGo(name, Configs.effectConfig.GetPath(name), null, posistion, Vector3.zero, Vector3.one);
             } // end ShowEffectOnce
 
-            public static void ShowEffectCache(string name, float time, Vector3 posistion) {
+            public static void ShowEffectFromPool(string name, float time, Vector3 posistion) {
                 GameObject Go = InstanceMgr.GetObjectManager().GetGameObject(name, time);
                 Go.transform.position = posistion;
                 Go.SetActive(true);
             } // end ShowEffectCache
 
-            public static void ShowEffectCache(string name, float time, Vector3 posistion, Vector3 rotation) {
+            public static void ShowEffectFromPool(string name, float time, Vector3 posistion, Vector3 rotation) {
                 GameObject Go = InstanceMgr.GetObjectManager().GetGameObject(name, time);
                 Go.transform.position = posistion;
                 Go.transform.eulerAngles = rotation;

@@ -42,38 +42,31 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     mode = AttackMode.DEFAULT;
                     character.audio.PlaySoundCache("swordman_attack_1");
-                    character.avatar.PlayQueued(new string[] { "attack_1", "attack_2" });
+                    character.avatar.PlayQueued(new string[] { "attack1_1", "attack1_2" });
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (character.avatar.IsPlaying("attack_1")) return;
-                    // end if
-                    if (character.avatar.IsPlaying("attack_2")) return;
-                    // end if
-                    if (character.avatar.IsPlaying("attack_3")) return;
+                    if (character.avatar.isPlaying) return;
                     // end if
                     if (mode != AttackMode.NEGATE) {
                         switch (mode) {
                             default:
-                                break;
-                            case AttackMode.DEFAULT:
-                                character.avatar.Play("attack_3");
+                                character.avatar.Play("attack1_3");
                                 break;
                             case AttackMode.CAROM:
                                 character.fsm.PerformTransition("atkStep2");
                                 break;
                         } // end switch
                         mode = AttackMode.NEGATE;
-                    } // end if
-                    if (false == character.avatar.isPlaying) {
+                    } else {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
                 public void Act(float deltaTime) {
-                    if (character.avatar.IsPlaying("attack_2")) {
+                    if (character.avatar.IsPlaying("attack1_2")) {
                         character.move.StepForward(step, deltaTime);
-                        if (mode == AttackMode.NEGATE || mode == AttackMode.CAROM) return;
+                        if (mode != AttackMode.DEFAULT) return;
                         // end if
                         if (input.OnButtonClick(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
                         // end if
