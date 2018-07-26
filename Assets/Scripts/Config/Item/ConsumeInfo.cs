@@ -77,7 +77,7 @@ namespace Solider {
                 infoBuilder.Append("<size=18>");
                 infoBuilder.Append("消耗品");
                 infoBuilder.Append("                                     ");
-                if (role != ConstConfig.ALLROLE && role != RoleManager.roleType) {
+                if (role != ConstConfig.ALLROLE && role != PlayerManager.roleType) {
                     infoBuilder.Append("<color=#FF0000FF>");
 
                 } else {

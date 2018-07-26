@@ -24,7 +24,7 @@ namespace Solider {
             } // end CharacterSurface
 
             public void FurlWeapon() {
-                if (null == weaponGo) return;
+                if (null == weaponGo || null == furlTrans) return;
                 // end if
                 weaponGo.transform.SetParent(furlTrans);
                 weaponGo.transform.localPosition = Vector3.zero;
@@ -32,7 +32,7 @@ namespace Solider {
             } // end FurlWeapon
 
             public void LiftWeapon() {
-                if (null == weaponGo) return;
+                if (null == weaponGo || null == liftTrans) return;
                 // end if
                 weaponGo.transform.SetParent(liftTrans);
                 weaponGo.transform.localPosition = Vector3.zero;

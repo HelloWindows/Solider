@@ -43,7 +43,7 @@ namespace Solider {
                 timer += deltaTime;
                 if (timer > 1) {
                     timer = 0;
-                    RoleManager.info.SelfHealing();
+                    //RoleManager.info.SelfHealing();
                 } // end if
             } // end Update
 

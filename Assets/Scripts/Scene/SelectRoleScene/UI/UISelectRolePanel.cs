@@ -102,7 +102,7 @@ namespace Solider {
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                         return;
                     } // end if
-                    RoleManager.InitRoleManager(roleID, roleDict[roleID][0], roleDict[roleID][1]);
+                    PlayerManager.InitPlayerManager(roleID, roleDict[roleID][0], roleDict[roleID][1]);
                     SceneLoader.LoadNextLevel(new NoviceVillage());
                 } // end OnClickStartGameBtn
 

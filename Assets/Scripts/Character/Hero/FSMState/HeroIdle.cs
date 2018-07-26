@@ -24,6 +24,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
+                    character.surface.FurlWeapon();
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {

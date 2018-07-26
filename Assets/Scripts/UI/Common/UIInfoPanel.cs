@@ -32,7 +32,7 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     DisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
-                    display.ReplaceDisplayCurrentRole(RoleManager.roleType);
+                    display.ReplaceDisplayCurrentRole(PlayerManager.roleType);
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];
@@ -48,8 +48,8 @@ namespace Solider {
                 } // end Start
 
                 private void UpdateShowInfo() {
-                    infoText.text = RoleManager.info.GetAttributeData().ToString();
-                    IWearInfo wear = RoleManager.info.GetWearInfo();
+                    //infoText.text = RoleManager.info.GetAttributeData().ToString();
+                    IWearInfo wear = PlayerManager.pack.GetWearInfo();
                     dict = wear.GetWearEquip();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];
@@ -84,7 +84,7 @@ namespace Solider {
                 private void OnClickTakeOffBtn() {
                     if (null == dict || !dict.ContainsKey(selected)) return;
                     // end if
-                    IWearInfo wear = RoleManager.info.GetWearInfo();
+                    IWearInfo wear = PlayerManager.pack.GetWearInfo();
                     wear.TakeOffEquip(selected);
                     selected = "";
                     UpdateShowInfo();

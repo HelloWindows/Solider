@@ -4,8 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
+using Solider.Character.Model;
 using UnityEngine;
 
 namespace Solider {
@@ -31,10 +30,10 @@ namespace Solider {
                 /// 判断攻击是否失误
                 /// </summary>
                 /// <param name="attack"> 攻击数据 </param>
-                /// <param name="npc"> 被攻击的npc </param>
+                /// <param name="cher"> 被攻击的角色 </param>
                 /// <returns></returns>
-                public static AttackData operator -(AttackData attack, NPCAttribute npc) {
-                    attack.ismiss = Random.Range(0, 100) < (npc.AVD - attack.HIT) ? true : false;
+                public static AttackData operator -(AttackData attack, CharacterAttribute cher) {
+                    attack.ismiss = Random.Range(0, 100) < (cher.AVD - attack.HIT) ? true : false;
                     // 也可以在这里做吸血处理，添加吸血率属性,计算攻击结果,计算吸血值，根据id传给攻击者。我最痛恨吸血这个功能了，完全失去游戏性
                     return attack;
                 } // end operator -
