@@ -6,12 +6,14 @@
  *******************************************************************/
 using Framework.Interface.View;
 using Framework.Interface.UI;
+using Framework.FSM.Interface;
 
 namespace Framework {
     namespace Interface {
         namespace Scene {
             public interface IScene {
                 bool isDispose { get; }
+                IFSM uiPanelFSM { get; }
                 ICamera mainCamera { get; }
                 ICanvas mainCanvas { get; }
                 string sceneName { get; }

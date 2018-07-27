@@ -5,41 +5,71 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using cn.sharesdk.unity3d;
+using Framework.FSM.Interface;
 using Framework.Manager;
-using Framework.Middleware;
+using Framework.Tools;
+using Solider.UI.Custom;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Solider {
     namespace Scene {
         namespace UI {
-            public class UILoginPanel : MonoBehaviour {
+            public class UILoginPanel : IFSMState {
+                private IFSM fsm;
+                private GameObject gameObject;
+                private Transform transform;
+                private RectTransform parent;
                 private InputField userNameInput;
                 private InputField passwordInput;
 
+                public string name { get; private set; }
+
                 // Use this for initialization
-                void Start() {
-                    transform.Find("AutoLoginToggle").GetComponent<Toggle>().onValueChanged.AddListener(OnChangeAutoLoginToggle);
+                public UILoginPanel(string name, IFSM fsm, RectTransform parent) {
+                    this.fsm = fsm;
+                    this.name = name;
+                    this.parent = parent;
+                } // end Start
+
+                public void DoBeforeEntering() {
+                    gameObject = ObjectTool.InstantiateGo("LoginPanelUI", "Scene/LoginScene/LoginPanelUI", parent);
+                    transform = gameObject.transform;
+                    userNameInput = transform.Find("UserNameInput").GetComponent<InputField>();
+                    userNameInput.text = "";
+                    passwordInput = transform.Find("PasswordInput").GetComponent<InputField>();
+                    passwordInput.inputType = InputField.InputType.Password;
+                    passwordInput.text = "";
                     transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegisterBtn);
                     transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginBtn);
                     transform.Find("QQLoginBtn").GetComponent<Button>().onClick.AddListener(OnClickQQLoginBtn);
                     transform.Find("WXLoginBtn").GetComponent<Button>().onClick.AddListener(OnClickWXLoginBtn);
                     transform.Find("QuitBtn").GetComponent<Button>().onClick.AddListener(OnClickQuitBtn);
-                } // end Start
-
+                } // end DoBeforeEntering
                 /// <summary>
                 /// 点击注册按钮
                 /// </summary>
                 void OnClickRegisterBtn() {
-                    ConsoleTool.SetConsole("OnClickRegisterBtn");
+                    fsm.PerformTransition("UIRegister");
                 } // end OnClickRegisterBtn
 
                 /// <summary>
                 /// 点击登录按钮
                 /// </summary>
                 void OnClickLoginBtn() {
-                    ConsoleTool.SetConsole("OnClickLoginBtn");
-                    SceneLoader.LoadNextLevel(new SelectRoleScene());
+                    if (userNameInput.text == "" || userNameInput.text == null ||
+                        passwordInput.text == "" || passwordInput.text == null) {
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
+                        return;
+                    } // end if
+                    string msg = "";
+                    if (SqliteManager.CheckLogin(userNameInput.text, passwordInput.text, out msg)) {
+                        ConsoleTool.SetConsole(msg);
+                        return;
+                    } // end if
+                    ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
                 } // end OnClickLoginBtn
 
                 /// <summary>
@@ -64,12 +94,23 @@ namespace Solider {
                     ConsoleTool.SetConsole("OnClickQuitBtn");
                 } // end OnClickQuitBtn
 
-                /// <summary>
-                /// 点击自动登录
-                /// </summary>
-                void OnChangeAutoLoginToggle(bool isOn) {
-                    ConsoleTool.SetConsole(isOn.ToString());
-                } // end OnChangeAutoLoginToggle
+                public void DoBeforeLeaving() {
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                } // end DoBeforeLeaving
+
+                public void Reason(float deltaTime) {
+
+                } // end Reason
+
+                public void Act(float deltaTime) {
+
+                } // end Act
+
+                public void DoRemove() {
+
+                } // end DoRemove
             } // end class UILoginPanel 
         } // end namespace UI
     } // end namespace Scene

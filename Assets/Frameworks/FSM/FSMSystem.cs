@@ -40,6 +40,7 @@ namespace Framework {
                     return;
 #endif
                 } // end if
+                stateMap[name].DoRemove();
                 stateMap.Remove(name);
             } // end RemoveState
 

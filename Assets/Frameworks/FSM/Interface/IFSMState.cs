@@ -9,6 +9,7 @@ namespace Framework {
         namespace Interface {
             public interface IFSMState {
                 string name { get; }
+                void DoRemove();
                 void DoBeforeEntering();
                 void DoBeforeLeaving();
                 void Reason(float deltaTime);

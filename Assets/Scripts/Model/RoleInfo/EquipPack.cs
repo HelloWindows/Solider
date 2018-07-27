@@ -14,23 +14,25 @@ using System.Collections.Generic;
 namespace Solider {
     namespace Model {
         public class EquipPack : IPack, IWearInfo {
+            private readonly int roleindex;
+            private readonly string username;
             private readonly string packType;
-            private readonly string roleID;
             private readonly string roleType;
             private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
 
             private string[] idList;
             private Dictionary<string, string> wearDict;
 
-            public EquipPack(string roleID, string packType, string roleType) {
-                this.roleID = roleID;
+            public EquipPack(string username, int roleindex, string packType, string roleType) {
+                this.username = username;
+                this.roleindex = roleindex;
                 this.packType = packType;
                 this.roleType = roleType;
                 idList = new string[ConstConfig.GRID_COUNT];
 
                 #region ******** 初始化背包信息 ********
                 Dictionary<int, string[]> idDict;
-                SqliteManager.GetPackInfoWithID(roleID, packType, out idDict);
+                SqliteManager.GetPackInfoWithID(username, roleindex, packType, out idDict);
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     if (!idDict.ContainsKey(i)) {
                         idList[i] = "0";
@@ -44,7 +46,7 @@ namespace Solider {
 
                 #region ******** 初始化装备穿戴信息 ********
                 Dictionary<string, string> wearDict;
-                SqliteManager.GetWearInfoWithID(roleID, out wearDict);
+                SqliteManager.GetWearInfoWithID(username, roleindex, out wearDict);
                 this.wearDict = new Dictionary<string, string>();
                 for (int i = 0; i < equipTypeList.Length; i++) {
                     string type = equipTypeList[i];
@@ -83,7 +85,7 @@ namespace Solider {
                 idList[gid] = wearDict[type];
                 wearDict[type] = temp;
                 WriteGridInfo(gid, idList[gid], 0);
-                SqliteManager.SetWearInfoWithID(roleID, type, wearDict[type]);
+                SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
             } // end UseItemWithGid
 
             public ItemInfo GetItemInfoForGrid(int gid) {
@@ -108,7 +110,7 @@ namespace Solider {
 
             public void ArrangePack() {
                 Dictionary<int, string[]> dict = new Dictionary<int, string[]>();
-                SqliteManager.GetArrangePackInfo(roleID, packType, ref dict);
+                SqliteManager.GetArrangePackInfo(username, roleindex, packType, ref dict);
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     if (dict.ContainsKey(i)) {
                         idList[i] = dict[i][0];
@@ -139,7 +141,7 @@ namespace Solider {
                 // end if
                 PackItem(wearDict[type], 0);
                 wearDict[type] = "0";
-                SqliteManager.SetWearInfoWithID(roleID, type, wearDict[type]);
+                SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
             } // end TakeOffEquip
 
             public EquipInfo GetEquipInfo(string type) {
@@ -151,7 +153,7 @@ namespace Solider {
 
             private void WriteGridInfo(int gid, string id, int count) {
                 string grade = Configs.itemConfig.GetItemGrade(id);
-                SqliteManager.SetPackInfoWithID(roleID, packType, gid, id, grade, count);
+                SqliteManager.SetPackInfoWithID(username, roleindex, packType, gid, id, grade, count);
             } // end WriteGridInfo
         } // end class EquipPack
     } // end namespace Model

@@ -14,18 +14,20 @@ using System.Collections.Generic;
 namespace Solider {
     namespace Model {
         public class Pack : IPack {
-            private readonly string roleID;
+            private readonly int roleindex;
+            private readonly string username;
             private readonly string packType;
             private string[] idList;
             private int[] countList;
 
-            public Pack(string roleID, string packType) {
+            public Pack(string username, int roleindex, string packType) {
                 this.packType = packType;
-                this.roleID = roleID;
+                this.username = username;
+                this.roleindex = roleindex;
                 idList = new string[ConstConfig.GRID_COUNT];
                 countList = new int[ConstConfig.GRID_COUNT];
                 Dictionary<int, string[]> dict;
-                SqliteManager.GetPackInfoWithID(roleID, packType, out dict);
+                SqliteManager.GetPackInfoWithID(username, roleindex, packType, out dict);
 
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     int count = 0;
@@ -87,7 +89,7 @@ namespace Solider {
 
             public void ArrangePack() {
                 Dictionary<int, string[]> dict = new Dictionary<int, string[]>();
-                SqliteManager.GetArrangePackInfo(roleID, packType, ref dict);
+                SqliteManager.GetArrangePackInfo(username, roleindex, packType, ref dict);
 
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     int count = 0;
@@ -123,7 +125,7 @@ namespace Solider {
 
             private void WriteGridInfo(int gid, string id, int count) {
                 string grade = Configs.itemConfig.GetItemGrade(id);
-                SqliteManager.SetPackInfoWithID(roleID, packType, gid, id, grade, count);
+                SqliteManager.SetPackInfoWithID(username, roleindex, packType, gid, id, grade, count);
             } // end WriteGridInfo
         } // end class Pack 
     } // end namespace Model

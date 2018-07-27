@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace Solider {
     namespace UI {
         namespace Custom {
             public class UIMessageBox : MonoBehaviour {
+                private Action action;
                 private Text msgText;
 
                 // Use this for initialization
@@ -25,7 +27,16 @@ namespace Solider {
                     msgText.text = msg;
                 } // end SetMessage
 
+                public void SetMessage(string msg, Action call) {
+                    if (null == msgText) return;
+                    // end if
+                    action += call;
+                    msgText.text = msg;
+                } // end SetMessage
+
                 private void OnClickBackBtn() {
+                    if (null != action) action();
+                    // end if
                     if (null == gameObject) return;
                     // end if
                     Destroy(gameObject);

@@ -9,21 +9,25 @@ using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
 using Framework.Tools;
-using Solider.Manager;
 using Solider.UI.Common;
+using Framework.FSM.Interface;
+using Framework.FSM;
 
 namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
             private float timer;
             public bool isDispose { get; private set; }
+            public IFSM uiPanelFSM { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
             public string sceneName { get; private set; }
+            private IFSMSystem fsmSystem;
 
             public NoviceVillage() {
                 isDispose = true;
                 sceneName = "Level";
+                fsmSystem = new FSMSystem();
             } // end NoviceVillage
 
             public void Initialize() {

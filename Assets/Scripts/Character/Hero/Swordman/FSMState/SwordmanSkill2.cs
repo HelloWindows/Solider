@@ -40,7 +40,12 @@ namespace Solider {
                 } // end Act
 
                 public void DoBeforeLeaving() {
+
                 } // end DoBeforeLeaving
+
+                public void DoRemove() {
+
+                } // end DoRemove
             } // end class SwordmanSkill2
         } // end namespace FSMState
     } // end namespace Character

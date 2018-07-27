@@ -9,6 +9,7 @@ using Framework.Middleware;
 using Mono.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Framework {
     namespace Manager {
@@ -16,74 +17,149 @@ namespace Framework {
 
             public static void Init() {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.CreateTable("role_list_table", new string[] { "id", "name", "roletype" }, new string[] { "text", "text", "text" });
-                sqliteDB.CreateTable("role_equip_table", new string[] { "id", "weapon", "armor", "shoes" }, new string[] { "text", "text", "text", "text" });
-                sqliteDB.CreateTable("role_info_table", new string[] { "id", "hp", "mp", "xhp", "xmp", "natk", "xatk", "nmgk", "xmgk", "hot", "mot", "def", "rgs", "asp", "msp", "crt" },
-                    new string[] { "text", "int", "int", "int", "int", "int", "int", "int", "int", "int", "int", "int", "int", "real", "real", "real" });
+                sqliteDB.CreateTable("player_table", new string[] { "username", "passwords"}, new[] { "text", "text" });
                 sqliteDB.Disconnect();
             } // end SqliteManager
 
             private static string ToValue(int value) { return "'" + value + "'"; } // end ToValue
             private static string ToValue(float value) { return "'" + value + "'"; } // end ToValue
             private static string ToValue(string value) { return "'" + value + "'"; } // end ToValue
+
+            /// <summary>
+            /// 检测用户名是否存在, 存在返回true, 不存在返回 false
+            /// </summary>
+            /// <param name="username"> 用户名 </param>
+            /// <returns> 用户名是否存在 </returns>
+            public static bool CheckUserName(string username) {
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                SqliteDataReader reader = sqliteDB.SelectWhere("player_table", new string[] { "username" },
+                    new string[] { "username" }, new string[] { "=" }, new string[] { ToValue(username) });
+                if (null == reader) {
+                    sqliteDB.Disconnect();
+                    return false;
+                } // end if
+                try{
+                    if (reader.Read()) {
+                        sqliteDB.Disconnect();
+                        return true;
+                    } // end if
+                } catch (Exception ex) {
+                    sqliteDB.Disconnect();
+                    ConsoleTool.SetConsole(ex.ToString());
+                } // end try
+                return false;
+            } // end CheckUserName
+            /// <summary>
+            /// 检测登录，登录成功返回 true, 否则返回 false
+            /// </summary>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="passwords"> 密码 </param>
+            /// <param name="msg"> 信息 </param>
+            /// <returns> 是否登录成功 </returns>
+            public static bool CheckLogin(string username, string passwords, out string msg) {
+                if (false == CheckUserName(username)) {
+                    msg = "用户名不存在!";
+                    return false;
+                } // end if
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                SqliteDataReader reader = sqliteDB.SelectWhere("player_table", new string[] { "username" },
+                    new string[] { "username", "passwords" }, new string[] { "=", "=" }, new string[] { ToValue(username), ToValue(passwords) });
+                if (null == reader) {
+                    sqliteDB.Disconnect();
+                    msg = "密码错误!";
+                    return false;
+                } // end if
+                try {
+                    if (reader.Read()) {
+                        msg = "登录成功!";
+                        sqliteDB.Disconnect();
+                        return true;
+                    } // end if
+                } catch (Exception ex) {
+                    sqliteDB.Disconnect();
+                    ConsoleTool.SetConsole(ex.ToString());
+                } // end try
+                sqliteDB.Disconnect();
+                msg = "密码错误!";
+                return false;
+            } // end CheckLogin
+            /// <summary>
+            /// 注册用户
+            /// </summary>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="passwords"> 密码 </param>
+            /// <returns> 是否注册成功 </returns>
+            public static bool RegisterPlayer(string username, string passwords) {
+                if (true == CheckUserName(username)) return false;
+                // end if
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                sqliteDB.Insert("player_table", new string[] { ToValue(username), ToValue(passwords) });
+                sqliteDB.CreateTable("role_list_table_" + username, new string[] { "roleindex", "name", "roletype" },
+                    new string[] { "int", "text", "text" });
+                sqliteDB.CreateTable("role_equip_table_" + username, new string[] { "roleindex", ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES }, 
+                    new string[] { "int", "text", "text", "text" });
+                sqliteDB.CreateTable("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
+                    new string[] { "int", "int", "text", "text", "text", "int" });
+                sqliteDB.Disconnect();
+                return true;
+            } // end RegisterPanel
             /// <summary>
             /// 添加新角色数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="name"> 角色姓名 </param>
             /// <param name="roleType"> 角色类型 </param>
-            public static void CreateRole(string roleID, string name, string roleType) {
+            public static void CreateRole(string username, int roleindex, string name, string roleType) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Insert("role_list_table", new string[] { ToValue(roleID), ToValue(name), ToValue(roleType) });
-                sqliteDB.Insert("role_equip_table", new string[] { ToValue(roleID), ToValue("0"), ToValue("0"), ToValue("0") });
-                sqliteDB.Insert("role_info_table", new string[] { ToValue(roleID), ToValue(100), ToValue(100), ToValue(100), ToValue(100), ToValue(5), ToValue(10), ToValue(5), ToValue(10), ToValue(1), ToValue(0), ToValue(5), ToValue(5), ToValue(1f), ToValue(0.8f), ToValue(0) });
-                sqliteDB.CreateTable("pack_list_table_" + roleID, new string[] { "tid", "id", "gid", "type", "grade", "count" }, new string[] { "int", "text", "int", "text", "text", "int" });
+                sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(username), ToValue(roleindex), ToValue(name), ToValue(roleType) });
+                sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(username), ToValue(roleindex), ToValue("0"), ToValue("0"), ToValue("0") });                          
                 string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF };
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     for (int j = 0; j < packTypeList.Length; j++) {
-                        sqliteDB.Insert("pack_list_table_" + roleID, new string[] { "tid", "id", "gid", "type", "grade", "count" },
-                            new string[] { ToValue(i * 3 + j), ToValue("0"), ToValue(i), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
+                        sqliteDB.Insert("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
+                            new string[] { ToValue(roleindex), ToValue(j), ToValue("0"), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
                     } // end for
                 } // end for
                 sqliteDB.Disconnect();
 
                 int index = 0;
                 for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(roleID, "equip", index++, "10000" + i, "D", 0);
-                    SetPackInfoWithID(roleID, "equip", index++, "10000" + (i + 4), "D", 0);
-                    SetPackInfoWithID(roleID, "equip", index++, "10010" + i, "D", 0);
-                    SetPackInfoWithID(roleID, "equip", index++, "10020" + i, "D", 0);
+                    SetPackInfoWithID(username, roleindex, "equip", index++, "10000" + i, "D", 0);
+                    SetPackInfoWithID(username, roleindex, "equip", index++, "10000" + (i + 4), "D", 0);
+                    SetPackInfoWithID(username, roleindex, "equip", index++, "10010" + i, "D", 0);
+                    SetPackInfoWithID(username, roleindex, "equip", index++, "10020" + i, "D", 0);
                 } // end for
                 index = 0;
                 for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(roleID, "consume", index++, "20000" + i, "D", 66);
+                    SetPackInfoWithID(username, roleindex, "consume", index++, "20000" + i, "D", 66);
                 } // end for
                 index = 0;
                 for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(roleID, "stuff", index++, "30000" + i, "D", 99);
+                    SetPackInfoWithID(username, roleindex, "stuff", index++, "30000" + i, "D", 99);
                 } // end for
             } // end CreateRole
             /// <summary>
             /// 删除角色数据
             /// </summary>
             /// <param name="roleID"> 角色id </param>
-            public static void DeleteRoleWithID(string roleID) {
+            public static void DeleteRoleWithID(string username, int roleindex) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Delete("role_list_table", new string[] { "id" }, new string[] { roleID });
-                sqliteDB.Delete("role_equip_table", new string[] { "id" }, new string[] { roleID });
-                sqliteDB.Delete("role_info_table", new string[] { "id" }, new string[] { roleID });
-                sqliteDB.DeleteTable("pack_list_table_" + roleID);
+                sqliteDB.Delete("role_list_table_" + username, new string[] { "id" }, new string[] { ToValue(roleindex) });
+                sqliteDB.Delete("role_equip_table_" + username, new string[] { "id" }, new string[] { ToValue(roleindex) });
+                sqliteDB.Delete("pack_list_table_" + username, new string[] { "roleindex" }, new string[] { ToValue(roleindex) });
                 sqliteDB.Disconnect();
             } // end DeleteRole
             /// <summary>
             /// 获取角色基本信息
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="roleindex"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <returns> 角色基本信息 [0] 为姓名,[1] 角色类型。不存在返回null </returns>
-            public static string[] GetRoleWithID(string roleID) {
+            public static string[] GetRoleWithID(string username, int roleindex) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader =sqliteDB.SelectWhere("role_list_table", new string[] { "name", "roletype" }, new string[] { "id" }, new string[] { "=" }, new string[] { roleID });
-
+                SqliteDataReader reader =sqliteDB.SelectWhere("role_list_table_" + username, new string[] { "name", "roletype" }, 
+                    new string[] { "id" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     return null;
@@ -103,60 +179,21 @@ namespace Framework {
                 return null;
             } // end GetRoleWithID
             /// <summary>
-            /// 获取角色初始化状态的信息数据
-            /// </summary>
-            /// <param name="roleID"> 角色id </param>
-            /// <param name="dict"> 角色初始化状态的信息数据 </param>
-            public static void GetRoleInfoWithID(string roleID, ref Dictionary<string, float> dict) {
-                string tableName = "role_info_table";
-                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "hp", "mp", "xhp", "xmp", "natk", "xatk", "nmgk", "xmgk", "hot", "mot", "def", "rgs", "asp", "msp", "crt" }, 
-                    new string[] { "id"}, new string[] { "=" }, new string[] { roleID });
-
-                if (null == reader) {
-                    sqliteDB.Disconnect();
-                    dict = new Dictionary<string, float>();
-                    return;
-                } // end if
-
-                try {
-                    while (reader.Read()) {
-                        dict["hp"] = reader.GetInt32(reader.GetOrdinal("hp"));
-                        dict["mp"] = reader.GetInt32(reader.GetOrdinal("mp"));
-                        dict["xhp"] = reader.GetInt32(reader.GetOrdinal("xhp"));
-                        dict["xmp"] = reader.GetInt32(reader.GetOrdinal("xmp"));
-                        dict["natk"] = reader.GetInt32(reader.GetOrdinal("natk"));
-                        dict["xatk"] = reader.GetInt32(reader.GetOrdinal("xatk"));
-                        dict["nmgk"] = reader.GetInt32(reader.GetOrdinal("nmgk"));
-                        dict["xmgk"] = reader.GetInt32(reader.GetOrdinal("xmgk"));
-                        dict["hot"] = reader.GetInt32(reader.GetOrdinal("hot"));
-                        dict["mot"] = reader.GetInt32(reader.GetOrdinal("mot"));
-                        dict["def"] = reader.GetInt32(reader.GetOrdinal("def"));
-                        dict["rgs"] = reader.GetInt32(reader.GetOrdinal("rgs"));
-                        dict["asp"] = reader.GetFloat(reader.GetOrdinal("asp"));
-                        dict["msp"] = reader.GetFloat(reader.GetOrdinal("msp"));
-                        dict["crt"] = reader.GetFloat(reader.GetOrdinal("crt"));
-                    } // end while
-                } catch (Exception ex) {
-                    ConsoleTool.SetConsole(ex.ToString());
-                } // end try
-                sqliteDB.Disconnect();
-            } // end GetRoleInfoWithID
-            /// <summary>
             /// 获取角色穿戴的装备数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="dict"> 穿戴的装备数据 </param>
-            public static void GetWearInfoWithID(string roleID, out Dictionary<string, string> dict) {
+            public static void GetWearInfoWithID(string username, int roleindex, out Dictionary<string, string> dict) {
                 dict = new Dictionary<string, string>();
-                string tableName = "role_equip_table";
+                string tableName = "role_equip_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "weapon", "armor", "shoes" }, new string[] { "id" }, new string[] { "=" }, new string[] { roleID });
+                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "weapon", "armor", "shoes" }, 
+                    new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     return;
                 } // end if
-
                 try {
                     while (reader.Read()) {
                         dict["weapon"] = reader.GetString(reader.GetOrdinal("weapon"));
@@ -171,15 +208,16 @@ namespace Framework {
             /// <summary>
             /// 修改角色穿戴的装备数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="type"> 装备类型 </param>
             /// <param name="id"> 装备id </param>
-            public static void SetWearInfoWithID(string roleID, string type, string id) {
-                string tableName = "role_equip_table";
+            public static void SetWearInfoWithID(string username, int roleindex, string type, string id) {
+                string tableName = "role_equip_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 try {
                     sqliteDB.Update(tableName, new string[] { type }, new string[] { id }, 
-                        new string[] { "id" }, new string[] { "=" }, new string[] { roleID });
+                        new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 } catch (Exception ex) {
                     ConsoleTool.SetConsole(ex.ToString());
                 } // end try              
@@ -188,20 +226,20 @@ namespace Framework {
             /// <summary>
             /// 获取对应背包的数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="packType"> 背包类型 </param>
             /// <param name="dict"> 背包数据 </param>
-            public static void GetPackInfoWithID(string roleID, string packType, out Dictionary<int, string[]> dict) {
+            public static void GetPackInfoWithID(string username, int roleindex, string packType, out Dictionary<int, string[]> dict) {
                 dict = new Dictionary<int, string[]>();
-                string tableName = "pack_list_table_" + roleID;
+                string tableName = "pack_list_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", packType });
-
+                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "gid", "id", "count" },
+                    new string[] { "roleindex", "gid", "type" }, new string[] { "=", "<", "=" }, new string[] { ToValue(roleindex), ToValue("25"), ToValue(packType) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     return;
                 } // end if
-
                 try {
                     while (reader.Read()) {
                         int gid = reader.GetInt32(reader.GetOrdinal("gid"));
@@ -217,20 +255,20 @@ namespace Framework {
             /// <summary>
             /// 获取对应背包根据物品等级排序后的数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="type"> 背包类型 </param>
             /// <param name="dict"> 排序后的背包数据 </param>
-            public static void GetArrangePackInfo(string roleID, string type, ref Dictionary<int, string[]> dict) {
-                string tableName = "pack_list_table_" + roleID;
+            public static void GetArrangePackInfo(string username, int roleindex, string type, ref Dictionary<int, string[]> dict) {
+                string tableName = "pack_list_table_" + roleindex;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectOrder(tableName, new string[] { "id", "count" }, new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { "25", type }, new string[] { "grade" }, "ASC");
-
+                SqliteDataReader reader = sqliteDB.SelectOrder(tableName, new string[] { "id", "count" }, 
+                    new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { ToValue("25"), ToValue(type) }, new string[] { "grade" }, "ASC");
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     dict = new Dictionary<int, string[]>();
                     return;
                 } // end if
-
                 try {
                     int gid = 0;
                     while (reader.Read()) {
@@ -244,22 +282,22 @@ namespace Framework {
                 } // end try
                 sqliteDB.Disconnect();
             } // end GetArrangePackInfoWithID
-
             /// <summary>
             /// 修改对应背包和对应格子的数据
             /// </summary>
-            /// <param name="roleID"> 角色id </param>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
             /// <param name="type"> 背包类型 </param>
             /// <param name="gid"> 格子id </param>
             /// <param name="id"> 物品id </param>
             /// <param name="grade"> 物品品级 </param>
             /// <param name="count"> 物品数量 </param>
-            public static void SetPackInfoWithID(string roleID, string type, int gid, string id, string grade, int count) {
-                string tableName = "pack_list_table_" + roleID;
+            public static void SetPackInfoWithID(string username, int roleindex, string type, int gid, string id, string grade, int count) {
+                string tableName = "pack_list_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 try {
                     sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { id, grade, count.ToString() }, 
-                        new string[] { "gid", "type" }, new string[] { "=", "=" }, new string[] { gid.ToString(), type });
+                        new string[] { "roleindex", "gid", "type" }, new string[] { "=", "=", "=" }, new string[] { ToValue(roleindex), ToValue(gid), ToValue(type) });
                 } catch (Exception ex) {
                     ConsoleTool.SetConsole(ex.ToString());
                 } // end try              

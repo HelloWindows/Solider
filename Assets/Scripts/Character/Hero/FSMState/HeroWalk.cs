@@ -60,6 +60,10 @@ namespace Solider {
 
                 } // end DoBeforeLeaving
 
+                public void DoRemove() {
+
+                } // end DoRemove
+
                 private void PlayRunEffect(int index, float normalizedTime) {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if

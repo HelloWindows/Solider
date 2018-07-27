@@ -40,6 +40,9 @@ namespace Solider {
                 public void DoBeforeLeaving() {
 
                 } // end DoBeforeLeaving
+
+                public void DoRemove() {
+                } // end DoRemove
             } // end class HeroIdle
         } // end namespaceFSMState
     } // end namespace Character

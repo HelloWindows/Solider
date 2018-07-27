@@ -150,9 +150,9 @@ namespace Framework {
                 for (int i = 1; i < items.Length; ++i) {
                     query += ", " + items[i];
                 } // end for
-                query += " FROM " + tableName + " WHERE " + cols[0] + operation[0] + "'" + values[0] + "' ";
+                query += " FROM " + tableName + " WHERE " + cols[0] + operation[0] + values[0];
                 for (int i = 1; i < cols.Length; ++i) {
-                    query += " AND " + cols[i] + operation[i] + "'" + values[i] + "' ";
+                    query += " AND " + cols[i] + operation[i] + values[i];
                 } // end for
                 return ExecuteQuery(query);
             } // end SelectWhere
@@ -178,9 +178,9 @@ namespace Framework {
                 for (int i = 1; i < items.Length; ++i) {
                     query += ", " + items[i];
                 } // end for
-                query += " FROM " + tableName + " WHERE " + selects[0] + operation[0] + "'" + values[0] + "'";
+                query += " FROM " + tableName + " WHERE " + selects[0] + operation[0] + values[0];
                 for (int i = 1; i < selects.Length; ++i) {
-                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "'";
+                    query += " AND " + selects[i] + operation[i] + values[i];
                 } // end for
                 query += " ORDER BY " + orderCols[0];
                 for (int i = 1; i < orderCols.Length; ++i) {
@@ -245,13 +245,13 @@ namespace Framework {
                     ConsoleTool.SetConsole("SelectWhere col.Length != operation.Length != values.Length");
                     return reader;
                 } // end if
-                string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + "'" + colsvalues[0] + "' ";
+                string query = "UPDATE " + tableName + " SET " + cols[0] + " = " + colsvalues[0];
                 for (int i = 1; i < colsvalues.Length; ++i) {
-                    query += ", " + cols[i] + " = " + "'" + colsvalues[i] + "'";
+                    query += ", " + cols[i] + " = " + colsvalues[i];
                 } // end for
-                query += " WHERE " + selects[0] + operation[0] + "'" + values[0] + "'";
+                query += " WHERE " + selects[0] + operation[0] + values[0];
                 for (int i = 1; i < selects.Length; ++i) {
-                    query += " AND " + selects[i] + operation[i] + "'" + values[i] + "'";
+                    query += " AND " + selects[i] + operation[i] + values[i];
                 } // end for
                 return ExecuteQuery(query);
             } // end Update
@@ -264,9 +264,9 @@ namespace Framework {
             /// <param name="colsvalues"></param>
             /// <returns> 结果读取器 </returns>
             public SqliteDataReader Delete(string tableName, string[] cols, string[] colsvalues) {
-                string query = "DELETE FROM " + tableName + " WHERE " + cols[0] + " = " + "'" + colsvalues[0] + "'";
+                string query = "DELETE FROM " + tableName + " WHERE " + cols[0] + " = " + colsvalues[0];
                 for (int i = 1; i < colsvalues.Length; ++i) {
-                    query += " OR " + cols[i] + " = " + "'" + colsvalues[i] + "'";
+                    query += " OR " + cols[i] + " = " + colsvalues[i];
                 } // end for
                 return ExecuteQuery(query);
             } // end Delete

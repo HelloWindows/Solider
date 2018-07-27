@@ -10,18 +10,23 @@ using Framework.Interface.View;
 using Framework.Interface.UI;
 using Framework.Tools;
 using Solider.Scene.UI;
+using Framework.FSM.Interface;
+using Framework.FSM;
 
 namespace Solider {
     namespace Scene {
         public class SelectRoleScene : IScene {
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
+            public IFSM uiPanelFSM { get; private set; }
             public bool isDispose { get; private set; }
             public string sceneName{ get; private set; }
+            private IFSMSystem fsmSystem;
 
             public SelectRoleScene() {
                 isDispose = true; 
                 sceneName = "Level";
+                fsmSystem = new FSMSystem();
             } // end SelectRoleScene
 
             public void Initialize() {

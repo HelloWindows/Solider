@@ -16,8 +16,8 @@ namespace Solider {
         public class PackInfo : IPackInfo {
             #region ******** 单例 ********
             private static PackInfo instance;
-            public static PackInfo GetInstance(string roleID, string name, string roleType) {
-                if (null == instance) instance = new PackInfo(roleID, name, roleType);
+            public static PackInfo GetInstance(string username, int roleindex, string name, string roleType) {
+                if (null == instance) instance = new PackInfo(username, roleindex, name, roleType);
                 // end if
                 return instance;
             } // end GetInstance
@@ -26,12 +26,12 @@ namespace Solider {
             private Dictionary<string, IPack> packDict;
             private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
 
-            private PackInfo(string roleID, string name, string roleType) {
+            private PackInfo(string username, int roleindex, string name, string roleType) {
                 packDict = new Dictionary<string, IPack>();
-                equipPack = new EquipPack(roleID, ConstConfig.EQUIP, roleType);
+                equipPack = new EquipPack(username, roleindex, ConstConfig.EQUIP, roleType);
                 packDict.Add(ConstConfig.EQUIP, equipPack);
-                packDict.Add(ConstConfig.CONSUME, new Pack(roleID, ConstConfig.CONSUME));
-                packDict.Add(ConstConfig.STUFF, new Pack(roleID, ConstConfig.STUFF));
+                packDict.Add(ConstConfig.CONSUME, new Pack(username, roleindex, ConstConfig.CONSUME));
+                packDict.Add(ConstConfig.STUFF, new Pack(username, roleindex, ConstConfig.STUFF));
             } // end PlayerInfo
 
             public IWearInfo GetWearInfo() {

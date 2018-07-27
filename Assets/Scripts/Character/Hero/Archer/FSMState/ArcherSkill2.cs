@@ -37,6 +37,9 @@ namespace Solider {
                 public void DoBeforeLeaving() {
 
                 } // end DoBeforeLeaving
+
+                public void DoRemove() {
+                } // end DoRemove
             } // end class ArcherSkill2
         } // end namespace FSMState
     } // end namespace Character

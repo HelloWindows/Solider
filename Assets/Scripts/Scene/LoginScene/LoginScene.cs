@@ -11,18 +11,23 @@ using Framework.Interface.Scene;
 using Framework.Tools;
 using Solider.Scene.UI;
 using UnityEngine;
+using Framework.FSM.Interface;
+using Framework.FSM;
 
 namespace Solider {
     namespace Scene {
         public class LoginScene : IScene {
             public bool isDispose { get; private set; }
             public string sceneName { get; private set; }
+            public IFSM uiPanelFSM { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
+            private IFSMSystem fsmSystem;
 
             public LoginScene() {
                 isDispose = true; // 初始化之前是销毁状态
                 sceneName = "Level";
+                fsmSystem = new FSMSystem();
             } // end LoginScene
 
             public void Initialize() {
@@ -30,14 +35,15 @@ namespace Solider {
                 mainCanvas = new MainCanvas(mainCamera.camera);
                 ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
                     null, new Vector3(0, 0, 5), Vector3.zero, Vector3.one);
-                ObjectTool.InstantiateGo("LoginPanelUI", "Scene/LoginScene/LoginPanelUI",
-                    mainCanvas.rectTransform).AddComponent<UILoginPanel>();
+                fsmSystem.AddState(new UILoginPanel("UILogin", fsmSystem as IFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIRegisterPanel("UIRegister", fsmSystem as IFSM, mainCanvas.rectTransform));
                 isDispose = false;
             } // end Initialize
 
             public void Update(float deltaTime) {
                 if (isDispose) return; // 已经销毁
                 // end if
+                fsmSystem.Update(Time.deltaTime);
                 mainCamera.Update(Time.deltaTime);
             } // end Update
 

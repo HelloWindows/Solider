@@ -14,7 +14,9 @@ namespace Solider {
         public class AwakeScene : MonoBehaviour {
 
             private IEnumerator Start() {
+                InstanceMgr.Init();
                 SqliteManager.Init();
+                Application.targetFrameRate = 45;
                 yield return null;
                 SceneLoader.LoadNextLevel(new LoginScene());
             } // end Start
