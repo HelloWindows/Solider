@@ -61,7 +61,9 @@ namespace Solider {
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
-
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
                 } // end DoRemove
 
                 public void Act(float deltaTime) {
@@ -73,23 +75,23 @@ namespace Solider {
                 } // end Reason
 
                 private void OnUserNameEndEdit(string name) {
-                    if (passwordInput.text == "" || passwordInput.text == null ||
-                        comfirmInput.text == "" || comfirmInput.text == null) return;
-                    // end if
-                    if (passwordInput.text != comfirmInput.text) {
-                        usernameWarningGo.SetActive(true);
-                    } else if(usernameWarningGo.activeSelf) {
-                        usernameWarningGo.SetActive(false);
-                    } // end if
-                } // end OnUserNameEndEdit
-
-                private void OnComfirmEndEdit(string passwords) {
                     if (userNameInput.text == "" || userNameInput.text == null) return;
                     // end if
                     if (true == SqliteManager.CheckUserName(userNameInput.text)) {
                         usernameWarningGo.SetActive(true);
                     } else if (usernameWarningGo.activeSelf) {
                         usernameWarningGo.SetActive(false);
+                    } // end if
+                } // end OnUserNameEndEdit
+
+                private void OnComfirmEndEdit(string passwords) {
+                    if (passwordInput.text == "" || passwordInput.text == null ||
+                        comfirmInput.text == "" || comfirmInput.text == null) return;
+                    // end if
+                    if (passwordInput.text != comfirmInput.text) {
+                        comfirmWarningGo.SetActive(true);
+                    } else if (comfirmWarningGo.activeSelf) {
+                        comfirmWarningGo.SetActive(false);
                     } // end if
                 } // end OnComfirmEndEdit
 
@@ -98,18 +100,18 @@ namespace Solider {
                         passwordInput.text == "" || passwordInput.text == null ||
                         comfirmInput.text == "" || comfirmInput.text == null) return;
                     // end if
-
                     if (passwordInput.text != comfirmInput.text) {
-                        usernameWarningGo.SetActive(true);
-                    } else if (usernameWarningGo.activeSelf) {
-                        usernameWarningGo.SetActive(false);
+                        comfirmWarningGo.SetActive(true);
+                        return;
+                    } else if (comfirmWarningGo.activeSelf) {
+                        comfirmWarningGo.SetActive(false);
                     } // end if
                     if (false == SqliteManager.RegisterPlayer(userNameInput.text, comfirmInput.text)) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
                     } else {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                   SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
                     } // end if
                 } // end OnClickRegisterBtn
 

@@ -13,6 +13,21 @@ namespace Framework {
 
                 public const int GRID_COUNT = 25;
                 public static readonly string[] packTypeList = { "equip", "consume", "stuff" };
+                /// <summary>
+                /// 战士
+                /// </summary>
+                public const string SWORDMAN = "swordman";
+                /// <summary>
+                /// 射手
+                /// </summary>
+                public const string ARCHER = "archer";
+                /// <summary>
+                /// 魔法师
+                /// </summary>
+                public const string MAGICIAN = "magician"; 
+                /// <summary>
+                /// 全部职业
+                /// </summary>
                 public const string ALLROLE = "all";
                 /// <summary>
                 /// 武器

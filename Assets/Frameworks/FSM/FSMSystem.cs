@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Tools;
 using System.Collections.Generic;
 
 namespace Framework {
@@ -19,11 +20,8 @@ namespace Framework {
 
             public void AddState(IFSMState state) {
                 if (stateMap.ContainsKey(state.name)) {
-#if __MY_DEBUG__
-                    throw new System.Exception("FSMSystem AddState repetition!");
-#else
+                    DebugTool.ThrowException("FSMSystem AddState repetition!");
                     return;
-#endif
                 } // end if
                 if (null == currentState) {
                     currentState = state;
@@ -34,11 +32,8 @@ namespace Framework {
 
             public void RemoveState(string name) {
                 if (!stateMap.ContainsKey(name)) {
-#if __MY_DEBUG__
-                    throw new System.Exception("FSMSystem RemoveState state don't exist! name: " + name);
-#else
+                    DebugTool.ThrowException("FSMSystem RemoveState state don't exist! name: " + name);
                     return;
-#endif
                 } // end if
                 stateMap[name].DoRemove();
                 stateMap.Remove(name);
@@ -46,11 +41,8 @@ namespace Framework {
 
             public void PerformTransition(string name) {
                 if (!stateMap.ContainsKey(name)) {
-#if __MY_DEBUG__
-                    throw new System.Exception("FSMSystem PerformTransition state don't exist! name: " + name);
-#else
+                    DebugTool.ThrowException("FSMSystem PerformTransition state don't exist! name: " + name);
                     return;
-#endif
                 } // end if
                 if (null != currentState) currentState.DoBeforeLeaving();
                 // end if

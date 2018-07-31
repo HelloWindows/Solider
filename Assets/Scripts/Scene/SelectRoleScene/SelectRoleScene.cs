@@ -8,7 +8,6 @@ using Framework.Custom;
 using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
-using Framework.Tools;
 using Solider.Scene.UI;
 using Framework.FSM.Interface;
 using Framework.FSM;
@@ -32,8 +31,8 @@ namespace Solider {
             public void Initialize() {
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                ObjectTool.InstantiateGo("SelectRolePanelUI", "Scene/SelectRoleScene/SelectRolePanelUI", 
-                    mainCanvas.rectTransform).AddComponent<UISelectRolePanel>();
+                fsmSystem.AddState(new UISelectRolePanel("UISelectRole", fsmSystem as IFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UICreateRolePanel("UICreateRole", fsmSystem as IFSM, mainCanvas.rectTransform));
                 isDispose = false;
             } // end Initialize
 
@@ -42,6 +41,8 @@ namespace Solider {
 
             public void Dispose() {
                 isDispose = true;
+                fsmSystem.RemoveState("UISelectRole");
+                fsmSystem.RemoveState("UICreateRole");
             } // end Dispose
         } // end class SelectRoleScene 
     } // end namespace Scene

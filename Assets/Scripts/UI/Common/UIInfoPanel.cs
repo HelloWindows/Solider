@@ -32,7 +32,7 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     DisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
-                    display.ReplaceDisplayCurrentRole(PlayerManager.roleType);
+                    display.ReplaceDisplayHero(PlayerManager.roleType, "", "");
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];

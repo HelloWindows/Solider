@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 400094}
   - component: {fileID: 54261289780815968}
   - component: {fileID: 136063533684877102}
-  - component: {fileID: 114060327402923696}
   m_Layer: 0
   m_Name: magician
   m_TagString: Untagged
@@ -1505,17 +1504,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &114060327402923696
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2206161888e9794ba969e42232a97ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &136063533684877102
 CapsuleCollider:
   m_ObjectHideFlags: 1

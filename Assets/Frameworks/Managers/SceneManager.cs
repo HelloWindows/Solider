@@ -8,6 +8,7 @@ using UnityEngine;
 using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
+using Framework.Tools;
 
 namespace Framework {
     namespace Manager {
@@ -22,10 +23,9 @@ namespace Framework {
                 } // end if
 
                 if (null == scene) {
-#if __MY_DEBUG__
                     ConsoleTool.SetError("SceneManager SetScene scene is null!");
-#endif
-                    throw new System.Exception("don't have scene can play!");
+                    DebugTool.ThrowException("don't have scene can play!");
+                    return;
                 } // end if
                 m_scene = scene;
             } // end SetSceneName

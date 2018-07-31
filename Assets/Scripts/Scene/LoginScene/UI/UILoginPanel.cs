@@ -7,7 +7,9 @@
 using cn.sharesdk.unity3d;
 using Framework.FSM.Interface;
 using Framework.Manager;
+using Framework.Middleware;
 using Framework.Tools;
+using Solider.Manager;
 using Solider.UI.Custom;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,8 +66,11 @@ namespace Solider {
                         return;
                     } // end if
                     string msg = "";
-                    if (SqliteManager.CheckLogin(userNameInput.text, passwordInput.text, out msg)) {
+                    string username = userNameInput.text;
+                    if (SqliteManager.CheckLogin(username, passwordInput.text, out msg)) {
                         ConsoleTool.SetConsole(msg);
+                        PlayerManager.LoginGame(username);
+                        SceneLoader.LoadNextLevel(new SelectRoleScene());
                         return;
                     } // end if
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
@@ -109,7 +114,9 @@ namespace Solider {
                 } // end Act
 
                 public void DoRemove() {
-
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
                 } // end DoRemove
             } // end class UILoginPanel 
         } // end namespace UI

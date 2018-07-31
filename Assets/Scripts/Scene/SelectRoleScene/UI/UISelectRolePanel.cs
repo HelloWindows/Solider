@@ -4,39 +4,53 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Middleware;
 using Framework.Tools;
 using Solider.Manager;
 using Solider.UI.Custom;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace Solider {
     namespace Scene {
         namespace UI {
-            public class UISelectRolePanel : MonoBehaviour {
+            public class UISelectRolePanel : IFSMState {
                 private int roleindex;
                 private int selectedindex;
-                private string username;
                 private Text t_roleName;
                 private DisplayRaw display;
                 private Dictionary<int, string[]> roleDict;
+                private IFSM fsm;
+                private Transform transform;
+                private RectTransform parent;
+                private GameObject gameObject;
+                public static int createIndex { get; private set; }
 
-                // Use this for initialization
-                private void Start() {
+                public string name { get; private set; }
+
+                public UISelectRolePanel(string name, IFSM fsm, RectTransform parent) {
+                    this.fsm = fsm;
+                    this.name = name;
+                    this.parent = parent;
+                } // end UISelectRolePanel 
+
+                public void DoBeforeEntering() {
+                    gameObject = ObjectTool.InstantiateGo("SelectRolePanelUI", "Scene/SelectRoleScene/SelectRolePanelUI", parent);
+                    transform = gameObject.transform;
                     roleindex = 0;
+                    createIndex = -1;
                     selectedindex = -1;
                     roleDict = new Dictionary<int, string[]>();
                     t_roleName = transform.Find("RoleName").GetComponent<Text>();
                     t_roleName.text = "";
                     display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
                     string prefix = "RoleList/Role_";
-
                     for (int i = 0; i < 3; i++) {
                         int index = i;
-                        roleDict.Add(index, SqliteManager.GetRoleWithID(username, index));
+                        roleDict.Add(index, SqliteManager.GetRoleWithID(PlayerManager.username, index));
                         transform.Find(prefix + i).gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(index); });
                         if (null != roleDict[index]) transform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
                         // end if
@@ -44,7 +58,7 @@ namespace Solider {
                     transform.Find("DeleteRoleBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickDeleteRoleBtn);
                     transform.Find("StartGameBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickStartGameBtn);
                     InitialSwitchRole();
-                } // end Start     
+                } // end DoBeforeEntering
 
                 private void InitialSwitchRole() {
                     if (ChechExitID(roleindex)) {
@@ -61,10 +75,8 @@ namespace Solider {
 
                 private void OnSwitchRole(int index) {
                     if (!ChechExitID(index)) {
-                        ObjectTool.InstantiateGo("CreateRolePanelUI", "SelectRoleLevel/UI/CreateRolePanelUI",
-                            SceneManager.mainCanvas.rectTransform).AddComponent<UICreateRolePanel>().SetPlayerID(username, index);
-                        if (null != gameObject) Destroy(gameObject);
-                        // end if
+                        createIndex = index;
+                        fsm.PerformTransition("UICreateRole");
                         return;
                     } // end if
                     if (selectedindex == index) return;
@@ -72,7 +84,7 @@ namespace Solider {
                     roleindex = index;
                     selectedindex = index;
                     t_roleName.text = roleDict[index][0];
-                    display.ReplaceDisplayCurrentRole(roleDict[index][1]);
+                    display.ReplaceDisplayHero(roleDict[index][1], "", "");
                 } // end OnSwitchRole
 
                 private void OnClickDeleteRoleBtn() {
@@ -87,7 +99,7 @@ namespace Solider {
                 private void DeleteRole() {
                     if (!ChechExitID(roleindex)) return;
                     // end if     
-                    SqliteManager.DeleteRoleWithID(username, roleindex);
+                    SqliteManager.DeleteRoleWithID(PlayerManager.username, roleindex);
                     if (roleDict.ContainsKey(roleindex)) roleDict[roleindex] = null;
                     // end if
                     t_roleName.text = "";
@@ -116,6 +128,24 @@ namespace Solider {
                     // end if
                     return true;
                 } // end ChechExitID
+
+                public void DoBeforeLeaving() {
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                } // end DoBeforeLeaving
+
+                public void DoRemove() {
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                } // end DoRemove
+
+                public void Reason(float deltaTime) {
+                } // end Reason
+
+                public void Act(float deltaTime) {
+                } // end Act
             } // end class UISelectRolePanel
         } // end namespace UI
     } // end namespace Scene

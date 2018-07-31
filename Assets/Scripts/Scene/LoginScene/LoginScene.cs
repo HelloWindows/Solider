@@ -23,6 +23,7 @@ namespace Solider {
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
             private IFSMSystem fsmSystem;
+            private GameObject gameObject;
 
             public LoginScene() {
                 isDispose = true; // 初始化之前是销毁状态
@@ -33,8 +34,8 @@ namespace Solider {
             public void Initialize() {
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
-                    null, new Vector3(0, 0, 5), Vector3.zero, Vector3.one);
+                gameObject = ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
+                    null, new Vector3(0, 0, 5.1f), Vector3.zero, Vector3.one);
                 fsmSystem.AddState(new UILoginPanel("UILogin", fsmSystem as IFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIRegisterPanel("UIRegister", fsmSystem as IFSM, mainCanvas.rectTransform));
                 isDispose = false;
@@ -49,6 +50,10 @@ namespace Solider {
 
             public void Dispose() {
                 isDispose = true;
+                if (null == gameObject) Object.Destroy(gameObject);
+                // end if
+                fsmSystem.RemoveState("UILogin");
+                fsmSystem.RemoveState("UIRegister");
             } // end Dispose
         } // end class LoginScene 
     } // end namespace Scene

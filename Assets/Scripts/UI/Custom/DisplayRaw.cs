@@ -4,6 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
+using Framework.Config.Prefab;
 using Framework.Tools;
 using System;
 using UnityEngine;
@@ -96,33 +98,22 @@ namespace Solider {
                     displayGo = go;
                 } // end ReplaceDisplay
 
-                public void ReplaceDisplayInitialRole(string roleType) {
+                public void ReplaceDisplayHero(string roleType, string weapon, string armor) {
                     if (null != displayGo) Destroy(displayGo);
                     // end if
                     displayGo = null;
-                    try {
-                        displayGo = ObjectTool.InstantiateGo("PlayerDisplay", "Display/Role/" + roleType, m_camera.transform, localPos, localRot, localSca);
-                    } catch (Exception ex) {
-                        ConsoleTool.SetConsole(ex.ToString());
-                    } // end try
-                } // end ReplaceDisplayInitialRole
-
-                public void ReplaceDisplayCurrentRole(string roleType) {
-                    if (null != displayGo) Destroy(displayGo);
-                    // end if
-                    displayGo = null;
-                    try {
-                        displayGo = ObjectTool.InstantiateGo("PlayerDisplay", "Display/Role/" + roleType, m_camera.transform, localPos, localRot, localSca);
-                    } catch (Exception ex) {
-                        ConsoleTool.SetConsole(ex.ToString());
-                    } // end try
-                } // end ReplaceDisplayInitialRole
+                    displayGo = ObjectTool.InstantiateGo(roleType, Configs.prefabConfig.GetPath(roleType),
+                        m_camera.transform, localPos, localRot, localSca);
+                    foreach (Transform child in displayGo.transform) {
+                        child.gameObject.layer = 2;
+                    } // end foreach
+                } // end ReplaceDisplayRole
 
                 // Use this for initialization
                 private void Awake() {
-                    localPos = new Vector3(0, -1.2f, 4);
-                    localRot = Vector3.zero;
-                    localSca = Vector3.one;
+                    localPos = new Vector3(0, -7f, 20);
+                    localRot = new Vector3(0, 180, 0);
+                    localSca = Vector3.one * 15;
                     disableDrag = false;
                     rotSpeed = new Vector3(0, 1, 0);
                     RenderTexture texture = new RenderTexture(320, 420, 24, RenderTextureFormat.ARGB32);
@@ -138,6 +129,7 @@ namespace Solider {
                     m_camera.cullingMask = 1 << 2;
                     m_camera.fieldOfView = 50;
                     m_camera.targetTexture = texture;
+                    m_camera.nearClipPlane = 0.1f;
                 } // end Awake
             } // end class DisplayRaw 
         } // end namespace Custom

@@ -4,6 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config.Const;
+
 namespace Framework {
     namespace Config {
         namespace Prefab {
@@ -37,6 +39,11 @@ namespace Framework {
                     pathDict["staff4"] = prefix + "staff4";
                     pathDict["staff5"] = prefix + "staff5";
                     pathDict["staff6"] = prefix + "staff6";
+
+                    prefix = "Character/Hero/";
+                    pathDict[ConstConfig.SWORDMAN] = prefix + "Swordman/" + ConstConfig.SWORDMAN;
+                    pathDict[ConstConfig.ARCHER] = prefix + "Archer/" + ConstConfig.ARCHER;
+                    pathDict[ConstConfig.MAGICIAN] = prefix + "Magician/" + ConstConfig.MAGICIAN;
                 } // end PrefabConfig
             } // end class PrefabConfig
         } // end namespace Prefab 
