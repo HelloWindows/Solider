@@ -18,7 +18,7 @@ namespace Solider {
         namespace UI {
             public class UICreateRolePanel : IFSMState {
                 private string roleType;
-                private DisplayRaw display;
+                private UIDisplayRaw display;
                 private InputField nameInputField;
                 private IFSM fsm;
                 private Transform transform;
@@ -37,7 +37,7 @@ namespace Solider {
                     if (this.roleType == roleType) return;
                     // end if
                     this.roleType = roleType;
-                    display.ReplaceDisplayHero(roleType, "", "");
+                    display.SetDisplayGo(new DisplayGo(roleType));
                 } // end OnSwitchRole
 
                 private void OnClickCreateBtn() {
@@ -46,8 +46,6 @@ namespace Solider {
                         return;
                     } // end if
                     SqliteManager.CreateRole(PlayerManager.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
-                    if (null == gameObject) return;
-                    // end if
                     OnClickBackBtn();
                 } // end OnClickCreateBtn
 
@@ -61,7 +59,7 @@ namespace Solider {
                     roleType = "";
                     nameInputField = transform.Find("NameInputField").GetComponent<InputField>();
                     nameInputField.characterLimit = 5;
-                    display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
+                    display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
                     transform.Find("RoleList/Role_0").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.SWORDMAN); });
                     transform.Find("RoleList/Role_1").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.ARCHER); });
                     transform.Find("RoleList/Role_2").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.MAGICIAN); });

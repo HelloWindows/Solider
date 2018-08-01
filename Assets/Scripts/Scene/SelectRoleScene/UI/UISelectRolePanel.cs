@@ -21,7 +21,7 @@ namespace Solider {
                 private int roleindex;
                 private int selectedindex;
                 private Text t_roleName;
-                private DisplayRaw display;
+                private UIDisplayRaw display;
                 private Dictionary<int, string[]> roleDict;
                 private IFSM fsm;
                 private Transform transform;
@@ -46,7 +46,7 @@ namespace Solider {
                     roleDict = new Dictionary<int, string[]>();
                     t_roleName = transform.Find("RoleName").GetComponent<Text>();
                     t_roleName.text = "";
-                    display = transform.Find("DisplayRaw").gameObject.AddComponent<DisplayRaw>();
+                    display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
                     string prefix = "RoleList/Role_";
                     for (int i = 0; i < 3; i++) {
                         int index = i;
@@ -84,7 +84,7 @@ namespace Solider {
                     roleindex = index;
                     selectedindex = index;
                     t_roleName.text = roleDict[index][0];
-                    display.ReplaceDisplayHero(roleDict[index][1], "", "");
+                    display.SetDisplayGo(new DisplayGo(roleDict[index][1]));
                 } // end OnSwitchRole
 
                 private void OnClickDeleteRoleBtn() {

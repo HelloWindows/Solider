@@ -112,13 +112,13 @@ namespace Framework {
             /// <param name="roleType"> 角色类型 </param>
             public static void CreateRole(string username, int roleindex, string name, string roleType) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(username), ToValue(roleindex), ToValue(name), ToValue(roleType) });
-                sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(username), ToValue(roleindex), ToValue("0"), ToValue("0"), ToValue("0") });                          
+                sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(roleindex), ToValue(name), ToValue(roleType) });
+                sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(roleindex), ToValue("0"), ToValue("0"), ToValue("0") });                          
                 string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF };
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     for (int j = 0; j < packTypeList.Length; j++) {
                         sqliteDB.Insert("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
-                            new string[] { ToValue(roleindex), ToValue(j), ToValue("0"), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
+                            new string[] { ToValue(roleindex), ToValue(j + i * 3), ToValue("0"), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
                     } // end for
                 } // end for
                 sqliteDB.Disconnect();
@@ -145,8 +145,8 @@ namespace Framework {
             /// <param name="roleID"> 角色id </param>
             public static void DeleteRoleWithID(string username, int roleindex) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Delete("role_list_table_" + username, new string[] { "id" }, new string[] { ToValue(roleindex) });
-                sqliteDB.Delete("role_equip_table_" + username, new string[] { "id" }, new string[] { ToValue(roleindex) });
+                sqliteDB.Delete("role_list_table_" + username, new string[] { "roleindex" }, new string[] { ToValue(roleindex) });
+                sqliteDB.Delete("role_equip_table_" + username, new string[] { "roleindex" }, new string[] { ToValue(roleindex) });
                 sqliteDB.Delete("pack_list_table_" + username, new string[] { "roleindex" }, new string[] { ToValue(roleindex) });
                 sqliteDB.Disconnect();
             } // end DeleteRole
@@ -159,7 +159,7 @@ namespace Framework {
             public static string[] GetRoleWithID(string username, int roleindex) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader =sqliteDB.SelectWhere("role_list_table_" + username, new string[] { "name", "roletype" }, 
-                    new string[] { "id" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
+                    new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     return null;

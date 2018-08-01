@@ -118,8 +118,8 @@ namespace Solider {
                     if (currentGid == -1) return;
                     // end if
                     int count = currentPack.GetCountForGrid(currentGid);
-                    ConfirmNumBoxUI box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", "UI/Custom/ConfirmNumBoxUI", 
-                        SceneManager.mainCanvas.rectTransform).AddComponent<ConfirmNumBoxUI>();
+                    UIConfirmNumBox box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", "UI/Custom/ConfirmNumBoxUI", 
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
                     if (count > 1) {
                         box.InitInfo("输入丢弃的数量", count);
                     } else {

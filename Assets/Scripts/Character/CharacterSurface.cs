@@ -40,7 +40,7 @@ namespace Solider {
             } // end LiftWeapon
 
             public void ReloadWeapon(string name) {
-                GameObject Go = ObjectTool.InstantiateGo("name", Configs.prefabConfig.GetPath(name));
+                GameObject Go = ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(name));
                 if (null == Go) {
                     DebugTool.ThrowException("ReloadWeapon name: " + name + " path: " +
                         Configs.prefabConfig.GetPath(name) + " prefab is don't exsit!");

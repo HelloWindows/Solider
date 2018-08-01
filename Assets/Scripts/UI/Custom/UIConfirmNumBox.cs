@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: ConfirmNumBoxUI.cs
+ * FileName: UIConfirmNumBox.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class ConfirmNumBoxUI : MonoBehaviour {
+            public class UIConfirmNumBox : MonoBehaviour {
                 private int value;
                 private int maxValue;
                 private Text msgText;
@@ -78,7 +78,7 @@ namespace Solider {
                     // end if
                     Destroy(gameObject);
                 } // end OnClickBackBtn
-            } // end class ConfirmNumBoxUI
+            } // end class UIConfirmNumBox
         } // end namespace Custom
     } // end namespace UI 
 } // end namespace Solider 
