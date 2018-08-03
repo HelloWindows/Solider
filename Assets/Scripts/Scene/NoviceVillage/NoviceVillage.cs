@@ -9,9 +9,9 @@ using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
 using Framework.Tools;
-using Solider.UI.Common;
 using Framework.FSM.Interface;
 using Framework.FSM;
+using Solider.Scene.UI;
 
 namespace Solider {
     namespace Scene {
@@ -28,16 +28,18 @@ namespace Solider {
                 isDispose = true;
                 sceneName = "Level";
                 fsmSystem = new FSMSystem();
+                uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
 
             public void Initialize() {
                 timer = 0;
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/MainPanelUI", 
-                    mainCanvas.rectTransform).AddComponent<UIMainPanel>();
-                ObjectTool.InstantiateGo("TownPanelUI", "UI/Common/TownPanelUI", 
-                    mainCanvas.rectTransform).AddComponent<UITownPanel>();
+                fsmSystem.AddState(new UITownPanel("UITownPanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIMainPanel("UIMainPanel", mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
                 isDispose = false;
             } // end Initialize
 

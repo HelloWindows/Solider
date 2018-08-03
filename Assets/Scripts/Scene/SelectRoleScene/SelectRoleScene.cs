@@ -26,13 +26,14 @@ namespace Solider {
                 isDispose = true; 
                 sceneName = "Level";
                 fsmSystem = new FSMSystem();
+                uiPanelFSM = fsmSystem as IFSM;
             } // end SelectRoleScene
 
             public void Initialize() {
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                fsmSystem.AddState(new UISelectRolePanel("UISelectRole", fsmSystem as IFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UICreateRolePanel("UICreateRole", fsmSystem as IFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UISelectRolePanel("UISelectRole", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UICreateRolePanel("UICreateRole", uiPanelFSM, mainCanvas.rectTransform));
                 isDispose = false;
             } // end Initialize
 

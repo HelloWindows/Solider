@@ -42,7 +42,7 @@ namespace Solider {
 
                 private void OnClickCreateBtn() {
                     if (nameInputField.text == "" || nameInputField.text == null) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                         return;
                     } // end if
                     SqliteManager.CreateRole(PlayerManager.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
@@ -69,15 +69,15 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
+                    DoRemove();
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
+                    gameObject = null;
+                    transform = null;
                 } // end DoRemove
 
                 public void Reason(float deltaTime) {

@@ -55,15 +55,15 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
+                    DoRemove();
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
+                    gameObject = null;
+                    transform = null;
                 } // end DoRemove
 
                 public void Act(float deltaTime) {

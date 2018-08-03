@@ -124,19 +124,22 @@ namespace Framework {
                 sqliteDB.Disconnect();
 
                 int index = 0;
-                for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(username, roleindex, "equip", index++, "10000" + i, "D", 0);
-                    SetPackInfoWithID(username, roleindex, "equip", index++, "10000" + (i + 4), "D", 0);
-                    SetPackInfoWithID(username, roleindex, "equip", index++, "10010" + i, "D", 0);
-                    SetPackInfoWithID(username, roleindex, "equip", index++, "10020" + i, "D", 0);
+                for (int i = 1; i < 5; i++)
+                {
+                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + i, "D", 0);
+                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + (i + 4), "D", 0);
+                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10010" + i, "D", 0);
+                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10020" + i, "D", 0);
                 } // end for
                 index = 0;
-                for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(username, roleindex, "consume", index++, "20000" + i, "D", 66);
+                for (int i = 1; i < 5; i++)
+                {
+                    SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "20000" + i, "D", 66);
                 } // end for
                 index = 0;
-                for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(username, roleindex, "stuff", index++, "30000" + i, "D", 99);
+                for (int i = 1; i < 5; i++)
+                {
+                    SetPackInfoWithID(username, roleindex, ConstConfig.STUFF, index++, "30000" + i, "D", 99);
                 } // end for
             } // end CreateRole
             /// <summary>
@@ -296,7 +299,7 @@ namespace Framework {
                 string tableName = "pack_list_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 try {
-                    sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { id, grade, count.ToString() }, 
+                    sqliteDB.Update(tableName, new string[] { "id", "grade", "count" }, new string[] { ToValue(id), ToValue(grade), ToValue(count) }, 
                         new string[] { "roleindex", "gid", "type" }, new string[] { "=", "=", "=" }, new string[] { ToValue(roleindex), ToValue(gid), ToValue(type) });
                 } catch (Exception ex) {
                     ConsoleTool.SetConsole(ex.ToString());

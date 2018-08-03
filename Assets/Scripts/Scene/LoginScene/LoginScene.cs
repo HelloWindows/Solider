@@ -29,6 +29,7 @@ namespace Solider {
                 isDispose = true; // 初始化之前是销毁状态
                 sceneName = "Level";
                 fsmSystem = new FSMSystem();
+                uiPanelFSM = fsmSystem as IFSM;
             } // end LoginScene
 
             public void Initialize() {
@@ -36,8 +37,8 @@ namespace Solider {
                 mainCanvas = new MainCanvas(mainCamera.camera);
                 gameObject = ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
                     null, new Vector3(0, 0, 5.1f), Vector3.zero, Vector3.one);
-                fsmSystem.AddState(new UILoginPanel("UILogin", fsmSystem as IFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIRegisterPanel("UIRegister", fsmSystem as IFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UILoginPanel("UILogin", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIRegisterPanel("UIRegister", uiPanelFSM, mainCanvas.rectTransform));
                 isDispose = false;
             } // end Initialize
 

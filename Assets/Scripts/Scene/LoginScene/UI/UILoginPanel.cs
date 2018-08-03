@@ -100,9 +100,7 @@ namespace Solider {
                 } // end OnClickQuitBtn
 
                 public void DoBeforeLeaving() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
+                    DoRemove();
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
@@ -117,6 +115,8 @@ namespace Solider {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
+                    gameObject = null;
+                    transform = null;
                 } // end DoRemove
             } // end class UILoginPanel 
         } // end namespace UI

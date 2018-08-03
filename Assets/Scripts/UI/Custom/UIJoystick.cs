@@ -41,6 +41,10 @@ namespace Solider {
                     dir = Vector3.zero;
                     pointTrans.localPosition = Vector3.zero;
                 } // end OnPointerUp
+
+                private void OnDisable() {
+                    dir = Vector2.zero;
+                } // end OnDisable
             } // end class UIJoystick 
         } // end namespace Custom
     } // end namespace UI 
