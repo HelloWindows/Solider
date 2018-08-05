@@ -26,7 +26,7 @@ namespace Solider {
 
             public NoviceVillage() {
                 isDispose = true;
-                sceneName = "Level";
+                sceneName = "NoviceVillage";
                 fsmSystem = new FSMSystem();
                 uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
