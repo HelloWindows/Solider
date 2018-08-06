@@ -26,10 +26,10 @@ namespace Solider {
                 private CharacterAttribute tempArribute;
                 private CharacterInitAttribute roleInitArribute;
 
-                public CharacterInfo() {
+                public CharacterInfo(int id, string name, string roleType) {
                     selfTreat = new FairData();
-                    roleArribute = new CharacterAttribute("", "", "");
-                    tempArribute = new CharacterAttribute("", "", "");
+                    roleArribute = new CharacterAttribute(id, name, roleType);
+                    tempArribute = new CharacterAttribute(id, name, roleType);
                     roleInitArribute = new CharacterInitAttribute("");
                 } // end CharacterInfo
 
@@ -46,6 +46,8 @@ namespace Solider {
                 } // end GetAttributeData
 
                 public void SelfHealing() {
+                    if (!IsLive) return;
+                    // end if
                     GetAttributeData();
                     selfTreat += roleArribute;
                     roleArribute += selfTreat;

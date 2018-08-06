@@ -7,6 +7,7 @@
 using System.Text;
 using Solider.Config;
 using Solider.Model.Data;
+using Framework.Config.Const;
 
 namespace Solider {
     namespace Character {
@@ -15,8 +16,8 @@ namespace Solider {
                 private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
-                public CharacterAttribute(string roleID, string name, string roleType) {
-                    id = roleID;
+                public CharacterAttribute(int id, string name, string roleType) {
+                    this.id = id;
                     this.name = name;
                     this.roleType = roleType;
                 } // end RoleAttribute
@@ -86,6 +87,8 @@ namespace Solider {
                     if (value < 1) value = 1;
                     // end if
                     role.HP -= value;
+                    if (role.HP < 0) role.HP = 0;
+                    // end if
                     return role;
                 } // end operator +
 
@@ -185,13 +188,17 @@ namespace Solider {
 
                     infoBuilder.Append("角色：");
                     switch (roleType) {
-                        case "Shooter":
+                        case ConstConfig.ARCHER:
                             infoBuilder.Append("射手");
                         break;
 
-                        case "Solider":
-                            infoBuilder.Append("战士");
+                        case ConstConfig.MAGICIAN:
+                            infoBuilder.Append("法师");
                         break;
+
+                        case ConstConfig.SWORDMAN:
+                            infoBuilder.Append("战士");
+                            break;
 
                         default:
                             infoBuilder.Append("全部");

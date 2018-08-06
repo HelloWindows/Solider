@@ -22,8 +22,13 @@ namespace Framework {
             } // end GetInstance
 
             public static ObjectManager GetObjectManager() { return _ObjectManager; } // end GetObjectManager
-
             public static ShareSDKManager GetShareSDKManager() { return _ShareSDKManager; } // end GetShareSDKManager
+
+            public static void Update(float deltaTime) {
+                if (null == _ObjectManager) return;
+                // end if
+                _ObjectManager.Update(deltaTime);
+            } // end Update
         } // end class InstanceMgr
     } // end namespace Manager
 } // end namespace Framework

@@ -4,9 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Solider {
     namespace Model {
@@ -15,7 +12,7 @@ namespace Solider {
                 /// <summary>
                 /// id
                 /// </summary>
-                public string id { get; protected set; }
+                public int id { get; protected set; }
                 /// <summary>
                 /// 名字
                 /// </summary>

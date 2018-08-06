@@ -15,6 +15,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Framework.FSM.Interface;
 using Framework.Tools;
+using Framework.Manager;
 
 namespace Solider {
     namespace Scene {
@@ -41,8 +42,10 @@ namespace Solider {
                 } // end UITownPanel
 
                 private void UpdateShowInfo() {
-                    //infoText.text = RoleManager.info.GetAttributeData().ToString();
-                    IWearInfo wear = PlayerManager.pack.GetWearInfo();
+                    if(null != SceneManager.roleInfo)
+                        infoText.text = SceneManager.roleInfo.GetAttributeData().ToString();
+                    // end if
+                    IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
                     dict = wear.GetWearEquip();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];
@@ -77,7 +80,7 @@ namespace Solider {
                 private void OnClickTakeOffBtn() {
                     if (null == dict || !dict.ContainsKey(selected)) return;
                     // end if
-                    IWearInfo wear = PlayerManager.pack.GetWearInfo();
+                    IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
                     wear.TakeOffEquip(selected);
                     selected = "";
                     UpdateShowInfo();
@@ -100,7 +103,7 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     UIDisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
-                    display.SetDisplayGo(new DisplayGo(PlayerManager.roleType));
+                    display.SetDisplayGo(new DisplayGo(GameManager.playerInfo.roleType));
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];

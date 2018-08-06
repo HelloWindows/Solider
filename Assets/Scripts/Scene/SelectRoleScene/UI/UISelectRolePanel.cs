@@ -50,7 +50,7 @@ namespace Solider {
                     string prefix = "RoleList/Role_";
                     for (int i = 0; i < 3; i++) {
                         int index = i;
-                        roleDict.Add(index, SqliteManager.GetRoleWithID(PlayerManager.username, index));
+                        roleDict.Add(index, SqliteManager.GetRoleWithID(GameManager.playerInfo.username, index));
                         transform.Find(prefix + i).gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(index); });
                         if (null != roleDict[index]) transform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
                         // end if
@@ -99,7 +99,7 @@ namespace Solider {
                 private void DeleteRole() {
                     if (!ChechExitID(roleindex)) return;
                     // end if     
-                    SqliteManager.DeleteRoleWithID(PlayerManager.username, roleindex);
+                    SqliteManager.DeleteRoleWithID(GameManager.playerInfo.username, roleindex);
                     if (roleDict.ContainsKey(roleindex)) roleDict[roleindex] = null;
                     // end if
                     t_roleName.text = "";
@@ -114,7 +114,7 @@ namespace Solider {
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                         return;
                     } // end if
-                    PlayerManager.SelectedRole(roleindex, roleDict[roleindex][0], roleDict[roleindex][1]);
+                    GameManager.playerInfo.SelectedRole(roleindex, roleDict[roleindex][0], roleDict[roleindex][1]);
                     SceneLoader.LoadNextLevel(new NoviceVillage());
                 } // end OnClickStartGameBtn
 

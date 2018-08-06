@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c1c763e9232563d46bb19234b9bac5e5
-timeCreated: 1531292501
+guid: c4ef2ef826f96f34f99c8192152b29cd
+timeCreated: 1532009407
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -91,14 +91,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: WebGL
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Samsung TV
     maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1

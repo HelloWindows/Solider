@@ -43,9 +43,6 @@ namespace Framework {
                 keymap[ButtonCode.SKILL_3] = KeyCode.P;
             } // end CrossInput
 
-            public void Update(float deltaTime) {
-            } // end Update
-
             public bool OnButtonDown(ButtonCode btn) {
 #if UNITY_EDITOR
                 return Input.GetKey(keymap[btn]);

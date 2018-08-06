@@ -45,7 +45,7 @@ namespace Solider {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                         return;
                     } // end if
-                    SqliteManager.CreateRole(PlayerManager.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
+                    SqliteManager.CreateRole(GameManager.playerInfo.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
                     OnClickBackBtn();
                 } // end OnClickCreateBtn
 

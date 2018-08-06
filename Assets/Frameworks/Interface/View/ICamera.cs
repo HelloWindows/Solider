@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Framework {
@@ -11,7 +12,8 @@ namespace Framework {
         namespace View {
             public interface ICamera {
                 Camera camera { get; }
-                void Update(float deltaTime);
+                void LateUpdate(float deltaTime);
+                void SetTarget(ICharacter target);
             } // end interface ICamera 
         } // end namespace View
     } // end namespace Interface

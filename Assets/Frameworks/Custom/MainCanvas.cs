@@ -19,9 +19,7 @@ namespace Framework {
             public MainCanvas(Camera camera) {
                 GameObject Go = new GameObject("MainCanvas");
                 canvas = Go.AddComponent<Canvas>();
-                canvas.renderMode = RenderMode.ScreenSpaceCamera;
-                canvas.worldCamera = camera;
-                canvas.planeDistance = 5;
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 CanvasScaler scaler = Go.AddComponent<CanvasScaler>();
                 scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 scaler.referenceResolution = new Vector2(ConstConfig.STANDARD_WIDTH, ConstConfig.STANDARD_HEIGHT);

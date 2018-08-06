@@ -14,15 +14,19 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace Magician {
-            public class MagicianCharacter : MonoBehaviour, ICharacter {
+            public class MagicianCharacter : ICharacter {
+                public bool isDisposed { get; private set; }
                 public IFSM fsm { get; private set; }
                 public IAvatar avatar { get; private set; }
                 public ISurface surface { get; private set; }
-                public new IAudioSound audio { get; private set; }
+                public IAudioSound audio { get; private set; }
                 public ICharacterMove move { get; private set; }
+                public ICharacterInfo info { get; private set; }
                 public Vector3 position { get { return transform.position; } }
                 private IIputInfo input;
                 private IFSMSystem fsmSystem;
+                private GameObject gameObject;
+                private Transform transform;
 
                 void Start() {
                     input = new CrossInput();
@@ -54,9 +58,12 @@ namespace Solider {
                     surface.LiftWeapon();
                 } // end Start
 
-                private void Update() {
-                    fsmSystem.Update(Time.deltaTime);
+                public void Update(float deltaTime) {
+                    fsmSystem.Update(deltaTime);
                 } // end Update
+
+                public void Dispose() {
+                } // end Dispose
             } // end class MagicianCharacter 
         } // end namespace Magician
     } // end namespace Character

@@ -8,26 +8,31 @@ using Framework.Custom;
 using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
-using Framework.Tools;
 using Framework.FSM.Interface;
 using Framework.FSM;
 using Solider.Scene.UI;
+using System.Collections.Generic;
+using Solider.Character.Interface;
+using Solider.Character.Swordman;
+using UnityEngine;
+using Solider.Manager;
 
 namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
             private float timer;
-            public bool isDispose { get; private set; }
             public IFSM uiPanelFSM { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
+            public ICharacter mainCharacter { get; private set; }
             public string sceneName { get; private set; }
             private IFSMSystem fsmSystem;
+            private List<ICharacter> charList;
 
             public NoviceVillage() {
-                isDispose = true;
                 sceneName = "NoviceVillage";
                 fsmSystem = new FSMSystem();
+                charList = new List<ICharacter>();
                 uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
 
@@ -40,21 +45,39 @@ namespace Solider {
                 fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
-                isDispose = false;
+                mainCharacter = new SwordmanCharacter(new Vector3(0, 0, -20), GameManager.playerInfo.rolename);
+                mainCamera.SetTarget(mainCharacter);
+                charList.Add(mainCharacter);
             } // end Initialize
 
             public void Update(float deltaTime) {
-                if (isDispose) return;
-                // end if
+                List<int> indexList = new List<int>();
+                for (int i = 0; i < charList.Count; i++) {
+                    if (charList[i].isDisposed) indexList.Add(i);
+                    // end if
+                } // end for
+                for (int i = 0; i < indexList.Count; i++) {
+                    charList.RemoveAt(i);
+                } // end for
+                for (int i = 0; i < charList.Count; i++) {
+                    charList[i].Update(deltaTime);
+                } // end for
                 timer += deltaTime;
                 if (timer > 1) {
                     timer = 0;
-                    //RoleManager.info.SelfHealing();
+                    for (int i = 0; i < charList.Count; i++) {
+                        charList[i].info.SelfHealing();
+                    } // end if
                 } // end if
             } // end Update
 
+            public void LateUpdate(float deltaTime) {
+                if (null == mainCamera) return;
+                // end if
+                mainCamera.LateUpdate(deltaTime);
+            } // end LateUpdate
+
             public void Dispose() {
-                isDispose = true;
             } // end Dispose
         } // end class NoviceVillage 
     } // end namespace Scene

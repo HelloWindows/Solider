@@ -14,19 +14,11 @@ using System.Collections;
 namespace Solider {
     namespace Model {
         public class PackInfo : IPackInfo {
-            #region ******** 单例 ********
-            private static PackInfo instance;
-            public static PackInfo GetInstance(string username, int roleindex, string name, string roleType) {
-                if (null == instance) instance = new PackInfo(username, roleindex, name, roleType);
-                // end if
-                return instance;
-            } // end GetInstance
-            #endregion
             private EquipPack equipPack;
             private Dictionary<string, IPack> packDict;
             private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
 
-            private PackInfo(string username, int roleindex, string name, string roleType) {
+            public PackInfo(string username, int roleindex, string name, string roleType) {
                 packDict = new Dictionary<string, IPack>();
                 equipPack = new EquipPack(username, roleindex, ConstConfig.EQUIP, roleType);
                 packDict.Add(ConstConfig.EQUIP, equipPack);

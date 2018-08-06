@@ -69,7 +69,7 @@ namespace Solider {
                     string username = userNameInput.text;
                     if (SqliteManager.CheckLogin(username, passwordInput.text, out msg)) {
                         ConsoleTool.SetConsole(msg);
-                        PlayerManager.LoginGame(username);
+                        GameManager.playerInfo.LoginGame(username);
                         SceneLoader.LoadNextLevel(new SelectRoleScene());
                         return;
                     } // end if

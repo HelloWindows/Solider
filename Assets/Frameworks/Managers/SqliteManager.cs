@@ -118,14 +118,13 @@ namespace Framework {
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     for (int j = 0; j < packTypeList.Length; j++) {
                         sqliteDB.Insert("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
-                            new string[] { ToValue(roleindex), ToValue(j + i * 3), ToValue("0"), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
+                            new string[] { ToValue(roleindex), ToValue(i), ToValue("0"), ToValue(packTypeList[j]), ToValue("Z"), ToValue(0) });
                     } // end for
                 } // end for
                 sqliteDB.Disconnect();
 
                 int index = 0;
-                for (int i = 1; i < 5; i++)
-                {
+                for (int i = 1; i < 5; i++) {
                     SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + i, "D", 0);
                     SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + (i + 4), "D", 0);
                     SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10010" + i, "D", 0);

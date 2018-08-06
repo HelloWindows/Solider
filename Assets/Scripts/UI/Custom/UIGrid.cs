@@ -48,7 +48,7 @@ namespace Solider {
                     // end if
                     Vector2 pos;
                     if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.mainCanvas.rectTransform,
-                        eventData.position, Camera.main, out pos))
+                        eventData.position, null, out pos))
                         item.transform.localPosition = pos;
                     // end if 
                 } // end OnDrag

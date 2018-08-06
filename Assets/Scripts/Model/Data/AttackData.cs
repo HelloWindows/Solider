@@ -11,7 +11,7 @@ namespace Solider {
     namespace Model {
         namespace Data {
             public class AttackData {
-                public string id { get; private set; }
+                public int id { get; private set; }
                 public int ATK { get; private set; }
                 public int MGK { get; private set; }
                 public float HIT { get; private set; } // 命中率

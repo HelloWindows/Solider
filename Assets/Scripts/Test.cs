@@ -25,13 +25,7 @@ namespace Solider {
             ConsoleTool.SetConsole("Test");
         }
 
-        private void Update()
-        {
-            InstanceMgr.GetObjectManager().Update(Time.deltaTime);
-        }
-
-        void LateUpdate()
-        {
+        void LateUpdate() {
             //目标物体要到达的目标位置 = 当前物体的位置 + 当前摄像机的位置
             Vector3 targetPos = target.position + new Vector3(0, 4, -4);
             //使用线性插值计算让摄像机用smoothing * Time.deltaTime时间从当前位置到移动到目标位置

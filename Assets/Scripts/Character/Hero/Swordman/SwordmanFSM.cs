@@ -27,7 +27,6 @@ namespace Solider {
                     AddState(new SwordmanSkill1("skill1", character));
                     AddState(new SwordmanSkill2("skill2", character, input));
                     AddState(new SwordmanSkill3("skill3", character));
-                    PerformTransition("wait");
                 } // end SwordmanFSM
             } // end class SwordmanFSM
         } // end namespace Swordman

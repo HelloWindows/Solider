@@ -13,7 +13,7 @@ namespace Solider {
         namespace Model {
             public class CharacterInitAttribute : AttributeData {
 
-                public CharacterInitAttribute(string charID) {
+                public CharacterInitAttribute(string id) {
 
                 } // end RoleInitAttribute
             } // end class CharacterInitAttribute
