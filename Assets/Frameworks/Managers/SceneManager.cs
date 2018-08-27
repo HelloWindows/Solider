@@ -18,7 +18,7 @@ namespace Framework {
             private static IScene m_scene;
             public static ICamera mainCamera { get { return m_scene.mainCamera; } }
             public static ICanvas mainCanvas { get { return m_scene.mainCanvas; } }
-            public static ICharacterInfo roleInfo { get { return m_scene.mainCharacter.info; } }
+            public static ICharacter mainCharacter { get { return m_scene.mainCharacter; } }
 
             public static void SetScene(IScene scene) {
                 GameManager.SetGameState(GameState.SWITCH);

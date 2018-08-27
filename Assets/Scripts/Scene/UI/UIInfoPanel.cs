@@ -42,8 +42,8 @@ namespace Solider {
                 } // end UITownPanel
 
                 private void UpdateShowInfo() {
-                    if(null != SceneManager.roleInfo)
-                        infoText.text = SceneManager.roleInfo.GetAttributeData().ToString();
+                    if(null != SceneManager.mainCharacter)
+                        infoText.text = SceneManager.mainCharacter.info.GetAttributeData().ToString();
                     // end if
                     IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
                     dict = wear.GetWearEquip();

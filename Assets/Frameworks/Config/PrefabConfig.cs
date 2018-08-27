@@ -44,6 +44,9 @@ namespace Framework {
                     pathDict[ConstConfig.SWORDMAN] = prefix + "Swordman/" + ConstConfig.SWORDMAN;
                     pathDict[ConstConfig.ARCHER] = prefix + "Archer/" + ConstConfig.ARCHER;
                     pathDict[ConstConfig.MAGICIAN] = prefix + "Magician/" + ConstConfig.MAGICIAN;
+
+                    prefix = "Character/NPC/";
+                    pathDict["npc_grocery"] = prefix + "npc_grocery";
                 } // end PrefabConfig
             } // end class PrefabConfig
         } // end namespace Prefab 

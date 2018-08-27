@@ -16,6 +16,9 @@ using Solider.Character.Interface;
 using Solider.Character.Swordman;
 using UnityEngine;
 using Solider.Manager;
+using Framework.Tools;
+using Framework.Config;
+using Solider.Character.NPC;
 
 namespace Solider {
     namespace Scene {
@@ -46,6 +49,8 @@ namespace Solider {
                 fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
                 mainCharacter = new SwordmanCharacter(new Vector3(0, 0, -20), GameManager.playerInfo.rolename);
+                ObjectTool.InstantiateGo("npc_grocery", Configs.prefabConfig.GetPath("npc_grocery"),
+                    null, new Vector3(24, 0, 3), new Vector3(0, 210, 0), Vector3.one).AddComponent<NPC_Grocery>();
                 mainCamera.SetTarget(mainCharacter);
                 charList.Add(mainCharacter);
             } // end Initialize

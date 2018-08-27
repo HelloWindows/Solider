@@ -32,7 +32,7 @@ namespace Framework {
                 if (null == target) return;
                 // end if
                 //目标物体要到达的目标位置 = 当前物体的位置 + 当前摄像机的位置
-                Vector3 targetPos = target.position + new Vector3(0, 3, -6);
+                Vector3 targetPos = target.position + new Vector3(0, 6, -6);
                 //使用线性插值计算让摄像机用smoothing * Time.deltaTime时间从当前位置到移动到目标位置
                 camera.transform.position = targetPos;
                 //使用Quaternion.LookRotation方法可以计算出目标位置旋转后相机需要旋转的角度
