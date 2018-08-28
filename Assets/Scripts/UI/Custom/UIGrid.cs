@@ -20,7 +20,7 @@ namespace Solider {
                 public int id { get; private set; }
                 public UIItem item { get; private set; }
 
-                public void SetID(int id) { this.id = id; } // end SetIndex
+                public void SetID(int id) { this.id = id; } // end SetID
 
                 public void SetUIItem(Sprite sprite, int count) {
                     if (null == item) {
