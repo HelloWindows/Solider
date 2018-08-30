@@ -17,9 +17,9 @@ namespace Solider {
             public class UIGroceryPanel : IFSMState {
                 public string name { get; private set; }
                 private IFSM fsm;
-                private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
+                private Transform transform { get { return gameObject.transform; } }
 
                 public UIGroceryPanel(string name, IFSM fsm, RectTransform parent) {
                     this.fsm = fsm;
@@ -29,7 +29,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("GroceryPanelUI", "UI/Common/GroceryPanelUI", parent);
-                    transform = gameObject.transform;
+                    new UIScrollView(gameObject.transform.Find("Scroll View").GetComponent<ScrollRect>());
                     transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
                 } // end DoBeforeEntering
 

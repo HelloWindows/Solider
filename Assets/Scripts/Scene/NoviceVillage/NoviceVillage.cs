@@ -48,6 +48,7 @@ namespace Solider {
                 fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIGroceryPanel("UIGroceryPanel", uiPanelFSM, mainCanvas.rectTransform));
                 mainCharacter = new SwordmanCharacter(new Vector3(0, 0, -20), GameManager.playerInfo.rolename);
                 ObjectTool.InstantiateGo("npc_grocery", Configs.prefabConfig.GetPath("npc_grocery"),
                     null, new Vector3(24, 0, 3), new Vector3(0, 210, 0), Vector3.one).AddComponent<NPC_Grocery>();

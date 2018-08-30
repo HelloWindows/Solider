@@ -5,85 +5,76 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Framework.DataStructure;
 
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIScrollView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
+            public class UIScrollView {
                 private int index;
                 private int maxIndex;
-                private float smooth;
-                private UIScrollItem[] itemArr;
                 private float lastDrag;
+                private ScrollRect scrollRect;
+                private TWQueue<UIScrollItem> itemQueue;
+                private const int gap = 125;
+                private int indexGap;
 
-                private void Start() {
+                public UIScrollView(ScrollRect scrollRect) {
                     index = 0;
-                    smooth = 0;
-                    maxIndex = 10;
-                    itemArr = new UIScrollItem[4];
-                    for (int i = 0; i < itemArr.Length; i++) {
-                        itemArr[i] = new UIScrollItem(transform as RectTransform, new Vector3(0, (1 - i) * 125, 0),
-                            delegate (string itemID) { OnClickItem(itemID); });
-                        itemArr[i].ResetItem(null, index.ToString());
+                    lastDrag = 0;
+                    maxIndex = 100;
+                    this.scrollRect = scrollRect;
+                    itemQueue = new TWQueue<UIScrollItem>();
+                    scrollRect.content.sizeDelta = new Vector2(383, maxIndex * 125);
+                    int count = Mathf.Clamp(maxIndex, 0, 4);
+                    indexGap = count - 1;
+                    for (int i = 0; i < count; i++) {
+                        UIScrollItem item = new UIScrollItem(scrollRect.content, 
+                            new Vector3(0, -62.5f - i * 125f, 0), OnClickItem);
+                        item.ResetItem(index.ToString(), null, index.ToString());
+                        itemQueue.Enqueue(item);
                         index++;
                     } // end for
+                    scrollRect.verticalScrollbar.onValueChanged.AddListener(delegate (float value) { OnDrag(value); });
                 } // end Start
 
-                public void OnPointerDown(PointerEventData data) {
-                    lastDrag = data.position.y;
-                } // end OnPointerDown
-
-                public void OnPointerUp(PointerEventData eventData) {
-                    smooth = 0f;
-                } // end OnPointerUp
-
-                public void OnDrag(PointerEventData data) {
-                    float interval = data.position.y - lastDrag;
-                    if (interval > 0) {
-                        DragUp(interval);
-                    } else if(interval < 0) {
-                        DragDowm(-interval);
-                    } // end if
-                    lastDrag = data.position.y;
+                private void OnDrag(float value) {
+                    if (value < lastDrag) {
+                        DragUp(scrollRect.content.localPosition.y);
+                    } else {
+                        DragDown(scrollRect.content.localPosition.y);
+                    }// end if
+                    lastDrag = value;
                 } // end OnDrag
 
                 private void OnClickItem(string itemID) {
+
                 } // end OnClickItem
 
-                private void DragUp(float interval) {
-                    for (int i = 0; i < itemArr.Length; i++) {
-                        if(itemArr[i].ScrollUp(interval)) continue;
-                        // end if
-                        itemArr[i].ResetItem(null, index.ToString());
-                        if(index + 1 < maxIndex) itemArr[i].SetBotton();
-                        // end if
+                private void DragUp(float value) {
+                    if (index >= maxIndex) return;
+                    // end if
+                    if (value > (index - indexGap) * gap) {
+                        UIScrollItem item = itemQueue.Dequeue();
+                        item.SetBotton();
+                        item.ResetItem(index.ToString(), null, index.ToString());
+                        itemQueue.Enqueue(item);
                         index++;
-                    } // end for
+                    } // end if
                 } // end DragUp
 
-                private void DragDowm(float interval) {
-                    for (int i = 0; i < itemArr.Length; i++) {
-                        if(itemArr[i].ScorllDown(interval)) continue;
-                        // end if
+                private void DragDown(float value) {
+                    if (index <= indexGap + 1) return;
+                    // end if
+                    if (value < (index - indexGap - 1) * gap) {
+                        UIScrollItem item = itemQueue.DequeueRev();
+                        item.SetTop();
+                        item.ResetItem(index.ToString(), null, (index - indexGap - 2).ToString());
+                        itemQueue.EnqueueRev(item);
                         index--;
-                        itemArr[i].ResetItem(null, (index - 4).ToString());
-                        if(index > 3) itemArr[i].SetTop();
-                        // end if
-                    } // end for
-                } // end DragUp
-
-                private void MoveUp(float interval) {
-                    for (int i = 0; i < itemArr.Length; i++) {
-                        itemArr[i].ScrollUp(interval);
-                    } // end for
-                } // end MoveUp
-
-                private void MoveDown(float interval) {
-                    for (int i = 0; i < itemArr.Length; i++) {
-                        itemArr[i].ScorllDown(interval);
-                    } // end for
-                } // end MoveUp
+                    } // end if
+                } // end DragDown
             } // end class UIScrollView 
         } // end namespace Custom
     } // end namespace UI 
