@@ -27,7 +27,6 @@ namespace Solider {
                     AddState(new ArcherSkill1("skill1", character));
                     AddState(new ArcherSkill2("skill2", character));
                     AddState(new ArcherSkill3("skill3", character));
-                    PerformTransition("idle");
                 } // end ArcherFSM
             } // end class Archer
         } // end namespace Archer

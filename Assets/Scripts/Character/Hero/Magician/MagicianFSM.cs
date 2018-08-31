@@ -26,7 +26,6 @@ namespace Solider {
                     AddState(new MagicianSkill1("skill1", character));
                     AddState(new MagicianSkill2("skill2", character));
                     AddState(new MagicianSkill3("skill3", character));
-                    PerformTransition("wait");
                 } // end SwordmanFSM
             } // end class MagicianFSM 
         } // end namespace Magician

@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Interface.Input;
+using Solider.UI.Custom;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +30,7 @@ namespace Framework {
                     } // end if
                     return new Vector2(x, y).normalized;
 #else
-                    return Vector2.zero;
+                    return UIJoystick.dir;
 #endif
                 } // end get
             } // end joystickDir

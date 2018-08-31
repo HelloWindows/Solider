@@ -12,7 +12,7 @@ namespace Solider {
         namespace Custom {
             public class UIItem : MonoBehaviour {
                 private Image image;
-                public Text countText;
+                public Text text;
 
                 public int count { get; private set; }
                 public Sprite sprite { get; private set; }
@@ -20,8 +20,8 @@ namespace Solider {
                 private void Awake() {
                     image = transform.Find("Image").GetComponent<Image>();
                     image.raycastTarget = false;
-                    countText = transform.Find("Text").GetComponent<Text>();
-                    countText.raycastTarget = false;
+                    text = transform.Find("Text").GetComponent<Text>();
+                    text.raycastTarget = false;
                 } // end Awake
 
                 public void SetSprite(Sprite sprite) {
@@ -32,12 +32,24 @@ namespace Solider {
                 public void SetCount(int count) {
                     if (count <= 0) {
                         this.count = 0;
-                        countText.text = "";
+                        text.text = "";
                         return;
                     } // end if
                     this.count = count;
-                    countText.text = count.ToString();
+                    text.text = count.ToString();
                 } // end SetCount
+
+                public void SetPercent(int numerator, int denominator) {
+                    if (denominator <= 0) {
+                        text.text = "";
+                        return;
+                    } // end if
+                    if (numerator < denominator) {
+                        text.text = "<color=#FF0000FF>" + numerator + "/" + denominator + "</color>";
+                    } else {
+                        text.text = "<color=#7CFC00FF>" + numerator + "/" + denominator + "</color>";
+                    } // end if
+                } // end Percent
             } // end class UIItem 
         } // end namespace Custom
     } // end namespace UI 

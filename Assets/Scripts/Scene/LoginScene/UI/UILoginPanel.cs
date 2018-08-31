@@ -104,11 +104,9 @@ namespace Solider {
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
-
                 } // end Reason
 
                 public void Act(float deltaTime) {
-
                 } // end Act
 
                 public void DoRemove() {

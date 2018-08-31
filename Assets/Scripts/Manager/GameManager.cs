@@ -36,7 +36,7 @@ namespace Solider {
             OVER = 5
         } // end enum GameState
 
-        public class GameManager {
+        public static class GameManager {
             public static GameState state { get; private set; }
             public static IPlayerInfo playerInfo { get; private set; }
             public static IGameSetting gameSetting { get; private set; }

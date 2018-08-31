@@ -4,10 +4,13 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
+using Framework.Config.Const;
 using Framework.Custom;
 using Framework.FSM.Interface;
 using Framework.Interface.Audio;
 using Framework.Interface.Input;
+using Framework.Tools;
 using Solider.Character.Hero;
 using Solider.Character.Interface;
 using UnityEngine;
@@ -26,9 +29,13 @@ namespace Solider {
                 private IIputInfo input;
                 private IFSMSystem fsmSystem;
                 private GameObject gameObject;
-                private Transform transform;
+                private Transform transform { get { return gameObject.transform; } }
 
-                void Start() {
+                public MagicianCharacter(Vector3 pos, string name) {
+                    isDisposed = false;
+                    gameObject = ObjectTool.InstantiateGo(name,
+                        Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), null, pos, Vector3.zero, Vector3.one);
+                    info = new Model.CharacterInfo(gameObject.GetHashCode(), name, ConstConfig.MAGICIAN);
                     input = new CrossInput();
                     gameObject.AddComponent<AudioListener>();
                     move = new HeroMove(gameObject.GetComponent<Rigidbody>());
@@ -53,9 +60,6 @@ namespace Solider {
                     surface = new CharacterSurface(liftTrans, furlTrans, meshRenderer);
                     fsmSystem = new MagicianFSM(this, input);
                     fsm = fsmSystem as IFSM;
-
-                    surface.ReloadWeapon("staff1");
-                    surface.LiftWeapon();
                 } // end Start
 
                 public void Update(float deltaTime) {

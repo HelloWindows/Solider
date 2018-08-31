@@ -16,7 +16,7 @@ namespace Solider {
             private IEnumerator Start() {
                 InstanceMgr.Init();
                 SqliteManager.Init();
-                Application.targetFrameRate = 45;
+                Application.targetFrameRate = 30;
                 yield return null;
                 SceneLoader.LoadNextLevel(new LoginScene());
             } // end Start

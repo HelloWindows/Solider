@@ -5,14 +5,11 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Manager;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace NPC {
             public class NPC_Grocery : MonoBehaviour {
-
                 // Use this for initialization
                 void Start() {
                     Animation anim = GetComponent<Animation>();

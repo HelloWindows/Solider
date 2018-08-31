@@ -47,6 +47,7 @@ namespace Framework {
 
                     prefix = "Character/NPC/";
                     pathDict["npc_grocery"] = prefix + "npc_grocery";
+                    pathDict["npc_forge"] = prefix + "npc_forge";
                 } // end PrefabConfig
             } // end class PrefabConfig
         } // end namespace Prefab 

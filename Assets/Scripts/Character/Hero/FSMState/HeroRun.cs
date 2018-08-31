@@ -72,12 +72,10 @@ namespace Solider {
                     } // end for
                 } // end Act
 
-                public void DoBeforeLeaving() {
-                    
+                public void DoBeforeLeaving() {           
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
-
                 } // end DoRemove
 
                 private void PlayRunEffect(int index, float normalizedTime) {

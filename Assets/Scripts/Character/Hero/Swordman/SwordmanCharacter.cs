@@ -30,13 +30,12 @@ namespace Solider {
                 private IIputInfo input;
                 private IFSMSystem fsmSystem;
                 private GameObject gameObject;
-                private Transform transform;
+                private Transform transform { get { return gameObject.transform; } }
 
                 public SwordmanCharacter(Vector3 pos, string name) {
                     isDisposed = false;
                     gameObject = ObjectTool.InstantiateGo(name, 
                         Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one);
-                    transform = gameObject.transform;
                     input = new CrossInput();
                     gameObject.AddComponent<AudioListener>();
                     info = new Model.CharacterInfo(gameObject.GetHashCode(), name, ConstConfig.SWORDMAN);

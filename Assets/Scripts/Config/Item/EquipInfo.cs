@@ -57,27 +57,28 @@ namespace Solider {
             public override string ToString() {
                 infoBuilder.Length = 0;
                 infoBuilder.Append("<size=24>");
-                switch (grade) {
+                 switch (grade) {
                     case "A":
                         infoBuilder.Append("<color=#FFD700FF>");
-                        infoBuilder.Append(name);
                         break;
 
                     case "B":
-                        infoBuilder.Append("<color=#ADFF2FFF>");
-                        infoBuilder.Append(name);
+                        infoBuilder.Append("<color=#800080FF>");
                         break;
 
                     case "C":
+                        infoBuilder.Append("<color=#ADFF2FFF>");
+                        break;
+
+                    case "D":
                         infoBuilder.Append("<color=#0000FFFF>");
-                        infoBuilder.Append(name);
                         break;
 
                     default:
                         infoBuilder.Append("<color=#FFFFFFFF>");
-                        infoBuilder.Append(name);
                         break;
                 } // end switch
+                infoBuilder.Append(name);
                 infoBuilder.Append("</color>");
                 infoBuilder.Append("</size>");
                 infoBuilder.Append('\n');

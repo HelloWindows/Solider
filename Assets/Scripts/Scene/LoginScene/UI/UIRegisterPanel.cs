@@ -67,11 +67,9 @@ namespace Solider {
                 } // end DoRemove
 
                 public void Act(float deltaTime) {
-
                 } // end Act
 
                 public void Reason(float deltaTime) {
-
                 } // end Reason
 
                 private void OnUserNameEndEdit(string name) {

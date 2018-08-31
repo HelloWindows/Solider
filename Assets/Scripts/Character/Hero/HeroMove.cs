@@ -22,31 +22,31 @@ namespace Solider {
                 } // end HeroMove
 
                 public void StepForward(float step, float deltaTime) {
-                    rgd.MovePosition(transform.position + transform.forward * step * deltaTime);
+                    transform.Translate(transform.forward * speed * deltaTime, Space.World);
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end StepForward
 
                 public void StepForward(Vector2 dir, float deltaTime) {
                     Vector3 forward = new Vector3(dir.x, 0, dir.y);
-                    rgd.MovePosition(transform.position + forward * speed * deltaTime);
+                    transform.Translate(forward * speed * deltaTime, Space.World);
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end StepForward
 
                 public void MoveForward(Vector2 dir, float deltaTime) {
                     Vector3 forward = new Vector3(dir.x, 0, dir.y);
-                    rgd.MovePosition(transform.position + forward * speed * deltaTime);
+                    transform.Translate(forward * speed * deltaTime, Space.World);
                     rgd.MoveRotation(Quaternion.LookRotation(forward));
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end MoveForward
 
                 public void StepBackward(float step, float deltaTime) {
-                    rgd.MovePosition(transform.position - transform.forward * step * deltaTime);
+                    transform.Translate(-transform.forward * speed * deltaTime, Space.World);
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end StepBackward
 
                 public void MoveBackward(Vector2 dir, float deltaTime) {
                     Vector3 forward = new Vector3(-dir.x, 0, -dir.y);
-                    rgd.MovePosition(transform.position + forward * speed * deltaTime);
+                    transform.Translate(forward * speed * deltaTime, Space.World);
                     rgd.MoveRotation(Quaternion.LookRotation(forward));
                     transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 } // end MoveBackward

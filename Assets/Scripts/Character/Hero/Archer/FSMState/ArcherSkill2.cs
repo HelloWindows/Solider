@@ -35,7 +35,6 @@ namespace Solider {
                 } // end Act
 
                 public void DoBeforeLeaving() {
-
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {

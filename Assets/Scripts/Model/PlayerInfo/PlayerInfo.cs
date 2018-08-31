@@ -16,6 +16,13 @@ namespace Solider {
 
             public IPackInfo pack { get; private set; }
 
+            public PlayerInfo() {
+                roleindex = -1;
+                rolename = "";
+                roleType = "";
+                username = "";
+            } // end PlayerInfo
+
             public void LoginGame(string username) {
                 this.username = username;
             } // end LoginGame

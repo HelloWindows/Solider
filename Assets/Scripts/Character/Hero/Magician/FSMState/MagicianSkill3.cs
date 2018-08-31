@@ -32,15 +32,12 @@ namespace Solider {
                 } // end Reason
 
                 public void Act(float deltaTime) {
-
                 } // end Act
 
                 public void DoBeforeLeaving() {
-
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
-
                 } // end DoRemove
             } // end class MagicianSkill2 
         } // end namespace FSMState

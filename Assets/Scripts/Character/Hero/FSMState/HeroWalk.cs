@@ -57,11 +57,9 @@ namespace Solider {
                 } // end Act
 
                 public void DoBeforeLeaving() {
-
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
-
                 } // end DoRemove
 
                 private void PlayRunEffect(int index, float normalizedTime) {

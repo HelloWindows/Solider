@@ -51,15 +51,12 @@ namespace Solider {
                 } // end Reason
 
                 public void Act(float deltaTime) {
-
                 } // end Act
 
                 public void DoBeforeLeaving() {
-
                 } // end DoBeforeLeaving
 
                 public void DoRemove() {
-
                 } // end DoRemove
             } // end class HeroWait
         } // end namespaceFSMState
