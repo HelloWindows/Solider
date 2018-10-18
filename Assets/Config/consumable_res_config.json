@@ -3,10 +3,10 @@
     {
       "id": "200001",
       "stateid": "500001",
-      "name": "绷带",
+      "name": "小瓶金疮药",
       "grade": "D",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/binder",
+      "spritepath": "Sprite/ItemSprite/lit_hp",
       "intro": "赶紧止血，不然没命了",
       "property": {
         "HP": 100,
@@ -24,10 +24,10 @@
     {
       "id": "200002",
       "stateid": "500001",
-      "name": "消炎药",
+      "name": "中瓶金疮药",
       "grade": "C",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/allay",
+      "spritepath": "Sprite/ItemSprite/mid_hp",
       "intro": "再不消炎，会死掉的",
       "property": {
         "HP": 0,
@@ -45,10 +45,10 @@
     {
       "id": "200003",
       "stateid": "500001",
-      "name": "止痛药",
+      "name": "大瓶金疮药",
       "grade": "B",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/anodyne",
+      "spritepath": "Sprite/ItemSprite/big_hp",
       "intro": "疼死了",
       "property": {
         "HP": 500,
@@ -61,27 +61,6 @@
         "MSP": 0,
         "CRT": 0,
         "CD": 30
-      }
-    },
-    {
-      "id": "200004",
-      "stateid": "500001",
-      "name": "金疮药",
-      "grade": "A",
-      "role": "all",
-      "spritepath": "Sprite/ItemSprite/reborn",
-      "intro": "满血复活吧",
-      "property": {
-        "HP": 1000,
-        "MP": 0,
-        "HOT": 100,
-        "MOT": 0,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
-        "CD": 60
       }
     }
   ]

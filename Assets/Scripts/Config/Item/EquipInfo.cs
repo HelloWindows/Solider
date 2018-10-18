@@ -27,7 +27,6 @@ namespace Solider {
             public float ASP { get; private set; }
             public float MSP { get; private set; }
             public float CRT { get; private set; }
-            public float clip { get; private set; }
 
             public EquipInfo(JsonData data) {
                 id = (string)data["id"];
@@ -51,7 +50,6 @@ namespace Solider {
                 ASP = (float)property["ASP"];
                 MSP = (float)property["MSP"];
                 CRT = (float)property["CRT"];
-                clip = (float)property["clip"];
             } // end EquipInfo
 
             public override string ToString() {
@@ -142,13 +140,6 @@ namespace Solider {
                 AppendValue("攻速：", ASP);
                 AppendValue("移速：", MSP);
                 AppendValue("暴击率：", CRT);
-
-                if (clip != 0) {
-                    infoBuilder.Append("弹夹：");
-                    infoBuilder.Append(clip);
-                    infoBuilder.Append(" 发");
-                    infoBuilder.Append('\n');
-                } // end if
                 infoBuilder.Append("</size>");
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');

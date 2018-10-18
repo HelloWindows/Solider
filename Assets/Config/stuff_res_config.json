@@ -2,31 +2,66 @@
   "itemlist": [
     {
       "id": "300001",
-      "name": "硝石",
+      "name": "白宝石",
       "grade": "D",
-      "spritepath": "Sprite/ItemSprite/nitre",
-      "intro": "制作子弹的材料"
+      "spritepath": "Sprite/ItemSprite/gem_white",
+      "intro": "制作低级装备的材料"
     },
     {
       "id": "300002",
-      "name": "铁矿",
+      "name": "黑宝石",
       "grade": "C",
-      "spritepath": "Sprite/ItemSprite/iron",
-      "intro": "只是铁矿，仅此而已！"
+      "spritepath": "Sprite/ItemSprite/gem_black",
+      "intro": "制作中级装备的材料"
     },
     {
       "id": "300003",
-      "name": "银矿",
+      "name": "红宝石",
       "grade": "B",
-      "spritepath": "Sprite/ItemSprite/silver",
-      "intro": "听说用银弹打打僵尸挺爽！"
+      "spritepath": "Sprite/ItemSprite/gem_red",
+      "intro": "制作高级装备的材料"
     },
-     {
+    {
       "id": "300004",
-      "name": "金矿",
+      "name": "橙宝石",
       "grade": "A",
-      "spritepath": "Sprite/ItemSprite/gold",
-      "intro": "金子，人人都喜欢！"
+      "spritepath": "Sprite/ItemSprite/gem_orange",
+      "intro": "制作顶级装备的材料"
+    },
+    {
+      "id": "300005",
+      "name": "能量石",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/hearthstone",
+      "intro": "里面蓄含巨大能量"
+    },
+    {
+      "id": "300006",
+      "name": "铁块",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/pact_white",
+      "intro": "里面蓄含巨大能量"
+    },
+    {
+      "id": "300007",
+      "name": "蓝矿石",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/pact_blue",
+      "intro": "制作低级装备的材料"
+    },
+    {
+      "id": "300008",
+      "name": "红矿石",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/pact_red",
+      "intro": "制作低级装备的材料"
+    },
+    {
+      "id": "300009",
+      "name": "金矿石",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/pact_yellow",
+      "intro": "制作低级装备的材料"
     }
   ]
 }

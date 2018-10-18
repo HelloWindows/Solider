@@ -51,7 +51,7 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=18>");
-                infoBuilder.Append("材料");
+                infoBuilder.Append("消耗品");
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("</size>");
