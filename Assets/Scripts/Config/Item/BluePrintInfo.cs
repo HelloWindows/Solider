@@ -19,6 +19,15 @@ namespace Solider {
                 grade = (string)data["grade"];
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];
+                JsonData property = data["property"];
+                int num = (int)property["NUM"];
+                stuffIDArr = new string[num];
+                stuffCountArr = new int[num];
+
+                for (int i = 0; i < num; i++) {
+                    stuffIDArr[i] = (string)property["ID_" + i];
+                    stuffCountArr[i] = (int)property["COUNT_" + i];
+                } // end for
             } // end EquipInfo
 
             public override string ToString() {
@@ -51,7 +60,7 @@ namespace Solider {
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("<size=18>");
-                infoBuilder.Append("消耗品");
+                infoBuilder.Append("制作图");
                 infoBuilder.Append('\n');
                 infoBuilder.Append('\n');
                 infoBuilder.Append("</size>");

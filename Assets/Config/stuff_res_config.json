@@ -62,6 +62,13 @@
       "grade": "A",
       "spritepath": "Sprite/ItemSprite/pact_yellow",
       "intro": "制作低级装备的材料"
+    },
+    {
+      "id": "300010",
+      "name": "羽毛",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/plume",
+      "intro": "制作翅膀的材料"
     }
   ]
 }

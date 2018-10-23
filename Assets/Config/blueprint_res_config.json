@@ -1,89 +1,483 @@
 ﻿{
   "itemlist": [
     {
-      "id": "201001",
-      "name": "绷带",
+      "id": "400001",
+      "name": "低级剑制作图",
       "grade": "D",
-      "role": "all",
-      "spritepath": "Sprite/ItemSprite/binder",
-      "intro": "赶紧止血，不然没命了",
-      "stuffid": {
-        "0": 100,
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 5
-      },
-      "stuffcount": {
-
+      "spritepath": "Sprite/ItemSprite/sword_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
       }
     },
     {
-      "id": "200002",
-      "stateid": "500001",
-      "name": "消炎药",
+      "id": "400002",
+      "name": "中级剑制作图",
       "grade": "C",
-      "role": "all",
-      "spritepath": "Sprite/ItemSprite/allay",
-      "intro": "再不消炎，会死掉的",
+      "spritepath": "Sprite/ItemSprite/sword_blueprin",
+      "intro": "应该还打不到飞机吧",
       "property": {
-        "HP": 0,
-        "MP": 0,
-        "HOT": 30,
-        "MOT": 0,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
-        "CD": 10
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20
       }
     },
     {
-      "id": "200003",
-      "stateid": "500001",
-      "name": "止痛药",
+      "id": "400003",
+      "name": "高级剑制作图",
       "grade": "B",
-      "role": "all",
-      "spritepath": "Sprite/ItemSprite/anodyne",
-      "intro": "疼死了",
+      "spritepath": "Sprite/ItemSprite/sword_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
-        "HP": 500,
-        "MP": 0,
-        "HOT": 50,
-        "MOT": 0,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
-        "CD": 30
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 80,
+        "ID_1": "300006",
+        "COUNT_1": 40,
+        "ID_2": "300005",
+        "COUNT_2": 1
       }
     },
     {
-      "id": "200004",
-      "stateid": "500001",
-      "name": "金疮药",
+      "id": "400004",
+      "name": "顶级剑制作图",
       "grade": "A",
-      "role": "all",
-      "spritepath": "Sprite/ItemSprite/reborn",
-      "intro": "满血复活吧",
+      "spritepath": "Sprite/ItemSprite/sword_blueprin",
+      "intro": "就是一根棍子！",
       "property": {
-        "HP": 1000,
-        "MP": 0,
-        "HOT": 100,
-        "MOT": 0,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
-        "CD": 60
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 100,
+        "ID_1": "300006",
+        "COUNT_1": 50,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "400005",
+      "name": "低级弓制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/bow_blueprint",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "400006",
+      "name": "中级弓制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/bow_blueprint",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20
+      }
+    },
+    {
+      "id": "400007",
+      "name": "高级弓制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/bow_blueprint",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 80,
+        "ID_1": "300006",
+        "COUNT_1": 40,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "400008",
+      "name": "顶级弓制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/bow_blueprint",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 100,
+        "ID_1": "300006",
+        "COUNT_1": 50,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "400009",
+      "name": "低级杖制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/staff_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "400010",
+      "name": "中级杖制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/staff_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20
+      }
+    },
+    {
+      "id": "400011",
+      "name": "高级杖制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/staff_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 80,
+        "ID_1": "300006",
+        "COUNT_1": 40,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "400012",
+      "name": "顶级杖制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/staff_blueprin",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 100,
+        "ID_1": "300006",
+        "COUNT_1": 50,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "401001",
+      "name": "低级项链制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/necklace_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 10,
+        "ID_1": "300006",
+        "COUNT_1": 5
+      }
+    },
+    {
+      "id": "401002",
+      "name": "中级项链制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/necklace_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "401003",
+      "name": "高级项链制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/necklace_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "401004",
+      "name": "顶级项链制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/necklace_blueprin",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 50,
+        "ID_1": "300006",
+        "COUNT_1": 25,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "402001",
+      "name": "低级戒指制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/ring_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 10,
+        "ID_1": "300006",
+        "COUNT_1": 5
+      }
+    },
+    {
+      "id": "402002",
+      "name": "中级戒指制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/ring_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "402003",
+      "name": "高级戒指制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/ring_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "402004",
+      "name": "顶级戒指制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/ring_blueprin",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 50,
+        "ID_1": "300006",
+        "COUNT_1": 25,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "403001",
+      "name": "低级盔甲制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/armor_blueprint",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "403002",
+      "name": "中级盔甲制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/armor_blueprint",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20
+      }
+    },
+    {
+      "id": "403003",
+      "name": "高级盔甲制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/armor_blueprint",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 80,
+        "ID_1": "300006",
+        "COUNT_1": 40,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "403004",
+      "name": "顶级盔甲制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/armor_blueprint",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 100,
+        "ID_1": "300006",
+        "COUNT_1": 50,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "404001",
+      "name": "低级裤子制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/pants_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "404002",
+      "name": "中级裤子制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/pants_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20
+      }
+    },
+    {
+      "id": "404003",
+      "name": "高级裤子制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/pants_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 80,
+        "ID_1": "300006",
+        "COUNT_1": 40,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "404004",
+      "name": "顶级裤子制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/pants_blueprin",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 100,
+        "ID_1": "300006",
+        "COUNT_1": 50,
+        "ID_2": "300005",
+        "COUNT_2": 3
+      }
+    },
+    {
+      "id": "405001",
+      "name": "低级战靴制作图",
+      "grade": "D",
+      "spritepath": "Sprite/ItemSprite/shoe_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 10,
+        "ID_1": "300006",
+        "COUNT_1": 5
+      }
+    },
+    {
+      "id": "405002",
+      "name": "中级战靴制作图",
+      "grade": "C",
+      "spritepath": "Sprite/ItemSprite/shoe_blueprin",
+      "intro": "应该还打不到飞机吧",
+      "property": {
+        "NUM": 2,
+        "ID_0": "300001",
+        "COUNT_0": 20,
+        "ID_1": "300006",
+        "COUNT_1": 10
+      }
+    },
+    {
+      "id": "405003",
+      "name": "高级战靴制作图",
+      "grade": "B",
+      "spritepath": "Sprite/ItemSprite/shoe_blueprin",
+      "intro": "这把手枪的设计者真TM是个疯子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 40,
+        "ID_1": "300006",
+        "COUNT_1": 20,
+        "ID_2": "300005",
+        "COUNT_2": 1
+      }
+    },
+    {
+      "id": "405004",
+      "name": "顶级战靴制作图",
+      "grade": "A",
+      "spritepath": "Sprite/ItemSprite/shoe_blueprin",
+      "intro": "就是一根棍子！",
+      "property": {
+        "NUM": 3,
+        "ID_0": "300001",
+        "COUNT_0": 50,
+        "ID_1": "300006",
+        "COUNT_1": 25,
+        "ID_2": "300005",
+        "COUNT_2": 3
       }
     }
   ]
