@@ -41,20 +41,26 @@ namespace Solider {
                 private void OnToggleEquipment(bool isOn) {
                     if (!isOn) return;
                     // end if
-                    SwitchPack("equip");
+                    SwitchPack(ConstConfig.EQUIP);
                 } // end OnToggleEquipment
 
                 private void OnToggleConsumable(bool isOn) {
                     if (!isOn) return;
                     // end if
-                    SwitchPack("consume");
+                    SwitchPack(ConstConfig.CONSUME);
                 } // end OnToggleEquipment
 
                 private void OnToggleStuff(bool isOn) {
                     if (!isOn) return;
                     // end if
-                    SwitchPack("stuff");
+                    SwitchPack(ConstConfig.STUFF);
                 } // end OnToggleEquipment
+
+                private void OnTogglePrint(bool isOn) {
+                    if (!isOn) return;
+                    // end if
+                    SwitchPack(ConstConfig.PRINT);
+                } // end OnTogglePrint
 
                 private void LoseItem() {
                     currentGid = -1;
@@ -151,6 +157,7 @@ namespace Solider {
                     transform.Find("GridPanel/ToggleGroup/Equipment").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleEquipment);
                     transform.Find("GridPanel/ToggleGroup/Consumable").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleConsumable);
                     transform.Find("GridPanel/ToggleGroup/Stuff").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleStuff);
+                    transform.Find("GridPanel/ToggleGroup/Blueprint").GetComponent<Toggle>().onValueChanged.AddListener(OnTogglePrint);
                     transform.Find("ArrangeBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnArrangeBtn(); });
                     transform.Find("UseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickUseBtn(); });
                     transform.Find("DiscardBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickDiscardBtn(); });

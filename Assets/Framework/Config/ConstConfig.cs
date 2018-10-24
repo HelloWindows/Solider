@@ -54,6 +54,10 @@ namespace Framework {
                 /// 材料
                 /// </summary>
                 public const string STUFF = "stuff";
+                /// <summary>
+                /// 制作图
+                /// </summary>
+                public const string PRINT = "print";
             } // end class ConstConfig 
         } // end namespace Const 
     } // end namespace Config

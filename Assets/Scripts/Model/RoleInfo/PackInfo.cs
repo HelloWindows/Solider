@@ -24,6 +24,7 @@ namespace Solider {
                 packDict.Add(ConstConfig.EQUIP, equipPack);
                 packDict.Add(ConstConfig.CONSUME, new Pack(username, roleindex, ConstConfig.CONSUME));
                 packDict.Add(ConstConfig.STUFF, new Pack(username, roleindex, ConstConfig.STUFF));
+                packDict.Add(ConstConfig.PRINT, new Pack(username, roleindex, ConstConfig.PRINT));
             } // end PlayerInfo
 
             public IWearInfo GetWearInfo() {
