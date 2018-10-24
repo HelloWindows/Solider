@@ -96,8 +96,9 @@ namespace Framework {
                 sqliteDB.Insert("player_table", new string[] { ToValue(username), ToValue(passwords) });
                 sqliteDB.CreateTable("role_list_table_" + username, new string[] { "roleindex", "name", "roletype" },
                     new string[] { "int", "text", "text" });
-                sqliteDB.CreateTable("role_equip_table_" + username, new string[] { "roleindex", ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES }, 
-                    new string[] { "int", "text", "text", "text" });
+                sqliteDB.CreateTable("role_equip_table_" + username, new string[] { "roleindex",
+                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES }, 
+                    new string[] { "int", "text", "text", "text", "text", "text", "text", "text" });
                 sqliteDB.CreateTable("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
                     new string[] { "int", "int", "text", "text", "text", "int" });
                 sqliteDB.Disconnect();
@@ -113,8 +114,9 @@ namespace Framework {
             public static void CreateRole(string username, int roleindex, string name, string roleType) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(roleindex), ToValue(name), ToValue(roleType) });
-                sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(roleindex), ToValue("0"), ToValue("0"), ToValue("0") });                          
-                string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF };
+                sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(roleindex), ToValue("0"), ToValue("0"),
+                    ToValue("0"), ToValue("0"), ToValue("0"), ToValue("0"), ToValue("0") });                          
+                string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF, ConstConfig.PRINT };
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     for (int j = 0; j < packTypeList.Length; j++) {
                         sqliteDB.Insert("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
@@ -190,7 +192,8 @@ namespace Framework {
                 dict = new Dictionary<string, string>();
                 string tableName = "role_equip_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] { "weapon", "armor", "shoes" }, 
+                SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] {
+                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES }, 
                     new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
@@ -198,9 +201,13 @@ namespace Framework {
                 } // end if
                 try {
                     while (reader.Read()) {
-                        dict["weapon"] = reader.GetString(reader.GetOrdinal("weapon"));
-                        dict["armor"] = reader.GetString(reader.GetOrdinal("armor"));
-                        dict["shoes"] = reader.GetString(reader.GetOrdinal("shoes"));
+                        dict[ConstConfig.WEAPON] = reader.GetString(reader.GetOrdinal(ConstConfig.WEAPON));
+                        dict[ConstConfig.NECKLACE] = reader.GetString(reader.GetOrdinal(ConstConfig.NECKLACE));
+                        dict[ConstConfig.RING] = reader.GetString(reader.GetOrdinal(ConstConfig.RING));
+                        dict[ConstConfig.WING] = reader.GetString(reader.GetOrdinal(ConstConfig.WING));
+                        dict[ConstConfig.ARMOE] = reader.GetString(reader.GetOrdinal(ConstConfig.ARMOE));
+                        dict[ConstConfig.PANTS] = reader.GetString(reader.GetOrdinal(ConstConfig.PANTS));
+                        dict[ConstConfig.SHOES] = reader.GetString(reader.GetOrdinal(ConstConfig.SHOES));
                     } // end while
                 } catch (Exception ex) {
                     ConsoleTool.SetConsole(ex.ToString());

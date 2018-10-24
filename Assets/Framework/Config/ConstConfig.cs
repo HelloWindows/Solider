@@ -13,7 +13,6 @@ namespace Framework {
                 public const float STANDARD_HEIGHT = 640f;
 
                 public const int GRID_COUNT = 25;
-                public static readonly string[] packTypeList = { "equip", "consume", "stuff" };
                 /// <summary>
                 /// 战士
                 /// </summary>
@@ -35,9 +34,25 @@ namespace Framework {
                 /// </summary>
                 public const string WEAPON = "weapon";
                 /// <summary>
+                /// 项链
+                /// </summary>
+                public const string NECKLACE = "necklace";
+                /// <summary>
+                /// 戒指
+                /// </summary>
+                public const string RING = "ring";
+                /// <summary>
+                /// 翅膀
+                /// </summary>
+                public const string WING = "wing";
+                /// <summary>
                 /// 盔甲
                 /// </summary>
                 public const string ARMOE = "armor";
+                /// <summary>
+                /// 裤子
+                /// </summary>
+                public const string PANTS = "pants"; 
                 /// <summary>
                 /// 鞋子
                 /// </summary>

@@ -107,16 +107,24 @@ namespace Solider {
                 }// end 
 
                 switch (role) {
-                    case "Shooter":
+                    case ConstConfig.SWORDMAN:
+                        infoBuilder.Append("剑客");
+                        break;
+
+                    case ConstConfig.ARCHER:
                         infoBuilder.Append("射手");
                         break;
 
-                    case "Solider":
-                        infoBuilder.Append("战士");
+                    case ConstConfig.MAGICIAN:
+                        infoBuilder.Append("魔法师");
+                        break;
+
+                    case ConstConfig.ALLROLE:
+                        infoBuilder.Append("全部");
                         break;
 
                     default:
-                        infoBuilder.Append("全部");
+                        infoBuilder.Append("Bug!!!");
                         break;
                 } // end switch
                 infoBuilder.Append("</color>");

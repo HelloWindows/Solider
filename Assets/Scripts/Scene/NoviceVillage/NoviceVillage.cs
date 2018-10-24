@@ -114,4 +114,4 @@ namespace Solider {
             } // end CreateMainCharacter
         } // end class NoviceVillage 
     } // end namespace Scene
-} // end namespace Custom
+} // end namespace Solider

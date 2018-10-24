@@ -18,7 +18,8 @@ namespace Solider {
             private readonly string username;
             private readonly string packType;
             private readonly string roleType;
-            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
+            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING,
+                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
 
             private string[] idList;
             private Dictionary<string, string> wearDict;
