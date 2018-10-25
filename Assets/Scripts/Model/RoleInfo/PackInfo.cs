@@ -16,7 +16,8 @@ namespace Solider {
         public class PackInfo : IPackInfo {
             private EquipPack equipPack;
             private Dictionary<string, IPack> packDict;
-            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
+            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING,
+                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
 
             public PackInfo(string username, int roleindex, string name, string roleType) {
                 packDict = new Dictionary<string, IPack>();

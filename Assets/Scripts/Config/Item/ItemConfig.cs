@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config.Const;
 using Framework.Tools;
 using LitJson;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Solider {
             private readonly Dictionary<string, ItemInfo> stuffInfo;
             private readonly Dictionary<string, ItemInfo> equipInfo;
             private readonly Dictionary<string, ItemInfo> consumeInfo;
+            private readonly Dictionary<string, ItemInfo> bluePrintInfo;
 
             public static ItemConfig instance {
                 get {
@@ -29,13 +31,16 @@ namespace Solider {
                 stuffInfo = new Dictionary<string, ItemInfo>();
                 equipInfo = new Dictionary<string, ItemInfo>();
                 consumeInfo = new Dictionary<string, ItemInfo>();
+                bluePrintInfo = new Dictionary<string, ItemInfo>();
                 AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                 string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
                 string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
                 string consumeJson = assetbundle.LoadAsset<TextAsset>("assets/config/consumable_res_config.json").text;
+                string bluePrintJson = assetbundle.LoadAsset<TextAsset>("assets/config/blueprint_res_config.json").text;
                 InitStuffConfig(stuffJson);
                 InitEquipConfig(equipJson);
                 InitConsumeConfig(consumeJson);
+                InitBluePrintConfig(bluePrintJson);
                 assetbundle.Unload(false);
             } // end ItemConfig
 
@@ -43,8 +48,7 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    StuffInfo info = new StuffInfo(list[i]);
-                    stuffInfo.Add((string)list[i]["id"], info);
+                    stuffInfo.Add((string)list[i]["id"], new StuffInfo(list[i]));
                 } // end for
             } // end InitStuffConfig
 
@@ -52,8 +56,7 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    EquipInfo info = new EquipInfo(list[i]);
-                    equipInfo.Add((string)list[i]["id"], info);
+                    equipInfo.Add((string)list[i]["id"], new EquipInfo(list[i]));
                 } // end for
             } // end InitEquipConfig
 
@@ -61,8 +64,15 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    ConsumeInfo info = new ConsumeInfo(list[i]);
-                    consumeInfo.Add((string)list[i]["id"], info);
+                    consumeInfo.Add((string)list[i]["id"], new ConsumeInfo(list[i]));
+                } // end for
+            } // end InitConsumeConfig
+
+            private void InitBluePrintConfig(string jsonInfo) {
+                JsonData data = JsonMapper.ToObject(jsonInfo);
+                JsonData list = data["itemlist"];
+                for (int i = 0; i < list.Count; i++) {
+                    bluePrintInfo.Add((string)list[i]["id"], new BluePrintInfo(list[i]));
                 } // end for
             } // end InitConsumeConfig
             #endregion
@@ -74,6 +84,8 @@ namespace Solider {
                 // end if
                 if (consumeInfo.ContainsKey(id)) return consumeInfo[id];
                 // end if
+                if (bluePrintInfo.ContainsKey(id)) return bluePrintInfo[id];
+                // end if
                 return null;
             } // end GetItemInfo
 
@@ -84,15 +96,19 @@ namespace Solider {
                 // end if
                 if (consumeInfo.ContainsKey(id)) return consumeInfo[id].grade;
                 // end if
+                if (bluePrintInfo.ContainsKey(id)) return bluePrintInfo[id].grade;
+                // end if
                 return "Z";
             } // end GetItemGradeWithID
 
             public string GetItemType(string id) {
-                if (stuffInfo.ContainsKey(id)) return "stuff";
+                if (stuffInfo.ContainsKey(id)) return ConstConfig.STUFF;
                 // end if
-                if (equipInfo.ContainsKey(id)) return "equip";
+                if (equipInfo.ContainsKey(id)) return ConstConfig.EQUIP;
                 // end if
-                if (consumeInfo.ContainsKey(id)) return "consume";
+                if (consumeInfo.ContainsKey(id)) return ConstConfig.CONSUME;
+                // end if
+                if (bluePrintInfo.ContainsKey(id)) return ConstConfig.PRINT;
                 // end if
                 return "null";
             } // end GetItemTypeWithID

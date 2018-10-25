@@ -30,8 +30,7 @@ namespace Solider {
                 } // end SetSprite
 
                 public void SetCount(int count) {
-                    if (count <= 0) {
-                        this.count = 0;
+                    if (count <= 1) {
                         text.text = "";
                         return;
                     } // end if

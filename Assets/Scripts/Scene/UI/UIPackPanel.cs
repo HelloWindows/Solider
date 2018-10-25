@@ -94,7 +94,7 @@ namespace Solider {
                     } else {
                         LoseItem();
                     }// end if
-                } // end OnClickGrid
+                } // end OnSelectedGrid
 
                 private void OnArrangeBtn() {
                     currentPack.ArrangePack();

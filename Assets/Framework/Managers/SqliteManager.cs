@@ -138,10 +138,11 @@ namespace Framework {
                     SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "20000" + i, "D", 66);
                 } // end for
                 index = 0;
-                for (int i = 1; i < 5; i++)
-                {
+                for (int i = 1; i < 5; i++) {
                     SetPackInfoWithID(username, roleindex, ConstConfig.STUFF, index++, "30000" + i, "D", 99);
                 } // end for
+                SetPackInfoWithID(username, roleindex, ConstConfig.PRINT, index++, "400001", "D", 1);
+                SetPackInfoWithID(username, roleindex, ConstConfig.PRINT, index++, "400002", "D", 1);
             } // end CreateRole
             /// <summary>
             /// 删除角色数据
@@ -269,10 +270,11 @@ namespace Framework {
             /// <param name="type"> 背包类型 </param>
             /// <param name="dict"> 排序后的背包数据 </param>
             public static void GetArrangePackInfo(string username, int roleindex, string type, ref Dictionary<int, string[]> dict) {
-                string tableName = "pack_list_table_" + roleindex;
+                string tableName = "pack_list_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader = sqliteDB.SelectOrder(tableName, new string[] { "id", "count" }, 
-                    new string[] { "gid", "type" }, new string[] { "<", "=" }, new string[] { ToValue("25"), ToValue(type) }, new string[] { "grade" }, "ASC");
+                    new string[] { "gid", "type", "roleindex" }, new string[] { "<", "=", "=" }, 
+                    new string[] { ToValue("25"), ToValue(type), ToValue(roleindex) }, new string[] { "grade" }, "ASC");
                 if (null == reader) {
                     sqliteDB.Disconnect();
                     dict = new Dictionary<int, string[]>();

@@ -26,7 +26,8 @@ namespace Solider {
                 private string selected;
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
-                private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.ARMOE, ConstConfig.SHOES };
+                private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE,
+                    ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
                 private Dictionary<string, string> dict;
 
                 public string name { get; private set; }

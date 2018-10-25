@@ -10,8 +10,8 @@ namespace Solider {
     namespace Config {
         public class BluePrintInfo : ItemInfo {
 
-            private string[] stuffIDArr;
-            private int[] stuffCountArr;
+            public readonly string[] stuffIDArr;
+            public readonly int[] stuffCountArr;
 
             public BluePrintInfo(JsonData data) {
                 id = (string)data["id"];
@@ -23,7 +23,6 @@ namespace Solider {
                 int num = (int)property["NUM"];
                 stuffIDArr = new string[num];
                 stuffCountArr = new int[num];
-
                 for (int i = 0; i < num; i++) {
                     stuffIDArr[i] = (string)property["ID_" + i];
                     stuffCountArr[i] = (int)property["COUNT_" + i];

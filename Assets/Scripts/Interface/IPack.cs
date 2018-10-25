@@ -33,6 +33,12 @@ namespace Solider {
             /// <returns> 物品数量 </returns>
             int GetCountForGrid(int gid);
             /// <summary>
+            /// 获取背包中某物品的数量
+            /// </summary>
+            /// <param name="itemID"></param>
+            /// <returns> 物品数量 </returns>
+            int GetCountForID(string itemID);
+            /// <summary>
             /// 置换两个格子的物品
             /// </summary>
             /// <param name="gid"> 格子 id </param>

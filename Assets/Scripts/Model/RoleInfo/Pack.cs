@@ -28,7 +28,6 @@ namespace Solider {
                 countList = new int[ConstConfig.GRID_COUNT];
                 Dictionary<int, string[]> dict;
                 SqliteManager.GetPackInfoWithID(username, roleindex, packType, out dict);
-
                 for (int i = 0; i < ConstConfig.GRID_COUNT; i++) {
                     int count = 0;
                     if (!dict.ContainsKey(i)) {
@@ -44,8 +43,7 @@ namespace Solider {
             } // end Pack
 
             public void PackItem(string itemID, int count) {
-                string type = Configs.itemConfig.GetItemType(itemID);
-                if (packType != type) return;
+                if (packType != Configs.itemConfig.GetItemType(itemID)) return;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != "0") continue;
@@ -73,6 +71,15 @@ namespace Solider {
                 // end if
                 return countList[gid];
             } // end GetConsumeCountWithGid
+
+            public int GetCountForID(string itemID) {
+                int sum = 0;
+                for (int i = 0; i < idList.Length; i++) {
+                    if (itemID == idList[i]) sum += countList[i];
+                    // end if
+                } // end for
+                return sum;
+            } // end GetCountForID
 
             public void ExchangeGridInfoWithGid(int gid, int target) {
                 if (gid < 0 || gid >= idList.Length || target < 0 || target >= idList.Length) return;

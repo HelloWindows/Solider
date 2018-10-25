@@ -61,8 +61,7 @@ namespace Solider {
             } // end Pack
 
             public void PackItem(string itemID, int count) {
-                string type = Configs.itemConfig.GetItemType(itemID);
-                if (this.packType != type) return;
+                if (packType != Configs.itemConfig.GetItemType(itemID)) return;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != "0") continue;
@@ -96,8 +95,20 @@ namespace Solider {
             } // end GetItemInfoWithGid
 
             public int GetCountForGrid(int gid) {
-                return 0;
+                if (gid < 0 || gid >= idList.Length) return 0;
+                // end if
+                if (idList[gid] == "0") return 0;
+                // end if
+                return 1;
             } // end GetConsumeCountWithGid
+
+            public int GetCountForID(string itemID) {
+                for (int i = 0; i < idList.Length; i++) {
+                    if (itemID == idList[i]) return 1;
+                    // end if
+                } // end for
+                return 0;
+            } // end GetCountForID
 
             public void ExchangeGridInfoWithGid(int gid, int target) {
                 if (gid < 0 || gid >= idList.Length || target < 0 || target >= idList.Length) return;
