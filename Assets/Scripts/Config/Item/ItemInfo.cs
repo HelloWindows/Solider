@@ -13,6 +13,7 @@ namespace Solider {
             public string id { get; protected set; }
             public string name { get; protected set; }
             public string grade { get; protected set; }
+            public int maximum { get; protected set; }
             public string spritepath { get; protected set; }
             public string intro { get; protected set; }
 

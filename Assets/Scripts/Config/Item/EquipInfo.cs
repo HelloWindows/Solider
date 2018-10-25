@@ -32,6 +32,7 @@ namespace Solider {
                 id = (string)data["id"];
                 name = (string)data["name"];
                 grade = (string)data["grade"];
+                maximum = (int)data["maximum"];
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];
 

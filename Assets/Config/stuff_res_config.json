@@ -4,6 +4,7 @@
       "id": "300001",
       "name": "白宝石",
       "grade": "D",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/gem_white",
       "intro": "制作低级装备的材料"
     },
@@ -11,6 +12,7 @@
       "id": "300002",
       "name": "黑宝石",
       "grade": "C",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/gem_black",
       "intro": "制作中级装备的材料"
     },
@@ -18,6 +20,7 @@
       "id": "300003",
       "name": "红宝石",
       "grade": "B",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/gem_red",
       "intro": "制作高级装备的材料"
     },
@@ -25,6 +28,7 @@
       "id": "300004",
       "name": "橙宝石",
       "grade": "A",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/gem_orange",
       "intro": "制作顶级装备的材料"
     },
@@ -32,6 +36,7 @@
       "id": "300005",
       "name": "能量石",
       "grade": "A",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/hearthstone",
       "intro": "里面蓄含巨大能量"
     },
@@ -39,6 +44,7 @@
       "id": "300006",
       "name": "铁块",
       "grade": "D",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/pact_white",
       "intro": "里面蓄含巨大能量"
     },
@@ -46,6 +52,7 @@
       "id": "300007",
       "name": "蓝矿石",
       "grade": "C",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/pact_blue",
       "intro": "制作低级装备的材料"
     },
@@ -53,6 +60,7 @@
       "id": "300008",
       "name": "红矿石",
       "grade": "B",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/pact_red",
       "intro": "制作低级装备的材料"
     },

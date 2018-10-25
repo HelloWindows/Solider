@@ -45,14 +45,41 @@ namespace Solider {
             public void PackItem(string itemID, int count) {
                 if (packType != Configs.itemConfig.GetItemType(itemID)) return;
                 // end if
+                ItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
+                if (null == info) return;
+                // end if
+                for (int i = 0; i < idList.Length; i++) {
+                    if (idList[i] != itemID) continue; 
+                    // end if
+                    if (countList[i] >= info.maximum) continue;
+                    // end if
+                    int sum = countList[i] + count;
+                    if (sum > info.maximum) {
+                        countList[i] = info.maximum;
+                        count = sum - info.maximum;
+                        WriteGridInfo(i, idList[i], countList[i]);
+                    } else {
+                        countList[i] = sum;
+                        WriteGridInfo(i, idList[i], countList[i]);
+                        return;
+                    }// end if
+                } // end for
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != "0") continue;
-                    // end if
+                    // end if                  
                     idList[i] = itemID;
-                    countList[i] += count;
+                    if (count >= info.maximum) {
+                        count -= info.maximum;
+                        countList[i] = info.maximum;
+                        WriteGridInfo(i, idList[i], countList[i]);
+                        continue;
+                    } else {
+                        countList[i] = count;
+                    }// end if
                     WriteGridInfo(i, idList[i], countList[i]);
                     return;
                 } // end for
+                // 背包已满
             } // end PackItem
 
             public void UseItemWithGid(int gid) {
