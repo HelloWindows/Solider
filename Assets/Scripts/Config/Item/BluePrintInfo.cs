@@ -10,6 +10,7 @@ namespace Solider {
     namespace Config {
         public class BluePrintInfo : ItemInfo {
 
+            public readonly string targetID;
             public readonly string[] stuffIDArr;
             public readonly int[] stuffCountArr;
 
@@ -21,6 +22,7 @@ namespace Solider {
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];
                 JsonData property = data["property"];
+                targetID = (string)property["ID"];
                 int num = (int)property["NUM"];
                 stuffIDArr = new string[num];
                 stuffCountArr = new int[num];

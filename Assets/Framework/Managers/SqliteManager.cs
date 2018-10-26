@@ -126,23 +126,25 @@ namespace Framework {
                 sqliteDB.Disconnect();
 
                 int index = 0;
-                for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + i, "D", 0);
-                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10000" + (i + 4), "D", 0);
-                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10010" + i, "D", 0);
-                    SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "10020" + i, "D", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "100001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "101001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "102001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "103001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "104001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "105001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "106001", "E", 0);
+                index = 0;
+                SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "200001", "D", 10);
+                SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "200002", "C", 5);
+                SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "200003", "B", 1);
+                index = 0;
+                for (int i = 1; i < 10; i++) {
+                    SetPackInfoWithID(username, roleindex, ConstConfig.STUFF, index++, "30000" + i, "D", 20);
                 } // end for
                 index = 0;
-                for (int i = 1; i < 5; i++)
-                {
-                    SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "20000" + i, "D", 66);
-                } // end for
-                index = 0;
-                for (int i = 1; i < 5; i++) {
-                    SetPackInfoWithID(username, roleindex, ConstConfig.STUFF, index++, "30000" + i, "D", 99);
-                } // end for
                 SetPackInfoWithID(username, roleindex, ConstConfig.PRINT, index++, "400001", "D", 1);
                 SetPackInfoWithID(username, roleindex, ConstConfig.PRINT, index++, "400002", "D", 1);
+                SetPackInfoWithID(username, roleindex, ConstConfig.PRINT, index++, "400003", "D", 1);
             } // end CreateRole
             /// <summary>
             /// 删除角色数据

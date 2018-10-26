@@ -24,6 +24,7 @@ namespace Solider {
                 private Text cellText;
                 private Text infoText;
                 private string selected;
+                private GameObject selector;
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
                 private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE,
@@ -74,6 +75,8 @@ namespace Solider {
                     ItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
                     if (null == info) return;
                     // end if
+                    selector.transform.position = cellDict[type].transform.position;
+                    selector.SetActive(true);
                     infoPanel.SetActive(true);
                     cellText.text = info.ToString();
                 } // end OnPointerDownCell
@@ -85,6 +88,7 @@ namespace Solider {
                     wear.TakeOffEquip(selected);
                     selected = "";
                     UpdateShowInfo();
+                    selector.SetActive(false);
                 } // end OnClickTakeOffBtn
 
                 private void OnClickCloseBtn() {
@@ -111,6 +115,8 @@ namespace Solider {
                         cellDict[type] = transform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
                         cellDict[type].AddAction(delegate () { OnSelectedCell(type); });
                     } // end for
+                    selector = transform.Find("Selector").gameObject;
+                    selector.SetActive(false);
                     infoPanel = transform.Find("InfoPanel").gameObject;
                     cellText = infoPanel.transform.Find("InfoText").GetComponent<Text>();
                     infoPanel.SetActive(false);

@@ -11,25 +11,26 @@ using Framework.Config.Const;
 namespace Solider {
     namespace Config {
         public class ConsumeInfo : ItemInfo {
-            public string role { get; private set; }
+            public readonly string role;
 
-            public int HP { get; private set; }
-            public int MP { get; private set; }
-            public int HOT { get; private set; }
-            public int MOT { get; private set; }
-            public int ATK { get; private set; }
-            public int MGK { get; private set; }
-            public float ASP { get; private set; }
-            public float MSP { get; private set; }
-            public float CRT { get; private set; }
+            public readonly int HP;
+            public readonly int MP;
+            public readonly int HOT;
+            public readonly int MOT;
+            public readonly int ATK;
+            public readonly int MGK;
+            public readonly float ASP;
+            public readonly float MSP;
+            public readonly float CRT;
 
-            public float LOT { get; private set; } // 持续时间
-            public float CD { get; private set; } // 冷却时间
+            public readonly float LOT; // 持续时间
+            public readonly float CD; // 冷却时间
 
             public ConsumeInfo(JsonData data) {
                 id = (string)data["id"];
                 name = (string)data["name"];
                 grade = (string)data["grade"];
+                maximum = (int)data["maximum"];
                 role = (string)data["role"];
                 spritepath = (string)data["spritepath"];
                 intro = (string)data["intro"];

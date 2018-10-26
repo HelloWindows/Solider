@@ -8,6 +8,7 @@
       "spritepath": "Sprite/ItemSprite/sword_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -23,6 +24,7 @@
       "spritepath": "Sprite/ItemSprite/sword_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -38,6 +40,7 @@
       "spritepath": "Sprite/ItemSprite/sword_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "100004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 80,
@@ -55,6 +58,7 @@
       "spritepath": "Sprite/ItemSprite/sword_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "100005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 100,
@@ -72,6 +76,7 @@
       "spritepath": "Sprite/ItemSprite/bow_blueprint",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100007",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -87,6 +92,7 @@
       "spritepath": "Sprite/ItemSprite/bow_blueprint",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100008",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -102,6 +108,7 @@
       "spritepath": "Sprite/ItemSprite/bow_blueprint",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "100009",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 80,
@@ -119,6 +126,7 @@
       "spritepath": "Sprite/ItemSprite/bow_blueprint",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "100010",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 100,
@@ -136,6 +144,7 @@
       "spritepath": "Sprite/ItemSprite/staff_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100012",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -151,6 +160,7 @@
       "spritepath": "Sprite/ItemSprite/staff_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "100013",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -166,6 +176,7 @@
       "spritepath": "Sprite/ItemSprite/staff_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "100014",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 80,
@@ -183,6 +194,7 @@
       "spritepath": "Sprite/ItemSprite/staff_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "100015",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 100,
@@ -200,6 +212,7 @@
       "spritepath": "Sprite/ItemSprite/necklace_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "101002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 10,
@@ -215,6 +228,7 @@
       "spritepath": "Sprite/ItemSprite/necklace_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "101003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -230,6 +244,7 @@
       "spritepath": "Sprite/ItemSprite/necklace_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "101004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -247,6 +262,7 @@
       "spritepath": "Sprite/ItemSprite/necklace_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "101005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 50,
@@ -264,6 +280,7 @@
       "spritepath": "Sprite/ItemSprite/ring_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "102002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 10,
@@ -279,6 +296,7 @@
       "spritepath": "Sprite/ItemSprite/ring_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "102003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -294,6 +312,7 @@
       "spritepath": "Sprite/ItemSprite/ring_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "102004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -311,6 +330,7 @@
       "spritepath": "Sprite/ItemSprite/ring_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "102005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 50,
@@ -328,6 +348,7 @@
       "spritepath": "Sprite/ItemSprite/armor_blueprint",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "103002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -343,6 +364,7 @@
       "spritepath": "Sprite/ItemSprite/armor_blueprint",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "103003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -358,6 +380,7 @@
       "spritepath": "Sprite/ItemSprite/armor_blueprint",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "103004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 80,
@@ -375,6 +398,7 @@
       "spritepath": "Sprite/ItemSprite/armor_blueprint",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "103005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 100,
@@ -392,6 +416,7 @@
       "spritepath": "Sprite/ItemSprite/pants_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "104002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -407,6 +432,7 @@
       "spritepath": "Sprite/ItemSprite/pants_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "104003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -418,10 +444,11 @@
       "id": "404003",
       "name": "高级裤子制作图",
       "grade": "B",
-      "maximum": 1, 
+      "maximum": 1,
       "spritepath": "Sprite/ItemSprite/pants_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "104004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 80,
@@ -439,6 +466,7 @@
       "spritepath": "Sprite/ItemSprite/pants_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "104005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 100,
@@ -456,6 +484,7 @@
       "spritepath": "Sprite/ItemSprite/shoe_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "105002",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 10,
@@ -471,6 +500,7 @@
       "spritepath": "Sprite/ItemSprite/shoe_blueprin",
       "intro": "应该还打不到飞机吧",
       "property": {
+        "ID": "105003",
         "NUM": 2,
         "ID_0": "300001",
         "COUNT_0": 20,
@@ -486,6 +516,7 @@
       "spritepath": "Sprite/ItemSprite/shoe_blueprin",
       "intro": "这把手枪的设计者真TM是个疯子！",
       "property": {
+        "ID": "105004",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 40,
@@ -503,6 +534,7 @@
       "spritepath": "Sprite/ItemSprite/shoe_blueprin",
       "intro": "就是一根棍子！",
       "property": {
+        "ID": "105005",
         "NUM": 3,
         "ID_0": "300001",
         "COUNT_0": 50,

@@ -85,14 +85,26 @@ namespace Solider {
                 infoBuilder.Append("<size=18>");
 
                 switch (type) {
-                    case "weapon":
+                    case ConstConfig.WEAPON:
                         infoBuilder.Append("武器");
                         break;
-                    case "armor":
+                    case ConstConfig.NECKLACE:
+                        infoBuilder.Append("项链");
+                        break;
+                    case ConstConfig.RING:
+                        infoBuilder.Append("戒指");
+                        break;
+                    case ConstConfig.WING:
+                        infoBuilder.Append("翅膀");
+                        break;
+                    case ConstConfig.ARMOE:
                         infoBuilder.Append("盔甲");
                         break;
-                    case "shoes":
-                        infoBuilder.Append("战靴");
+                    case ConstConfig.PANTS:
+                        infoBuilder.Append("裤子");
+                        break;
+                    case ConstConfig.SHOES:
+                        infoBuilder.Append("鞋子");
                         break;
                     default:
                         infoBuilder.Append("无法使用");

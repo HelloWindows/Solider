@@ -11,23 +11,23 @@ using UnityEngine;
 namespace Solider {
     namespace Config {
         public class BuffInfo {
-            public bool isDebuff { get; private set; } // 是否是减益 buff (用来判读是否应该被净化)
-            public bool isPassive { get; private set; } // 是否是被动 buff (被动技能就是一个buff)
-            public bool removable { get; private set; } // 可以被去除 (有些buff可以被净化)
-            public int HOT { get; private set; } // hp 恢复
-            public int MOT { get; private set; } // mp 恢复
-            public int HOTP { get; private set; } // hp 恢复百分百
-            public int MOTP { get; private set; } // mp 恢复百分百
-            public float ATKP { get; private set; } // 物理攻击百分百
-            public float MGKP { get; private set; } // 物理攻击率百分百
-            public float DEFP { get; protected set; } // 物理防御百分百
-            public float RGSP { get; protected set; } // 魔法防御百分百
-            public float ASPP { get; private set; } // 攻速百分百
-            public float MSPP { get; private set; } // 移速百分百
-            public float HIT { get; private set; } // 命中率
-            public float AVD { get; private set; } // 闪避率
-            public float CRT { get; private set; } // 暴击率
-            public float LOT { get; private set; } // 持续时间
+            public readonly bool isDebuff; // 是否是减益 buff (用来判读是否应该被净化)
+            public readonly bool isPassive; // 是否是被动 buff (被动技能就是一个buff)
+            public readonly bool removable; // 可以被去除 (有些buff可以被净化)
+            public readonly int HOT; // hp 恢复
+            public readonly int MOT; // mp 恢复
+            public readonly int HOTP; // hp 恢复百分百
+            public readonly int MOTP; // mp 恢复百分百
+            public readonly float ATKP; // 物理攻击百分百
+            public readonly float MGKP; // 物理攻击率百分百
+            public readonly float DEFP; // 物理防御百分百
+            public readonly float RGSP; // 魔法防御百分百
+            public readonly float ASPP; // 攻速百分百
+            public readonly float MSPP; // 移速百分百
+            public readonly float HIT; // 命中率
+            public readonly float AVD; // 闪避率
+            public readonly float CRT; // 暴击率
+            public readonly float LOT; // 持续时间
         } // end class BuffInfo
     } // end namespace Config
 } // end namespace Custom 

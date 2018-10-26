@@ -68,6 +68,7 @@
       "id": "300009",
       "name": "金矿石",
       "grade": "A",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/pact_yellow",
       "intro": "制作低级装备的材料"
     },
@@ -75,6 +76,7 @@
       "id": "300010",
       "name": "羽毛",
       "grade": "A",
+      "maximum": 20, 
       "spritepath": "Sprite/ItemSprite/plume",
       "intro": "制作翅膀的材料"
     }

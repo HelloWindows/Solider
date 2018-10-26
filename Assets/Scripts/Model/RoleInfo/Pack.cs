@@ -20,6 +20,16 @@ namespace Solider {
             private string[] idList;
             private int[] countList;
 
+            public bool IsFull {
+                get {
+                    for (int i = 0; i < idList.Length; i++) {
+                        if (idList[i] == "0") return false;
+                        // end if
+                    } // end for
+                    return true;
+                } // end get
+            } // end IsFull
+
             public Pack(string username, int roleindex, string packType) {
                 this.packType = packType;
                 this.username = username;
@@ -82,10 +92,32 @@ namespace Solider {
                 // 背包已满
             } // end PackItem
 
+            public bool EnoughWithIDAndCount(string itemID, int count) {
+                if (GetCountForID(itemID) < count) return false;
+                // end if
+                return true;
+            } // end EnoughWithIDAndCount
+
             public void UseItemWithGid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return;
                 // end if
             } // end UseItemWithGid
+
+            public void ExpendItemWithID(string itemID, int count) {
+                for (int i = 0; i < idList.Length; i++) {
+                    if (idList[i] != itemID) continue;
+                    // end if
+                    if (count < countList[i]) {
+                        countList[i] -= count;
+                        WriteGridInfo(i, idList[i], countList[i]);
+                        return;
+                    } // end if
+                    count -= countList[i];
+                    idList[i] = "0";
+                    countList[i] = 0;
+                    WriteGridInfo(i, idList[i], countList[i]);
+                } // end for
+            } // end ExpendItemWithID
 
             public ItemInfo GetItemInfoForGrid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return null;

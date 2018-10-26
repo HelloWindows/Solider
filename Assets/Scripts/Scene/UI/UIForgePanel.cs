@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Config.Const;
 using Framework.FSM.Interface;
+using Framework.Manager;
 using Framework.Tools;
 using Solider.Config;
 using Solider.Interface;
@@ -26,6 +27,7 @@ namespace Solider {
                 private UICell buleprint;
                 private UICell[] cellArray;
                 private UICell[] stuffArray;
+                private BluePrintInfo printInfo;
 
                 public UIForgePanel(string name, IFSM fsm, RectTransform parent) {
                     this.fsm = fsm;
@@ -62,6 +64,7 @@ namespace Solider {
                     BluePrintInfo info = blueprintPack.GetItemInfoForGrid(id) as BluePrintInfo;
                     if (null == info) return;
                     // end if
+                    printInfo = info;
                     buleprint.SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
                     int number = info.stuffCountArr.Length;
                     int x = (number - 1) * 40;
@@ -86,7 +89,41 @@ namespace Solider {
                 } // end OnClickInfoBtn
 
                 private void OnClickForgeBtn() {
-
+                    if (null == printInfo) {
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择制作图！");
+                        return;
+                    } // end if
+                    if (GameManager.playerInfo.pack.GetItemPack(ConstConfig.EQUIP).IsFull) {
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("装备背包已满！");
+                        return;
+                    } // end if
+                    for (int i = 0; i < printInfo.stuffIDArr.Length; i++) {
+                        if (false == GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(
+                            printInfo.stuffIDArr[i], printInfo.stuffCountArr[i])) {
+                            ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("材料不够！");
+                            return;
+                        } // end if
+                    } // end for
+                    GameManager.playerInfo.pack.GetItemPack(ConstConfig.PRINT).ExpendItemWithID(printInfo.id, 1);
+                    for (int i = 0; i < printInfo.stuffIDArr.Length; i++) {
+                        GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(
+                            printInfo.stuffIDArr[i], printInfo.stuffCountArr[i]);
+                    } // end for
+                    GameManager.playerInfo.pack.GetItemPack(ConstConfig.EQUIP).PackItem(printInfo.targetID, 1);
+                    printInfo = null;
+                    buleprint.SetUIItem(null, 0);
+                    for (int i = 0; i < stuffArray.Length; i++) {
+                        stuffArray[i].gameObject.SetActive(false);
+                    } // end for
+                    for (int i = 0; i < cellArray.Length; i++) {
+                        if (null == blueprintPack.GetItemInfoForGrid(i)) cellArray[i].HideItem();
+                        // end if
+                    } // end for
+                    ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("锻造成功！");
                 } // end OnClickForgeBtn
 
                 public void DoRemove() {

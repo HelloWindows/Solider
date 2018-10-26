@@ -18,11 +18,21 @@ namespace Solider {
             private readonly string username;
             private readonly string packType;
             private readonly string roleType;
-            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING,
+            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
                 ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
 
             private string[] idList;
             private Dictionary<string, string> wearDict;
+
+            public bool IsFull {
+                get {
+                    for (int i = 0; i < idList.Length; i++) {
+                        if (idList[i] == "0") return false;
+                        // end if
+                    } // end for
+                    return true;
+                } // end get
+            } // end IsFull
 
             public EquipPack(string username, int roleindex, string packType, string roleType) {
                 this.username = username;
@@ -67,10 +77,16 @@ namespace Solider {
                     if (idList[i] != "0") continue;
                     // end if
                     idList[i] = itemID;
-                    WriteGridInfo(i, idList[i], 0);
+                    WriteGridInfo(i, idList[i], 1);
                     return;
                 } // end for
             } // end PackItem
+
+            public bool EnoughWithIDAndCount(string itemID, int count) {
+                if (GetCountForID(itemID) < count) return false;
+                // end if
+                return true;
+            } // end EnoughWithIDAndCount
 
             public void UseItemWithGid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return;
@@ -88,6 +104,17 @@ namespace Solider {
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
             } // end UseItemWithGid
 
+            public void ExpendItemWithID(string itemID, int count) {
+                for (int i = 0; i < idList.Length; i++) {
+                    if (idList[i] != itemID) continue;
+                    // end if
+                    idList[i] = "0";
+                    count--;
+                    if (count > 0) continue;
+                    // end if
+                } // end for
+            } // end ExpendItemWithID
+
             public ItemInfo GetItemInfoForGrid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return null;
                 // end if
@@ -103,11 +130,12 @@ namespace Solider {
             } // end GetConsumeCountWithGid
 
             public int GetCountForID(string itemID) {
+                int sum = 0;
                 for (int i = 0; i < idList.Length; i++) {
-                    if (itemID == idList[i]) return 1;
+                    if (itemID == idList[i]) sum++;
                     // end if
                 } // end for
-                return 0;
+                return sum;
             } // end GetCountForID
 
             public void ExchangeGridInfoWithGid(int gid, int target) {

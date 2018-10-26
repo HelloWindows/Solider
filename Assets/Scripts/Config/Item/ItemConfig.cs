@@ -14,10 +14,10 @@ namespace Solider {
     namespace Config {
         public class ItemConfig {
             private static ItemConfig config;
-            private readonly Dictionary<string, ItemInfo> stuffInfo;
-            private readonly Dictionary<string, ItemInfo> equipInfo;
-            private readonly Dictionary<string, ItemInfo> consumeInfo;
-            private readonly Dictionary<string, ItemInfo> bluePrintInfo;
+            private readonly Dictionary<string, ItemInfo> stuffConfig;
+            private readonly Dictionary<string, ItemInfo> equipConfig;
+            private readonly Dictionary<string, ItemInfo> consumeConfig;
+            private readonly Dictionary<string, ItemInfo> bluePrintConfig;
 
             public static ItemConfig instance {
                 get {
@@ -28,10 +28,10 @@ namespace Solider {
             } // end instance
             #region ******** 初始化物品配置信息 ********
             private ItemConfig() {
-                stuffInfo = new Dictionary<string, ItemInfo>();
-                equipInfo = new Dictionary<string, ItemInfo>();
-                consumeInfo = new Dictionary<string, ItemInfo>();
-                bluePrintInfo = new Dictionary<string, ItemInfo>();
+                stuffConfig = new Dictionary<string, ItemInfo>();
+                equipConfig = new Dictionary<string, ItemInfo>();
+                consumeConfig = new Dictionary<string, ItemInfo>();
+                bluePrintConfig = new Dictionary<string, ItemInfo>();
                 AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                 string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
                 string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
@@ -48,7 +48,7 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    stuffInfo.Add((string)list[i]["id"], new StuffInfo(list[i]));
+                    stuffConfig.Add((string)list[i]["id"], new StuffInfo(list[i]));
                 } // end for
             } // end InitStuffConfig
 
@@ -56,7 +56,7 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    equipInfo.Add((string)list[i]["id"], new EquipInfo(list[i]));
+                    equipConfig.Add((string)list[i]["id"], new EquipInfo(list[i]));
                 } // end for
             } // end InitEquipConfig
 
@@ -64,7 +64,7 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    consumeInfo.Add((string)list[i]["id"], new ConsumeInfo(list[i]));
+                    consumeConfig.Add((string)list[i]["id"], new ConsumeInfo(list[i]));
                 } // end for
             } // end InitConsumeConfig
 
@@ -72,43 +72,43 @@ namespace Solider {
                 JsonData data = JsonMapper.ToObject(jsonInfo);
                 JsonData list = data["itemlist"];
                 for (int i = 0; i < list.Count; i++) {
-                    bluePrintInfo.Add((string)list[i]["id"], new BluePrintInfo(list[i]));
+                    bluePrintConfig.Add((string)list[i]["id"], new BluePrintInfo(list[i]));
                 } // end for
             } // end InitConsumeConfig
             #endregion
 
             public ItemInfo GetItemInfo(string id) {
-                if (stuffInfo.ContainsKey(id)) return stuffInfo[id];
+                if (stuffConfig.ContainsKey(id)) return stuffConfig[id];
                 // end if
-                if (equipInfo.ContainsKey(id)) return equipInfo[id];
+                if (equipConfig.ContainsKey(id)) return equipConfig[id];
                 // end if
-                if (consumeInfo.ContainsKey(id)) return consumeInfo[id];
+                if (consumeConfig.ContainsKey(id)) return consumeConfig[id];
                 // end if
-                if (bluePrintInfo.ContainsKey(id)) return bluePrintInfo[id];
+                if (bluePrintConfig.ContainsKey(id)) return bluePrintConfig[id];
                 // end if
                 return null;
             } // end GetItemInfo
 
             public string GetItemGrade(string id) {
-                if (stuffInfo.ContainsKey(id)) return stuffInfo[id].grade;
+                if (stuffConfig.ContainsKey(id)) return stuffConfig[id].grade;
                 // end if
-                if (equipInfo.ContainsKey(id)) return equipInfo[id].grade;
+                if (equipConfig.ContainsKey(id)) return equipConfig[id].grade;
                 // end if
-                if (consumeInfo.ContainsKey(id)) return consumeInfo[id].grade;
+                if (consumeConfig.ContainsKey(id)) return consumeConfig[id].grade;
                 // end if
-                if (bluePrintInfo.ContainsKey(id)) return bluePrintInfo[id].grade;
+                if (bluePrintConfig.ContainsKey(id)) return bluePrintConfig[id].grade;
                 // end if
                 return "Z";
             } // end GetItemGradeWithID
 
             public string GetItemType(string id) {
-                if (stuffInfo.ContainsKey(id)) return ConstConfig.STUFF;
+                if (stuffConfig.ContainsKey(id)) return ConstConfig.STUFF;
                 // end if
-                if (equipInfo.ContainsKey(id)) return ConstConfig.EQUIP;
+                if (equipConfig.ContainsKey(id)) return ConstConfig.EQUIP;
                 // end if
-                if (consumeInfo.ContainsKey(id)) return ConstConfig.CONSUME;
+                if (consumeConfig.ContainsKey(id)) return ConstConfig.CONSUME;
                 // end if
-                if (bluePrintInfo.ContainsKey(id)) return ConstConfig.PRINT;
+                if (bluePrintConfig.ContainsKey(id)) return ConstConfig.PRINT;
                 // end if
                 return "null";
             } // end GetItemTypeWithID

@@ -10,16 +10,32 @@ namespace Solider {
     namespace Interface {
         public interface IPack {
             /// <summary>
+            /// 背包是否已满
+            /// </summary>
+            bool IsFull { get; }
+            /// <summary>
             /// 获取物品
             /// </summary>
             /// <param name="itemID"> 物品ID </param>
             /// <param name="count"> 物品数量 </param>
             void PackItem(string itemID, int count);
             /// <summary>
+            /// 判断对应物品是否足够数量
+            /// </summary>
+            /// <param name="itemID"> 物品ID </param>
+            /// <param name="count"> 预期数量 </param>
+            /// <returns> 是否足够 </returns>
+            bool EnoughWithIDAndCount(string itemID, int count);
+            /// <summary>
             /// 使用对应格子的物品
             /// </summary>
             /// <param name="gid"> 格子id </param>
             void UseItemWithGid(int gid);
+            /// <summary>
+            /// 消耗对应的物品,使用之前请先调用 EnoughWithIDAndCount 去判断是否足够
+            /// </summary>
+            /// <param name="itemID"></param>
+            void ExpendItemWithID(string itemID, int count);
             /// <summary>
             /// 获取对应格子的物品信息
             /// </summary>
