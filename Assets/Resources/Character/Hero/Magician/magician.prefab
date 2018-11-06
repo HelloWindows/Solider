@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400016}
   m_Layer: 0
-  m_Name: help_body01
+  m_Name: help_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400060}
   m_Layer: 0
-  m_Name: effect_spine01
+  m_Name: wing_spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1409,7 +1409,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: edbc176b30f3ba14ba0a2c8265219cc7, type: 2}
+  - {fileID: 2100000, guid: 036db44477ebd194091fa27aef76991b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

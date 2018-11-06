@@ -14,13 +14,13 @@ namespace Solider {
         namespace UI {
             public class UIFightPanel : IFSMState {
                 public string name { get; private set; }
-                private IFSM fsm;
+                //private IFSM fsm;
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
 
                 public UIFightPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
+                    //this.fsm = fsm;
                     this.name = name;
                     this.parent = parent;
                 } // end UIFightPanel

@@ -91,16 +91,17 @@ namespace Solider {
             public void UseItemWithGid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return;
                 // end if
-                EquipInfo info = Configs.itemConfig.GetItemInfo(idList[gid]) as EquipInfo;
+                string tempID = idList[gid];
+                EquipInfo info = Configs.itemConfig.GetItemInfo(tempID) as EquipInfo;
                 if (null == info || (info.role != ConstConfig.ALLROLE && info.role != roleType)) return; // 检测是否是装备，是否符合当前角色类型
                 // end if
                 string type = info.type;
                 if (!wearDict.ContainsKey(type)) return; // 检测装备类型是否存在
                 // end if
-                string temp = idList[gid];
                 idList[gid] = wearDict[type];
-                wearDict[type] = temp;
+                wearDict[type] = tempID;
                 WriteGridInfo(gid, idList[gid], 0);
+                SceneManager.mainCharacter.surface.ReloadEquip(tempID);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
             } // end UseItemWithGid
 
@@ -177,7 +178,7 @@ namespace Solider {
             } // end GetWearEquip
 
             public void TakeOffEquip(string type) {
-                if (!wearDict.ContainsKey(type)) return;
+                if ("0" == wearDict[type] || !wearDict.ContainsKey(type)) return;
                 // end if
                 PackItem(wearDict[type], 0);
                 wearDict[type] = "0";

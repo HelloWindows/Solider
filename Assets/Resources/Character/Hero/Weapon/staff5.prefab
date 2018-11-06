@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 11100000}
   m_Layer: 0
-  m_Name: fazhang_05
+  m_Name: fazhang_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: -0.12313901}
+  m_LocalPosition: {x: 0, y: -0, z: -0.12279315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400014}
@@ -102,7 +102,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: cf89da804d6720044908d88d7a91053c, type: 2}
+  - {fileID: 2100000, guid: 4e8f5d5f085db844da9094b0ac103f67, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +126,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 7e00da96e77b5304a900470073bea6ba, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 73aa8f615151c884e96237d837e514fa, type: 3}
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1

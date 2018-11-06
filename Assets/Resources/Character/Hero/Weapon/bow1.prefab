@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 9500000}
   m_Layer: 0
-  m_Name: bow2
+  m_Name: bow3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.036440875, y: 0.00000001438942, z: -0.00000023522401}
+  m_LocalPosition: {x: 0.037300076, y: -0.0000000090401295, z: -0.000000099275994}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -102,7 +102,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e9ed64560373260489da804cf619a9a5, type: 2}
+  - {fileID: 2100000, guid: e2f11094c20fb5e4faa8715e03f7e175, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +126,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Mesh: {fileID: 4300000, guid: 46b15723ec32c6a46a64a76d69c8f0c2, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 72d4589e506825746969b161db156d5d, type: 3}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -135,7 +135,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 46b15723ec32c6a46a64a76d69c8f0c2, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 72d4589e506825746969b161db156d5d, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0

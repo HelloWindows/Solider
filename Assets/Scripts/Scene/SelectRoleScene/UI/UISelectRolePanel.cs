@@ -84,7 +84,9 @@ namespace Solider {
                     roleindex = index;
                     selectedindex = index;
                     t_roleName.text = roleDict[index][0];
-                    display.SetDisplayGo(new DisplayGo(roleDict[index][1]));
+                    Dictionary<string, string> wearDict;
+                    SqliteManager.GetWearInfoWithID(GameManager.playerInfo.username, roleindex, out wearDict);
+                    display.SetDisplayGo(new DisplayRole(roleDict[index][1], wearDict));
                 } // end OnSwitchRole
 
                 private void OnClickDeleteRoleBtn() {

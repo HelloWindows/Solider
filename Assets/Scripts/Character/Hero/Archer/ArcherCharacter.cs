@@ -13,6 +13,7 @@ using Framework.Interface.Input;
 using Framework.Tools;
 using Solider.Character.Hero;
 using Solider.Character.Interface;
+using Solider.Manager;
 using UnityEngine;
 
 namespace Solider {
@@ -44,8 +45,15 @@ namespace Solider {
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
+                    Transform wingTrans = null;
                     Transform liftTrans = null;
                     Transform furlTrans = null;
+                    foreach (Transform child in allChildren) {
+                        if (child.gameObject.name == "wing_spine") {
+                            wingTrans = child;
+                            break;
+                        } // end if
+                    } // end foreach
                     foreach (Transform child in allChildren) {
                         if (child.gameObject.name == "left_hand") {
                             liftTrans = child;
@@ -58,7 +66,8 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new CharacterSurface(liftTrans, furlTrans, meshRenderer);
+                    surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
+                    surface.ReloadEquip(GameManager.playerInfo.pack.GetWearInfo().GetWearEquip());
                     fsmSystem = new ArcherFSM(this, input);
                     fsm = fsmSystem as IFSM;
                 } // end Start

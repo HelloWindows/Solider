@@ -4,6 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config.Const;
+
 namespace Framework {
     namespace Config {
         namespace Material {
@@ -19,28 +21,28 @@ namespace Framework {
 
                 private MaterialConfig() : base() {
                     string prefix = "Character/Hero/Swordman/Skin/";
-                    pathDict["swordmanArmor1"] = prefix + "swordmanArmor1";
-                    pathDict["swordmanArmor2"] = prefix + "swordmanArmor2";
-                    pathDict["swordmanArmor3"] = prefix + "swordmanArmor3";
-                    pathDict["swordmanArmor4"] = prefix + "swordmanArmor4";
-                    pathDict["swordmanArmor5"] = prefix + "swordmanArmor5";
-                    pathDict["swordmanArmor6"] = prefix + "swordmanArmor6";
+                    pathDict[ConstConfig.SWORDMAN + "0"] = prefix + "swordmanArmor0";
+                    pathDict[ConstConfig.SWORDMAN + "103001"] = prefix + "swordmanArmor1";
+                    pathDict[ConstConfig.SWORDMAN + "103002"] = prefix + "swordmanArmor2";
+                    pathDict[ConstConfig.SWORDMAN + "103003"] = prefix + "swordmanArmor3";
+                    pathDict[ConstConfig.SWORDMAN + "103004"] = prefix + "swordmanArmor4";
+                    pathDict[ConstConfig.SWORDMAN + "103005"] = prefix + "swordmanArmor5";
 
                     prefix = "Character/Hero/Archer/Skin/";
-                    pathDict["archerArmor1"] = prefix + "archerArmor1";
-                    pathDict["archerArmor2"] = prefix + "archerArmor2";
-                    pathDict["archerArmor3"] = prefix + "archerArmor3";
-                    pathDict["archerArmor4"] = prefix + "archerArmor4";
-                    pathDict["archerArmor5"] = prefix + "archerArmor5";
-                    pathDict["archerArmor6"] = prefix + "archerArmor6";
+                    pathDict[ConstConfig.ARCHER + "0"] = prefix + "archerArmor0";
+                    pathDict[ConstConfig.ARCHER + "103001"] = prefix + "archerArmor1";
+                    pathDict[ConstConfig.ARCHER + "103002"] = prefix + "archerArmor2";
+                    pathDict[ConstConfig.ARCHER + "103003"] = prefix + "archerArmor3";
+                    pathDict[ConstConfig.ARCHER + "103004"] = prefix + "archerArmor4";
+                    pathDict[ConstConfig.ARCHER + "103005"] = prefix + "archerArmor5";
 
                     prefix = "Character/Hero/Magician/Skin/";
-                    pathDict["magicianArmor1"] = prefix + "magicianArmor1";
-                    pathDict["magicianArmor2"] = prefix + "magicianArmor2";
-                    pathDict["magicianArmor3"] = prefix + "magicianArmor3";
-                    pathDict["magicianArmor4"] = prefix + "magicianArmor4";
-                    pathDict["magicianArmor5"] = prefix + "magicianArmor5";
-                    pathDict["magicianArmor6"] = prefix + "magicianArmor6";
+                    pathDict[ConstConfig.MAGICIAN + "0"] = prefix + "magicianArmor0";
+                    pathDict[ConstConfig.MAGICIAN + "103001"] = prefix + "magicianArmor1";
+                    pathDict[ConstConfig.MAGICIAN + "103002"] = prefix + "magicianArmor2";
+                    pathDict[ConstConfig.MAGICIAN + "103003"] = prefix + "magicianArmor3";
+                    pathDict[ConstConfig.MAGICIAN + "103004"] = prefix + "magicianArmor4";
+                    pathDict[ConstConfig.MAGICIAN + "103005"] = prefix + "magicianArmor5";
                 } // end AudioConfig
             } // end class SoundConfig
         } // end namespace Audio

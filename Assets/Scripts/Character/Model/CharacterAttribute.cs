@@ -197,7 +197,7 @@ namespace Solider {
                         break;
 
                         case ConstConfig.SWORDMAN:
-                            infoBuilder.Append("战士");
+                            infoBuilder.Append("剑客");
                             break;
 
                         default:

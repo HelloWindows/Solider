@@ -45,7 +45,6 @@ namespace Solider {
                 if (null == playerInfo) {
                     playerInfo = new PlayerInfo();
                 } // end if
-
                 if (null == gameSetting) {
                     gameSetting = new GameSetting();
                 } // end if

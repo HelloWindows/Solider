@@ -11,7 +11,6 @@ namespace Solider {
     namespace UI {
         namespace Interface {
             public interface IDisplayGo {
-                bool isDispose { get; }
                 void Reset(Transform parent);
                 void Dispose();
                 void Rotate(float offset);

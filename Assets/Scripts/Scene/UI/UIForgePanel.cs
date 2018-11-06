@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.Config.Const;
 using Framework.FSM.Interface;
 using Framework.Manager;
@@ -72,7 +73,7 @@ namespace Solider {
                         if (i < number) {
                             stuffArray[i].transform.localPosition = new Vector3((x - 80 * i), 0, 0);
                             stuffArray[i].gameObject.SetActive(true);
-                            ItemInfo stuff = ItemConfig.instance.GetItemInfo(info.stuffIDArr[i]);
+                            ItemInfo stuff = Configs.itemConfig.GetItemInfo(info.stuffIDArr[i]);
                             if (null == stuff) continue;
                             // end if
                             stuffArray[i].SetUIItem(Resources.Load<Sprite>(stuff.spritepath), 0);

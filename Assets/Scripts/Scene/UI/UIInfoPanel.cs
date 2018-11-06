@@ -108,7 +108,8 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     UIDisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
-                    display.SetDisplayGo(new DisplayGo(GameManager.playerInfo.roleType));
+                    display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType,
+                        GameManager.playerInfo.pack.GetWearInfo().GetWearEquip()));
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < equipTypeList.Length; i++) {
                         string type = equipTypeList[i];
