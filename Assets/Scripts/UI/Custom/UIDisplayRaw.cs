@@ -48,6 +48,10 @@ namespace Solider {
                     if (null != displayGo) displayGo.Dispose();
                 } // end ClearDiplay
 
+                public void FreshenDisplay() {
+                    displayGo.Freshen();
+                } // end Freshen
+
                 // Use this for initialization
                 private void Awake() {
                     disableDrag = false;

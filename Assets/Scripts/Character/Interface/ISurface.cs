@@ -4,16 +4,15 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections.Generic;
+using System;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ISurface {
+            public interface ISurface : IDisposable {
                 void FurlWeapon();
                 void LiftWeapon();
-                void ReloadEquip(string id);
-                void ReloadEquip(Dictionary<string, string> wearDict);
+                void Freshen();
             } // end interface ISurface
         } // end namespace Interface 
     } // end namespace Character 

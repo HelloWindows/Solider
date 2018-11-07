@@ -10,16 +10,16 @@ using System.Collections.Generic;
 namespace Framework {
     namespace Broadcast {
         public enum BroadcastType : int {
-
+            NULL = 0,
+            /// <summary>
+            /// 更换装备
+            /// </summary>
+            ReloadEquip = 1,
         } // end enum BroadcastType
-        public class BroadcastCenter {
-            private Dictionary<BroadcastType, Action> actionMap;
+        public static class BroadcastCenter {
+            private static Dictionary<BroadcastType, Action> actionMap = new Dictionary<BroadcastType, Action>();
 
-            public BroadcastCenter() {
-                actionMap = new Dictionary<BroadcastType, Action>();
-            } // end BroadcastCenter
-
-            public void AddListener(BroadcastType type, Action action) {
+            public static void AddListener(BroadcastType type, Action action) {
                 if (!actionMap.ContainsKey(type)) {
                     actionMap[type] = action;
                 } else {
@@ -27,7 +27,7 @@ namespace Framework {
                 } // end 
             } // end AddListener  
 
-            public void RemoveListener(BroadcastType type, Action action) {
+            public static void RemoveListener(BroadcastType type, Action action) {
                 if (!actionMap.ContainsKey(type)) return;
                 // end if
                 actionMap[type] -= action;
@@ -35,7 +35,7 @@ namespace Framework {
                 // end if
             } // end RemoveListener
 
-            public void Broadcast(BroadcastType type) {
+            public static void Broadcast(BroadcastType type) {
                 Action action;
                 if (actionMap.TryGetValue(type, out action)) {
                     if (null == action) return;

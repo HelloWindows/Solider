@@ -4,11 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Broadcast;
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using Solider.Character.Interface;
-using Solider.Config;
 using Solider.Manager;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,12 +23,21 @@ namespace Solider {
             private Transform liftTrans; // 拿起武器的位置
             private Transform furlTrans; // 收起武器的位置
             private SkinnedMeshRenderer renderer;
+            private Dictionary<string, string> checkDict;
 
             public CharacterSurface(Transform wingTrans, Transform liftTrans, Transform furlTrans, SkinnedMeshRenderer renderer) {
                 this.wingTrans = wingTrans;
                 this.liftTrans = liftTrans;
                 this.furlTrans = furlTrans;
                 this.renderer = renderer;
+                string[] equipTypeList = { ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
+                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
+                checkDict = new Dictionary<string, string>();
+                for (int i = 0; i < equipTypeList.Length; i++) {
+                    checkDict[equipTypeList[i]] = "0";
+                } // end for
+                checkDict[ConstConfig.WEAPON] = "-1";
+                BroadcastCenter.AddListener(BroadcastType.ReloadEquip, Freshen);
             } // end CharacterSurface
 
             public void FurlWeapon() {
@@ -47,30 +56,20 @@ namespace Solider {
                 weaponGo.transform.localRotation = Quaternion.identity;
             } // end LiftWeapon
 
-            public void ReloadEquip(string id) {
-                if (CheckID(id, ConstConfig.WING)) {
-                    ReloadWing(id);
-                    return;
-                }  // end if
-                if (CheckID(id, ConstConfig.ARMOE)) {
-                    ReloadArmor(id);
-                    return;
-                } // end if
-                if ("0" == id || CheckID(id, ConstConfig.WEAPON)) {
-                    ReloadWeapon(id);
-                } // end if
-            } // end ReloadEquip
-
-            public void ReloadEquip(Dictionary<string, string> wearDict) {
+            public void Freshen() {
+                Dictionary<string, string> wearDict = GameManager.playerInfo.pack.GetWearInfo().GetWearEquip();
                 if (null == wearDict) return;
                 // end if
-                if (wearDict.ContainsKey(ConstConfig.WING)) {
+                if (wearDict.ContainsKey(ConstConfig.WING) && wearDict[ConstConfig.WING] != checkDict[ConstConfig.WING]) {
+                    checkDict[ConstConfig.WING] = wearDict[ConstConfig.WING];
                     ReloadWing(wearDict[ConstConfig.WING]);
                 } // end if
-                if (wearDict.ContainsKey(ConstConfig.ARMOE)) {
+                if (wearDict.ContainsKey(ConstConfig.ARMOE) && wearDict[ConstConfig.ARMOE] != checkDict[ConstConfig.ARMOE]) {
+                    checkDict[ConstConfig.ARMOE] = wearDict[ConstConfig.ARMOE];
                     ReloadArmor(wearDict[ConstConfig.ARMOE]);
                 } // end if
-                if (wearDict.ContainsKey(ConstConfig.WEAPON)) {
+                if (wearDict.ContainsKey(ConstConfig.WEAPON) && wearDict[ConstConfig.WEAPON] != checkDict[ConstConfig.WEAPON]) {
+                    checkDict[ConstConfig.WEAPON] = wearDict[ConstConfig.WEAPON];
                     ReloadWeapon(wearDict[ConstConfig.WEAPON]);
                 } // end if
             } // end ReloadEquip
@@ -91,6 +90,11 @@ namespace Solider {
             } // end ReloadWeapon
 
             private void ReloadWing(string id) {
+                if ("0" == id) {
+                    if (null != wingGo) Object.Destroy(wingGo);
+                    // end if
+                    return;
+                } // end if
                 GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
                 if (null == Go) {
                     DebugTool.ThrowException("ReloadWing ID: " + id + " path: " +
@@ -115,12 +119,9 @@ namespace Solider {
                 renderer.material = material;
             } // end ReloadArmor
 
-            private bool CheckID(string id, string type) {
-                EquipInfo info = Configs.itemConfig.GetItemInfo(id) as EquipInfo;
-                if (null == info || info.type != type) return false;
-                // end if
-                return true;
-            } // end CheckID
+            public void Dispose() {
+                BroadcastCenter.RemoveListener(BroadcastType.ReloadEquip, Freshen);
+            } // end Dispose
         } // end class CharacterSurface
     } // end namespace Character
 } // end namespace Custom 

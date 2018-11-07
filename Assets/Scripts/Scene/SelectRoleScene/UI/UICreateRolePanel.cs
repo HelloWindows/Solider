@@ -37,7 +37,7 @@ namespace Solider {
                     if (this.roleType == roleType) return;
                     // end if
                     this.roleType = roleType;
-                    display.SetDisplayGo(new DisplayRole(roleType, null));
+                    display.SetDisplayGo(new DisplayRole(roleType));
                 } // end OnSwitchRole
 
                 private void OnClickCreateBtn() {

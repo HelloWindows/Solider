@@ -8,11 +8,12 @@ using Framework.Interface.View;
 using Framework.Interface.UI;
 using Framework.FSM.Interface;
 using Solider.Character.Interface;
+using System;
 
 namespace Framework {
     namespace Interface {
         namespace Scene {
-            public interface IScene {
+            public interface IScene : IDisposable {
                 IFSM uiPanelFSM { get; }
                 ICamera mainCamera { get; }
                 ICanvas mainCanvas { get; }
@@ -21,7 +22,6 @@ namespace Framework {
                 void Initialize();
                 void Update(float deltaTime);
                 void LateUpdate(float deltaTime);
-                void Dispose();
             } // end interface IScene 
         } // end namespace Scene
     } // end namespace Interface

@@ -14,6 +14,7 @@ namespace Solider {
                 void Reset(Transform parent);
                 void Dispose();
                 void Rotate(float offset);
+                void Freshen();
             } // end class IDisplayGo
         } // end namespace Interface
     } // end namespace UI

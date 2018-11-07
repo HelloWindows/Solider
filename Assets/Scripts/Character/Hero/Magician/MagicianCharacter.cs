@@ -13,7 +13,6 @@ using Framework.Interface.Input;
 using Framework.Tools;
 using Solider.Character.Hero;
 using Solider.Character.Interface;
-using Solider.Manager;
 using UnityEngine;
 
 namespace Solider {
@@ -67,7 +66,7 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
-                    surface.ReloadEquip(GameManager.playerInfo.pack.GetWearInfo().GetWearEquip());
+                    surface.Freshen();
                     fsmSystem = new MagicianFSM(this, input);
                     fsm = fsmSystem as IFSM;
                 } // end Start

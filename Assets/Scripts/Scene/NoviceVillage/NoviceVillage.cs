@@ -94,6 +94,7 @@ namespace Solider {
             } // end LateUpdate
 
             public void Dispose() {
+                mainCharacter.Dispose();
             } // end Dispose
 
             public ICharacter CreateMainCharacter(Vector3 position) {

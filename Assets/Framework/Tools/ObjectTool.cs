@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2017-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Framework {
@@ -48,24 +46,21 @@ namespace Framework {
 
             public static GameObject InstantiateGo(string name, string path) {
                 GameObject prefab = Resources.Load<GameObject>(path);
-
-                if (null == prefab) throw new System.Exception("InstantiateGo prefab is null!");
+                if (null == prefab) return null;
                 // end if
                 return InstantiateGo(name, prefab);
             } // end InstantiateGo
 
             public static GameObject InstantiateGo(string name, string path, Transform parent) {
                 GameObject prefab = Resources.Load<GameObject>(path);
-
-                if (null == prefab) throw new System.Exception("InstantiateGo prefab is null!");
+                if (null == prefab) return null;
                 // end if
                 return InstantiateGo(name, prefab, parent);
             } // end InstantiateGo
 
             public static GameObject InstantiateGo(string name, string path, Transform parent, Vector3 localPos, Vector3 localRot, Vector3 localSca) {
                 GameObject prefab = Resources.Load<GameObject>(path);
-
-                if (null == prefab) throw new System.Exception("InstantiateGo prefab is null!");
+                if (null == prefab) return null;
                 // end if
                 return InstantiateGo(name, prefab, parent, localPos, localRot, localSca);
             } // end InstantiateGo

@@ -67,7 +67,7 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
-                    surface.ReloadEquip(GameManager.playerInfo.pack.GetWearInfo().GetWearEquip());
+                    surface.Freshen();
                     fsmSystem = new SwordmanFSM(this, input);
                     fsm = fsmSystem as IFSM;
                 } // end SwordmanCharacter

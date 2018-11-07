@@ -16,6 +16,7 @@ using UnityEngine.UI;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Framework.Manager;
+using Framework.Broadcast;
 
 namespace Solider {
     namespace Scene {
@@ -36,6 +37,7 @@ namespace Solider {
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
+                private UIDisplayRaw display;
 
                 public UIInfoPanel(string name, IFSM fsm, RectTransform parent) {
                     this.fsm = fsm;
@@ -89,6 +91,10 @@ namespace Solider {
                     selected = "";
                     UpdateShowInfo();
                     selector.SetActive(false);
+                    BroadcastCenter.Broadcast(BroadcastType.ReloadEquip);
+                    if (null == display) return;
+                    // end if
+                    display.FreshenDisplay();
                 } // end OnClickTakeOffBtn
 
                 private void OnClickCloseBtn() {
@@ -107,7 +113,7 @@ namespace Solider {
                     selected = "";
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
-                    UIDisplayRaw display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
+                    display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
                     display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType,
                         GameManager.playerInfo.pack.GetWearInfo().GetWearEquip()));
                     cellDict = new Dictionary<string, UICell>();

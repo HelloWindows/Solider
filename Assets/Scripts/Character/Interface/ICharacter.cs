@@ -6,12 +6,13 @@
  *******************************************************************/
 using Framework.FSM.Interface;
 using Framework.Interface.Audio;
+using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacter {
+            public interface ICharacter : IDisposable {
                 bool isDisposed { get; }
                 IFSM fsm { get; }
                 IAvatar avatar { get; }
@@ -21,7 +22,6 @@ namespace Solider {
                 ICharacterInfo info { get; }
                 Vector3 position { get; }
                 void Update(float deltaTime);
-                void Dispose();
             } // end interface ICharacter
         } // end namespace Interface
     } // end namespace Character

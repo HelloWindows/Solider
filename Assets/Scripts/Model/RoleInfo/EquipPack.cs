@@ -10,6 +10,7 @@ using Framework.Config.Const;
 using Framework.Manager;
 using Solider.Interface;
 using System.Collections.Generic;
+using Framework.Broadcast;
 
 namespace Solider {
     namespace Model {
@@ -18,8 +19,6 @@ namespace Solider {
             private readonly string username;
             private readonly string packType;
             private readonly string roleType;
-            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
-                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
 
             private string[] idList;
             private Dictionary<string, string> wearDict;
@@ -56,6 +55,8 @@ namespace Solider {
                 #endregion
 
                 #region ******** 初始化装备穿戴信息 ********
+                string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
+                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
                 Dictionary<string, string> wearDict;
                 SqliteManager.GetWearInfoWithID(username, roleindex, out wearDict);
                 this.wearDict = new Dictionary<string, string>();
@@ -101,7 +102,7 @@ namespace Solider {
                 idList[gid] = wearDict[type];
                 wearDict[type] = tempID;
                 WriteGridInfo(gid, idList[gid], 0);
-                SceneManager.mainCharacter.surface.ReloadEquip(tempID);
+                BroadcastCenter.Broadcast(BroadcastType.ReloadEquip);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
             } // end UseItemWithGid
 
