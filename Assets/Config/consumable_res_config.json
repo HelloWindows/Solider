@@ -12,6 +12,10 @@
       "property": {
         "HP": 100,
         "MP": 100,
+        "HPR": 0,
+        "MPR": 0,
+        "XHR": 0,
+        "XMR": 0,
         "HOT": 0,
         "MOT": 0,
         "LOT": 0,
@@ -34,6 +38,10 @@
       "property": {
         "HP": 500,
         "MP": 500,
+        "HPR": 0,
+        "MPR": 0,
+        "XHR": 0,
+        "XMR": 0,
         "HOT": 30,
         "MOT": 30,
         "LOT": 10,
@@ -56,6 +64,10 @@
       "property": {
         "HP": 1000,
         "MP": 1000,
+        "HPR": 0,
+        "MPR": 0,
+        "XHR": 0,
+        "XMR": 0,
         "HOT": 50,
         "MOT": 50,
         "LOT": 10,

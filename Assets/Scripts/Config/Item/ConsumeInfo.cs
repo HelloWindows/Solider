@@ -15,6 +15,10 @@ namespace Solider {
 
             public readonly int HP;
             public readonly int MP;
+            public readonly float HPR;
+            public readonly float MPR;
+            public readonly float XHR;
+            public readonly float XMR;
             public readonly int HOT;
             public readonly int MOT;
             public readonly int ATK;
@@ -37,6 +41,10 @@ namespace Solider {
                 JsonData property = data["property"];
                 HP = (int)property["HP"];
                 MP = (int)property["MP"];
+                HPR = (float)property["HPR"];
+                MPR = (float)property["MPR"];
+                XHR = (float)property["XHR"];
+                XMR = (float)property["XMR"];
                 HOT = (int)property["HOT"];
                 MOT = (int)property["MOT"];
                 ATK = (int)property["ATK"];

@@ -4,11 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Character.Model;
 using Solider.Config;
 
 namespace Solider {
-    namespace Character {
-        namespace Model {
+    namespace Model {
+        namespace Data {
             public class FairData {
                 /// <summary>
                 /// 恢复 hp
@@ -19,30 +20,21 @@ namespace Solider {
                 /// </summary>
                 public int MP { get; private set; }
                 /// <summary>
-                /// 恢复已损失 hp 百分率
+                /// 已损失 hp 百分率
                 /// </summary>
-                public float HPP { get; private set; }
+                public float HPR { get; private set; }
                 /// <summary>
-                /// 恢复已损失 mp 百分率
+                /// 已损失 mp 百分率
                 /// </summary>
-                public float MPP { get; private set; }
+                public float MPR { get; private set; }
                 /// <summary>
-                /// 恢复最大 hp 百分率
+                /// 最大 hp 百分率
                 /// </summary>
-                public float XHPP { get; private set; }
+                public float XHR { get; private set; }
                 /// <summary>
-                /// 恢复最大 mp 百分率
+                /// 最大 mp 百分率
                 /// </summary>
-                public float XMPP { get; private set; }
-
-                public FairData() {
-                    HP = 0;
-                    MP = 0;
-                    HPP = 0;
-                    MPP = 0;
-                    XHPP = 0;
-                    XMPP = 0;
-                } // end TreatData
+                public float XMR { get; private set; }
 
                 public FairData(ConsumeInfo info) {
                     HP = info.HP;
@@ -58,10 +50,6 @@ namespace Solider {
                 public static FairData operator +(FairData treat, CharacterAttribute role) {
                     treat.HP = role.HOT;
                     treat.MP = role.MOT;
-                    treat.HPP = 0;
-                    treat.MPP = 0;
-                    treat.XHPP = 0;
-                    treat.XMPP = 0;
                     return treat;
                 } // end operator +
             } // end class FairData
