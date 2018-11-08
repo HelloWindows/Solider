@@ -76,6 +76,8 @@ namespace Solider {
                 } // end Update
 
                 public void Dispose() {
+                    isDisposed = true;
+                    info.Dispose();
                     surface.Dispose();
                 } // end Dispose
             } // end class ArcherCharacter

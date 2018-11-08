@@ -152,6 +152,8 @@ namespace Solider {
                     role.RGS += info.RGS;
                     role.ASP += info.ASP;
                     role.MSP += info.MSP;
+                    role.HIT += info.HIT;
+                    role.AVD += info.AVD;
                     role.CRT += info.CRT;
                     return role;
                 } // end operator +
@@ -175,13 +177,15 @@ namespace Solider {
                     role.RGS -= info.RGS;
                     role.ASP -= info.ASP;
                     role.MSP -= info.MSP;
+                    role.HIT -= info.HIT;
+                    role.AVD -= info.AVD;
                     role.CRT -= info.CRT;
                     return role;
                 } // end operator -
 
                 public override string ToString() {
                     infoBuilder.Length = 0;
-                    infoBuilder.Append("<size=24>");
+                    infoBuilder.Append("<size=22>");
                     infoBuilder.Append("名字：");
                     infoBuilder.Append(name);
                     infoBuilder.Append('\n');
@@ -254,6 +258,14 @@ namespace Solider {
 
                     infoBuilder.Append("移动速度：");
                     infoBuilder.Append(MSP);
+                    infoBuilder.Append('\n');
+
+                    infoBuilder.Append("命中率：");
+                    infoBuilder.Append(HIT);
+                    infoBuilder.Append('\n');
+
+                    infoBuilder.Append("闪避率：");
+                    infoBuilder.Append(AVD);
                     infoBuilder.Append('\n');
 
                     infoBuilder.Append("暴击率：");

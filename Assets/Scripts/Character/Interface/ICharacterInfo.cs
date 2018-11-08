@@ -5,11 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Model.Data;
+using System;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacterInfo {
+            public interface ICharacterInfo : IDisposable{
                 /// <summary>
                 /// 是否存活
                 /// </summary>

@@ -30,11 +30,9 @@ namespace Solider {
                 this.liftTrans = liftTrans;
                 this.furlTrans = furlTrans;
                 this.renderer = renderer;
-                string[] equipTypeList = { ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
-                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
                 checkDict = new Dictionary<string, string>();
-                for (int i = 0; i < equipTypeList.Length; i++) {
-                    checkDict[equipTypeList[i]] = "0";
+                for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
+                    checkDict[ConstConfig.EquipTypeList[i]] = "0";
                 } // end for
                 checkDict[ConstConfig.WEAPON] = "-1";
                 BroadcastCenter.AddListener(BroadcastType.ReloadEquip, Freshen);

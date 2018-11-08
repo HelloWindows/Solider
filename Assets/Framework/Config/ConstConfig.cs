@@ -13,6 +13,9 @@ namespace Framework {
                 public const float STANDARD_HEIGHT = 640f;
 
                 public const int GRID_COUNT = 25;
+
+                public static string[] EquipTypeList { get { return equipTypeList; } }
+                private static readonly string[] equipTypeList = { WEAPON, NECKLACE, RING, WING, ARMOE, PANTS, SHOES };
                 /// <summary>
                 /// 战士
                 /// </summary>

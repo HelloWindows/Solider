@@ -50,11 +50,11 @@ namespace Solider {
                 } // end TreatData
 
                 /// <summary>
-                /// 初始化角色数据
+                /// 角色自愈数据
                 /// </summary>
-                /// <param name="role"> 角色数据 </param>
-                /// <param name="init"> 初始数据 </param>
-                /// <returns> 结果数据 </returns>
+                /// <param name="role"> 自愈数据 </param>
+                /// <param name="init"> 角色数据 </param>
+                /// <returns> 自愈数据 </returns>
                 public static FairData operator +(FairData treat, CharacterAttribute role) {
                     treat.HP = role.HOT;
                     treat.MP = role.MOT;

@@ -19,11 +19,10 @@ namespace Solider {
         public Transform target;//目标物体
         public float smoothing = 3;//平滑系数
 
-        private void Start()
-        {
+        private void Start() {
             InstanceMgr.Init();
             ConsoleTool.SetConsole("Test");
-        }
+        } // end Start
 
         void LateUpdate() {
             //目标物体要到达的目标位置 = 当前物体的位置 + 当前摄像机的位置

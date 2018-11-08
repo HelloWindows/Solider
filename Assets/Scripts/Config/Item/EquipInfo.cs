@@ -26,6 +26,8 @@ namespace Solider {
             public int RGS { get; private set; }
             public float ASP { get; private set; }
             public float MSP { get; private set; }
+            public float HIT { get; private set; }
+            public float AVD { get; private set; }
             public float CRT { get; private set; }
 
             public EquipInfo(JsonData data) {
@@ -50,6 +52,8 @@ namespace Solider {
                 RGS = (int)property["RGS"];
                 ASP = (float)property["ASP"];
                 MSP = (float)property["MSP"];
+                HIT = (float)property["HIT"];
+                AVD = (float)property["AVD"];
                 CRT = (float)property["CRT"];
             } // end EquipInfo
 
@@ -160,6 +164,8 @@ namespace Solider {
                 AppendValue("防御力：", DEF);
                 AppendValue("攻速：", ASP);
                 AppendValue("移速：", MSP);
+                AppendValue("命中率：", HIT);
+                AppendValue("闪避率：", AVD);
                 AppendValue("暴击率：", CRT);
                 infoBuilder.Append("</size>");
                 infoBuilder.Append('\n');

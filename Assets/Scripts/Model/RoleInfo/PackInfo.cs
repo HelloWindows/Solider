@@ -16,8 +16,6 @@ namespace Solider {
         public class PackInfo : IPackInfo {
             private EquipPack equipPack;
             private Dictionary<string, IPack> packDict;
-            private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING,
-                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
 
             public PackInfo(string username, int roleindex, string name, string roleType) {
                 packDict = new Dictionary<string, IPack>();
@@ -45,15 +43,6 @@ namespace Solider {
                 } // end if
                 return null;
             } // end GetItemPack
-
-            public IEnumerator GetEnumerator() {
-                for (int i = 0; i < equipTypeList.Length; i++) { // 累加所有已穿戴的装备的属性
-                    EquipInfo info = equipPack.GetEquipInfo(equipTypeList[i]);
-                    if (null == info) continue;
-                    // end if
-                    yield return info;
-                } // end for
-            } // end GetEnumerator
         } // end class PackInfo 
     } // end namespace Data
 } // end namespace Solider

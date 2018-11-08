@@ -55,13 +55,11 @@ namespace Solider {
                 #endregion
 
                 #region ******** 初始化装备穿戴信息 ********
-                string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING,
-                ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
                 Dictionary<string, string> wearDict;
                 SqliteManager.GetWearInfoWithID(username, roleindex, out wearDict);
                 this.wearDict = new Dictionary<string, string>();
-                for (int i = 0; i < equipTypeList.Length; i++) {
-                    string type = equipTypeList[i];
+                for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
+                    string type = ConstConfig.EquipTypeList[i];
                     if (wearDict.ContainsKey(type)) {
                         this.wearDict[type] = wearDict[type];
                     } else {

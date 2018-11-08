@@ -28,8 +28,6 @@ namespace Solider {
                 private GameObject selector;
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
-                private readonly string[] equipTypeList = { ConstConfig.WEAPON, ConstConfig.NECKLACE,
-                    ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES };
                 private Dictionary<string, string> dict;
 
                 public string name { get; private set; }
@@ -51,8 +49,8 @@ namespace Solider {
                     // end if
                     IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
                     dict = wear.GetWearEquip();
-                    for (int i = 0; i < equipTypeList.Length; i++) {
-                        string type = equipTypeList[i];
+                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
+                        string type = ConstConfig.EquipTypeList[i];
                         if (null == dict || !dict.ContainsKey(type)) {
                             cellDict[type].HideItem();
                             continue;
@@ -117,8 +115,8 @@ namespace Solider {
                     display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType,
                         GameManager.playerInfo.pack.GetWearInfo().GetWearEquip()));
                     cellDict = new Dictionary<string, UICell>();
-                    for (int i = 0; i < equipTypeList.Length; i++) {
-                        string type = equipTypeList[i];
+                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
+                        string type = ConstConfig.EquipTypeList[i];
                         cellDict[type] = transform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
                         cellDict[type].AddAction(delegate () { OnSelectedCell(type); });
                     } // end for

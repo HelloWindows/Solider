@@ -4,7 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Broadcast;
+using Framework.Config.Const;
 using Solider.Character.Interface;
+using Solider.Config;
+using Solider.Manager;
 using Solider.Model.Data;
 
 namespace Solider {
@@ -16,8 +20,9 @@ namespace Solider {
                     get {
                         if (!isLive) return false;
                         // end if
-                        if (roleArribute.HP <= 0) isLive = false;
+                        if (roleArribute.HP > 0) return true;
                         // end if
+                        isLive = false;
                         return isLive;
                     } // end get
                 } // end IsLive
@@ -27,31 +32,43 @@ namespace Solider {
                 private CharacterInitAttribute roleInitArribute;
 
                 public CharacterInfo(int id, string name, string roleType) {
+                    isLive = true;
                     selfTreat = new FairData();
                     roleArribute = new CharacterAttribute(id, name, roleType);
                     tempArribute = new CharacterAttribute(id, name, roleType);
                     roleInitArribute = new CharacterInitAttribute("");
+                    CheckAttributeData();
+                    BroadcastCenter.AddListener(BroadcastType.ReloadEquip, CheckAttributeData);
                 } // end CharacterInfo
 
                 public AttributeData GetAttributeData() {
-                    tempArribute += roleInitArribute;
-                    //for (int i = 0; i < equipTypeList.Length; i++) { // 累加所有已穿戴的装备的属性
-                    //    EquipInfo info = equipPack.GetEquipInfo(equipTypeList[i]);
-                    //    if (null == info) continue;
-                    //    // end if
-                    //    tempArribute += info;
-                    //} // end for
-                    roleArribute += tempArribute;
-                    return roleArribute;
+                    tempArribute += roleArribute;
+                    return tempArribute;
                 } // end GetAttributeData
 
                 public void SelfHealing() {
                     if (!IsLive) return;
                     // end if
-                    GetAttributeData();
                     selfTreat += roleArribute;
                     roleArribute += selfTreat;
                 } // end SelfHealing
+
+                private void CheckAttributeData() {
+                    if (null == GameManager.playerInfo.pack) return;
+                    // end if
+                    tempArribute += roleInitArribute;
+                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) { // 累加所有已穿戴的装备的属性
+                        EquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.EquipTypeList[i]);
+                        if (null == info) continue;
+                        // end if
+                        tempArribute += info;
+                    } // end for
+                    roleArribute += tempArribute;
+                } // end CheckAttributeData
+
+                public void Dispose() {
+                    BroadcastCenter.RemoveListener(BroadcastType.ReloadEquip, CheckAttributeData);
+                } // end Dispose
             } // end class CharacterInfo 
         } // end namespace Model
     } // end namespace Character
