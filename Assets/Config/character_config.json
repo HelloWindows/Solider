@@ -8,11 +8,11 @@
       "intro": "制作子弹的材料"
     },
     {
-      "id": "300002",
-      "name": "铁矿",
       "grade": "C",
-      "spritepath": "Sprite/ItemSprite/iron",
-      "intro": "只是铁矿，仅此而已！"
+      "id": "300002",
+      "intro": "只是铁矿，仅此而已！",
+      "name": "铁矿",
+      "spritepath": true
     },
     {
       "id": "300003",

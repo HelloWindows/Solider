@@ -67,6 +67,7 @@ namespace Solider {
             } // end Initialize
 
             public void Update(float deltaTime) {
+                fsmSystem.Update(deltaTime);
                 List<int> indexList = new List<int>();
                 for (int i = 0; i < charList.Count; i++) {
                     if (charList[i].isDisposed) indexList.Add(i);

@@ -16,15 +16,9 @@
         "MPR": 0,
         "XHR": 0,
         "XMR": 0,
-        "HOT": 0,
-        "MOT": 0,
-        "LOT": 0,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
         "CD": 5
-      }
+      },
+      "buff": false
     },
     {
       "id": "200002",
@@ -42,14 +36,26 @@
         "MPR": 0,
         "XHR": 0,
         "XMR": 0,
-        "HOT": 30,
-        "MOT": 30,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
         "CD": 10
+      },
+      "buff": true,
+      "buffinfo": {
+        "HOT": 0,
+        "MOT": 0,
+        "HPR": 5,
+        "MPR": 5,
+        "XHR": 0,
+        "XMR": 0,
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "ASPR": 0,
+        "MSPR": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0,
+        "LOT": 10
       }
     },
     {
@@ -68,14 +74,26 @@
         "MPR": 0,
         "XHR": 0,
         "XMR": 0,
-        "HOT": 50,
-        "MOT": 50,
-        "LOT": 10,
-        "ATK": 0,
-        "ASP": 0,
-        "MSP": 0,
-        "CRT": 0,
         "CD": 30
+      },
+      "buff": true,
+      "buffinfo": {
+        "HOT": 0,
+        "MOT": 0,
+        "HPR": 0,
+        "MPR": 0,
+        "XHR": 5,
+        "XMR": 5,
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "ASPR": 0,
+        "MSPR": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0,
+        "LOT": 10
       }
     }
   ]

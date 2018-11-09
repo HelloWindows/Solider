@@ -8,7 +8,7 @@ using Framework.Config.Const;
 using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
-using Solider.Config;
+using Solider.Config.Item;
 using Solider.Interface;
 using Solider.Manager;
 using Solider.UI.Custom;

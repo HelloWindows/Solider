@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
-using Solider.Config;
 using Solider.Interface;
 using Solider.Manager;
 using Solider.UI.Custom;
@@ -17,6 +16,7 @@ using Framework.FSM.Interface;
 using Framework.Tools;
 using Framework.Manager;
 using Framework.Broadcast;
+using Solider.Config.Item;
 
 namespace Solider {
     namespace Scene {
@@ -44,9 +44,6 @@ namespace Solider {
                 } // end UITownPanel
 
                 private void UpdateShowInfo() {
-                    if(null != SceneManager.mainCharacter)
-                        infoText.text = SceneManager.mainCharacter.info.GetAttributeData().ToString();
-                    // end if
                     IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
                     dict = wear.GetWearEquip();
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
@@ -138,6 +135,9 @@ namespace Solider {
                 } // end Reason
 
                 public void Act(float deltaTime) {
+                    if (null != SceneManager.mainCharacter)
+                        infoText.text = SceneManager.mainCharacter.info.GetAttributeData().ToString();
+                    // end if
                 } // end Act
             } // end class UIInfoPanel 
         } // end namespace UI

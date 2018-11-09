@@ -5,10 +5,9 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Broadcast;
-using Framework.Config;
 using Framework.Config.Const;
 using Solider.Character.Interface;
-using Solider.Config;
+using Solider.Config.Item;
 using Solider.Manager;
 using Solider.Model.Data;
 
@@ -39,6 +38,7 @@ namespace Solider {
                     tempArribute = new CharacterAttribute(id, name, roleType);
                     roleInitArribute = new CharacterInitAttribute("");
                     CheckAttributeData();
+                    roleArribute += selfTreat;
                     BroadcastCenter.AddListener(BroadcastType.ReloadEquip, CheckAttributeData);
                 } // end CharacterInfo
 

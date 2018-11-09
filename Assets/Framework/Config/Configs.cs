@@ -4,11 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Config;
 using Framework.Config.Audio;
 using Framework.Config.Effect;
 using Framework.Config.Prefab;
 using Framework.Config.Material;
+using Solider.Config.Item;
 
 namespace Framework {
     namespace Config {

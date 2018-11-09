@@ -5,9 +5,9 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System.Text;
-using Solider.Config;
 using Solider.Model.Data;
 using Framework.Config.Const;
+using Solider.Config.Item;
 
 namespace Solider {
     namespace Character {
@@ -52,6 +52,8 @@ namespace Solider {
                 /// <param name="temp"> 临时数据 </param>
                 /// <returns> 结果数据 </returns>
                 public static CharacterAttribute operator +(CharacterAttribute role, CharacterAttribute temp) {
+                    role.HP = temp.HP;
+                    role.MP = temp.MP;
                     role.XHP = temp.XHP;
                     role.XMP = temp.XMP;
                     role.NATK = temp.NATK;

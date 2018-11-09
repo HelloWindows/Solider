@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Config;
+using Solider.Config.Item;
 
 namespace Solider {
     namespace Interface {

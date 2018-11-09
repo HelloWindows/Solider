@@ -5,7 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Character.Model;
-using Solider.Config;
+using Solider.Config.Item;
 
 namespace Solider {
     namespace Model {
@@ -37,6 +37,8 @@ namespace Solider {
                 public float XMR { get; private set; }
 
                 public RealData() {
+                    XHR = 1;
+                    XMR = 1;
                 } // end RealData
 
                 public RealData(ConsumeInfo info) {
