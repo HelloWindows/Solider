@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Broadcast;
+using Framework.Config;
 using Framework.Config.Const;
 using Solider.Character.Interface;
 using Solider.Config;
@@ -26,14 +27,14 @@ namespace Solider {
                         return isLive;
                     } // end get
                 } // end IsLive
-                private FairData selfTreat;
+                private RealData selfTreat;
                 private CharacterAttribute roleArribute;
                 private CharacterAttribute tempArribute;
                 private CharacterInitAttribute roleInitArribute;
 
                 public CharacterInfo(int id, string name, string roleType) {
                     isLive = true;
-                    selfTreat = new FairData();
+                    selfTreat = new RealData();
                     roleArribute = new CharacterAttribute(id, name, roleType);
                     tempArribute = new CharacterAttribute(id, name, roleType);
                     roleInitArribute = new CharacterInitAttribute("");
@@ -65,6 +66,10 @@ namespace Solider {
                     } // end for
                     roleArribute += tempArribute;
                 } // end CheckAttributeData
+
+                public void Revive() {
+                    
+                } // end Revive
 
                 public void Dispose() {
                     BroadcastCenter.RemoveListener(BroadcastType.ReloadEquip, CheckAttributeData);

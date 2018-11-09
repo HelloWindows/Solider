@@ -25,6 +25,10 @@ namespace Solider {
                 /// </summary>
                 /// <returns> 属性数据 </returns>
                 AttributeData GetAttributeData();
+                /// <summary>
+                /// 复活
+                /// </summary>
+                void Revive();
             } // end interface ICharacterInfo 
         } // end namespace Interface
     } // end namespace Character 

@@ -98,30 +98,25 @@ namespace Solider {
                 /// <param name="role"> 角色数据 </param>
                 /// <param name="data"> HP 与 MP 数据 </param>
                 /// <returns> 结果数据 </returns>
-                public static CharacterAttribute operator +(CharacterAttribute role, FairData data) {
+                public static CharacterAttribute operator +(CharacterAttribute role, RealData data) {
                     role.HP += data.HP;
                     role.MP += data.MP;
-
-                    if (data.HPP > 0) {
+                    if (data.HPR > 0) {
                         int value = role.XHP - role.HP;
-                        value = (int)(value * data.HPP / 100f);
+                        value = (int)(value * data.HPR / 100f);
                         role.HP += value;
                     } // end if
-
-                    if (data.MPP > 0) {
+                    if (data.MPR > 0) {
                         int value = role.XMP - role.MP;
-                        value = (int)(value * data.MPP / 100f);
+                        value = (int)(value * data.MPR / 100f);
                         role.MP += value;
                     } // end if
-
-                    if (data.XHPP > 0) {
-                        role.HP += (int)(role.XHP * data.XHPP / 100f);
+                    if (data.XHR > 0) {
+                        role.HP += (int)(role.XHP * data.XHR / 100f);
                     } // end if
-
-                    if (data.XMPP > 0) {
-                        role.MP += (int)(role.XMP * data.XMPP / 100f);
+                    if (data.XMR > 0) {
+                        role.MP += (int)(role.XMP * data.XMR / 100f);
                     } // end if
-
                     if (role.HP < 0) role.HP = 0;
                     // end if
                     if (role.HP > role.XHP) role.HP = role.XHP;
