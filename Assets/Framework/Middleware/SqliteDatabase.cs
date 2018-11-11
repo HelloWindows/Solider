@@ -43,7 +43,7 @@ namespace Framework {
             /// <summary>
             /// 构造函数
             /// </summary>
-            public SqliteDatabase() {
+            private SqliteDatabase() {
             } // end SqliteDatabase
           
             /// <summary>

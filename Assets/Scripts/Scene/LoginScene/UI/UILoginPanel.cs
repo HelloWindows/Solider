@@ -70,7 +70,7 @@ namespace Solider {
                     if (SqliteManager.CheckLogin(username, passwordInput.text, out msg)) {
                         ConsoleTool.SetConsole(msg);
                         GameManager.playerInfo.LoginGame(username);
-                        SceneLoader.LoadNextLevel(new SelectRoleScene());
+                        LoaderScene.LoadNextLevel(new SelectRoleScene());
                         return;
                     } // end if
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",

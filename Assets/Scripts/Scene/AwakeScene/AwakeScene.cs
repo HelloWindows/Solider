@@ -18,7 +18,7 @@ namespace Solider {
                 SqliteManager.Init();
                 Application.targetFrameRate = 30;
                 yield return null;
-                SceneLoader.LoadNextLevel(new LoginScene());
+                LoaderScene.LoadNextLevel(new LoginScene());
             } // end Start
         } // end class AwakeScene 
     } // end namespace Scene

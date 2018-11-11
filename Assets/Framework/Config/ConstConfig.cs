@@ -7,11 +7,7 @@
 namespace Framework {
     namespace Config {
         namespace Const {
-
             public static class ConstConfig {
-                public const float STANDARD_WIDTH = 1024f;
-                public const float STANDARD_HEIGHT = 640f;
-
                 public const int GRID_COUNT = 25;
 
                 public static string[] EquipTypeList { get { return equipTypeList; } }

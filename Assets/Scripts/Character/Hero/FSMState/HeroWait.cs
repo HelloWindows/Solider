@@ -32,19 +32,19 @@ namespace Solider {
                         character.fsm.PerformTransition("run");
                         return;
                     } // end if
-                    if (input.OnButtonClick(ButtonCode.ATTACK)) {
+                    if (input.GetButton(ButtonCode.ATTACK)) {
                         character.fsm.PerformTransition("atkStep1");
                         return;
                     } // end if
-                    if (input.OnButtonClick(ButtonCode.SKILL_1)) {
+                    if (input.GetButtonUp(ButtonCode.SKILL_1)) {
                         character.fsm.PerformTransition("skill1");
                         return;
                     } // end if
-                    if (input.OnButtonClick(ButtonCode.SKILL_2)) {
+                    if (input.GetButtonUp(ButtonCode.SKILL_2)) {
                         character.fsm.PerformTransition("skill2");
                         return;
                     } // end if
-                    if (input.OnButtonClick(ButtonCode.SKILL_3)) {
+                    if (input.GetButtonUp(ButtonCode.SKILL_3)) {
                         character.fsm.PerformTransition("skill3");
                         return;
                     } // end if

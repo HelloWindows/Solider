@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Custom;
+using Framework.Custom.View;
 using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
@@ -12,6 +12,8 @@ using Solider.Scene.UI;
 using Framework.FSM.Interface;
 using Framework.FSM;
 using Solider.Character.Interface;
+using Framework.Config.Game;
+using Framework.Custom.UI;
 
 namespace Solider {
     namespace Scene {
@@ -24,7 +26,7 @@ namespace Solider {
             private IFSMSystem fsmSystem;
 
             public SelectRoleScene() {
-                sceneName = "Level";
+                sceneName = GameConfig.EMPTY_SCENE;
                 fsmSystem = new FSMSystem();
                 uiPanelFSM = fsmSystem as IFSM;
             } // end SelectRoleScene

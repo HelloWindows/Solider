@@ -14,6 +14,10 @@ namespace Framework {
                 /// </summary>
                 /// <param name="name"> 状态名 </param>
                 void PerformTransition(string name);
+                ///// <summary>
+                ///// 切换上一个状态
+                ///// </summary>
+                //void TransitionPrev();
             } // end class IFSM
         } // end namespace Interface
     } // end namespace FSM

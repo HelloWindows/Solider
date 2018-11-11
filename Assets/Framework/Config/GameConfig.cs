@@ -4,20 +4,19 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace Custom {
-	public class GameConfig : MonoBehaviour {
+namespace Framework {
+    namespace Config {
+        namespace Game {
+            public class GameConfig {
+                public const float STANDARD_WIDTH = 1024f;
+                public const float STANDARD_HEIGHT = 640f;
 
-		// Use this for initialization
-		void Start () {
-			
-		} // end Start
-	
-		// Update is called once per frame
-		void Update () {
-			
-		} // end Update
-	} // end class GameConfig 
-} // end namespace Custom
+                public const string AWAKE_SCENE = "AwakeScene";
+                public const string LOADER_SCENE = "LoaderScene";
+                public const string EMPTY_SCENE = "EmptyScene";
+                public const string NOVICE_VILLAGE = "NoviceVillage";
+                public const string FIGHT_SCENE = "FightScene";
+            } // end class GameConfig 
+        } // end namespace Game
+    } // end namespace Config 
+} // end namespace Framework

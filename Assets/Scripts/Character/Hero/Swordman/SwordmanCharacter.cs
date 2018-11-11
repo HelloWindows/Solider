@@ -13,7 +13,6 @@ using Framework.Interface.Input;
 using Framework.Tools;
 using Solider.Character.Hero;
 using Solider.Character.Interface;
-using Solider.Manager;
 using UnityEngine;
 
 namespace Solider {

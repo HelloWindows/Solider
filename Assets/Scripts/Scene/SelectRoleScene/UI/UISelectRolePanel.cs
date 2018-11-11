@@ -117,7 +117,7 @@ namespace Solider {
                         return;
                     } // end if
                     GameManager.playerInfo.SelectedRole(roleindex, roleDict[roleindex][0], roleDict[roleindex][1]);
-                    SceneLoader.LoadNextLevel(new NoviceVillage());
+                    LoaderScene.LoadNextLevel(new NoviceVillage());
                 } // end OnClickStartGameBtn
 
                 /// <summary>

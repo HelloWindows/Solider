@@ -18,8 +18,9 @@ namespace Framework {
 
             public interface IIputInfo {
                 Vector2 joystickDir { get; }
-                bool OnButtonDown(ButtonCode btn);
-                bool OnButtonClick(ButtonCode btn);
+                bool GetButton(ButtonCode btn);
+                bool GetButtonUp(ButtonCode btn);
+                bool GetButtonDown(ButtonCode btn);
             } // end class IIputInfo
         } // end namespace Input
     } // end namespace Interface

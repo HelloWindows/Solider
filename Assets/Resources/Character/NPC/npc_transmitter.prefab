@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 11100002}
   - component: {fileID: 13600000}
   m_Layer: 0
-  m_Name: NPC_XianZhi
+  m_Name: npc_transmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

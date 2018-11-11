@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Custom;
+using Framework.Custom.UI;
 using Framework.Interface.Scene;
 using Framework.Interface.View;
 using Framework.Interface.UI;
@@ -22,6 +22,8 @@ using Solider.Character.NPC;
 using Framework.Config.Const;
 using Solider.Character.Archer;
 using Solider.Character.Magician;
+using Framework.Config.Game;
+using Framework.Custom.View;
 
 namespace Solider {
     namespace Scene {
@@ -36,7 +38,7 @@ namespace Solider {
             private List<ICharacter> charList;
 
             public NoviceVillage() {
-                sceneName = "NoviceVillage";
+                sceneName = GameConfig.NOVICE_VILLAGE;
                 fsmSystem = new FSMSystem();
                 charList = new List<ICharacter>();
                 uiPanelFSM = fsmSystem as IFSM;
@@ -53,6 +55,7 @@ namespace Solider {
                 fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIGroceryPanel("UIGroceryPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIForgePanel("UIForgePanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UITransmitterPanel("UITransmitterPanel", uiPanelFSM, mainCanvas.rectTransform));
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
@@ -62,6 +65,8 @@ namespace Solider {
                     null, new Vector3(24, 0, 3), new Vector3(0, 210, 0), Vector3.one).AddComponent<NPC_Grocery>();
                 ObjectTool.InstantiateGo("npc_forge", Configs.prefabConfig.GetPath("npc_forge"),
                     null, new Vector3(-5, 0, 2), new Vector3(0, 160, 0), Vector3.one).AddComponent<NPC_Forge>();
+                ObjectTool.InstantiateGo("npc_transmitter", Configs.prefabConfig.GetPath("npc_transmitter"),
+                    null, new Vector3(17, 0, -24), new Vector3(0, 270, 0), Vector3.one).AddComponent<NPC_Transmitter>();
                 mainCamera.SetTarget(mainCharacter);
                 charList.Add(mainCharacter);
             } // end Initialize

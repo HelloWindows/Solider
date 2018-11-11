@@ -5,9 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Interface.Input;
-using Solider.UI.Custom;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+#else
+using Solider.UI.Custom;
+#endif
 
 namespace Framework {
     namespace Custom {
@@ -44,22 +47,30 @@ namespace Framework {
                 keymap[ButtonCode.SKILL_3] = KeyCode.P;
             } // end CrossInput
 
-            public bool OnButtonDown(ButtonCode btn) {
+            public bool GetButton(ButtonCode btn) {
 #if UNITY_EDITOR
                 return Input.GetKey(keymap[btn]);
-# else
-                return false;
+#else
+                return InstanceMgr.GetButtonInput().GetButton(btn);
 #endif
 
-            } // end OnButtonDown
+            } // end GetButton
 
-            public bool OnButtonClick(ButtonCode btn) {
-#if UNITY_EDITOR
+            public bool GetButtonUp(ButtonCode btn) {
+#if UNITY_EDITOR            
                 return Input.GetKeyUp(keymap[btn]);
 #else
-                return false;
+                return InstanceMgr.GetButtonInput().GetButtonUp(btn);
 #endif
-            } // end OnButtonClick
+            } // end GetButtonUp
+
+            public bool GetButtonDown(ButtonCode btn) {
+#if UNITY_EDITOR 
+                return Input.GetKeyDown(keymap[btn]);
+#else
+                return InstanceMgr.GetButtonInput().GetButtonDown(btn);
+#endif
+            } // end GetButtonDown
         } // end class CrossInput
     } // end namespace Custom 
 } // end namespace Framework 

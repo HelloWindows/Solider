@@ -69,7 +69,7 @@ namespace Solider {
                     if (character.avatar.isPlaying) {
                         if (mode != AttackMode.DEFAULT) return;
                         // end if
-                        if (input.OnButtonClick(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
+                        if (input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
                         // end if
                     } // end if
                 } // end Act

@@ -52,9 +52,10 @@ namespace Framework {
                     pathDict[ConstConfig.ARCHER] = prefix + "Archer/" + ConstConfig.ARCHER;
                     pathDict[ConstConfig.MAGICIAN] = prefix + "Magician/" + ConstConfig.MAGICIAN;
 
-                    prefix = "Character/NPC/";
+                    prefix = "Character/NPC/"; 
                     pathDict["npc_grocery"] = prefix + "npc_grocery";
                     pathDict["npc_forge"] = prefix + "npc_forge";
+                    pathDict["npc_transmitter"] = prefix + "npc_transmitter";
                 } // end PrefabConfig
             } // end class PrefabConfig
         } // end namespace Prefab 
