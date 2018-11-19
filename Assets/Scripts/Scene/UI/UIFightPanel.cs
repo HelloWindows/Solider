@@ -26,13 +26,13 @@ namespace Solider {
                 } // end UIFightPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("TownPanelUI", "UI/Common/TownPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
                     transform = gameObject.transform;
-                    transform.Find("LoadBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
-                    transform.Find("PackBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickAttackBtn(); });
-                    transform.Find("SettingBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_0(); });
-                    transform.Find("SettingBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_1(); });
-                    transform.Find("SettingBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_2(); });
+                    transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
+                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickAttackBtn(); });
+                    transform.Find("SkillBtn_0").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_0(); });
+                    transform.Find("SkillBtn_1").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_1(); });
+                    transform.Find("SkillBtn_2").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_2(); });
                 } // end DoBeforeEntering
 
                 public void Act(float deltaTime) {

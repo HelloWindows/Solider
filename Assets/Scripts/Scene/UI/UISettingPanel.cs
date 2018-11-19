@@ -52,7 +52,7 @@ namespace Solider {
                 } // end OnToggleEquipment
 
                 private void OnClickCloseBtn() {
-                    fsm.PerformTransition("UITownPanel");
+                    fsm.TransitionPrev();
                 } // end OnClickInfoBtn
 
                 private void OnClickExitBtn() {

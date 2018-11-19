@@ -11,6 +11,7 @@ using System.Collections.Generic;
 namespace Framework {
     namespace FSM {
         public class FSMSystem : IFSM, IFSMSystem {
+            private string prevStateName;
             private IFSMState currentState;
             private Dictionary<string, IFSMState> stateMap;
 
@@ -26,6 +27,7 @@ namespace Framework {
                 if (null == currentState) {
                     currentState = state;
                     currentState.DoBeforeEntering();
+                    prevStateName = state.name;
                 } // end if
                 stateMap[state.name] = state;
             } // end AddState
@@ -46,6 +48,7 @@ namespace Framework {
                 } // end if
                 if (null != currentState) currentState.DoBeforeLeaving();
                 // end if
+                prevStateName = currentState.name;
                 currentState = stateMap[name];
                 if (null != currentState) currentState.DoBeforeEntering();
                 // end if
@@ -57,6 +60,10 @@ namespace Framework {
                 currentState.Reason(deltaTime);
                 currentState.Act(deltaTime);
             } // end Update
+
+            public void TransitionPrev() {
+                PerformTransition(prevStateName);
+            } // end TransitionPrev
         } // end class FSMSystem 
     } // end namespace FSM 
 } // end namespace Framework

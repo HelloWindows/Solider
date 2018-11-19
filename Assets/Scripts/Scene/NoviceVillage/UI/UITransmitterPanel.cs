@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Custom.UI;
 using Framework.FSM.Interface;
+using Framework.Middleware;
 using Framework.Tools;
 using UnityEngine;
 
@@ -52,10 +53,10 @@ namespace Solider {
                 public void OnHrefClick(string name) {
                     switch (name) {
                         case "fightscene":
-                            Debug.Log("fightscene");
+                            LoaderScene.LoadNextLevel(new FightScene());
                             break;
                         default:
-                            fsm.PerformTransition("UITownPanel");
+                            fsm.TransitionPrev();
                             break;
                     } // end switch
                 } // end OnHrefClick

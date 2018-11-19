@@ -48,7 +48,7 @@ namespace Solider {
                 timer = 0;
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                fsmSystem.AddState(new UIFightPanel("UITownPanel", uiPanelFSM, mainCanvas.rectTransform));
+                fsmSystem.AddState(new UIFightPanel("UIFightPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIMainPanel("UIMainPanel", mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
                 fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
@@ -58,10 +58,7 @@ namespace Solider {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
-                ObjectTool.InstantiateGo("npc_grocery", Configs.prefabConfig.GetPath("npc_grocery"),
-                    null, new Vector3(24, 0, 3), new Vector3(0, 210, 0), Vector3.one).AddComponent<NPC_Grocery>();
-                ObjectTool.InstantiateGo("npc_forge", Configs.prefabConfig.GetPath("npc_forge"),
-                    null, new Vector3(-5, 0, 2), new Vector3(0, 160, 0), Vector3.one).AddComponent<NPC_Forge>();
+                mainCharacter.fsm.PerformTransition("wait");
                 mainCamera.SetTarget(mainCharacter);
                 charList.Add(mainCharacter);
             } // end Initialize
