@@ -5,12 +5,10 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Interface.Input;
+using Framework.Manager;
+using Solider.UI.Custom;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-#else
-using Solider.UI.Custom;
-#endif
 
 namespace Framework {
     namespace Custom {
@@ -31,7 +29,8 @@ namespace Framework {
                     } else if (Input.GetKey(KeyCode.W)) {
                         y = 1;
                     } // end if
-                    return new Vector2(x, y).normalized;
+                    Vector2 dir = new Vector2(x, y).normalized;
+                    return dir == Vector2.zero ? UIJoystick.dir : dir;
 #else
                     return UIJoystick.dir;
 #endif
@@ -49,7 +48,7 @@ namespace Framework {
 
             public bool GetButton(ButtonCode btn) {
 #if UNITY_EDITOR
-                return Input.GetKey(keymap[btn]);
+                return Input.GetKey(keymap[btn]) || InstanceMgr.GetButtonInput().GetButton(btn);
 #else
                 return InstanceMgr.GetButtonInput().GetButton(btn);
 #endif
@@ -58,7 +57,7 @@ namespace Framework {
 
             public bool GetButtonUp(ButtonCode btn) {
 #if UNITY_EDITOR            
-                return Input.GetKeyUp(keymap[btn]);
+                return Input.GetKeyUp(keymap[btn]) || InstanceMgr.GetButtonInput().GetButtonUp(btn);
 #else
                 return InstanceMgr.GetButtonInput().GetButtonUp(btn);
 #endif
@@ -66,7 +65,7 @@ namespace Framework {
 
             public bool GetButtonDown(ButtonCode btn) {
 #if UNITY_EDITOR 
-                return Input.GetKeyDown(keymap[btn]);
+                return Input.GetKeyDown(keymap[btn]) || InstanceMgr.GetButtonInput().GetButtonDown(btn);
 #else
                 return InstanceMgr.GetButtonInput().GetButtonDown(btn);
 #endif

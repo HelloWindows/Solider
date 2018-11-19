@@ -40,7 +40,7 @@ namespace Solider {
                         character.fsm.PerformTransition("wait");
                         return;
                     } // end if
-                    if (input.GetButton(ButtonCode.ATTACK)) {
+                    if (input.GetButtonDown(ButtonCode.ATTACK)) {
                         character.fsm.PerformTransition("atkStep1");
                         return;
                     } // end if

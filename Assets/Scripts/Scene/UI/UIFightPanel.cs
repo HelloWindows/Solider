@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Interface.Input;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.UI.Custom;
@@ -29,10 +30,10 @@ namespace Solider {
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
                     transform = gameObject.transform;
                     transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
-                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickAttackBtn(); });
-                    transform.Find("SkillBtn_0").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_0(); });
-                    transform.Find("SkillBtn_1").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_1(); });
-                    transform.Find("SkillBtn_2").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSkillBtn_2(); });
+                    transform.Find("AttackBtn").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.ATTACK);
+                    transform.Find("SkillBtn_0").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_1);
+                    transform.Find("SkillBtn_1").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_2);
+                    transform.Find("SkillBtn_2").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_3);
                 } // end DoBeforeEntering
 
                 public void Act(float deltaTime) {
@@ -49,18 +50,6 @@ namespace Solider {
 
                 private void OnClickBarBtn() {
                 } // end OnClickBarBtn
-
-                private void OnClickAttackBtn() {
-                } // end OnClickAttackBtn
-
-                private void OnClickSkillBtn_0() {
-                } // end OnClickSkillBtn_0
-
-                private void OnClickSkillBtn_1() {
-                } // end OnClickSkillBtn_1
-
-                private void OnClickSkillBtn_2() {
-                } // end OnClickSkillBtn_2
             } // end class UIFightPanel 
         } // end namespace UI
     } // end namespace Scene

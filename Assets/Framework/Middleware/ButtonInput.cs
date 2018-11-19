@@ -18,26 +18,28 @@ namespace Framework {
                     return singleton;
                 } // end get
             } // end instance
-            private bool upSign;
-            private bool downSign;
+            private Dictionary<ButtonCode, bool> upDict;
+            private Dictionary<ButtonCode, bool> downDict;
             private Dictionary<ButtonCode, bool> signDict;
 
             private ButtonInput() {
+                upDict = new Dictionary<ButtonCode, bool>();
+                downDict = new Dictionary<ButtonCode, bool>();
                 signDict = new Dictionary<ButtonCode, bool>();
                 Reset();
             } // end ButtonInput
 
-            public bool GetButtonDown() {
-                if (false == downSign) return false;
+            public bool GetButtonDown(ButtonCode btn) {
+                if (false == downDict[btn]) return false;
                 // end if
-                downSign = true;
+                downDict[btn] = false;
                 return true;
             } // end GetButtonDown
 
             public bool GetButtonUp(ButtonCode btn) {
-                if (false == upSign) return false;
+                if (false == upDict[btn]) return false;
                 // end if
-                upSign = true;
+                upDict[btn] = false;
                 return true;
             } // end GetButtonUp
 
@@ -45,23 +47,24 @@ namespace Framework {
                 return signDict[btn];
             } // end GetButton
 
-            /// <summary>
-            /// 设置按钮状态
-            /// </summary>
-            /// <param name="btn"> 按钮 </param>
-            /// <param name="sign"> 状态，按下 true, 松开 false </param>
-            public void SetButtonSign(ButtonCode btn, bool sign) {
-                upSign = !sign;
-                downSign = sign;
-                signDict[btn] = sign;
-            } // end SetButtonSign
+            public void PressButton(ButtonCode btn) {
+                upDict[btn] = false;
+                downDict[btn] = true;
+                signDict[btn] = true;
+            } // end PressButton
+
+            public void ReleaseButton(ButtonCode btn) {
+                upDict[btn] = true;
+                downDict[btn] = false;
+                signDict[btn] = false;
+            } // end ReleaseButton
 
             public void Reset() {
-                upSign = false;
-                downSign = false;
                 ButtonCode[] btnArr = { ButtonCode.ATTACK, ButtonCode.SKILL_1, ButtonCode.SKILL_2, ButtonCode.SKILL_3 };
                 for (int i = 0; i < btnArr.Length; i++) {
                     ButtonCode btn = btnArr[i];
+                    upDict[btn] = false;
+                    downDict[btn] = false;
                     signDict[btn] = false;
                 } // end for
             } // end Reset
