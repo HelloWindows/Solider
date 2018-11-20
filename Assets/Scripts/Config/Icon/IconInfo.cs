@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System.Text;
-
 namespace Solider {
     namespace Config {
         namespace Icon {

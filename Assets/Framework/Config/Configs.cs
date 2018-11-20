@@ -9,10 +9,12 @@ using Framework.Config.Effect;
 using Framework.Config.Prefab;
 using Framework.Config.Material;
 using Solider.Config.Item;
+using Solider.Config.Icon;
 
 namespace Framework {
     namespace Config {
         public static class Configs {
+            public static readonly IconConfig iconConfig = IconConfig.instance;
             public static readonly ItemConfig itemConfig = ItemConfig.instance;
             public static readonly SoundConfig soundConfig = SoundConfig.instance;
             public static readonly EffectConfig effectConfig = EffectConfig.instance;

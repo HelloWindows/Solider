@@ -12,7 +12,6 @@ using UnityEngine;
 namespace Solider {
     namespace Scene {
         public class AwakeScene : MonoBehaviour {
-
             private IEnumerator Start() {
                 InstanceMgr.Init();
                 SqliteManager.Init();

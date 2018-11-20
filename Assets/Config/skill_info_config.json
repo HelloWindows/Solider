@@ -1,0 +1,71 @@
+﻿{
+  "itemlist": [
+    {
+      "id": "500001",
+      "name": "前翻",
+      "spritepath": "Sprite/ItemSprite/lit_hp",
+      "intro": "先前方向翻滚一段距离。",
+      "property": {
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 5
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500002",
+      "name": "旋风斩",
+      "spritepath": "Sprite/ItemSprite/mid_hp",
+      "intro": "对周围敌人造成",
+      "property": {
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 12
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500003",
+      "name": "前劈",
+      "spritepath": "Sprite/ItemSprite/big_hp",
+      "intro": "对正前方敌人造成",
+      "property": {
+        "ATKR": 325,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 20
+      },
+      "buff": true,
+      "passive": false,
+      "buffinfo": {
+        "buffID": "600001",
+        "isDebuff": true,
+        "isPassive": false,
+        "removable": false, 
+        "HOT": 0,
+        "MOT": 0,
+        "HPR": 0,
+        "MPR": 0,
+        "XHR": 0,
+        "XMR": 0,
+        "ATKR": 100,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "ASPR": 0,
+        "MSPR": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0,
+        "LOT": 10
+      }
+    }
+  ]
+}

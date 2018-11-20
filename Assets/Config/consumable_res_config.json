@@ -2,7 +2,6 @@
   "itemlist": [
     {
       "id": "200001",
-      "stateid": "500001",
       "name": "小瓶金疮药",
       "grade": "D",
       "maximum": 20, 
@@ -22,7 +21,6 @@
     },
     {
       "id": "200002",
-      "stateid": "500001",
       "name": "中瓶金疮药",
       "grade": "C",
       "maximum": 10, 
@@ -40,6 +38,10 @@
       },
       "buff": true,
       "buffinfo": {
+        "buffID": "601001",
+        "isDebuff": true,
+        "isPassive": false,
+        "removable": true, 
         "HOT": 0,
         "MOT": 0,
         "HPR": 5,
@@ -60,7 +62,6 @@
     },
     {
       "id": "200003",
-      "stateid": "500001",
       "name": "大瓶金疮药",
       "grade": "B",
       "maximum": 5, 
@@ -78,6 +79,10 @@
       },
       "buff": true,
       "buffinfo": {
+        "buffID": "601001",
+        "isDebuff": true,
+        "isPassive": false,
+        "removable": true, 
         "HOT": 0,
         "MOT": 0,
         "HPR": 0,
