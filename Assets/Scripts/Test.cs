@@ -14,14 +14,15 @@ using Solider.Config;
 using Solider.Model;
 using Framework.Manager;
 using Framework.Custom.UI;
+using Solider.UI.Custom;
+using UnityEngine.UI;
 
 namespace Test {
     public class Test : MonoBehaviour {
 
-        public LinkImageText text;
 
         private void Start() {
-            text.onHrefClick.AddListener(OnClick);
+
         } // end Start
 
         private void Update() {
@@ -34,7 +35,7 @@ namespace Test {
 
         public void OnDestroy()
         {
-            text.onHrefClick.RemoveListener(OnClick);
+
         }
     } // end class Test 
 } // end namespace Test

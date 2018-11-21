@@ -24,6 +24,12 @@ namespace Framework {
                 return InstantiateEmptyUI(name, parent, localPos, localRot, localSca).AddComponent<Text>();
             } // end InstantiateText
 
+            public static Text InstantiateText(string name, RectTransform parent, Vector2 sizeDelta) {
+                Text text = InstantiateText(name, parent, Vector3.zero, Vector3.zero, Vector3.one);
+                text.rectTransform.sizeDelta = sizeDelta;
+                return text;
+            } // end InstantiateText
+
             public static Image InstantiateImage(string name, RectTransform parent, Vector3 localPos, Vector2 sizeDel) {
                 Image image = InstantiateEmptyUI(name, parent, localPos, Vector3.zero, Vector3.one).AddComponent<Image>();
                 image.raycastTarget = false;

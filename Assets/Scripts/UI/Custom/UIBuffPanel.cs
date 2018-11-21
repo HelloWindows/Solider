@@ -14,7 +14,7 @@ using Solider.Config.Icon;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIBuffPanel {
+            public class UIBuffPanel : IDisposable {
                 #region /********** 图标 **********/
                 private class Icon : IDisposable {
                     public string id { get; private set; }
@@ -31,7 +31,6 @@ namespace Solider {
                         mask.fillOrigin = 2;
                         mask.fillClockwise = false;
                         mask.fillAmount = 0;
-                        // end if
                     } // end Icon
 
                     public void ResetIcon(string id, Vector3 localPos, string spritePath) {
@@ -107,6 +106,13 @@ namespace Solider {
                         iconList.RemoveAt(i);
                     } // end for
                 } // end UpdateShow
+
+                public void Dispose() {
+                    for (int i = 0; i < iconList.Count; i++) {
+                        iconList[i].Dispose();
+                    } // end for
+                    iconList.Clear();
+                } // end Dispose
             } // end class UIBuffPanel 
         } // end namespace Custom
     } // end namespace UI
