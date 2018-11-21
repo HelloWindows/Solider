@@ -20,6 +20,8 @@ namespace Solider {
                 IAudioSound audio { get; }
                 ICharacterMove move { get; }
                 ICharacterInfo info { get; }
+                ICharacterBuff buff { get; }
+
                 Vector3 position { get; }
                 void Update(float deltaTime);
             } // end interface ICharacter

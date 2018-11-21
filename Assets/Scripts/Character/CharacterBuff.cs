@@ -4,21 +4,23 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Broadcast;
+using Solider.Character.Interface;
 using Solider.Config.Icon;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 namespace Solider {
     namespace Character {
-        public class CharacterBuff {
+        public class CharacterBuff : ICharacterBuff{
             #region /************* BuffTimer ************/
             private class BuffTimer {
                 private float time;
                 public BuffInfo buffInfo { get; private set; }
+                public float schedule { get { return time / buffInfo.LOT; } }
 
                 public BuffTimer(BuffInfo buffInfo) {
                     this.buffInfo = buffInfo;
-                    time = buffInfo.HOT;
+                    time = buffInfo.LOT;
                 } // end ObjectTimer
 
                 public bool IsOverTime(float deltaTime) {
@@ -51,9 +53,12 @@ namespace Solider {
                 for (int i = 0; i < signList.Count; i++) {
                     buffList.RemoveAt(signList[i]);
                 } // end for
+                BroadcastCenter.Broadcast(BroadcastType.BuffChange);
             } // end Update
 
             public void InsertBuff(BuffInfo buffInfo) {
+                if (null == buffInfo) return;
+                // end if
                 for (int i = 0; i < buffList.Count; i++) {
                     if (buffList[i].buffInfo.buffID != buffInfo.buffID) continue;
                     // end if
@@ -61,7 +66,28 @@ namespace Solider {
                     return;
                 } // end for
                 buffList.Add(new BuffTimer(buffInfo));
+                BroadcastCenter.Broadcast(BroadcastType.BuffChange);
             } // end InsertBuff
+
+            public List<BuffInfo> GetBuffInfoList() {
+                if (buffList.Count == 0) return null;
+                // end if
+                List<BuffInfo> list = new List<BuffInfo>();
+                for (int i = 0; i < buffList.Count; i++) {
+                    list.Add(buffList[i].buffInfo);
+                } // end for
+                return list;
+            } // end GetBuffInfoList
+
+            public List<float> GetScheduleList() {
+                if (buffList.Count == 0) return null;
+                // end if
+                List<float> list = new List<float>();
+                for (int i = 0; i < buffList.Count; i++) {
+                    list.Add(buffList[i].schedule);
+                } // end for
+                return list;
+            } // end GetScheduleList
         } // end class CharacterBuff 
     } // end namespace Character
 } // end namespace Solider

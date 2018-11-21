@@ -26,6 +26,7 @@ namespace Solider {
                 public IAudioSound audio { get; private set; }
                 public ICharacterMove move { get; private set; }
                 public ICharacterInfo info { get; private set; }
+                public ICharacterBuff buff { get; private set; }
                 public Vector3 position { get { return transform.position; } }
                 private IIputInfo input;
                 private IFSMSystem fsmSystem;
@@ -39,6 +40,7 @@ namespace Solider {
                     info = new Model.CharacterInfo(gameObject.GetHashCode(), name, ConstConfig.ARCHER);
                     input = new CrossInput();
                     gameObject.AddComponent<AudioListener>();
+                    buff = new CharacterBuff();
                     avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     move = new HeroMove(gameObject.GetComponent<Rigidbody>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());

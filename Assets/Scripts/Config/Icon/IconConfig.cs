@@ -39,6 +39,12 @@ namespace Solider {
                         skillConfig.Add((string)list[i]["id"], new SkillInfo(list[i]));
                     } // end for
                 } // end InitStuffConfig
+
+                public SkillInfo GetSkillInfo(string id) {
+                    if (skillConfig.ContainsKey(id)) return skillConfig[id];
+                    // end if
+                    return null;
+                } // end GetSkillInfo
             } // end class IconConfig 
         } // end namespace Icon
     } // end namespace Config

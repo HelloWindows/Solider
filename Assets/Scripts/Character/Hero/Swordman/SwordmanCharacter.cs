@@ -26,6 +26,7 @@ namespace Solider {
                 public IAudioSound audio { get; private set; }
                 public ICharacterMove move { get; private set; }
                 public ICharacterInfo info { get; private set; }
+                public ICharacterBuff buff { get; private set; }
                 public Vector3 position { get { return transform.position; } }
                 private IIputInfo input;
                 private IFSMSystem fsmSystem;
@@ -38,6 +39,7 @@ namespace Solider {
                         Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one);
                     input = new CrossInput();
                     gameObject.AddComponent<AudioListener>();
+                    buff = new CharacterBuff();
                     info = new Model.CharacterInfo(gameObject.GetHashCode(), name, ConstConfig.SWORDMAN);
                     move = new HeroMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
