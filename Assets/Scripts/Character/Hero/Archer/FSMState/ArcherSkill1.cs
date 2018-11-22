@@ -10,26 +10,25 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Archer {
             public class ArcherSkill1 : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "archer_skill1"; } }
                 private float step;
                 private ICharacter character;
 
-                public ArcherSkill1(string name, ICharacter character) {
+                public ArcherSkill1(ICharacter character) {
                     step = 2f;
-                    this.name = name;
                     this.character = character;
                 } // end ArcherCrit
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("skill1");
+                    character.audio.PlaySoundCache("archer_skill1");
                     character.avatar.PlayQueued(new string[] { "skill1_1", "skill1_2" });
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new ArcherWait(character));
                     } // end if
                 } // end Reason
 
@@ -46,10 +45,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class ArcherSkill1
-        } // end namespace FSMState
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 

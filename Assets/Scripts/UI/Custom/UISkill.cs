@@ -40,6 +40,10 @@ namespace Solider {
                 public void SetTimer(float value) {
                     if (null == timer) return;
                     // end if
+                    if (value == 0) {
+                        timer.text = "";
+                        return;
+                    } // end if
                     timer.text = value.ToString("f1");
                 } // end SetTimer
 

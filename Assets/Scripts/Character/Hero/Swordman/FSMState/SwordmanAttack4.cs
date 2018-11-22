@@ -9,15 +9,14 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Swordman {
             public class SwordmanAttack4 : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "atkStep4"; } }
                 private float step;
                 private ICharacter character;
 
-                public SwordmanAttack4(string name, ICharacter character) {
+                public SwordmanAttack4( ICharacter character) {
                     step = 2f;
-                    this.name = name;
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -28,7 +27,7 @@ namespace Solider {
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new SwordmanWait(character));
                     } // end if
                 } // end Reason
 
@@ -40,10 +39,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class SwordmanAttack4
-        } // end namespace FSMState
+        } // end namespace Swordman
     } // end namespace Character
 } // end namespace Solider 

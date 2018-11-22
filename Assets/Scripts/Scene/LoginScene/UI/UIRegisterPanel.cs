@@ -15,7 +15,6 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIRegisterPanel : IFSMState {
-                private IFSM fsm;
                 private GameObject gameObject;
                 private Transform transform;
                 private RectTransform parent;
@@ -25,11 +24,13 @@ namespace Solider {
                 private GameObject usernameWarningGo;
                 private GameObject comfirmWarningGo;
 
-                public string name { get; private set; }
+                public string name { get { return "UIRegisterPanel"; } }
 
-                public UIRegisterPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UIRegisterPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UIRegisterPanel
+
+                public UIRegisterPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UIRegisterPanel
 
@@ -55,16 +56,12 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
-                } // end DoBeforeLeaving
-
-                public void DoRemove() {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
                     gameObject = null;
                     transform = null;
-                } // end DoRemove
+                } // end DoBeforeLeaving
 
                 public void Act(float deltaTime) {
                 } // end Act
@@ -114,7 +111,7 @@ namespace Solider {
                 } // end OnClickRegisterBtn
 
                 private void OnClickBackBtn() {
-                    fsm.PerformTransition("UILogin");
+                    SceneManager.uiPanelFMS.PerformTransition(new UILoginPanel());
                 } // end OnClickBackBtn
             } // end class UIRegisterPanel 
         } // end namespace UI

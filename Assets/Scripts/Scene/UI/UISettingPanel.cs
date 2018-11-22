@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Manager;
 using Framework.Tools;
 using Solider.Manager;
 using Solider.UI.Custom;
@@ -15,15 +16,16 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UISettingPanel : IFSMState {
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UISettingPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
 
-                public UISettingPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UISettingPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UISettingPanel
+
+                public UISettingPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UISettingPanel
 
@@ -52,18 +54,12 @@ namespace Solider {
                 } // end OnToggleEquipment
 
                 private void OnClickCloseBtn() {
-                    fsm.TransitionPrev();
+                    SceneManager.uiPanelFMS.TransitionPrev();
                 } // end OnClickInfoBtn
 
                 private void OnClickExitBtn() {
                     Application.Quit();
                 } // end OnClickExitBtn
-
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    //end if
-                    Object.Destroy(gameObject);
-                } // end DoRemove
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("SettingPanelUI", "UI/Common/SettingPanelUI", parent);
@@ -90,7 +86,9 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    //end if
+                    Object.Destroy(gameObject);
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

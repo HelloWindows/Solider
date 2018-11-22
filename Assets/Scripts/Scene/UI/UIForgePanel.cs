@@ -19,8 +19,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIForgePanel : IFSMState {
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UIForgePanel"; } }
                 private IPack blueprintPack;
                 private RectTransform parent;
                 private GameObject gameObject;
@@ -30,9 +29,11 @@ namespace Solider {
                 private UICell[] stuffArray;
                 private BluePrintInfo printInfo;
 
-                public UIForgePanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UIForgePanel() {
+                    this.parent = SceneManager.mainCanvas.rectTransform;
+                } // end UISettingPanel
+
+                public UIForgePanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UISettingPanel
 
@@ -86,7 +87,7 @@ namespace Solider {
                 } // end OnSelectedGrid
 
                 private void OnClickCloseBtn() {
-                    fsm.PerformTransition("UITownPanel");
+                    SceneManager.uiPanelFMS.TransitionPrev();
                 } // end OnClickInfoBtn
 
                 private void OnClickForgeBtn() {
@@ -127,14 +128,10 @@ namespace Solider {
                         SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("锻造成功！");
                 } // end OnClickForgeBtn
 
-                public void DoRemove() {
+                public void DoBeforeLeaving() {
                     if (null == gameObject) return;
                     //end if
                     Object.Destroy(gameObject);
-                } // end DoRemove
-
-                public void DoBeforeLeaving() {
-                    DoRemove();
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

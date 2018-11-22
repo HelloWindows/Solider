@@ -5,12 +5,13 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
+using Solider.Character.Interface;
 using Solider.Config.Icon;
 using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        public class CharacterSkill {
+        public class CharacterSkill : ICharacterSkill {
             #region /******** 技能计时器 *******/
             private class SkillTimer {
                 public string id { get; private set; }
@@ -39,6 +40,16 @@ namespace Solider {
             } // end class SkillTimer
             #endregion
             private List<SkillTimer> skillList;
+            public List<string> skillIDList {
+                get {
+                    if (skillList.Count == 0) return null;
+                    List<string> list = new List<string>();
+                    for (int i = 0; i < skillList.Count; i++) {
+                        list.Add(skillList[i].id);
+                    } // end for
+                    return list;
+                } // end get
+            } // end skillIDList
 
             public CharacterSkill() {
                 skillList = new List<SkillTimer>();

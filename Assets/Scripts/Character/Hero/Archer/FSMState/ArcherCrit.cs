@@ -9,13 +9,12 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Archer {
             public class ArcherCrit : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "attCrit"; } }
                 private ICharacter character;
 
-                public ArcherCrit(string name, ICharacter character) {
-                    this.name = name;
+                public ArcherCrit(ICharacter character) {
                     this.character = character;
                 } // end ArcherCrit
 
@@ -26,7 +25,7 @@ namespace Solider {
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new ArcherWait(character));
                     } // end if
                 } // end Reason
 
@@ -36,10 +35,7 @@ namespace Solider {
                 public void DoBeforeLeaving() {
 
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class ArcherCrit
-        } // end namespace FSMState
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 

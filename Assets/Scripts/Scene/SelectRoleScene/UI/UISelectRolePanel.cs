@@ -18,22 +18,23 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UISelectRolePanel : IFSMState {
+                public string name { get { return "UISelectRolePanel"; } }
+
                 private int roleindex;
                 private int selectedindex;
                 private Text t_roleName;
                 private UIDisplayRaw display;
                 private Dictionary<int, string[]> roleDict;
-                private IFSM fsm;
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
                 public static int createIndex { get; private set; }
 
-                public string name { get; private set; }
+                public UISelectRolePanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UISelectRolePanel 
 
-                public UISelectRolePanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UISelectRolePanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UISelectRolePanel 
 
@@ -76,7 +77,7 @@ namespace Solider {
                 private void OnSwitchRole(int index) {
                     if (!ChechExitID(index)) {
                         createIndex = index;
-                        fsm.PerformTransition("UICreateRole");
+                        SceneManager.uiPanelFMS.PerformTransition(new UICreateRolePanel());
                         return;
                     } // end if
                     if (selectedindex == index) return;
@@ -132,16 +133,12 @@ namespace Solider {
                 } // end ChechExitID
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
-                } // end DoBeforeLeaving
-
-                public void DoRemove() {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
                     gameObject = null;
                     transform = null;
-                } // end DoRemove
+                } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
                 } // end Reason

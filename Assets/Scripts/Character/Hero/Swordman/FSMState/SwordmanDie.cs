@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: HeroHurt.cs
+ * FileName: SwordmanDie.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -9,26 +9,21 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class HeroHurt : IFSMState {
-                public string name { get; private set; }
+        namespace Swordman {
+            public class SwordmanDie : IFSMState {
+                public string name { get { return "die"; } }
                 private ICharacter character;
 
-                public HeroHurt(string name, ICharacter character) {
-                    this.name = name;
+                public SwordmanDie(ICharacter character) {
                     this.character = character;
-                } // end HeroHurt
+                } // end SwordmanDie
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
-                    character.audio.PlaySoundCache("swordman_hurt");
+                    character.audio.PlaySoundCache("swordman_die");
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
-                        return;
-                    } // end if
                 } // end Reason
 
                 public void Act(float deltaTime) {
@@ -36,10 +31,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
-            } // end class HeroHurt          
-        } // end namespace FSMState
+            } // end class SwordmanDie 
+        } // end namespace Swordman
     } // end namespace Character
-} // end namespace Solider 
+} // end namespace Solider

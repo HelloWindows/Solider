@@ -25,18 +25,18 @@ namespace Solider {
                 private IPack currentPack;
                 private UIGrid[] gridArray;
 
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UIPackPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
 
-                public UIPackPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
-                    this.parent = parent;
+                public UIPackPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIPackPanel
 
+                public UIPackPanel(RectTransform parent) {
+                    this.parent = parent;
+                } // end UIPackPanel
 
                 private void OnToggleEquipment(bool isOn) {
                     if (!isOn) return;
@@ -128,14 +128,8 @@ namespace Solider {
                 } // end DiscardBtn
 
                 private void OnClickCloseBtn() {
-                    fsm.PerformTransition("UITownPanel");
+                    SceneManager.uiPanelFMS.TransitionPrev();
                 } // end OnClickInfoBtn
-
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    //end if
-                    Object.Destroy(gameObject);
-                } // end DoRemove
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("PackPanelUI", "UI/Common/PackPanelUI", parent);
@@ -165,7 +159,9 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    //end if
+                    Object.Destroy(gameObject);
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

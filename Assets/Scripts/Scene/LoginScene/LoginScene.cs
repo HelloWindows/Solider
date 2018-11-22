@@ -39,8 +39,7 @@ namespace Solider {
                 mainCanvas = new MainCanvas(mainCamera.camera);
                 gameObject = ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
                     null, new Vector3(0, 0, 5.1f), Vector3.zero, Vector3.one);
-                fsmSystem.AddState(new UILoginPanel("UILogin", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIRegisterPanel("UIRegister", uiPanelFSM, mainCanvas.rectTransform));
+                uiPanelFSM.PerformTransition(new UILoginPanel());
             } // end Initialize
 
             public void Update(float deltaTime) {
@@ -56,8 +55,6 @@ namespace Solider {
             public void Dispose() {
                 if (null == gameObject) Object.Destroy(gameObject);
                 // end if
-                fsmSystem.RemoveState("UILogin");
-                fsmSystem.RemoveState("UIRegister");
             } // end Dispose
         } // end class LoginScene 
     } // end namespace Scene

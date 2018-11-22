@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224696916846974724}
   m_Layer: 5
-  m_Name: MainPanelUI
+  m_Name: JoystickUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

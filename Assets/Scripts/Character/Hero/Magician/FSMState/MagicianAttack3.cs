@@ -5,18 +5,16 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Magician {
             public class MagicianAttack3 : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "magician_attack3"; } }
                 private ICharacter character;
 
-                public MagicianAttack3(string name, ICharacter character) {
-                    this.name = name;
+                public MagicianAttack3(ICharacter character) {
                     this.character = character;
                 } // end MagicianAttack2
 
@@ -27,7 +25,7 @@ namespace Solider {
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new MagicianWait(character));
                     } // end if   
                 } // end Reason
 
@@ -36,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class MagicianAttack3 
-        } // end namespace FSMState
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider

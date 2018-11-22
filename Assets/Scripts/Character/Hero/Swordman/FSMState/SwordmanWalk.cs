@@ -1,32 +1,28 @@
 ﻿/*******************************************************************
- * FileName: Idle.cs
+ * FileName: SwordmanWalk.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Solider.Character.Interface;
 using Solider.Tools;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class HeroWalk : IFSMState {
-                public string name { get; private set; }
-                private IIputInfo input;
+        namespace Swordman {
+            public class SwordmanWalk : IFSMState {
+                public string name { get { return "walk"; } }
                 private ICharacter character;
                 private float[] timeArr;
                 private bool[] signArr;
 
-                public HeroWalk(string name, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
+                public SwordmanWalk(ICharacter character) {
                     this.character = character;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };
-                } // end Idle
+                } // end SwordmanWalk
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
@@ -36,18 +32,18 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (input.joystickDir.magnitude == 0f) {
-                        character.fsm.PerformTransition("idle");
+                    if (character.input.joystickDir.magnitude == 0f) {
+                        character.fsm.PerformTransition(new SwordmanIdle(character));
                         return;
                     } // end if
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition(name);
+                        character.fsm.PerformTransition(this);
                         return;
                     } // end if
                 } // end Reason
 
                 public void Act(float deltaTime) {
-                    character.move.MoveForward(input.joystickDir, deltaTime);
+                    character.move.MoveForward(character.input.joystickDir, deltaTime);
                     AnimationState state = character.avatar.GetCurrentState(name);
                     if (null == state) return;
                     // end if
@@ -59,9 +55,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
 
-                public void DoRemove() {
-                } // end DoRemove
-
                 private void PlayRunEffect(int index, float normalizedTime) {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if
@@ -69,7 +62,7 @@ namespace Solider {
                     character.audio.PlaySoundCache("heroRun");
                     EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
                 } // end PlayRunSound
-            } // end class HeroWalk
-        } // end namespaceFSMState
+            } // end class SwordmanWalk
+        } // end namespace Swordman
     } // end namespace Character
 } // end namespace Solider 

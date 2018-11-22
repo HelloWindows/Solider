@@ -30,16 +30,17 @@ namespace Solider {
                 private Dictionary<string, UICell> cellDict;
                 private Dictionary<string, string> dict;
 
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UIInfoPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
                 private UIDisplayRaw display;
 
-                public UIInfoPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UIInfoPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UIInfoPanel
+
+                public UIInfoPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UITownPanel
 
@@ -93,14 +94,8 @@ namespace Solider {
                 } // end OnClickTakeOffBtn
 
                 private void OnClickCloseBtn() {
-                    fsm.PerformTransition("UITownPanel");
+                    SceneManager.uiPanelFMS.TransitionPrev();
                 } // end OnClickInfoBtn
-
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    //end if
-                    Object.Destroy(gameObject);
-                } // end DoRemove
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("InfoPanelUI", "UI/Common/InfoPanelUI", parent);
@@ -128,7 +123,9 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    //end if
+                    Object.Destroy(gameObject);
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

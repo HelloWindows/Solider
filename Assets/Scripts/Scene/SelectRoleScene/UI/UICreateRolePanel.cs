@@ -17,19 +17,20 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UICreateRolePanel : IFSMState {
+                public string name { get { return "UICreateRolePanel"; } }
+
                 private string roleType;
                 private UIDisplayRaw display;
                 private InputField nameInputField;
-                private IFSM fsm;
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
 
-                public string name { get; private set; }
+                public UICreateRolePanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UICreateRolePanel 
 
-                public UICreateRolePanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UICreateRolePanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UICreateRolePanel 
 
@@ -50,7 +51,7 @@ namespace Solider {
                 } // end OnClickCreateBtn
 
                 private void OnClickBackBtn() {
-                    fsm.PerformTransition("UISelectRole");
+                    SceneManager.uiPanelFMS.PerformTransition(new UISelectRolePanel());
                 } // end OnClickBackBtn
 
                 public void DoBeforeEntering() {
@@ -69,16 +70,12 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
-                } // end DoBeforeLeaving
-
-                public void DoRemove() {
                     if (null == gameObject) return;
                     // end if
                     Object.Destroy(gameObject);
                     gameObject = null;
                     transform = null;
-                } // end DoRemove
+                } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
                 } // end Reason

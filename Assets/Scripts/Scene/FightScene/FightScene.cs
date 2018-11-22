@@ -18,12 +18,11 @@ using Solider.Character.Swordman;
 using UnityEngine;
 using Solider.Manager;
 using Framework.Tools;
-using Framework.Config;
-using Solider.Character.NPC;
 using Framework.Config.Const;
 using Solider.Character.Archer;
 using Solider.Character.Magician;
 using Framework.Config.Game;
+using Solider.Character.FSMState;
 
 namespace Solider {
     namespace Scene {
@@ -48,18 +47,14 @@ namespace Solider {
                 timer = 0;
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                fsmSystem.AddState(new UIFightPanel("UIFightPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIMainPanel("UIMainPanel", mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
+                uiPanelFSM.PerformTransition(new UIFightPanel());
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
-                mainCharacter.fsm.PerformTransition("wait");
                 mainCamera.SetTarget(mainCharacter);
+                mainCharacter.fsm.PerformTransition(new BaseState("wait"));
                 charList.Add(mainCharacter);
             } // end Initialize
 

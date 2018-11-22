@@ -5,28 +5,50 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM;
-using Framework.Interface.Input;
-using Solider.Character.FSMState;
+using Framework.FSM.Interface;
+using Framework.Tools;
 using Solider.Character.Interface;
+using System.Collections.Generic;
+
 namespace Solider {
     namespace Character {
         namespace Magician {
-            public class MagicianFSM : FSMSystem {
-                public MagicianFSM(ICharacter character, IIputInfo input) {
-                    AddState(new HeroIdle("idle", character, input));
-                    AddState(new HeroWalk("walk", character, input));
-                    AddState(new HeroWait("wait", character, input));
-                    AddState(new HeroRun("run", character, input));
-                    AddState(new HeroHurt("hurt", character));
-                    AddState(new HeroDie("die", character));
+            public class MagicianFSM : IFSMSystem {
+                private IFSMSystem fsmSystem;
+                private Dictionary<string, IFSMState> baseStateDict;
 
-                    AddState(new MagicianAttack1("atkStep1", character, input));
-                    AddState(new MagicianAttack2("atkStep2", character, input));
-                    AddState(new MagicianAttack3("atkStep3", character));
-                    AddState(new MagicianSkill1("skill1", character));
-                    AddState(new MagicianSkill2("skill2", character));
-                    AddState(new MagicianSkill3("skill3", character));
-                } // end SwordmanFSM
+                public MagicianFSM(ICharacter character) {
+                    fsmSystem = new FSMSystem();
+                    baseStateDict = new Dictionary<string, IFSMState>();
+                    PushBaseState(new MagicianDie(character));
+                    PushBaseState(new MagicianIdle(character));
+                    PushBaseState(new MagicianHurt(character));
+                    PushBaseState(new MagicianWait(character));
+                } // end MagicianFSM
+
+                public void PerformTransition(IFSMState state) {
+                    if (baseStateDict.ContainsKey(state.name)) {
+                        fsmSystem.PerformTransition(baseStateDict[state.name]);
+                        return;
+                    } // end if
+                    fsmSystem.PerformTransition(state);
+                } // end PerformTransition
+
+                public void TransitionPrev() {
+                    fsmSystem.TransitionPrev();
+                } // end TransitionPrev
+
+                public void Update(float deltaTime) {
+                    fsmSystem.Update(deltaTime);
+                } // end Update
+
+                private void PushBaseState(IFSMState state) {
+                    if (baseStateDict.ContainsKey(state.name)) {
+                        DebugTool.ThrowException("SwordmanFSM PushBaseState have repeat state!");
+                        return;
+                    } // end if
+                    baseStateDict[state.name] = state;
+                } // end PushBaseState
             } // end class MagicianFSM 
         } // end namespace Magician
     } // end namespace Character

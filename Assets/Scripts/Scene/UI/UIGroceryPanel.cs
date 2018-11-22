@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Manager;
 using Framework.Tools;
 using Solider.Manager;
 using Solider.UI.Custom;
@@ -15,15 +16,16 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIGroceryPanel : IFSMState {
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UIGroceryPanel"; } }
                 private RectTransform parent;
                 private GameObject gameObject;
                 private Transform transform { get { return gameObject.transform; } }
 
-                public UIGroceryPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UIGroceryPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UIGroceryPanel
+
+                public UIGroceryPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UISettingPanel
 
@@ -34,17 +36,13 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 private void OnClickCloseBtn() {
-                    fsm.PerformTransition("UITownPanel");
+                    SceneManager.uiPanelFMS.TransitionPrev();
                 } // end OnClickInfoBtn
 
-                public void DoRemove() {
+                public void DoBeforeLeaving() {
                     if (null == gameObject) return;
                     //end if
                     Object.Destroy(gameObject);
-                } // end DoRemove
-
-                public void DoBeforeLeaving() {
-                    DoRemove();
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

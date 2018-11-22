@@ -24,6 +24,7 @@ using Solider.Character.Archer;
 using Solider.Character.Magician;
 using Framework.Config.Game;
 using Framework.Custom.View;
+using Solider.Character.FSMState;
 
 namespace Solider {
     namespace Scene {
@@ -48,14 +49,7 @@ namespace Solider {
                 timer = 0;
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                fsmSystem.AddState(new UITownPanel("UITownPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIMainPanel("UIMainPanel", mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIInfoPanel("UIInfoPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIPackPanel("UIPackPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UISettingPanel("UISettingPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIGroceryPanel("UIGroceryPanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UIForgePanel("UIForgePanel", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UITransmitterPanel("UITransmitterPanel", uiPanelFSM, mainCanvas.rectTransform));
+                uiPanelFSM.PerformTransition(new UITownPanel());
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
@@ -68,6 +62,7 @@ namespace Solider {
                 ObjectTool.InstantiateGo("npc_transmitter", Configs.prefabConfig.GetPath("npc_transmitter"),
                     null, new Vector3(17, 0, -24), new Vector3(0, 270, 0), Vector3.one).AddComponent<NPC_Transmitter>();
                 mainCamera.SetTarget(mainCharacter);
+                mainCharacter.fsm.PerformTransition(new BaseState("idle"));
                 charList.Add(mainCharacter);
             } // end Initialize
 

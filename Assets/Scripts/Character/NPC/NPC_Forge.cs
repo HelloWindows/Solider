@@ -4,7 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
- using Framework.Manager;
+using Framework.Manager;
+using Solider.Scene.UI;
 using UnityEngine;
 namespace Solider {
     namespace Character {
@@ -21,7 +22,7 @@ namespace Solider {
                 private void OnMouseDown() {
                     if (Vector3.Distance(transform.position, SceneManager.mainCharacter.position) < 4) {
                         transform.LookAt(SceneManager.mainCharacter.position);
-                        SceneManager.uiPanelFMS.PerformTransition("UIForgePanel");
+                        SceneManager.uiPanelFMS.PerformTransition(new UIForgePanel());
                     } // end if
                 } // end OnMouseDown
             } // end class NPC_Grocery 

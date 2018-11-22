@@ -18,21 +18,21 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UILoginPanel : IFSMState {
-                private IFSM fsm;
                 private GameObject gameObject;
                 private Transform transform;
                 private RectTransform parent;
                 private InputField userNameInput;
                 private InputField passwordInput;
 
-                public string name { get; private set; }
+                public string name { get { return "UILoginPanel"; } }
 
-                // Use this for initialization
-                public UILoginPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UILoginPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UILoginPanel
+
+                public UILoginPanel(RectTransform parent) {
                     this.parent = parent;
-                } // end Start
+                } // end UILoginPanel
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("LoginPanelUI", "Scene/LoginScene/LoginPanelUI", parent);
@@ -52,7 +52,7 @@ namespace Solider {
                 /// 点击注册按钮
                 /// </summary>
                 void OnClickRegisterBtn() {
-                    fsm.PerformTransition("UIRegister");
+                    SceneManager.uiPanelFMS.PerformTransition(new UIRegisterPanel());
                 } // end OnClickRegisterBtn
 
                 /// <summary>
@@ -100,7 +100,11 @@ namespace Solider {
                 } // end OnClickQuitBtn
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                    gameObject = null;
+                    transform = null;
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
@@ -108,14 +112,6 @@ namespace Solider {
 
                 public void Act(float deltaTime) {
                 } // end Act
-
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
-                    gameObject = null;
-                    transform = null;
-                } // end DoRemove
             } // end class UILoginPanel 
         } // end namespace UI
     } // end namespace Scene

@@ -1,26 +1,22 @@
 ﻿/*******************************************************************
- * FileName: Idle.cs
+ * FileName: MagicianIdle.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class HeroIdle : IFSMState {
-                public string name { get; private set; }
-                private IIputInfo input;
+        namespace Magician {
+            public class MagicianIdle : IFSMState {
+                public string name { get { return "idle"; } }
                 private ICharacter character;
 
-                public HeroIdle(string name, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
+                public MagicianIdle(ICharacter character) {
                     this.character = character;
-                } // end Idle
+                } // end MagicianIdle
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
@@ -28,8 +24,8 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (input.joystickDir.magnitude > 0f) {
-                        character.fsm.PerformTransition("walk");
+                    if (character.input.joystickDir.magnitude > 0f) {
+                        character.fsm.PerformTransition(new MagicianWalk(character));
                     } // end if
                 } // end Reason
 
@@ -38,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
-            } // end class HeroIdle
-        } // end namespaceFSMState
+            } // end class MagicianIdle
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider 

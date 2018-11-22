@@ -10,7 +10,7 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Magician {
             public class MagicianAttack1 : IFSMState {
                 private enum AttackMode : int {
                     /// <summary>
@@ -26,14 +26,11 @@ namespace Solider {
                     /// </summary>
                     NEGATE = 2 
                 } // end enum AttackMode
-                public string name { get; private set; }
+                public string name { get { return "magician_attack1"; } }
                 private AttackMode mode;
-                private IIputInfo input;
                 private ICharacter character;
 
-                public MagicianAttack1(string name, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
+                public MagicianAttack1(ICharacter character) {
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -52,12 +49,12 @@ namespace Solider {
                                 character.avatar.Play("attack1_3");
                                 break;
                             case AttackMode.CAROM:
-                                character.fsm.PerformTransition("atkStep2");
+                                character.fsm.PerformTransition(new MagicianAttack2(character));
                                 break;
                         } // end switch
                         mode = AttackMode.NEGATE;
                     } else {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new MagicianWait(character));
                     } // end if
                 } // end Reason
 
@@ -65,17 +62,14 @@ namespace Solider {
                     if (character.avatar.IsPlaying("attack1_2")) {
                         if (mode != AttackMode.DEFAULT) return;
                         // end if
-                        if (input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
+                        if (character.input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
                         // end if
                     } // end if
                 } // end Act
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class MagicianAttack1 
-        } // end namespace FSMState
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider

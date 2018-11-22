@@ -5,21 +5,17 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Swordman {
             public class SwordmanSkill2 : IFSMState {
-                public string name { get; private set; }
-                private IIputInfo input;
+                public string name { get { return "skill2"; } }
                 private ICharacter character;
 
-                public SwordmanSkill2(string name, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
+                public SwordmanSkill2(ICharacter character) {
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -31,20 +27,17 @@ namespace Solider {
                 public void Reason(float deltaTime) {
                     AnimationState state = character.avatar.GetCurrentState("skill2");
                     if (null != state && state.normalizedTime >= 7) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new SwordmanWait(character));
                     } // end if
                 } // end Reason
 
                 public void Act(float deltaTime) {
-                    character.move.StepForward(input.joystickDir, deltaTime);
+                    character.move.StepForward(character.input.joystickDir, deltaTime);
                 } // end Act
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class SwordmanSkill2
-        } // end namespace FSMState
+        } // end namespace Swordman
     } // end namespace Character
 } // end namespace Solider 

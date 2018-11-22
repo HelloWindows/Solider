@@ -22,13 +22,13 @@ namespace Solider {
                 public bool isDisposed { get; private set; }
                 public IFSM fsm { get; private set; }
                 public IAvatar avatar { get; private set; }
+                public IIputInfo input { get; private set; }
                 public ISurface surface { get; private set; }
                 public IAudioSound audio { get; private set; }
                 public ICharacterMove move { get; private set; }
                 public ICharacterInfo info { get; private set; }
                 public ICharacterBuff buff { get; private set; }
                 public Vector3 position { get { return transform.position; } }
-                private IIputInfo input;
                 private IFSMSystem fsmSystem;
                 private GameObject gameObject;
                 private Transform transform { get { return gameObject.transform; } }
@@ -69,7 +69,7 @@ namespace Solider {
                     } // end foreach
                     surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
                     surface.Freshen();
-                    fsmSystem = new ArcherFSM(this, input);
+                    fsmSystem = new ArcherFSM(this);
                     fsm = fsmSystem as IFSM;
                 } // end Start
 

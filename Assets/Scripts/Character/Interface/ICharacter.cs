@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.FSM.Interface;
 using Framework.Interface.Audio;
+using Framework.Interface.Input;
 using System;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace Solider {
                 bool isDisposed { get; }
                 IFSM fsm { get; }
                 IAvatar avatar { get; }
+                IIputInfo input { get; }
                 ISurface surface { get; }
                 IAudioSound audio { get; }
                 ICharacterMove move { get; }

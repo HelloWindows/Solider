@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: HeroHurt.cs
+ * FileName: ArcherIdle.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -9,24 +9,23 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class HeroDie : IFSMState {
-                public string name { get; private set; }
+        namespace Archer {
+            public class ArcherIdle : IFSMState {
+                public string name { get { return "idle"; } }
                 private ICharacter character;
 
-                public HeroDie(string name, ICharacter character) {
-                    this.name = name;
+                public ArcherIdle(ICharacter character) {
                     this.character = character;
-                } // end HeroHurt
+                } // end ArcherIdle
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
-                    character.audio.PlaySoundCache("swordman_die");
+                    character.surface.FurlWeapon();
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (false == character.avatar.isPlaying) {
-                        return;
+                    if (character.input.joystickDir.magnitude > 0f) {
+                        character.fsm.PerformTransition(new ArcherWalk(character));
                     } // end if
                 } // end Reason
 
@@ -35,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove(){
-                } // end DoRemove
-            } // end class HeroDie 
-        } // end namespace FSMState
+            } // end class ArcherIdle
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 

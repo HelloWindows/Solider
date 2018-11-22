@@ -9,13 +9,12 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Magician {
             public class MagicianSkill1 : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "magician_skill1"; } }
                 private ICharacter character;
 
-                public MagicianSkill1(string name, ICharacter character) {
-                    this.name = name;
+                public MagicianSkill1(ICharacter character) {
                     this.character = character;
                 } // end MagicianAttack2
 
@@ -26,7 +25,7 @@ namespace Solider {
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new MagicianWait(character));
                     } // end if   
                 } // end Reason
 
@@ -35,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class MagicianSkill1 
-        } // end namespace FSMState
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider

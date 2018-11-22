@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Custom.UI;
 using Framework.FSM.Interface;
+using Framework.Manager;
 using Framework.Middleware;
 using Framework.Tools;
 using UnityEngine;
@@ -14,24 +15,18 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UITransmitterPanel : IFSMState {
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UITransmitterPanel"; } }
                 private Transform transform { get { return gameObject.transform; } }
                 private RectTransform parent;
                 private GameObject gameObject;
 
-                public UITransmitterPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
-                    this.parent = parent;
+                public UITransmitterPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UITownPanel
 
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
-                    gameObject = null;
-                } // end DoRemove
+                public UITransmitterPanel(RectTransform parent) {
+                    this.parent = parent;
+                } // end UITownPanel
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("TransmitterPanelUI", "Scene/NoviceVillage/UI/TransmitterPanelUI", parent);
@@ -41,7 +36,10 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                    gameObject = null;
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {
@@ -56,7 +54,7 @@ namespace Solider {
                             LoaderScene.LoadNextLevel(new FightScene());
                             break;
                         default:
-                            fsm.TransitionPrev();
+                            SceneManager.uiPanelFMS.TransitionPrev();
                             break;
                     } // end switch
                 } // end OnHrefClick

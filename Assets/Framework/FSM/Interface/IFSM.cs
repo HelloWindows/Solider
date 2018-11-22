@@ -12,8 +12,8 @@ namespace Framework {
                 /// <summary>
                 /// 却换状态
                 /// </summary>
-                /// <param name="name"> 状态名 </param>
-                void PerformTransition(string name);
+                /// <param name="state"> 状态 </param>
+                void PerformTransition(IFSMState state);
                 /// <summary>
                 /// 切换上一个状态
                 /// </summary>

@@ -10,21 +10,23 @@ using Framework.Tools;
 using Solider.UI.Custom;
 using UnityEngine;
 using Framework.Broadcast;
+using Framework.Manager;
 
 namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIFightPanel : IFSMState {
-                public string name { get; private set; }
-                //private IFSM fsm;
+                public string name { get { return "UIFightPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
                 private UIBuffPanel buffPanel;
 
-                public UIFightPanel(string name, IFSM fsm, RectTransform parent) {
-                    //this.fsm = fsm;
-                    this.name = name;
+                public UIFightPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UIFightPanel
+
+                public UIFightPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UIFightPanel
 
@@ -38,6 +40,8 @@ namespace Solider {
                     transform.Find("SkillBtn_0").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_1);
                     transform.Find("SkillBtn_1").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_2);
                     transform.Find("SkillBtn_2").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_3);
+                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
+                    ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
 
                 public void Act(float deltaTime) {
@@ -50,10 +54,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                     BroadcastCenter.RemoveListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                    BroadcastCenter.RemoveListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
-                } // end DoRemove
 
                 private void OnClickBarBtn() {
                 } // end OnClickBarBtn

@@ -35,9 +35,9 @@ namespace Framework {
                     prefix = "Character/Hero/Archer/Sound/";
                     pathDict["archer_attack"] = prefix + "archer_attack";
                     pathDict["archer_crit"] = prefix + "archer_crit";
-                    pathDict["skill1"] = prefix + "skill1";
-                    pathDict["skill2"] = prefix + "skill2";
-                    pathDict["skill3"] = prefix + "skill3";
+                    pathDict["archer_skill1"] = prefix + "archer_skill1";
+                    pathDict["archer_skill2"] = prefix + "archer_skill2";
+                    pathDict["archer_skill3"] = prefix + "archer_skill3";
                     pathDict["archer_die"] = prefix + "archer_die";
                     pathDict["archer_hurt"] = prefix + "archer_hurt";
 

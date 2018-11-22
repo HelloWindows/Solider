@@ -1,33 +1,31 @@
 ﻿/*******************************************************************
- * FileName: MagicianSkill2.cs
+ * FileName: MagicianSkill3.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class MagicianSkill2 : IFSMState {
-                public string name { get; private set; }
+        namespace Magician {
+            public class MagicianSkill3 : IFSMState {
+                public string name { get { return "magician_skill2"; } }
                 private ICharacter character;
 
-                public MagicianSkill2(string name, ICharacter character) {
-                    this.name = name;
+                public MagicianSkill3(ICharacter character) {
                     this.character = character;
-                } // end MagicianAttack2
+                } // end MagicianSkill3
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("magician_skill2");
-                    character.avatar.Play("skill2");
+                    character.audio.PlaySoundCache("magician_skill3");
+                    character.avatar.Play("skill3");
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new MagicianWait(character));
                     } // end if   
                 } // end Reason
 
@@ -36,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
-            } // end class MagicianSkill2 
-        } // end namespace FSMState
+            } // end class MagicianSkill3 
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider

@@ -6,28 +6,26 @@
  *******************************************************************/
 using Framework.FSM.Interface;
 using Solider.Character.Interface;
-using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Archer {
             public class ArcherSkill2 : IFSMState {
-                public string name { get; private set; }
+                public string name { get { return "archer_skill2"; } }
                 private ICharacter character;
 
-                public ArcherSkill2(string name, ICharacter character) {
-                    this.name = name;
+                public ArcherSkill2(ICharacter character) {
                     this.character = character;
                 } // end ArcherCrit
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("skill2");
+                    character.audio.PlaySoundCache("archer_skill2");
                     character.avatar.PlayQueued(new string[] { "skill2_1", "skill2_2", "skill2_3" });
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new ArcherWait(character));
                     } // end if
                 } // end Reason
 
@@ -36,10 +34,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class ArcherSkill2
-        } // end namespace FSMState
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 

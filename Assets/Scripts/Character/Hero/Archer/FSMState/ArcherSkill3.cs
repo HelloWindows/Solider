@@ -10,20 +10,19 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Archer {
             public class ArcherSkill3 : IFSMState {
                 private enum SkillStep : int{
                     Step1 = 0,
                     Step2 = 1,
                     End = 2
                 } // end enum SkillStep
-                public string name { get; private set; }
+                public string name { get { return "archer_skill3"; } }
                 private bool[] signArr;
                 private ICharacter character;
                 private SkillStep skillStep;
 
-                public ArcherSkill3(string name, ICharacter character) {
-                    this.name = name;
+                public ArcherSkill3(ICharacter character) {
                     signArr = new bool[18];
                     this.character = character;
                 } // end ArcherCrit
@@ -62,7 +61,7 @@ namespace Solider {
                     } // end if
 
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                        character.fsm.PerformTransition(new ArcherWait(character));
                     } // end if
                 } // end Reason
 
@@ -83,10 +82,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class ArcherSkill3
-        } // end namespace FSMState
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 

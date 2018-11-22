@@ -34,8 +34,7 @@ namespace Solider {
             public void Initialize() {
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                fsmSystem.AddState(new UISelectRolePanel("UISelectRole", uiPanelFSM, mainCanvas.rectTransform));
-                fsmSystem.AddState(new UICreateRolePanel("UICreateRole", uiPanelFSM, mainCanvas.rectTransform));
+                uiPanelFSM.PerformTransition(new UISelectRolePanel());
             } // end Initialize
 
             public void Update(float deltaTime) {
@@ -45,8 +44,6 @@ namespace Solider {
             } // end LateUpdate
 
             public void Dispose() {
-                fsmSystem.RemoveState("UISelectRole");
-                fsmSystem.RemoveState("UICreateRole");
             } // end Dispose
         } // end class SelectRoleScene 
     } // end namespace Scene

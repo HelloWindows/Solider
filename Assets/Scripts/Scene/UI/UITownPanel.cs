@@ -14,37 +14,30 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UITownPanel : IFSMState {
-                public string name { get; private set; }
-                private IFSM fsm;
+                public string name { get { return "UITownPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
 
-                public UITownPanel(string name, IFSM fsm, RectTransform parent) {
-                    this.fsm = fsm;
-                    this.name = name;
+                public UITownPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UITownPanel
+
+                public UITownPanel(RectTransform parent) {
                     this.parent = parent;
                 } // end UITownPanel
 
                 private void OnClickInfoBtn() {
-                    fsm.PerformTransition("UIInfoPanel");
+                    SceneManager.uiPanelFMS.PerformTransition(new UIInfoPanel());
                 } // end OnClickInfoBtn
 
                 private void OnClickPackBtn() {
-                    fsm.PerformTransition("UIPackPanel");
+                    SceneManager.uiPanelFMS.PerformTransition(new UIPackPanel());
                 } // end OnClickInfoBtn
 
                 private void OnClickSettingBtn() {
-                    fsm.PerformTransition("UISettingPanel");
+                    SceneManager.uiPanelFMS.PerformTransition(new UISettingPanel());
                 } // end OnClickSettingBtn
-
-                public void DoRemove() {
-                    if (null == gameObject) return;
-                    // end if
-                    Object.Destroy(gameObject);
-                    gameObject = null;
-                    transform = null;
-                } // end DoRemove
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("TownPanelUI", "UI/Common/TownPanelUI", parent);
@@ -52,10 +45,16 @@ namespace Solider {
                     transform.Find("InfoBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickInfoBtn(); });
                     transform.Find("PackBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickPackBtn(); });
                     transform.Find("SettingBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickSettingBtn(); });
+                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
+                    ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
-                    DoRemove();
+                    if (null == gameObject) return;
+                    // end if
+                    Object.Destroy(gameObject);
+                    gameObject = null;
+                    transform = null;
                 } // end DoBeforeLeaving
 
                 public void Reason(float deltaTime) {

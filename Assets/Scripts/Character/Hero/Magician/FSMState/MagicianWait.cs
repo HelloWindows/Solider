@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: Idle.cs
+ * FileName: MagicianWait.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -10,17 +10,14 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
-            public class HeroWait : IFSMState {
-                public string name { get; private set; }
-                private IIputInfo input;
+        namespace Magician {
+            public class MagicianWait : IFSMState {
+                public string name { get { return "wait"; } }
                 private ICharacter character;
 
-                public HeroWait(string name, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
+                public MagicianWait(ICharacter character) {
                     this.character = character;
-                } // end Idle
+                } // end MagicianWait
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(name);
@@ -28,24 +25,24 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
-                    if (input.joystickDir.magnitude > 0f) {
-                        character.fsm.PerformTransition("run");
+                    if (character.input.joystickDir.magnitude > 0f) {
+                        character.fsm.PerformTransition(new MagicianRun(character));
                         return;
                     } // end if
-                    if (input.GetButtonDown(ButtonCode.ATTACK)) {
-                        character.fsm.PerformTransition("atkStep1");
+                    if (character.input.GetButtonDown(ButtonCode.ATTACK)) {
+                        character.fsm.PerformTransition(new MagicianAttack1(character));
                         return;
                     } // end if
-                    if (input.GetButtonUp(ButtonCode.SKILL_1)) {
-                        character.fsm.PerformTransition("skill1");
+                    if (character.input.GetButtonUp(ButtonCode.SKILL_1)) {
+                        character.fsm.PerformTransition(new MagicianSkill1(character));
                         return;
                     } // end if
-                    if (input.GetButtonUp(ButtonCode.SKILL_2)) {
-                        character.fsm.PerformTransition("skill2");
+                    if (character.input.GetButtonUp(ButtonCode.SKILL_2)) {
+                        character.fsm.PerformTransition(new MagicianSkill2(character));
                         return;
                     } // end if
-                    if (input.GetButtonUp(ButtonCode.SKILL_3)) {
-                        character.fsm.PerformTransition("skill3");
+                    if (character.input.GetButtonUp(ButtonCode.SKILL_3)) {
+                        character.fsm.PerformTransition(new MagicianSkill3(character));
                         return;
                     } // end if
                 } // end Reason
@@ -55,10 +52,7 @@ namespace Solider {
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
-            } // end class HeroWait
-        } // end namespaceFSMState
+            } // end class MagicianWait
+        } // end namespace Magician
     } // end namespace Character
 } // end namespace Solider 

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace FSMState {
+        namespace Archer {
             public class ArcherAttack : IFSMState {
                 private enum AttackMode : int {
                     /// <summary>
@@ -27,16 +27,11 @@ namespace Solider {
                     /// </summary>
                     NEGATE = 2 
                 } // end enum AttackMode
-                public string name { get; private set; }
-                private string caromName;
+                public string name { get { return "archer_attack"; } }
                 private AttackMode mode;
-                private IIputInfo input;
                 private ICharacter character;
 
-                public ArcherAttack(string name, string caromName, ICharacter character, IIputInfo input) {
-                    this.name = name;
-                    this.input = input;
-                    this.caromName = caromName;
+                public ArcherAttack(ICharacter character) {
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -52,10 +47,10 @@ namespace Solider {
                     if (mode != AttackMode.NEGATE) {
                         switch (mode) {
                             default:
-                                character.fsm.PerformTransition("wait");
+                                character.fsm.PerformTransition(new ArcherWait(character));
                                 break;
                             case AttackMode.CAROM:
-                                character.fsm.PerformTransition(caromName);
+                                character.fsm.PerformTransition(new ArcherAttack(character));
                                 break;
                         } // end switch
                         mode = AttackMode.NEGATE;
@@ -69,7 +64,7 @@ namespace Solider {
                     if (character.avatar.isPlaying) {
                         if (mode != AttackMode.DEFAULT) return;
                         // end if
-                        if (input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
+                        if (character.input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
                         // end if
                     } // end if
                 } // end Act
@@ -77,10 +72,7 @@ namespace Solider {
                 public void DoBeforeLeaving() {
 
                 } // end DoBeforeLeaving
-
-                public void DoRemove() {
-                } // end DoRemove
             } // end class ArcherAttack1
-        } // end namespace FSMState
+        } // end namespace Archer
     } // end namespace Character
 } // end namespace Solider 
