@@ -21,13 +21,13 @@ namespace Solider {
             public class ArcherCharacter : ICharacter {
                 public bool isDisposed { get; private set; }
                 public IFSM fsm { get; private set; }
-                public IAvatar avatar { get; private set; }
                 public IIputInfo input { get; private set; }
                 public ISurface surface { get; private set; }
                 public IAudioSound audio { get; private set; }
                 public ICharacterMove move { get; private set; }
                 public ICharacterInfo info { get; private set; }
                 public ICharacterBuff buff { get; private set; }
+                public ICharacterAvatar avatar { get; private set; }
                 public Vector3 position { get { return transform.position; } }
                 private IFSMSystem fsmSystem;
                 private GameObject gameObject;

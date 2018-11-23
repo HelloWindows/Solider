@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Solider {
     namespace Character {
         namespace Swordman {
-            public class SwordmanFSM : IFSMSystem{
+            public class SwordmanFSM : IFSMSystem {
                 private IFSMSystem fsmSystem;
                 private Dictionary<string, IFSMState> baseStateDict;
 

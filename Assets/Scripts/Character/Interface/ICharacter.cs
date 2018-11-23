@@ -16,13 +16,13 @@ namespace Solider {
             public interface ICharacter : IDisposable {
                 bool isDisposed { get; }
                 IFSM fsm { get; }
-                IAvatar avatar { get; }
                 IIputInfo input { get; }
                 ISurface surface { get; }
                 IAudioSound audio { get; }
                 ICharacterMove move { get; }
                 ICharacterInfo info { get; }
                 ICharacterBuff buff { get; }
+                ICharacterAvatar avatar { get; }
 
                 Vector3 position { get; }
                 void Update(float deltaTime);

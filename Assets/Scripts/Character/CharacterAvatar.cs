@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public abstract class CharacterAvatar : IAvatar {
+        public abstract class CharacterAvatar : ICharacterAvatar {
             public bool isPlaying { get { return avatar.isPlaying; } } // end isPlaying
             protected Animation avatar;
 
