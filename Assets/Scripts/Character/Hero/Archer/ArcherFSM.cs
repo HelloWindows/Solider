@@ -9,6 +9,7 @@ using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.Character.Interface;
 using System.Collections.Generic;
+using System;
 
 namespace Solider {
     namespace Character {
@@ -49,6 +50,16 @@ namespace Solider {
                     } // end if
                     baseStateDict[state.name] = state;
                 } // end PushBaseState
+
+                public void AddState(IFSMState state)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public void RemoveState(IFSMState state)
+                {
+                    throw new NotImplementedException();
+                }
             } // end class Archer
         } // end namespace Archer
     } // end namespace Character
