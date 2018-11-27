@@ -26,7 +26,7 @@ namespace Solider {
                     /// </summary>
                     NEGATE = 2 
                 } // end enum AttackMode
-                public string name { get { return "magician_attack2"; } }
+                public string id { get { return "magician_attack2"; } }
                 private AttackMode mode;
                 private ICharacter character;
 
@@ -54,7 +54,7 @@ namespace Solider {
                         } // end switch
                         mode = AttackMode.NEGATE;
                     } else {
-                        character.fsm.PerformTransition(new MagicianWait(character));
+                        character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 

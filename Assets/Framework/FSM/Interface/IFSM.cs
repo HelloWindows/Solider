@@ -10,14 +10,19 @@ namespace Framework {
         namespace Interface {
             public interface IFSM {
                 /// <summary>
+                /// 切换上一个状态
+                /// </summary>
+                void TransitionPrev();
+                /// <summary>
                 /// 却换状态
                 /// </summary>
                 /// <param name="state"> 状态 </param>
                 void PerformTransition(IFSMState state);
                 /// <summary>
-                /// 切换上一个状态
+                /// 却换状态
                 /// </summary>
-                void TransitionPrev();
+                /// <param name="stateID"> 状态ID </param>
+                void PerformTransition(string stateID);
             } // end class IFSM
         } // end namespace Interface
     } // end namespace FSM

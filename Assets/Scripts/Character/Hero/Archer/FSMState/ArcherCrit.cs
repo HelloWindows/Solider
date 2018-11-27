@@ -11,7 +11,8 @@ namespace Solider {
     namespace Character {
         namespace Archer {
             public class ArcherCrit : IFSMState {
-                public string name { get { return "attCrit"; } }
+                public string id { get { return "attCrit"; } }
+                private string anim { get { return "attCrit"; } }
                 private ICharacter character;
 
                 public ArcherCrit(ICharacter character) {
@@ -20,12 +21,12 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     character.audio.PlaySoundCache("archer_crit");
-                    character.avatar.Play(name);
+                    character.avatar.Play(anim);
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition(new ArcherWait(character));
+                        character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 

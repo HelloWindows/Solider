@@ -7,9 +7,9 @@
 using Framework.FSM;
 using Framework.FSM.Interface;
 using Framework.Tools;
+using Solider.Character.Hore;
 using Solider.Character.Interface;
 using System.Collections.Generic;
-using System;
 
 namespace Solider {
     namespace Character {
@@ -21,15 +21,18 @@ namespace Solider {
                 public ArcherFSM(ICharacter character) {
                     fsmSystem = new FSMSystem();
                     baseStateDict = new Dictionary<string, IFSMState>();
-                    PushBaseState(new ArcherDie(character));
-                    PushBaseState(new ArcherIdle(character));
-                    PushBaseState(new ArcherHurt(character));
-                    PushBaseState(new ArcherWait(character));
+                    PushBaseState(new HoreWait(character));
+                    PushBaseState(new HoreWalk(character));
+                    PushBaseState(new HoreIdle(character));
+                    PushBaseState(new HoreRun(character));
+                    PushBaseState(new ArcherAttack(character));
+                    PushBaseState(new HoreDie(character, "archer_die"));
+                    PushBaseState(new HoreHurt(character, "archer_hurt"));
                 } // end ArcherFSM
 
                 public void PerformTransition(IFSMState state) {
-                    if (baseStateDict.ContainsKey(state.name)) {
-                        fsmSystem.PerformTransition(baseStateDict[state.name]);
+                    if (baseStateDict.ContainsKey(state.id)) {
+                        fsmSystem.PerformTransition(baseStateDict[state.id]);
                         return;
                     } // end if
                     fsmSystem.PerformTransition(state);
@@ -44,22 +47,15 @@ namespace Solider {
                 } // end Update
 
                 private void PushBaseState(IFSMState state) {
-                    if (baseStateDict.ContainsKey(state.name)) {
+                    if (baseStateDict.ContainsKey(state.id)) {
                         DebugTool.ThrowException("SwordmanFSM PushBaseState have repeat state!");
                         return;
                     } // end if
-                    baseStateDict[state.name] = state;
+                    baseStateDict[state.id] = state;
                 } // end PushBaseState
 
-                public void AddState(IFSMState state)
-                {
-                    throw new NotImplementedException();
-                }
-
-                public void RemoveState(IFSMState state)
-                {
-                    throw new NotImplementedException();
-                }
+                public void PerformTransition(string stateID) {
+                } // end PerformTransition
             } // end class Archer
         } // end namespace Archer
     } // end namespace Character

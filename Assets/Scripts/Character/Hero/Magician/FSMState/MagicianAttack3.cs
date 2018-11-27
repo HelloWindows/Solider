@@ -11,7 +11,7 @@ namespace Solider {
     namespace Character {
         namespace Magician {
             public class MagicianAttack3 : IFSMState {
-                public string name { get { return "magician_attack3"; } }
+                public string id { get { return "magician_attack3"; } }
                 private ICharacter character;
 
                 public MagicianAttack3(ICharacter character) {
@@ -25,7 +25,7 @@ namespace Solider {
 
                 public void Reason(float deltaTime) {
                     if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition(new MagicianWait(character));
+                        character.fsm.PerformTransition("wait");
                     } // end if   
                 } // end Reason
 

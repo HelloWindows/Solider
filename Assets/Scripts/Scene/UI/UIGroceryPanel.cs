@@ -7,7 +7,6 @@
 using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
-using Solider.Manager;
 using Solider.UI.Custom;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +15,8 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIGroceryPanel : IFSMState {
-                public string name { get { return "UIGroceryPanel"; } }
+                public string id { get { return "UIGroceryPanel"; } }
+
                 private RectTransform parent;
                 private GameObject gameObject;
                 private Transform transform { get { return gameObject.transform; } }

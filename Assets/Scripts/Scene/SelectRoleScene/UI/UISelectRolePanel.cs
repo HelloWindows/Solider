@@ -18,7 +18,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UISelectRolePanel : IFSMState {
-                public string name { get { return "UISelectRolePanel"; } }
+                public string id { get { return "UISelectRolePanel"; } }
 
                 private int roleindex;
                 private int selectedindex;

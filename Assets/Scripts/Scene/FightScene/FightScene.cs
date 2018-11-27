@@ -22,7 +22,6 @@ using Framework.Config.Const;
 using Solider.Character.Archer;
 using Solider.Character.Magician;
 using Framework.Config.Game;
-using Solider.Character.FSMState;
 
 namespace Solider {
     namespace Scene {
@@ -54,7 +53,7 @@ namespace Solider {
                     return;
                 } // end if
                 mainCamera.SetTarget(mainCharacter);
-                mainCharacter.fsm.PerformTransition(new BaseState("wait"));
+                mainCharacter.fsm.PerformTransition("wait");
                 charList.Add(mainCharacter);
             } // end Initialize
 

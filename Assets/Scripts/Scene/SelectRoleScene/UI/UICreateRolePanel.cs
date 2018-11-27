@@ -17,7 +17,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UICreateRolePanel : IFSMState {
-                public string name { get { return "UICreateRolePanel"; } }
+                public string id { get { return "UICreateRolePanel"; } }
 
                 private string roleType;
                 private UIDisplayRaw display;

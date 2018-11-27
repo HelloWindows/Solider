@@ -8,7 +8,7 @@ namespace Framework {
     namespace FSM {
         namespace Interface {
             public interface IFSMState {
-                string name { get; }
+                string id { get; }
                 void DoBeforeEntering();
                 void DoBeforeLeaving();
                 void Reason(float deltaTime);

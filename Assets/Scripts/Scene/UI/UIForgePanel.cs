@@ -19,7 +19,8 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIForgePanel : IFSMState {
-                public string name { get { return "UIForgePanel"; } }
+                public string id { get { return "UIForgePanel"; } }
+
                 private IPack blueprintPack;
                 private RectTransform parent;
                 private GameObject gameObject;

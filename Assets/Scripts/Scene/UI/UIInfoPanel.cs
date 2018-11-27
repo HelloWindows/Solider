@@ -22,6 +22,8 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIInfoPanel : IFSMState {
+                public string id { get { return "UIInfoPanel"; } }
+
                 private Text cellText;
                 private Text infoText;
                 private string selected;
@@ -29,8 +31,6 @@ namespace Solider {
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
                 private Dictionary<string, string> dict;
-
-                public string name { get { return "UIInfoPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;

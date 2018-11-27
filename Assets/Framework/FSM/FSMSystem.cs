@@ -4,28 +4,18 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.FSM.Interface;
-using System.Collections.Generic;
+using Framework.Tools;
 
 namespace Framework {
     namespace FSM {
         public class FSMSystem : IFSMSystem {
             private IFSMState previousState;
             private IFSMState currentState;
-            private Dictionary<string, IFSMState> stateMap;
 
             public FSMSystem() {
-                stateMap = new Dictionary<string, IFSMState>();
             } // end FSMSystem
-
-            public void PerformTransition(IFSMState state) {
-                if (null != currentState) currentState.DoBeforeLeaving();
-                // end if
-                previousState = currentState;
-                currentState = state;
-                if (null != currentState) currentState.DoBeforeEntering();
-                // end if
-            } // end PerformTransition
 
             public void Update(float deltaTime) {
                 if (null == currentState) return;
@@ -38,11 +28,23 @@ namespace Framework {
                 PerformTransition(previousState);
             } // end TransitionPrev
 
-            public void AddState(IFSMState state) {
-            } // end AddState
+            public void PerformTransition(IFSMState state) {
+                if (null != currentState) currentState.DoBeforeLeaving();
+                // end if
+                previousState = currentState;
+                currentState = state;
+                if (null != currentState) currentState.DoBeforeEntering();
+                // end if
+            } // end PerformTransition
 
-            public void RemoveState(IFSMState state) {
-            } // end RemoveState
+            public void PerformTransition(string stateID) {
+                IFSMState state = Configs.fsmStateConfig.GetCharacterState(stateID);
+                if (null == state) {
+                    DebugTool.ThrowException("FSMSystem PerformTransition is don't exsit!!！ stateID: " + stateID);
+                    return;
+                } // end if
+                PerformTransition(state);
+            } // end PerformTransition
         } // end class FSMSystem 
     } // end namespace FSM 
 } // end namespace Framework

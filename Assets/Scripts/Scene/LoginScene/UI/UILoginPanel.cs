@@ -24,7 +24,7 @@ namespace Solider {
                 private InputField userNameInput;
                 private InputField passwordInput;
 
-                public string name { get { return "UILoginPanel"; } }
+                public string id { get { return "UILoginPanel"; } }
 
                 public UILoginPanel() {
                     parent = SceneManager.mainCanvas.rectTransform;

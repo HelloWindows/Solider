@@ -7,9 +7,9 @@
 using Framework.FSM;
 using Framework.FSM.Interface;
 using Framework.Tools;
+using Solider.Character.Hore;
 using Solider.Character.Interface;
 using System.Collections.Generic;
-using System;
 
 namespace Solider {
     namespace Character {
@@ -21,15 +21,18 @@ namespace Solider {
                 public MagicianFSM(ICharacter character) {
                     fsmSystem = new FSMSystem();
                     baseStateDict = new Dictionary<string, IFSMState>();
-                    PushBaseState(new MagicianDie(character));
-                    PushBaseState(new MagicianIdle(character));
-                    PushBaseState(new MagicianHurt(character));
-                    PushBaseState(new MagicianWait(character));
+                    PushBaseState(new HoreWait(character));
+                    PushBaseState(new HoreWalk(character));
+                    PushBaseState(new HoreIdle(character));
+                    PushBaseState(new HoreRun(character));
+                    PushBaseState(new MagicianAttack1(character));
+                    PushBaseState(new HoreDie(character, "magician_die"));
+                    PushBaseState(new HoreHurt(character, "magician_hurt"));
                 } // end MagicianFSM
 
                 public void PerformTransition(IFSMState state) {
-                    if (baseStateDict.ContainsKey(state.name)) {
-                        fsmSystem.PerformTransition(baseStateDict[state.name]);
+                    if (baseStateDict.ContainsKey(state.id)) {
+                        fsmSystem.PerformTransition(baseStateDict[state.id]);
                         return;
                     } // end if
                     fsmSystem.PerformTransition(state);
@@ -44,22 +47,15 @@ namespace Solider {
                 } // end Update
 
                 private void PushBaseState(IFSMState state) {
-                    if (baseStateDict.ContainsKey(state.name)) {
+                    if (baseStateDict.ContainsKey(state.id)) {
                         DebugTool.ThrowException("SwordmanFSM PushBaseState have repeat state!");
                         return;
                     } // end if
-                    baseStateDict[state.name] = state;
+                    baseStateDict[state.id] = state;
                 } // end PushBaseState
 
-                public void AddState(IFSMState state)
-                {
-                    throw new NotImplementedException();
-                }
-
-                public void RemoveState(IFSMState state)
-                {
-                    throw new NotImplementedException();
-                }
+                public void PerformTransition(string stateID) {
+                } // end PerformTransition
             } // end class MagicianFSM 
         } // end namespace Magician
     } // end namespace Character

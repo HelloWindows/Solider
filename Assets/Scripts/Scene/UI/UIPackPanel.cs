@@ -19,13 +19,13 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIPackPanel : IFSMState {
+                public string id { get { return "UIPackPanel"; } }
+
                 private Text infoText;
                 private int currentGid;
                 private string packName;
                 private IPack currentPack;
                 private UIGrid[] gridArray;
-
-                public string name { get { return "UIPackPanel"; } }
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;

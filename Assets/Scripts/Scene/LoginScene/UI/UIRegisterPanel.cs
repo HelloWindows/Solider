@@ -24,7 +24,7 @@ namespace Solider {
                 private GameObject usernameWarningGo;
                 private GameObject comfirmWarningGo;
 
-                public string name { get { return "UIRegisterPanel"; } }
+                public string id { get { return "UIRegisterPanel"; } }
 
                 public UIRegisterPanel() {
                     parent = SceneManager.mainCanvas.rectTransform;

@@ -15,7 +15,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UITransmitterPanel : IFSMState {
-                public string name { get { return "UITransmitterPanel"; } }
+                public string id { get { return "UITransmitterPanel"; } }
                 private Transform transform { get { return gameObject.transform; } }
                 private RectTransform parent;
                 private GameObject gameObject;
