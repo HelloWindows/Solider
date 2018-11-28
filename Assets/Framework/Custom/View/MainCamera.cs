@@ -27,6 +27,7 @@ namespace Framework {
                     camera.renderingPath = RenderingPath.UsePlayerSettings;
                     Go.AddComponent<GUILayer>();
                     Go.AddComponent<FlareLayer>();
+                    Go.AddComponent<AudioListener>();
                 } // end MainCamera
 
                 public void LateUpdate(float deltaTime) {

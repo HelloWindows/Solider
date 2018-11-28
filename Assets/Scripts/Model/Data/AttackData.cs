@@ -11,15 +11,15 @@ namespace Solider {
     namespace Model {
         namespace Data {
             public class AttackData {
-                public int id { get; private set; }
+                public string id { get; private set; }
                 public int ATK { get; private set; }
                 public int MGK { get; private set; }
                 public float HIT { get; private set; } // 命中率
                 public bool iscrit { get; private set; } // 暴击
                 public bool ismiss { get; private set; } // 失误
 
-                public AttackData(AttributeData data) {
-                    id = data.id;
+                public AttackData(string id, AttributeData data) {
+                    this.id = id;
                     HIT = data.HIT;
                     iscrit = Random.Range(0, 100f) < data.CRT ? true : false;
                     ATK = Random.Range(data.NATK, data.XATK) * (iscrit ? 2 : 1);
@@ -34,7 +34,7 @@ namespace Solider {
                 /// <returns></returns>
                 public static AttackData operator -(AttackData attack, CharacterAttribute cher) {
                     attack.ismiss = Random.Range(0, 100) < (cher.AVD - attack.HIT) ? true : false;
-                    // 也可以在这里做吸血处理，添加吸血率属性,计算攻击结果,计算吸血值，根据id传给攻击者。我最痛恨吸血这个功能了，完全失去游戏性
+                    // 也可以在这里做吸血处理，添加吸血率属性,计算攻击结果,计算吸血值，根据id传给攻击者。
                     return attack;
                 } // end operator -
             } // end class AttackData

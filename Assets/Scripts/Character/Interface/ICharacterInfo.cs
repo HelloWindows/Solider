@@ -4,7 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Model.Data;
+using Solider.Character.Model;
 using System;
 
 namespace Solider {
@@ -24,7 +24,7 @@ namespace Solider {
                 /// 获取角色属性数据
                 /// </summary>
                 /// <returns> 属性数据 </returns>
-                AttributeData GetAttributeData();
+                CharacterAttribute GetAttributeData();
                 /// <summary>
                 /// 复活
                 /// </summary>

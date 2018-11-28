@@ -5,13 +5,13 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
-using Framework.Interface.Audio;
+using Solider.Character.Interface;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public class CharacterAduio : IAudioSound {
+        public class CharacterAduio : ICharacterAduio {
             private float valume;
             private AudioSource audio;
             private static Dictionary<string, AudioClip> clipCache;
@@ -24,34 +24,45 @@ namespace Solider {
             } // end CharacterAduio
 
             public void PlaySoundCache(string name) {
-                audio.PlayOneShot(GetClipAtCache(name), valume);
+                AudioClip clip = GetClipAtCache(name);
+                if (null == clip) return;
+                // end if
+                audio.PlayOneShot(clip, valume);
             } // end PlaySoundCache
 
             public void PlaySoundOnce(string name) {
                 AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
+                if (null == clip) return;
+                // end if
                 audio.PlayOneShot(clip, valume);
             } // end PlaySoundOnce
 
             public void PlaySoundCacheAtPoint(string name, Vector3 position) {
-                AudioSource.PlayClipAtPoint(GetClipAtCache(name), position, valume);
+                AudioClip clip = GetClipAtCache(name);
+                if (null == clip) return;
+                // end if
+                AudioSource.PlayClipAtPoint(clip, position, valume);
             } // end PlaySoundCacheAtPoint
 
             public void PlaySoundOnceAtPoint(string name, Vector3 position) {
                 AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
+                if (null == clip) return;
+                // end if
                 AudioSource.PlayClipAtPoint(clip, position, valume);
             } // end PlaySoundOnceAtPoint
 
-            public void SetSoundValume(float valume) {
-                if (valume < 0) valume = 0;
+            public void Dispose() {
+                if (null == clipCache || clipCache.Count == 0) return;
                 // end if
-                if (valume > 1) valume = 1;
-                // end if
-                this.valume = valume;
-            } // end SetSoundValue
+                clipCache.Clear();
+            } // end ClearSoundCache
 
             private AudioClip GetClipAtCache(string name) {
                 if (clipCache.ContainsKey(name) == false) {
-                    clipCache[name] = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
+                    AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
+                    if (null == clip) return null;
+                    // end if
+                    clipCache[name] = clip;
                 } // end if
                 return clipCache[name];
             } // end GetClipAtCache

@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public class CharacterSurface : ISurface {
+        public class CharacterSurface : ICharacterSurface {
             private GameObject wingGo;
             private GameObject weaponGo;
 

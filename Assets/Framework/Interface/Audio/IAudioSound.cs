@@ -14,7 +14,6 @@ namespace Framework {
                 void PlaySoundCache(string name);
                 void PlaySoundOnceAtPoint(string name, Vector3 position);
                 void PlaySoundCacheAtPoint(string name, Vector3 position);
-                void SetSoundValume(float valume);
             } // end interface IAudioSound
         } // end namespace Audio
     } // end namespace Interface

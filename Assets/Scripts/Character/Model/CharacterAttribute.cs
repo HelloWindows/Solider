@@ -13,11 +13,13 @@ namespace Solider {
     namespace Character {
         namespace Model {
             public class CharacterAttribute : AttributeData {
+                public string name { get; private set; }
+                public int HP { get; private set; }
+                public int MP { get; private set; }
                 private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
-                public CharacterAttribute(int id, string name, string roleType) {
-                    this.id = id;
+                public CharacterAttribute(string name, string roleType) {
                     this.name = name;
                     this.roleType = roleType;
                 } // end RoleAttribute

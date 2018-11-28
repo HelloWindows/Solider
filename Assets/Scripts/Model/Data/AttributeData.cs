@@ -10,25 +10,9 @@ namespace Solider {
         namespace Data {
             public abstract class AttributeData {
                 /// <summary>
-                /// id
-                /// </summary>
-                public int id { get; protected set; }
-                /// <summary>
-                /// 名字
-                /// </summary>
-                public string name { get; protected set; }
-                /// <summary>
-                /// 生命值
-                /// </summary>
-                public int HP { get; protected set; }
-                /// <summary>
                 /// 最大生命值
                 /// </summary>
                 public int XHP { get; protected set; } 
-                /// <summary>
-                /// 魔法值
-                /// </summary>
-                public int MP { get; protected set; }
                 /// <summary>
                 /// 最大魔法值
                 /// </summary>

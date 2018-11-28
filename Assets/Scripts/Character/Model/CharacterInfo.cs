@@ -34,15 +34,15 @@ namespace Solider {
                 public CharacterInfo(int id, string name, string roleType) {
                     isLive = true;
                     selfTreat = new RealData();
-                    roleArribute = new CharacterAttribute(id, name, roleType);
-                    tempArribute = new CharacterAttribute(id, name, roleType);
+                    roleArribute = new CharacterAttribute(name, roleType);
+                    tempArribute = new CharacterAttribute(name, roleType);
                     roleInitArribute = new CharacterInitAttribute("");
                     CheckAttributeData();
                     roleArribute += selfTreat;
                     BroadcastCenter.AddListener(BroadcastType.ReloadEquip, CheckAttributeData);
                 } // end CharacterInfo
 
-                public AttributeData GetAttributeData() {
+                public CharacterAttribute GetAttributeData() {
                     tempArribute += roleArribute;
                     return tempArribute;
                 } // end GetAttributeData

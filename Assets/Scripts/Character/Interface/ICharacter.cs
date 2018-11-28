@@ -17,8 +17,8 @@ namespace Solider {
                 bool isDisposed { get; }
                 IFSM fsm { get; }
                 IIputInfo input { get; }
-                ISurface surface { get; }
-                IAudioSound audio { get; }
+                ICharacterSurface surface { get; }
+                ICharacterAduio audio { get; }
                 ICharacterMove move { get; }
                 ICharacterInfo info { get; }
                 ICharacterBuff buff { get; }
