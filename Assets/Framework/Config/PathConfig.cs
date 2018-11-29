@@ -5,11 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Tools;
+using Framework.Config.Interface;
 using System.Collections.Generic;
 
 namespace Framework {
     namespace Config {
-        public abstract class PathConfig {
+        public abstract class PathConfig : IPathConfig {
             protected readonly Dictionary<string, string> pathDict;
 
             protected PathConfig() {

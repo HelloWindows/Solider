@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Text;
 using Solider.Model.Data;
 using Framework.Config.Const;
 using Solider.Config.Item;
@@ -16,7 +15,6 @@ namespace Solider {
                 public string name { get; private set; }
                 public int HP { get; private set; }
                 public int MP { get; private set; }
-                private static readonly StringBuilder infoBuilder = new StringBuilder();
                 private string roleType;
 
                 public CharacterAttribute(string name, string roleType) {
@@ -139,21 +137,21 @@ namespace Solider {
                 /// <param name="info"> 装备数据 </param>
                 /// <returns> 结果数据 </returns>
                 public static CharacterAttribute operator +(CharacterAttribute role, EquipInfo info) {
-                    role.XHP += info.XHP;
-                    role.XMP += info.XMP;
-                    role.NATK += info.NATK;
-                    role.XATK += info.XATK;
-                    role.NMGK += info.NMGK;
-                    role.XMGK += info.XMGK;
-                    role.HOT += info.HOT;
-                    role.MOT += info.MOT;
-                    role.DEF += info.DEF;
-                    role.RGS += info.RGS;
-                    role.ASP += info.ASP;
-                    role.MSP += info.MSP;
-                    role.HIT += info.HIT;
-                    role.AVD += info.AVD;
-                    role.CRT += info.CRT;
+                    role.XHP += info.attributeInfo.XHP;
+                    role.XMP += info.attributeInfo.XMP;
+                    role.NATK += info.attributeInfo.NATK;
+                    role.XATK += info.attributeInfo.XATK;
+                    role.NMGK += info.attributeInfo.NMGK;
+                    role.XMGK += info.attributeInfo.XMGK;
+                    role.HOT += info.attributeInfo.HOT;
+                    role.MOT += info.attributeInfo.MOT;
+                    role.DEF += info.attributeInfo.DEF;
+                    role.RGS += info.attributeInfo.RGS;
+                    role.ASP += info.attributeInfo.ASP;
+                    role.MSP += info.attributeInfo.MSP;
+                    role.HIT += info.attributeInfo.HIT;
+                    role.AVD += info.attributeInfo.AVD;
+                    role.CRT += info.attributeInfo.CRT;
                     return role;
                 } // end operator +
 
@@ -164,21 +162,21 @@ namespace Solider {
                 /// <param name="info"> 装备数据 </param>
                 /// <returns> 结果数据 </returns>
                 public static CharacterAttribute operator -(CharacterAttribute role, EquipInfo info) {
-                    role.XHP -= info.XHP;
-                    role.XMP -= info.XMP;
-                    role.NATK -= info.NATK;
-                    role.XATK -= info.XATK;
-                    role.NMGK -= info.NMGK;
-                    role.XMGK -= info.XMGK;
-                    role.HOT -= info.HOT;
-                    role.MOT -= info.MOT;
-                    role.DEF -= info.DEF;
-                    role.RGS -= info.RGS;
-                    role.ASP -= info.ASP;
-                    role.MSP -= info.MSP;
-                    role.HIT -= info.HIT;
-                    role.AVD -= info.AVD;
-                    role.CRT -= info.CRT;
+                    role.XHP -= info.attributeInfo.XHP;
+                    role.XMP -= info.attributeInfo.XMP;
+                    role.NATK -= info.attributeInfo.NATK;
+                    role.XATK -= info.attributeInfo.XATK;
+                    role.NMGK -= info.attributeInfo.NMGK;
+                    role.XMGK -= info.attributeInfo.XMGK;
+                    role.HOT -= info.attributeInfo.HOT;
+                    role.MOT -= info.attributeInfo.MOT;
+                    role.DEF -= info.attributeInfo.DEF;
+                    role.RGS -= info.attributeInfo.RGS;
+                    role.ASP -= info.attributeInfo.ASP;
+                    role.MSP -= info.attributeInfo.MSP;
+                    role.HIT -= info.attributeInfo.HIT;
+                    role.AVD -= info.attributeInfo.AVD;
+                    role.CRT -= info.attributeInfo.CRT;
                     return role;
                 } // end operator -
 

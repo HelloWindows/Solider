@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Config.Item;
-
 namespace Solider {
     namespace Interface {
         public interface IPack {
@@ -40,8 +38,8 @@ namespace Solider {
             /// 获取对应格子的物品信息
             /// </summary>
             /// <param name="gid"> 格子id </param>
-            /// <returns> 物品信息 </returns>
-            ItemInfo GetItemInfoForGrid(int gid);
+            /// <returns> 物品 ID </returns>
+            string GetItemIDForGrid(int gid);
             /// <summary>
             /// 获取对应格子的物品数量
             /// </summary>

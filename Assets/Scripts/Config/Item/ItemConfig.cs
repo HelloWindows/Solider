@@ -7,6 +7,7 @@
 using Framework.Config.Const;
 using Framework.Tools;
 using LitJson;
+using Solider.Config.Interface;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +16,10 @@ namespace Solider {
         namespace Item {
             public class ItemConfig {
                 private static ItemConfig config;
-                private readonly Dictionary<string, ItemInfo> stuffConfig;
-                private readonly Dictionary<string, ItemInfo> equipConfig;
-                private readonly Dictionary<string, ItemInfo> consumeConfig;
-                private readonly Dictionary<string, ItemInfo> bluePrintConfig;
+                private readonly Dictionary<string, IItemInfo> stuffConfig;
+                private readonly Dictionary<string, IItemInfo> equipConfig;
+                private readonly Dictionary<string, IItemInfo> consumeConfig;
+                private readonly Dictionary<string, IItemInfo> bluePrintConfig;
 
                 public static ItemConfig instance {
                     get {
@@ -29,10 +30,10 @@ namespace Solider {
                 } // end instance
                 #region ******** 初始化物品配置信息 ********
                 private ItemConfig() {
-                    stuffConfig = new Dictionary<string, ItemInfo>();
-                    equipConfig = new Dictionary<string, ItemInfo>();
-                    consumeConfig = new Dictionary<string, ItemInfo>();
-                    bluePrintConfig = new Dictionary<string, ItemInfo>();
+                    stuffConfig = new Dictionary<string, IItemInfo>();
+                    equipConfig = new Dictionary<string, IItemInfo>();
+                    consumeConfig = new Dictionary<string, IItemInfo>();
+                    bluePrintConfig = new Dictionary<string, IItemInfo>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                     string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
                     string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
@@ -78,7 +79,7 @@ namespace Solider {
                 } // end InitConsumeConfig
                 #endregion
 
-                public ItemInfo GetItemInfo(string id) {
+                public IItemInfo GetItemInfo(string id) {
                     if (stuffConfig.ContainsKey(id)) return stuffConfig[id];
                     // end if
                     if (equipConfig.ContainsKey(id)) return equipConfig[id];

@@ -6,15 +6,16 @@
  *******************************************************************/
 using Framework.Tools;
 using LitJson;
+using Solider.Config.Interface;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public class IconConfig {
+            public class IconConfig : IIconConfig {
                 private static IconConfig config;
-                private Dictionary<string, SkillInfo> skillConfig;
+                private Dictionary<string, ISkillInfo> skillConfig;
 
                 public static IconConfig instance {
                     get {
@@ -23,9 +24,9 @@ namespace Solider {
                         return config;
                     } // end get
                 } // end instance
-
+                #region ******** 初始化物品配置信息 ********
                 private IconConfig() {
-                    skillConfig = new Dictionary<string, SkillInfo>();
+                    skillConfig = new Dictionary<string, ISkillInfo>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                     string skillJson = assetbundle.LoadAsset<TextAsset>("assets/config/skill_info_config.json").text;
                     InitBuffAndSkillConfig(skillJson);
@@ -39,12 +40,14 @@ namespace Solider {
                         skillConfig.Add((string)list[i]["id"], new SkillInfo(list[i]));
                     } // end for
                 } // end InitStuffConfig
+                #endregion
 
-                public SkillInfo GetSkillInfo(string id) {
-                    if (skillConfig.ContainsKey(id)) return skillConfig[id];
+                public bool TryGetSkillInfo(string id, out ISkillInfo info) {
+                    if (skillConfig.TryGetValue(id, out info)) return true;
                     // end if
-                    return null;
-                } // end GetSkillInfo
+                    info = null;
+                    return false;
+                } // end TryGetSkillInfo
             } // end class IconConfig 
         } // end namespace Icon
     } // end namespace Config

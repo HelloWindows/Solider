@@ -5,15 +5,16 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Item {
-            public class BluePrintInfo : ItemInfo {
-
-                public readonly string targetID;
-                public readonly string[] stuffIDArr;
-                public readonly int[] stuffCountArr;
+            public class BluePrintInfo : ItemInfo, IBluePrintInfo {
+                public string targetID { get; private set; }
+                public int stuffNumber { get { return stuffIDArr.Length; } }
+                private readonly string[] stuffIDArr;
+                private readonly int[] stuffCountArr;
 
                 public BluePrintInfo(JsonData data) {
                     id = (string)data["id"];
@@ -31,7 +32,25 @@ namespace Solider {
                         stuffIDArr[i] = (string)property["ID_" + i];
                         stuffCountArr[i] = (int)property["COUNT_" + i];
                     } // end for
-                } // end EquipInfo
+                } // end BluePrintInfo
+
+                public bool TryGetStuffID(int index, out string id) {
+                    if (index < 0 || index >= stuffIDArr.Length) {
+                        id = null;
+                        return false;
+                    } // end if
+                    id = stuffIDArr[index];
+                    return true;
+                } // end GetStuffID
+
+                public bool TryGetStuffCount(int index, out int count) {
+                    if (index < 0 || index >= stuffCountArr.Length) {
+                        count = 0;
+                        return false;
+                    } // end if
+                    count = stuffCountArr[index];
+                    return true;
+                } // end GetStuffCount
 
                 public override string ToString() {
                     infoBuilder.Length = 0;

@@ -5,11 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Item {
-            public class StuffInfo : ItemInfo {
+            public class StuffInfo : ItemInfo, IStuffInfo {
 
                 public StuffInfo(JsonData data) {
                     id = (string)data["id"];

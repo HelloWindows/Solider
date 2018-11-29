@@ -5,18 +5,20 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
+using Solider.Config.Interface;
+
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public class SkillInfo : IconInfo {
-                public bool isBuff { get; private set; } // 判断是否是 buff 技能
-                public bool isPassive { get; private set; } // 是否是被动技能
-                public float ATKR { get; private set; } // 物理攻击百分比
-                public float MGKR { get; private set; } // 魔法攻击百分比
-                public float DEFR { get; private set; } // 忽略物理防御百分比
-                public float RGSR { get; private set; } // 忽略魔法防御百分比
-                public float CD { get; private set; } // 冷却时间
-                public BuffInfo buff { get; private set; } // buff 信息
+            public class SkillInfo : IconInfo, ISkillInfo {
+                public bool isBuff { get; private set; } 
+                public bool isPassive { get; private set; } 
+                public float ATKR { get; private set; } 
+                public float MGKR { get; private set; } 
+                public float DEFR { get; private set; } 
+                public float RGSR { get; private set; } 
+                public float CD { get; private set; } 
+                public IBuffInfo buff { get; private set; } 
 
                 public SkillInfo(JsonData data) {
                     id = (string)data["id"];

@@ -4,10 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.Config.Const;
 using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
+using Solider.Config.Interface;
 using Solider.Config.Item;
 using Solider.Interface;
 using Solider.Manager;
@@ -72,7 +74,8 @@ namespace Solider {
                     packName = name;
                     currentPack = GameManager.playerInfo.pack.GetItemPack(name);
                     for (int i = 0; i < gridArray.Length; i++) {
-                        ItemInfo info = currentPack.GetItemInfoForGrid(i);
+                        string itemID = currentPack.GetItemIDForGrid(i);
+                        IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
                         if (null == info) {
                             gridArray[i].HideItem();
                             continue;
@@ -87,7 +90,8 @@ namespace Solider {
                 } // end OnExchangeGrid
 
                 private void OnSelectedGrid(int id) {
-                    ItemInfo info = currentPack.GetItemInfoForGrid(id);
+                    string itemID = currentPack.GetItemIDForGrid(id);
+                    IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
                     if (null != info) {
                         currentGid = id;
                         infoText.text = info.ToString();

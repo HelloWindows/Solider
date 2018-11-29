@@ -4,11 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Config.Interface;
 using System.Text;
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public abstract class IconInfo {
+            public abstract class IconInfo : IIconInfo {
                 protected static readonly StringBuilder infoBuilder = new StringBuilder();
                 public string id { get; protected set; }
                 public string name { get; protected set; }

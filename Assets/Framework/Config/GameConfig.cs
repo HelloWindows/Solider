@@ -7,7 +7,7 @@
 namespace Framework {
     namespace Config {
         namespace Game {
-            public class GameConfig {
+            public static class GameConfig {
                 public const float STANDARD_WIDTH = 1024f;
                 public const float STANDARD_HEIGHT = 640f;
 

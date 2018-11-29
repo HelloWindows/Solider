@@ -11,6 +11,7 @@ using Solider.Interface;
 using System.Collections.Generic;
 using Framework.Broadcast;
 using Solider.Config.Item;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Model {
@@ -115,10 +116,10 @@ namespace Solider {
                 } // end for
             } // end ExpendItemWithID
 
-            public ItemInfo GetItemInfoForGrid(int gid) {
-                if (gid < 0 || gid >= idList.Length) return null;
+            public string GetItemIDForGrid(int gid) {
+                if (gid < 0 || gid >= idList.Length) return "0";
                 // end if
-                return Configs.itemConfig.GetItemInfo(idList[gid]);
+                return idList[gid];
             } // end GetItemInfoWithGid
 
             public int GetCountForGrid(int gid) {

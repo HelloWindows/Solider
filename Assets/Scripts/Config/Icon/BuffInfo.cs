@@ -5,31 +5,32 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public class BuffInfo : IconInfo {
-                public readonly string buffID; // 相同ID的 buff 只能同时存在一个
-                public readonly bool isDebuff; // 是否是减益 buff (用来判断是否应该被净化)
-                public readonly bool isPassive; // 是否是被动 buff (被动技能就是一个buff)
-                public readonly bool removable; // 可以被去除 (有些buff可以被净化)
-                public readonly int HOT;
-                public readonly int MOT;
-                public readonly float HPR;
-                public readonly float MPR;
-                public readonly float XHR;
-                public readonly float XMR;
-                public readonly float ATKR; // 物理攻击百分比
-                public readonly float MGKR; // 魔法攻击百分比
-                public readonly float DEFR; // 物理防御百分比
-                public readonly float RGSR; // 魔法防御百分比
-                public readonly float ASPR; // 攻速百分比
-                public readonly float MSPR; // 移速百分比
-                public readonly float HIT; // 命中率
-                public readonly float AVD; // 闪避率
-                public readonly float CRT; // 暴击率
-                public readonly float LOT; // 持续时间
+            public class BuffInfo : IconInfo, IBuffInfo {
+                public string buffID { get; private set; } 
+                public bool isDebuff { get; private set; } 
+                public bool isPassive { get; private set; } 
+                public bool removable { get; private set; } 
+                public int HOT { get; private set; } 
+                public int MOT { get; private set; } 
+                public float HPR { get; private set; } 
+                public float MPR { get; private set; } 
+                public float XHR { get; private set; } 
+                public float XMR { get; private set; } 
+                public float ATKR { get; private set; }  
+                public float MGKR { get; private set; }  
+                public float DEFR { get; private set; } 
+                public float RGSR { get; private set; }  
+                public float ASPR { get; private set; }  
+                public float MSPR { get; private set; }
+                public float HIT { get; private set; }  
+                public float AVD { get; private set; }  
+                public float CRT { get; private set; }  
+                public float LOT { get; private set; }  
 
                 public BuffInfo(JsonData data) {
                     id = (string)data["id"];

@@ -9,6 +9,7 @@ using Framework.Config.Const;
 using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
+using Solider.Config.Interface;
 using Solider.Config.Item;
 using Solider.Interface;
 using Solider.Manager;
@@ -28,7 +29,7 @@ namespace Solider {
                 private UICell buleprint;
                 private UICell[] cellArray;
                 private UICell[] stuffArray;
-                private BluePrintInfo printInfo;
+                private IBluePrintInfo printInfo;
 
                 public UIForgePanel() {
                     this.parent = SceneManager.mainCanvas.rectTransform;
@@ -46,7 +47,8 @@ namespace Solider {
                     buleprint = transform.Find("Blueprint/Print").gameObject.AddComponent<UICell>();
                     for (int i = 0; i < cellArray.Length; i++) {
                         cellArray[i] = transform.Find("GridPanel/Grids/Grid_" + i).gameObject.AddComponent<UICell>();
-                        ItemInfo info = blueprintPack.GetItemInfoForGrid(i);
+                        string itemID = blueprintPack.GetItemIDForGrid(i);
+                        IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
                         if (null == info) {
                             cellArray[i].HideItem();
                             continue;
@@ -64,23 +66,30 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 private void OnSelectedGrid(int id) {
-                    BluePrintInfo info = blueprintPack.GetItemInfoForGrid(id) as BluePrintInfo;
+                    string itemID = blueprintPack.GetItemIDForGrid(id);
+                    IBluePrintInfo info = Configs.itemConfig.GetItemInfo(itemID) as IBluePrintInfo;
                     if (null == info) return;
                     // end if
                     printInfo = info;
                     buleprint.SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
-                    int number = info.stuffCountArr.Length;
+                    int number = info.stuffNumber;
                     int x = (number - 1) * 40;
                     for (int i = 0; i < stuffArray.Length; i++) {
                         if (i < number) {
-                            stuffArray[i].transform.localPosition = new Vector3((x - 80 * i), 0, 0);
-                            stuffArray[i].gameObject.SetActive(true);
-                            ItemInfo stuff = Configs.itemConfig.GetItemInfo(info.stuffIDArr[i]);
+                            string stuffID = "";
+                            if (false == info.TryGetStuffID(i, out stuffID)) continue;
+                            // end if
+                            IItemInfo stuff = Configs.itemConfig.GetItemInfo(stuffID);
                             if (null == stuff) continue;
                             // end if
-                            stuffArray[i].SetUIItem(Resources.Load<Sprite>(stuff.spritepath), 0);
+                            int stuffCount = 0;
+                            if (false == info.TryGetStuffCount(i, out stuffCount)) continue;
+                            // end if
+                            stuffArray[i].transform.localPosition = new Vector3((x - 80 * i), 0, 0);
+                            stuffArray[i].gameObject.SetActive(true);
                             int numerator = GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).GetCountForID(stuff.id);
-                            stuffArray[i].item.SetPercent(numerator, info.stuffCountArr[i]);
+                            stuffArray[i].SetUIItem(Resources.Load<Sprite>(stuff.spritepath), 0);
+                            stuffArray[i].item.SetPercent(numerator, stuffCount);
                             continue;
                         } // end if
                         stuffArray[i].gameObject.SetActive(false);
@@ -102,18 +111,32 @@ namespace Solider {
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("装备背包已满！");
                         return;
                     } // end if
-                    for (int i = 0; i < printInfo.stuffIDArr.Length; i++) {
-                        if (false == GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(
-                            printInfo.stuffIDArr[i], printInfo.stuffCountArr[i])) {
+                    for (int i = 0; i < printInfo.stuffNumber; i++) {
+                        string stuffID = "";
+                        int stuffCount = 0;
+                        if (false == printInfo.TryGetStuffID(i, out stuffID) ||
+                            false == printInfo.TryGetStuffCount(i, out stuffCount)) {
+                            ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
+                            return;
+                        } // end if
+                        if (false == GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(stuffID, stuffCount)) {
                             ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                                 SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("材料不够！");
                             return;
                         } // end if
                     } // end for
                     GameManager.playerInfo.pack.GetItemPack(ConstConfig.PRINT).ExpendItemWithID(printInfo.id, 1);
-                    for (int i = 0; i < printInfo.stuffIDArr.Length; i++) {
-                        GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(
-                            printInfo.stuffIDArr[i], printInfo.stuffCountArr[i]);
+                    for (int i = 0; i < printInfo.stuffNumber; i++) {
+                        string stuffID = "";
+                        int stuffCount = 0;
+                        if (false == printInfo.TryGetStuffID(i, out stuffID) ||
+                            false == printInfo.TryGetStuffCount(i, out stuffCount)) {
+                            ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
+                            return;
+                        } // end if
+                        GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(stuffID, stuffCount);
                     } // end for
                     GameManager.playerInfo.pack.GetItemPack(ConstConfig.EQUIP).PackItem(printInfo.targetID, 1);
                     printInfo = null;
@@ -122,7 +145,8 @@ namespace Solider {
                         stuffArray[i].gameObject.SetActive(false);
                     } // end for
                     for (int i = 0; i < cellArray.Length; i++) {
-                        if (null == blueprintPack.GetItemInfoForGrid(i)) cellArray[i].HideItem();
+                        string itemID = blueprintPack.GetItemIDForGrid(i);
+                        if (null == Configs.itemConfig.GetItemInfo(itemID)) cellArray[i].HideItem();
                         // end if
                     } // end for
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",

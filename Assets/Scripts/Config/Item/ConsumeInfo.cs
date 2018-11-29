@@ -5,24 +5,21 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using LitJson;
-using Solider.Manager;
-using Framework.Config.Const;
 using Solider.Config.Icon;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Item {
-            public class ConsumeInfo : ItemInfo {
-                public readonly string role;
-
-                public readonly int HP;
-                public readonly int MP;
-                public readonly float HPR;
-                public readonly float MPR;
-                public readonly float XHR;
-                public readonly float XMR;
-                public readonly int CD;
-                public BuffInfo buff { get; private set; }
+            public class ConsumeInfo : ItemInfo, IConsumeInfo {
+                public int HP { get; private set; }
+                public int MP { get; private set; }
+                public float HPR { get; private set; }
+                public float MPR { get; private set; }
+                public float XHR { get; private set; }
+                public float XMR { get; private set; }
+                public int CD { get; private set; }
+                public IBuffInfo buff { get; private set; }
 
                 public ConsumeInfo(JsonData data) {
                     buff = null;
@@ -30,7 +27,6 @@ namespace Solider {
                     name = (string)data["name"];
                     grade = (string)data["grade"];
                     maximum = (int)data["maximum"];
-                    role = (string)data["role"];
                     spritepath = (string)data["spritepath"];
                     intro = (string)data["intro"];
                     JsonData property = data["property"];
@@ -72,24 +68,6 @@ namespace Solider {
                     infoBuilder.Append('\n');
                     infoBuilder.Append("<size=18>");
                     infoBuilder.Append("消耗品");
-                    infoBuilder.Append("                                     ");
-                    if (role != ConstConfig.ALLROLE && role != GameManager.playerInfo.roleType) {
-                        infoBuilder.Append("<color=#FF0000FF>");
-                    } else {
-                        infoBuilder.Append("<color=#FFFFFFFF>");
-                    }// end 
-                    switch (role) {
-                        case "Shooter":
-                            infoBuilder.Append("射手");
-                            break;
-                        case "Solider":
-                            infoBuilder.Append("战士");
-                            break;
-                        default:
-                            infoBuilder.Append("全部");
-                            break;
-                    } // end switch
-                    infoBuilder.Append("</color>");
                     infoBuilder.Append("</size>");
                     infoBuilder.Append('\n');
                     infoBuilder.Append('\n');

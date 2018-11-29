@@ -10,6 +10,7 @@ using Solider.Interface;
 using Framework.Config.Const;
 using System.Collections.Generic;
 using Solider.Config.Item;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Model {
@@ -55,7 +56,7 @@ namespace Solider {
             public void PackItem(string itemID, int count) {
                 if (packType != Configs.itemConfig.GetItemType(itemID)) return;
                 // end if
-                ItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
+                IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
                 if (null == info) return;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
@@ -119,10 +120,10 @@ namespace Solider {
                 } // end for
             } // end ExpendItemWithID
 
-            public ItemInfo GetItemInfoForGrid(int gid) {
+            public string GetItemIDForGrid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return null;
                 // end if
-                return Configs.itemConfig.GetItemInfo(idList[gid]);
+                return idList[gid];
             } // end GetItemInfoWithGid
 
             public int GetCountForGrid(int gid) {

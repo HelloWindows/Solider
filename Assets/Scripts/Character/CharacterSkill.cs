@@ -7,6 +7,7 @@
 using Framework.Config;
 using Solider.Character.Interface;
 using Solider.Config.Icon;
+using Solider.Config.Interface;
 using System.Collections.Generic;
 
 namespace Solider {
@@ -20,7 +21,7 @@ namespace Solider {
                 public float timer { get; private set; }
                 private float CD;
 
-                public SkillTimer(SkillInfo info) {
+                public SkillTimer(ISkillInfo info) {
                     id = info.id;
                     timer = 0;
                     CD = info.CD;
@@ -62,7 +63,9 @@ namespace Solider {
             } // end Update
 
             public void PushSkill(string id) {
-                SkillInfo info = Configs.iconConfig.GetSkillInfo(id);
+                ISkillInfo info;
+                if(false == Configs.iconConfig.TryGetSkillInfo(id, out info)) return;
+                // end if
                 if (null == info) return;
                 // end if
                 for (int i = 0; i < skillList.Count; i++)

@@ -16,7 +16,7 @@ using Framework.FSM.Interface;
 using Framework.Tools;
 using Framework.Manager;
 using Framework.Broadcast;
-using Solider.Config.Item;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Scene {
@@ -53,7 +53,7 @@ namespace Solider {
                             cellDict[type].HideItem();
                             continue;
                         } // end if
-                        ItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
+                        IItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
                         if (null == info) {
                             cellDict[type].HideItem();
                             continue;
@@ -70,7 +70,7 @@ namespace Solider {
                     } // end if
                     if (null == dict || !dict.ContainsKey(type)) return;
                     // end if
-                    ItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
+                    IItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
                     if (null == info) return;
                     // end if
                     selector.transform.position = cellDict[type].transform.position;
