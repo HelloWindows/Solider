@@ -16,11 +16,11 @@ namespace Solider {
             public class HoreRun : IFSMState {
                 public string id { get { return "run"; } }
                 private string anim { get { return "run"; } }
-                private ICharacter character;
+                private IHeroCharacter character;
                 private float[] timeArr;
                 private bool[] signArr;
 
-                public HoreRun(ICharacter character) {
+                public HoreRun(IHeroCharacter character) {
                     this.character = character;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };

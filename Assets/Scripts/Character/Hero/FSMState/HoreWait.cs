@@ -14,9 +14,9 @@ namespace Solider {
             public class HoreWait : IFSMState {
                 public string id { get { return "wait"; } }
                 private string anim { get { return "wait"; } }
-                private ICharacter character;
+                private IHeroCharacter character;
 
-                public HoreWait(ICharacter character) {
+                public HoreWait(IHeroCharacter character) {
                     this.character = character;
                 } // end HoreWait
 

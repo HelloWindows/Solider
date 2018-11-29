@@ -7,9 +7,12 @@
 namespace Solider {
     namespace Config {
         namespace Interface {
-            public class ICharacterConfig {
-
-            } // end class ICharacterConfig 
+            public interface ICharacterConfig {
+                string id { get; }
+                string name { get; }
+                IAttributeInfo attribute { get; }
+                bool TryGetSoundPath(string name, out string path);
+            } // end interface ICharacterConfig 
         } // end namespace Interface
     } // end namespace Config
 } // end namespace Solider

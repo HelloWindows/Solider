@@ -14,12 +14,9 @@ using UnityEngine;
 namespace Solider {
     namespace Config {
         namespace Item {
-            public class ItemConfig {
+            public class ItemConfig : IItemConfig {
                 private static ItemConfig config;
-                private readonly Dictionary<string, IItemInfo> stuffConfig;
-                private readonly Dictionary<string, IItemInfo> equipConfig;
-                private readonly Dictionary<string, IItemInfo> consumeConfig;
-                private readonly Dictionary<string, IItemInfo> bluePrintConfig;
+                private readonly Dictionary<string, Dictionary<string, IItemInfo>> itemConfig;
 
                 public static ItemConfig instance {
                     get {
@@ -30,10 +27,7 @@ namespace Solider {
                 } // end instance
                 #region ******** 初始化物品配置信息 ********
                 private ItemConfig() {
-                    stuffConfig = new Dictionary<string, IItemInfo>();
-                    equipConfig = new Dictionary<string, IItemInfo>();
-                    consumeConfig = new Dictionary<string, IItemInfo>();
-                    bluePrintConfig = new Dictionary<string, IItemInfo>();
+                    itemConfig = new Dictionary<string, Dictionary<string, IItemInfo>>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                     string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
                     string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
@@ -47,72 +41,99 @@ namespace Solider {
                 } // end ItemConfig
 
                 private void InitStuffConfig(string jsonInfo) {
+                    Dictionary<string, IItemInfo> stuffConfig = new Dictionary<string, IItemInfo>();
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
-                        stuffConfig.Add((string)list[i]["id"], new StuffInfo(list[i]));
+                        string id = (string)list[i]["id"];
+                        if (ConstConfig.STUFF != GetItemType(id)) {
+                            DebugTool.ThrowException("ItemConfig InitStuffConfig id is error!!! ID:" + id);
+                            continue;
+                        } // end if
+                        stuffConfig.Add(id, new StuffInfo(list[i]));
                     } // end for
+                    itemConfig[ConstConfig.STUFF] = stuffConfig;
                 } // end InitStuffConfig
 
                 private void InitEquipConfig(string jsonInfo) {
+                    Dictionary<string, IItemInfo> equipConfig = new Dictionary<string, IItemInfo>();
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
-                        equipConfig.Add((string)list[i]["id"], new EquipInfo(list[i]));
+                        string id = (string)list[i]["id"];
+                        if (ConstConfig.EQUIP != GetItemType(id)) {
+                            DebugTool.ThrowException("ItemConfig InitEquipConfig id is error!!! ID:" + id);
+                            continue;
+                        } // end if
+                        equipConfig.Add(id, new EquipInfo(list[i]));
                     } // end for
+                    itemConfig[ConstConfig.EQUIP] = equipConfig;
                 } // end InitEquipConfig
 
                 private void InitConsumeConfig(string jsonInfo) {
+                    Dictionary<string, IItemInfo> consumeConfig = new Dictionary<string, IItemInfo>();
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
-                        consumeConfig.Add((string)list[i]["id"], new ConsumeInfo(list[i]));
+                        string id = (string)list[i]["id"];
+                        if (ConstConfig.CONSUME != GetItemType(id)) {
+                            DebugTool.ThrowException("ItemConfig InitConsumeConfig id is error!!! ID:" + id);
+                            continue;
+                        } // end if
+                        consumeConfig.Add(id, new ConsumeInfo(list[i]));
                     } // end for
+                    itemConfig[ConstConfig.CONSUME] = consumeConfig;
                 } // end InitConsumeConfig
 
                 private void InitBluePrintConfig(string jsonInfo) {
+                    Dictionary<string, IItemInfo> bluePrintConfig = new Dictionary<string, IItemInfo>();
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
-                        bluePrintConfig.Add((string)list[i]["id"], new BluePrintInfo(list[i]));
+                        string id = (string)list[i]["id"];
+                        if (ConstConfig.PRINT != GetItemType(id)) {
+                            DebugTool.ThrowException("ItemConfig InitBluePrintConfig id is error!!! ID:" + id);
+                            continue;
+                        } // end if
+                        bluePrintConfig.Add(id, new BluePrintInfo(list[i]));
                     } // end for
+                    itemConfig[ConstConfig.PRINT] = bluePrintConfig;
                 } // end InitConsumeConfig
                 #endregion
 
                 public IItemInfo GetItemInfo(string id) {
-                    if (stuffConfig.ContainsKey(id)) return stuffConfig[id];
+                    string type = GetItemType(id);
+                    if (type == "null") return null;
                     // end if
-                    if (equipConfig.ContainsKey(id)) return equipConfig[id];
-                    // end if
-                    if (consumeConfig.ContainsKey(id)) return consumeConfig[id];
-                    // end if
-                    if (bluePrintConfig.ContainsKey(id)) return bluePrintConfig[id];
+                    IItemInfo info;
+                    if (itemConfig[type].TryGetValue(id, out info)) return info;
                     // end if
                     return null;
                 } // end GetItemInfo
 
                 public string GetItemGrade(string id) {
-                    if (stuffConfig.ContainsKey(id)) return stuffConfig[id].grade;
+                    string type = GetItemType(id);
+                    if (type == "null") return "Z";
                     // end if
-                    if (equipConfig.ContainsKey(id)) return equipConfig[id].grade;
-                    // end if
-                    if (consumeConfig.ContainsKey(id)) return consumeConfig[id].grade;
-                    // end if
-                    if (bluePrintConfig.ContainsKey(id)) return bluePrintConfig[id].grade;
+                    IItemInfo info;
+                    if (itemConfig[type].TryGetValue(id, out info)) return info.grade;
                     // end if
                     return "Z";
                 } // end GetItemGradeWithID
 
                 public string GetItemType(string id) {
-                    if (stuffConfig.ContainsKey(id)) return ConstConfig.STUFF;
+                    if (id.Length < 2) return "null";
                     // end if
-                    if (equipConfig.ContainsKey(id)) return ConstConfig.EQUIP;
-                    // end if
-                    if (consumeConfig.ContainsKey(id)) return ConstConfig.CONSUME;
-                    // end if
-                    if (bluePrintConfig.ContainsKey(id)) return ConstConfig.PRINT;
-                    // end if
-                    return "null";
+                    string prefix = id.Substring(0, 2);
+                    switch (prefix) {
+                        default:
+                            DebugTool.ThrowException("ItemConfig GetItemType id error!!!" + " id:" + id);
+                            return "null";
+                        case "10": return ConstConfig.EQUIP;
+                        case "20": return ConstConfig.CONSUME;
+                        case "30": return ConstConfig.STUFF;
+                        case "40": return ConstConfig.PRINT;
+                    } // end switch
                 } // end GetItemTypeWithID
             } // end class ItemConfig
         } // end namespace Item 

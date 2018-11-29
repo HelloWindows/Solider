@@ -116,6 +116,7 @@ namespace Solider {
                     selector.SetActive(false);
                     infoPanel = transform.Find("InfoPanel").gameObject;
                     cellText = infoPanel.transform.Find("InfoText").GetComponent<Text>();
+                    cellText.fontSize = 10;
                     infoPanel.SetActive(false);
                     transform.Find("TakeOffBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickTakeOffBtn);
                     transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });

@@ -14,14 +14,12 @@ using Framework.FSM;
 using Solider.Scene.UI;
 using System.Collections.Generic;
 using Solider.Character.Interface;
-using Solider.Character.Swordman;
 using UnityEngine;
 using Solider.Manager;
 using Framework.Tools;
 using Framework.Config.Const;
-using Solider.Character.Archer;
-using Solider.Character.Magician;
 using Framework.Config.Game;
+using Solider.Character.Hero;
 
 namespace Solider {
     namespace Scene {

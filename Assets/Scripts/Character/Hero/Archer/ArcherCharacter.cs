@@ -9,19 +9,18 @@ using Framework.Config.Const;
 using Framework.Custom;
 using Framework.FSM.Interface;
 using Framework.Tools;
-using Solider.Character.Hero;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Archer {
-            public class ArcherCharacter : Character {
+        namespace Hero {
+            public class ArcherCharacter : HeroCharacter {
 
                 public ArcherCharacter(Vector3 pos, string name) : base(ObjectTool.InstantiateGo(name,
                     Configs.prefabConfig.GetPath(ConstConfig.ARCHER), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
-                    move = new HeroMove(gameObject.GetComponent<Rigidbody>());
+                    move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new Model.CharacterInfo(id, name, ConstConfig.ARCHER);
@@ -48,12 +47,12 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
+                    surface = new HeroCharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
                     surface.Freshen();
                     fsmSystem = new ArcherFSM(this);
                     fsm = fsmSystem as IFSM;
                 } // end ArcherCharacter
             } // end class ArcherCharacter
-        } // end namespace Archer
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Custom 

@@ -10,11 +10,10 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Swordman {
+        namespace Hero {
             public class SwordmanPose {
 
-
             } // end class SwordmanPose
-        } // end namespace Swordman
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider 

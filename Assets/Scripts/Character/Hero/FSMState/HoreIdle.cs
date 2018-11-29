@@ -13,9 +13,9 @@ namespace Solider {
             public class HoreIdle : IFSMState {
                 public string id { get { return "idle"; } }
                 private string anim { get { return "idle"; } }
-                private ICharacter character;
+                private IHeroCharacter character;
 
-                public HoreIdle(ICharacter character) {
+                public HoreIdle(IHeroCharacter character) {
                     this.character = character;
                 } // end HoreIdle
 

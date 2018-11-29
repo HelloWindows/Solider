@@ -9,7 +9,7 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace Archer {
+        namespace Hero {
             public class ArcherCrit : IFSMState {
                 public string id { get { return "attCrit"; } }
                 private string anim { get { return "attCrit"; } }
@@ -37,6 +37,6 @@ namespace Solider {
 
                 } // end DoBeforeLeaving
             } // end class ArcherCrit
-        } // end namespace Archer
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider 

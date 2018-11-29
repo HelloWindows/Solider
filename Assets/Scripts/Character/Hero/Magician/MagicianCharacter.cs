@@ -8,22 +8,20 @@ using Framework.Config;
 using Framework.Config.Const;
 using Framework.Custom;
 using Framework.FSM.Interface;
-using Framework.Interface.Input;
 using Framework.Tools;
 using Solider.Character.Hero;
-using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Magician {
-            public class MagicianCharacter : Character {
+        namespace Hero {
+            public class MagicianCharacter : HeroCharacter {
 
                 public MagicianCharacter(Vector3 pos, string name) : base(ObjectTool.InstantiateGo(name,
                     Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
-                    move = new HeroMove(gameObject.GetComponent<Rigidbody>());
+                    move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new Model.CharacterInfo(id, name, ConstConfig.MAGICIAN);
@@ -50,12 +48,12 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
+                    surface = new HeroCharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
                     surface.Freshen();
                     fsmSystem = new MagicianFSM(this);
                     fsm = fsmSystem as IFSM;
                 } // end MagicianCharacter
             } // end class MagicianCharacter 
-        } // end namespace Magician
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Archer {
+        namespace Skill {
             public class ArcherSkill3 : IFSMState {
                 private enum SkillStep : int{
                     Step1 = 0,
@@ -83,6 +83,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
             } // end class ArcherSkill3
-        } // end namespace Archer
+        } // end namespace Skill
     } // end namespace Character
 } // end namespace Solider 

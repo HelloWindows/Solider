@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Swordman {
+        namespace Skill {
             public class SwordmanSkill2 : IFSMState {
                 public string id { get { return "skill2"; } }
-                private ICharacter character;
+                private IHeroCharacter character;
 
-                public SwordmanSkill2(ICharacter character) {
+                public SwordmanSkill2(IHeroCharacter character) {
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -38,6 +38,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
             } // end class SwordmanSkill2
-        } // end namespace Swordman
+        } // end namespace Skill
     } // end namespace Character
 } // end namespace Solider 

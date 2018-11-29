@@ -37,6 +37,30 @@ namespace Solider {
                 audio.PlayOneShot(clip, valume);
             } // end PlaySoundOnce
 
+            public void PlaySoundOnceForPath(string path) {
+                if (null == path) return;
+                // end if
+                AudioClip clip = Resources.Load<AudioClip>(path);
+                if (null == clip) return;
+                // end if
+                audio.PlayOneShot(clip, valume);
+            } // end PlaySoundOnceForPath
+
+            public void PlaySoundCacheForPath(string name, string path) {
+                if (null == name || null == path) return;
+                // end if
+                AudioClip clip;
+                if (false == clipCache.TryGetValue(name, out clip)) {
+                    clip = Resources.Load<AudioClip>(path);
+                    if (null == clip) return;
+                    // end if
+                    clipCache[name] = clip;
+                } // end if
+                if (null == clip) return;
+                // end if
+                audio.PlayOneShot(clip, valume);
+            } // end PlaySoundCacheForPath
+
             public void PlaySoundCacheAtPoint(string name, Vector3 position) {
                 AudioClip clip = GetClipAtCache(name);
                 if (null == clip) return;

@@ -13,12 +13,12 @@ using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        namespace Archer {
+        namespace Hero {
             public class ArcherFSM : IFSMSystem {
                 private IFSMSystem fsmSystem;
                 private Dictionary<string, IFSMState> baseStateDict;
 
-                public ArcherFSM(ICharacter character) {
+                public ArcherFSM(IHeroCharacter character) {
                     fsmSystem = new FSMSystem();
                     baseStateDict = new Dictionary<string, IFSMState>();
                     PushBaseState(new HoreWait(character));
@@ -57,6 +57,6 @@ namespace Solider {
                 public void PerformTransition(string stateID) {
                 } // end PerformTransition
             } // end class Archer
-        } // end namespace Archer
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider 

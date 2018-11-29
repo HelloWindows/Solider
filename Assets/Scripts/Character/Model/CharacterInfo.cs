@@ -31,7 +31,7 @@ namespace Solider {
                 private CharacterAttribute tempArribute;
                 private CharacterInitAttribute roleInitArribute;
 
-                public CharacterInfo(int id, string name, string roleType) {
+                public CharacterInfo(string id, string name, string roleType) {
                     isLive = true;
                     selfTreat = new RealData();
                     roleArribute = new CharacterAttribute(name, roleType);

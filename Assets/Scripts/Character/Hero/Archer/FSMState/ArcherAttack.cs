@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Archer {
+        namespace Hero {
             public class ArcherAttack : IFSMState {
                 private enum AttackMode : int {
                     /// <summary>
@@ -30,9 +30,9 @@ namespace Solider {
                 public string id { get { return "attack"; } }
                 private string anim { get { return "attack"; } }
                 private AttackMode mode;
-                private ICharacter character;
+                private IHeroCharacter character;
 
-                public ArcherAttack(ICharacter character) {
+                public ArcherAttack(IHeroCharacter character) {
                     this.character = character;
                 } // end SwordmanAttack1
 
@@ -74,6 +74,6 @@ namespace Solider {
 
                 } // end DoBeforeLeaving
             } // end class ArcherAttack1
-        } // end namespace Archer
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider 

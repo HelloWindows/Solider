@@ -14,14 +14,14 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Swordman {
-            public class SwordmanCharacter : Character {
+        namespace Hero {
+            public class SwordmanCharacter : HeroCharacter {
 
                 public SwordmanCharacter(Vector3 pos, string name) : base(ObjectTool.InstantiateGo(name, 
                     Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
-                    move = new HeroMove(gameObject.GetComponent<Rigidbody>());
+                    move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new Model.CharacterInfo(id, name, ConstConfig.SWORDMAN);
@@ -48,12 +48,12 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new CharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
+                    surface = new HeroCharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
                     surface.Freshen();
                     fsmSystem = new SwordmanFSM(this);
                     fsm = fsmSystem as IFSM;
                 } // end SwordmanCharacter
             } // end class SwordmanCharacter
-        } // end namespace Swordman
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Custom 

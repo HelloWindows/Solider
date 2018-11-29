@@ -15,11 +15,11 @@ namespace Solider {
             public class HoreWalk : IFSMState {
                 public string id { get { return "walk"; } }
                 private string anim { get { return "walk"; } }
-                private ICharacter character;
+                private IHeroCharacter character;
                 private float[] timeArr;
                 private bool[] signArr;
 
-                public HoreWalk(ICharacter character) {
+                public HoreWalk(IHeroCharacter character) {
                     this.character = character;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };

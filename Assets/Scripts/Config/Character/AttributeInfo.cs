@@ -7,13 +7,11 @@
 using Framework.Tools;
 using LitJson;
 using Solider.Config.Interface;
-using System.Text;
 
 namespace Solider {
     namespace Config {
         namespace Character {
-            public class AttributeInfo : IAttributeInfo {
-                protected static readonly StringBuilder infoBuilder = new StringBuilder();
+            public class AttributeInfo : InfoString, IAttributeInfo {
                 public int XHP { get; protected set; }
                 public int XMP { get; protected set; }
                 public int NATK { get; protected set; }
@@ -31,42 +29,25 @@ namespace Solider {
                 public float CRT { get; protected set; }
 
                 public AttributeInfo(JsonData data) {
-                    XHP = JsonTool.TryGetJsonData_Int(data, "XHP");
-                    XMP = JsonTool.TryGetJsonData_Int(data, "XMP");
-                    HOT = JsonTool.TryGetJsonData_Int(data, "HOT");
-                    NATK = JsonTool.TryGetJsonData_Int(data, "NATK");
-                    XATK = JsonTool.TryGetJsonData_Int(data, "XATK");
-                    NMGK = JsonTool.TryGetJsonData_Int(data, "NMGK");
-                    XMGK = JsonTool.TryGetJsonData_Int(data, "XMGK");
-                    DEF = JsonTool.TryGetJsonData_Int(data, "DEF");
-                    RGS = JsonTool.TryGetJsonData_Int(data, "RGS");
+                    XHP = JsonTool.GetJsonData_Int(data, "XHP");
+                    XMP = JsonTool.GetJsonData_Int(data, "XMP");
+                    HOT = JsonTool.GetJsonData_Int(data, "HOT");
+                    NATK = JsonTool.GetJsonData_Int(data, "NATK");
+                    XATK = JsonTool.GetJsonData_Int(data, "XATK");
+                    NMGK = JsonTool.GetJsonData_Int(data, "NMGK");
+                    XMGK = JsonTool.GetJsonData_Int(data, "XMGK");
+                    DEF = JsonTool.GetJsonData_Int(data, "DEF");
+                    RGS = JsonTool.GetJsonData_Int(data, "RGS");
 
-                    ASP = JsonTool.TryGetJsonData_Float(data, "ASP");
-                    MSP = JsonTool.TryGetJsonData_Float(data, "MSP");
-                    HIT = JsonTool.TryGetJsonData_Float(data, "HIT");
-                    AVD = JsonTool.TryGetJsonData_Float(data, "AVD");
-                    CRT = JsonTool.TryGetJsonData_Float(data, "CRT");
+                    ASP = JsonTool.GetJsonData_Float(data, "ASP");
+                    MSP = JsonTool.GetJsonData_Float(data, "MSP");
+                    HIT = JsonTool.GetJsonData_Float(data, "HIT");
+                    AVD = JsonTool.GetJsonData_Float(data, "AVD");
+                    CRT = JsonTool.GetJsonData_Float(data, "CRT");
                 } // end AttributeInfo
 
-                protected void AppendValue(string prefix, float value) {
-                    if (0 == value) return;
-                    // end if
-                    infoBuilder.Append(prefix);
-                    infoBuilder.Append(value);
-                    infoBuilder.Append('\n');
-                } // end AppendValue
-
-                protected void AppendValue(string prefix, float value, string suffix) {
-                    if (0 == value) return;
-                    // end if
-                    infoBuilder.Append(prefix);
-                    infoBuilder.Append(value);
-                    infoBuilder.Append(suffix);
-                    infoBuilder.Append('\n');
-                } // end AppendValue
-
                 public override string ToString() {
-                    infoBuilder.Length = 0;
+                    int startIndex = infoBuilder.Length;
                     AppendValue("MaxHp：", XHP);
                     AppendValue("MaxMp：", XMP);
                     AppendValue("每秒Hp：", HOT);
@@ -90,8 +71,8 @@ namespace Solider {
                     AppendValue("移速：", MSP);
                     AppendValue("命中率：", HIT);
                     AppendValue("闪避率：", AVD);
-                    AppendValue("暴击率：", CRT);
-                    return infoBuilder.ToString();
+                    AppendValue("暴击率：", CRT); 
+                    return infoBuilder.ToString(startIndex, infoBuilder.Length - startIndex);
                 } // end ToString
             } // end class AttributeInfo
         } // end namespace Character

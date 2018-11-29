@@ -10,7 +10,7 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace Swordman {
+        namespace Hero {
             public class SwordmanAttack3 : IFSMState {
                 private enum AttackMode : int {
                     /// <summary>
@@ -29,9 +29,9 @@ namespace Solider {
                 public string id { get { return "atkStep3"; } }
                 private float step;
                 private AttackMode mode;
-                private ICharacter character;
+                private IHeroCharacter character;
 
-                public SwordmanAttack3(ICharacter character) {
+                public SwordmanAttack3(IHeroCharacter character) {
                     step = 1f;
                     this.character = character;
                 } // end SwordmanAttack1
@@ -73,6 +73,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
             } // end class SwordmanAttack3
-        } // end namespace Swordman
+        } // end namespace Hero
     } // end namespace Character
 } // end namespace Solider 

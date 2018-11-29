@@ -21,7 +21,7 @@ namespace Framework {
                 if (pathDict.ContainsKey(name)) return pathDict[name];
                 // end if
                 DebugTool.ThrowException("PathConfig GetPath name: " + name + " is don't config!");
-                return null;
+                return "";
             } // end GetPath
         } // end class PathConfig
     } // end namespace Config 
