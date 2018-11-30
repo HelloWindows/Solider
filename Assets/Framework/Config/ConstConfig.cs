@@ -11,7 +11,7 @@ namespace Framework {
                 public const int GRID_COUNT = 25;
 
                 public static string[] EquipTypeList { get { return equipTypeList; } }
-                private static readonly string[] equipTypeList = { WEAPON, NECKLACE, RING, WING, ARMOE, PANTS, SHOES };
+                private static readonly string[] equipTypeList = { WEAPON, NECKLACE, RING, WING, ARMOR, PANTS, SHOES };
                 /// <summary>
                 /// 战士
                 /// </summary>
@@ -47,7 +47,7 @@ namespace Framework {
                 /// <summary>
                 /// 盔甲
                 /// </summary>
-                public const string ARMOE = "armor";
+                public const string ARMOR = "armor";
                 /// <summary>
                 /// 裤子
                 /// </summary>

@@ -6,20 +6,19 @@
  *******************************************************************/
 using Framework.Config.Const;
 using System.Collections.Generic;
-using Solider.Interface;
 using Framework.Config;
-using Solider.Config;
-using System.Collections;
+using Solider.Model.Interface;
 
 namespace Solider {
     namespace Model {
         public class PackInfo : IPackInfo {
-            private EquipPack equipPack;
+            private IWearInfo wearInfo;
             private Dictionary<string, IPack> packDict;
 
             public PackInfo(string username, int roleindex, string name, string roleType) {
                 packDict = new Dictionary<string, IPack>();
-                equipPack = new EquipPack(username, roleindex, ConstConfig.EQUIP, roleType);
+                IEquipPack equipPack = new EquipPack(username, roleindex, ConstConfig.EQUIP, roleType);
+                wearInfo = equipPack;
                 packDict.Add(ConstConfig.EQUIP, equipPack);
                 packDict.Add(ConstConfig.CONSUME, new Pack(username, roleindex, ConstConfig.CONSUME));
                 packDict.Add(ConstConfig.STUFF, new Pack(username, roleindex, ConstConfig.STUFF));
@@ -27,7 +26,7 @@ namespace Solider {
             } // end PlayerInfo
 
             public IWearInfo GetWearInfo() {
-                return equipPack;
+                return wearInfo;
             } // end GetWearInfo
 
             public void PackItem(string id, int count) {

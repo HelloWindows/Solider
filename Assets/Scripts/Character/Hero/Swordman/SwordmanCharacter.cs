@@ -17,14 +17,14 @@ namespace Solider {
         namespace Hero {
             public class SwordmanCharacter : HeroCharacter {
 
-                public SwordmanCharacter(Vector3 pos, string name) : base(ObjectTool.InstantiateGo(name, 
+                public SwordmanCharacter(string id, Vector3 pos, string name) : base(id, ObjectTool.InstantiateGo(name, 
                     Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
                     move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
-                    info = new Model.CharacterInfo(id, name, ConstConfig.SWORDMAN);
+                    info = new CharacterInfo(hashID, name, ConstConfig.SWORDMAN);
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;

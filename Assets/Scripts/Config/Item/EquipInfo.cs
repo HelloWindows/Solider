@@ -73,7 +73,7 @@ namespace Solider {
                         case ConstConfig.WING:
                             infoBuilder.Append("翅膀");
                             break;
-                        case ConstConfig.ARMOE:
+                        case ConstConfig.ARMOR:
                             infoBuilder.Append("盔甲");
                             break;
                         case ConstConfig.PANTS:

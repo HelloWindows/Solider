@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
-using Solider.Interface;
 using Solider.Manager;
 using Solider.UI.Custom;
 using Framework.Config.Const;
@@ -17,6 +16,7 @@ using Framework.Tools;
 using Framework.Manager;
 using Framework.Broadcast;
 using Solider.Config.Interface;
+using Solider.Model.Interface;
 
 namespace Solider {
     namespace Scene {
@@ -30,7 +30,6 @@ namespace Solider {
                 private GameObject selector;
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
-                private Dictionary<string, string> dict;
                 private Transform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
@@ -45,15 +44,9 @@ namespace Solider {
                 } // end UITownPanel
 
                 private void UpdateShowInfo() {
-                    IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
-                    dict = wear.GetWearEquip();
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         string type = ConstConfig.EquipTypeList[i];
-                        if (null == dict || !dict.ContainsKey(type)) {
-                            cellDict[type].HideItem();
-                            continue;
-                        } // end if
-                        IItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
+                        IEquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(type);
                         if (null == info) {
                             cellDict[type].HideItem();
                             continue;
@@ -68,9 +61,7 @@ namespace Solider {
                         infoPanel.SetActive(false);
                         return;
                     } // end if
-                    if (null == dict || !dict.ContainsKey(type)) return;
-                    // end if
-                    IItemInfo info = Configs.itemConfig.GetItemInfo(dict[type]);
+                    IEquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(type);
                     if (null == info) return;
                     // end if
                     selector.transform.position = cellDict[type].transform.position;
@@ -80,10 +71,7 @@ namespace Solider {
                 } // end OnPointerDownCell
 
                 private void OnClickTakeOffBtn() {
-                    if (null == dict || !dict.ContainsKey(selected)) return;
-                    // end if
-                    IWearInfo wear = GameManager.playerInfo.pack.GetWearInfo();
-                    wear.TakeOffEquip(selected);
+                    GameManager.playerInfo.pack.GetWearInfo().TakeOffEquip(selected);
                     selected = "";
                     UpdateShowInfo();
                     selector.SetActive(false);
@@ -104,8 +92,7 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
-                    display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType,
-                        GameManager.playerInfo.pack.GetWearInfo().GetWearEquip()));
+                    display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType, GameManager.playerInfo.pack.GetWearInfo()));
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         string type = ConstConfig.EquipTypeList[i];

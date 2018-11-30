@@ -26,8 +26,8 @@ namespace Solider {
                     PushBaseState(new HoreIdle(character));
                     PushBaseState(new HoreRun(character));
                     PushBaseState(new MagicianAttack1(character));
-                    PushBaseState(new HoreDie(character, "magician_die"));
-                    PushBaseState(new HoreHurt(character, "magician_hurt"));
+                    PushBaseState(new HoreDie(character));
+                    PushBaseState(new HoreHurt(character));
                 } // end MagicianFSM
 
                 public void PerformTransition(IFSMState state) {

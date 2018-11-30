@@ -6,9 +6,8 @@
  *******************************************************************/
 using System;
 using UnityEngine;
-using Solider.Interface;
+using Solider.Model.Interface;
 using Framework.Tools;
-using Framework.Manager;
 
 namespace Solider {
     namespace Model {
@@ -58,4 +57,4 @@ namespace Solider {
             } // end SetQuality
         } // end class GameSetting 
     } // end namespace Model
-} // end namespace Custom
+} // end namespace Solider

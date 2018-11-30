@@ -6,11 +6,10 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Manager;
-using Solider.Interface;
 using Framework.Config.Const;
 using System.Collections.Generic;
-using Solider.Config.Item;
 using Solider.Config.Interface;
+using Solider.Model.Interface;
 
 namespace Solider {
     namespace Model {

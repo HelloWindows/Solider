@@ -14,6 +14,7 @@ namespace Solider {
         namespace Interface {
             public interface ICharacter : IDisposable {
                 string id { get; }
+                string hashID { get; }
                 bool isDisposed { get; }
                 IFSM fsm { get; }
                 ICharacterAduio audio { get; }

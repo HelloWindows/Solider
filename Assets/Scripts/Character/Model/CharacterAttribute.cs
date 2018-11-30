@@ -6,7 +6,7 @@
  *******************************************************************/
 using Solider.Model.Data;
 using Framework.Config.Const;
-using Solider.Config.Item;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Character {
@@ -101,6 +101,8 @@ namespace Solider {
                 /// <param name="data"> HP 与 MP 数据 </param>
                 /// <returns> 结果数据 </returns>
                 public static CharacterAttribute operator +(CharacterAttribute role, RealData data) {
+                    if (role.HP == role.XHP && role.MP == role.XMP) return role;
+                    // end if
                     role.HP += data.HP;
                     role.MP += data.MP;
                     if (data.HPR > 0) {
@@ -136,7 +138,7 @@ namespace Solider {
                 /// <param name="role"> 角色数据 </param>
                 /// <param name="info"> 装备数据 </param>
                 /// <returns> 结果数据 </returns>
-                public static CharacterAttribute operator +(CharacterAttribute role, EquipInfo info) {
+                public static CharacterAttribute operator +(CharacterAttribute role, IEquipInfo info) {
                     role.XHP += info.attributeInfo.XHP;
                     role.XMP += info.attributeInfo.XMP;
                     role.NATK += info.attributeInfo.NATK;
@@ -161,7 +163,7 @@ namespace Solider {
                 /// <param name="role"> 角色数据 </param>
                 /// <param name="info"> 装备数据 </param>
                 /// <returns> 结果数据 </returns>
-                public static CharacterAttribute operator -(CharacterAttribute role, EquipInfo info) {
+                public static CharacterAttribute operator -(CharacterAttribute role, IEquipInfo info) {
                     role.XHP -= info.attributeInfo.XHP;
                     role.XMP -= info.attributeInfo.XMP;
                     role.NATK -= info.attributeInfo.NATK;

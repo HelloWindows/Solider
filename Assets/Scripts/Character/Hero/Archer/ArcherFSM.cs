@@ -26,8 +26,8 @@ namespace Solider {
                     PushBaseState(new HoreIdle(character));
                     PushBaseState(new HoreRun(character));
                     PushBaseState(new ArcherAttack(character));
-                    PushBaseState(new HoreDie(character, "archer_die"));
-                    PushBaseState(new HoreHurt(character, "archer_hurt"));
+                    PushBaseState(new HoreDie(character));
+                    PushBaseState(new HoreHurt(character));
                 } // end ArcherFSM
 
                 public void PerformTransition(IFSMState state) {

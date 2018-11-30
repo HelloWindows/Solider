@@ -15,11 +15,11 @@ namespace Solider {
             public class CharacterConfig : ICharacterConfig {
                 public string id { get; private set; }
                 public string name { get; private set; }
-                public IAttributeInfo attribute { get; private set; }
+                public IAttributeInfo initAttribute { get; private set; }
                 private Dictionary<string, string> characterSoundConfig;
 
                 public CharacterConfig(JsonData data) {
-                    attribute = new AttributeInfo(data);
+                    initAttribute = new AttributeInfo(data);
                     characterSoundConfig = new Dictionary<string, string>();
                     characterSoundConfig["attack"] = JsonTool.GetJsonData_String(data, "attack");
                     characterSoundConfig["hurt"] = JsonTool.GetJsonData_String(data, "hurt");

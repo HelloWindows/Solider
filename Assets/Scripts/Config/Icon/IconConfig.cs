@@ -29,17 +29,17 @@ namespace Solider {
                     skillConfig = new Dictionary<string, ISkillInfo>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                     string skillJson = assetbundle.LoadAsset<TextAsset>("assets/config/skill_info_config.json").text;
-                    InitBuffAndSkillConfig(skillJson);
+                    InitSkillConfig(skillJson);
                     assetbundle.Unload(false);
                 } // end IconConfig
 
-                private void InitBuffAndSkillConfig(string jsonInfo) {
+                private void InitSkillConfig(string jsonInfo) {
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
                         skillConfig.Add((string)list[i]["id"], new SkillInfo(list[i]));
                     } // end for
-                } // end InitStuffConfig
+                } // end InitSkillConfig
                 #endregion
 
                 public bool TryGetSkillInfo(string id, out ISkillInfo info) {

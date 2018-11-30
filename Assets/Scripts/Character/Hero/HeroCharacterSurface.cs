@@ -9,6 +9,7 @@ using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using Solider.Character.Interface;
+using Solider.Config.Interface;
 using Solider.Manager;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,8 +33,7 @@ namespace Solider {
                     this.furlTrans = furlTrans;
                     this.renderer = renderer;
                     checkDict = new Dictionary<string, string>();
-                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++)
-                    {
+                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         checkDict[ConstConfig.EquipTypeList[i]] = "0";
                     } // end for
                     checkDict[ConstConfig.WEAPON] = "-1";
@@ -57,25 +57,17 @@ namespace Solider {
                 } // end LiftWeapon
 
                 public void Freshen() {
-                    Dictionary<string, string> wearDict = GameManager.playerInfo.pack.GetWearInfo().GetWearEquip();
-                    if (null == wearDict) return;
-                    // end if
-                    if (wearDict.ContainsKey(ConstConfig.WING) && wearDict[ConstConfig.WING] != checkDict[ConstConfig.WING]) {
-                        checkDict[ConstConfig.WING] = wearDict[ConstConfig.WING];
-                        ReloadWing(wearDict[ConstConfig.WING]);
-                    } // end if
-                    if (wearDict.ContainsKey(ConstConfig.ARMOE) && wearDict[ConstConfig.ARMOE] != checkDict[ConstConfig.ARMOE]) {
-                        checkDict[ConstConfig.ARMOE] = wearDict[ConstConfig.ARMOE];
-                        ReloadArmor(wearDict[ConstConfig.ARMOE]);
-                    } // end if
-                    if (wearDict.ContainsKey(ConstConfig.WEAPON) && wearDict[ConstConfig.WEAPON] != checkDict[ConstConfig.WEAPON]) {
-                        checkDict[ConstConfig.WEAPON] = wearDict[ConstConfig.WEAPON];
-                        ReloadWeapon(wearDict[ConstConfig.WEAPON]);
-                    } // end if
+                    ReloadWing(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.WING));
+                    ReloadArmor(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.ARMOR));
+                    ReloadWeapon(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.WEAPON));
                 } // end ReloadEquip
 
-                private void ReloadWeapon(string id) {
-                    if ("0" == id) id = GameManager.playerInfo.roleType + "0";
+                private void ReloadWeapon(IEquipInfo info) {
+                    string id;
+                    if (null == info)
+                        id = GameManager.playerInfo.roleType + "0";
+                    else
+                        id = info.id;
                     // end if             
                     GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
                     if (null == Go) {
@@ -89,12 +81,13 @@ namespace Solider {
                     FurlWeapon();
                 } // end ReloadWeapon
 
-                private void ReloadWing(string id) {
-                    if ("0" == id) {
+                private void ReloadWing(IEquipInfo info) {
+                    if (null == info) {
                         if (null != wingGo) Object.Destroy(wingGo);
                         // end if
                         return;
                     } // end if
+                    string id = info.id;
                     GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
                     if (null == Go) {
                         DebugTool.ThrowException("ReloadWing ID: " + id + " path: " +
@@ -109,7 +102,13 @@ namespace Solider {
                     wingGo.transform.localRotation = Quaternion.identity;
                 } // end ReloadWing
 
-                private void ReloadArmor(string id) {
+                private void ReloadArmor(IEquipInfo info) {
+                    string id;
+                    if (null == info)
+                        id = GameManager.playerInfo.roleType + "0";
+                    else
+                        id = info.id;
+                    // end if    
                     Material material = Resources.Load<Material>(Configs.materialConfig.GetPath(GameManager.playerInfo.roleType + id));
                     if (null == material) {
                         DebugTool.ThrowException("ReloadArmor ID: " + id + " path: " +

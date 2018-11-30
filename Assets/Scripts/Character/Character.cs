@@ -12,8 +12,9 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         public abstract class Character : ICharacter {
-            public bool isDisposed { get; private set; }
             public string id { get; private set; }
+            public bool isDisposed { get; private set; }
+            public string hashID { get; private set; }
             public IFSM fsm { get; protected set; }
             public ICharacterAduio audio { get; protected set; }
             public ICharacterMove move { get; protected set; }
@@ -26,15 +27,17 @@ namespace Solider {
             protected GameObject gameObject;
             protected Transform transform;
 
-            protected Character(GameObject gameObject) {
+            protected Character(string id, GameObject gameObject) {
+                this.id = id;
                 isDisposed = false;
                 this.gameObject = gameObject;
                 transform = gameObject.transform;
-                id = gameObject.GetHashCode().ToString();
-                gameObject.name = id;
+                hashID = gameObject.GetHashCode().ToString();
+                gameObject.name = hashID;
             } // end Character
 
             public virtual void Update(float deltaTime) {
+                info.Update(deltaTime);
                 fsmSystem.Update(deltaTime);
             } // end Update
 

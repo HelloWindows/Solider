@@ -10,7 +10,7 @@ namespace Solider {
             public interface ICharacterConfig {
                 string id { get; }
                 string name { get; }
-                IAttributeInfo attribute { get; }
+                IAttributeInfo initAttribute { get; }
                 bool TryGetSoundPath(string name, out string path);
             } // end interface ICharacterConfig 
         } // end namespace Interface

@@ -19,7 +19,7 @@ namespace Solider {
                 /// <summary>
                 /// 自愈
                 /// </summary>
-                void SelfHealing();
+                void Update(float deltaTime);
                 /// <summary>
                 /// 获取角色属性数据
                 /// </summary>

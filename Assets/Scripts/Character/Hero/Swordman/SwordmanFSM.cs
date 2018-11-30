@@ -26,8 +26,8 @@ namespace Solider {
                     PushBaseState(new HoreRun(character));
                     PushBaseState(new HoreWait(character));
                     PushBaseState(new SwordmanAttack1(character));
-                    PushBaseState(new HoreDie(character, "swordman_die"));
-                    PushBaseState(new HoreHurt(character, "swordman_hurt"));
+                    PushBaseState(new HoreDie(character));
+                    PushBaseState(new HoreHurt(character));
                 } // end SwordmanFSM
 
                 public void PerformTransition(string stateID) {

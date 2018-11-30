@@ -15,6 +15,7 @@ public class ConsoleTool : MonoBehaviour {
     private static Hashtable infoTable;
     private static string console;
     private static string errorMsg;
+    private static string warningMsg;
     private GUIStyle fontStyle;
 
     private static ConsoleTool GetInstance() {
@@ -82,6 +83,13 @@ public class ConsoleTool : MonoBehaviour {
 #endif
     } // end SetError
 
+    public static void SetWarning(string msg) {
+#if __MY_DEBUG__
+        GetInstance();
+        warningMsg = msg;
+#endif
+    } // end SetWarning
+
 #if __MY_DEBUG__
     private void OnGUI() {
         string info = "";
@@ -91,7 +99,8 @@ public class ConsoleTool : MonoBehaviour {
             info += de.Key + ": " + de.Value + '\n';
         } // end foreach
         info += console + '\n';
-        info += "[Error] " + errorMsg;
+        info += "<color=#FFFF00>[Warning] " + warningMsg + "</color>" + '\n';
+        info += "<color=#FF0000>[Error] " + errorMsg + "</color>";
         GUI.Label(new Rect(5f, 5f, Screen.width, Screen.height), info, fontStyle);
     } // end OnGUI
 #endif

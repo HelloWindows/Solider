@@ -37,8 +37,8 @@ namespace Solider {
                 public float XMR { get; private set; }
 
                 public RealData() {
-                    XHR = 1;
-                    XMR = 1;
+                    XHR = 100;
+                    XMR = 100;
                 } // end RealData
 
                 public RealData(ConsumeInfo info) {

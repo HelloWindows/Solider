@@ -16,14 +16,14 @@ namespace Solider {
         namespace Hero {
             public class ArcherCharacter : HeroCharacter {
 
-                public ArcherCharacter(Vector3 pos, string name) : base(ObjectTool.InstantiateGo(name,
+                public ArcherCharacter(string id, Vector3 pos, string name) : base(id, ObjectTool.InstantiateGo(name,
                     Configs.prefabConfig.GetPath(ConstConfig.ARCHER), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
                     move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
-                    info = new Model.CharacterInfo(id, name, ConstConfig.ARCHER);
+                    info = new CharacterInfo(hashID, name, ConstConfig.ARCHER);
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;

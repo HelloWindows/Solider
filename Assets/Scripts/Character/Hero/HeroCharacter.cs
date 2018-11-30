@@ -15,7 +15,7 @@ namespace Solider {
                 public IIputInfo input { get; protected set; }
                 public IHeroCharacterSurface surface { get; protected set; }
 
-                protected HeroCharacter(GameObject gameObject) : base(gameObject) {
+                protected HeroCharacter(string id, GameObject gameObject) : base(id, gameObject) {
                 } // end HeroCharacter
 
                 public override void Dispose() {

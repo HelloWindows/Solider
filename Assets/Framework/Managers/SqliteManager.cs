@@ -97,7 +97,7 @@ namespace Framework {
                 sqliteDB.CreateTable("role_list_table_" + username, new string[] { "roleindex", "name", "roletype" },
                     new string[] { "int", "text", "text" });
                 sqliteDB.CreateTable("role_equip_table_" + username, new string[] { "roleindex",
-                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES }, 
+                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOR, ConstConfig.PANTS, ConstConfig.SHOES }, 
                     new string[] { "int", "text", "text", "text", "text", "text", "text", "text" });
                 sqliteDB.CreateTable("pack_list_table_" + username, new string[] { "roleindex", "gid", "id", "type", "grade", "count" },
                     new string[] { "int", "int", "text", "text", "text", "int" });
@@ -196,7 +196,7 @@ namespace Framework {
                 string tableName = "role_equip_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader = sqliteDB.SelectWhere(tableName, new string[] {
-                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOE, ConstConfig.PANTS, ConstConfig.SHOES }, 
+                    ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOR, ConstConfig.PANTS, ConstConfig.SHOES }, 
                     new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 if (null == reader) {
                     sqliteDB.Disconnect();
@@ -208,7 +208,7 @@ namespace Framework {
                         dict[ConstConfig.NECKLACE] = reader.GetString(reader.GetOrdinal(ConstConfig.NECKLACE));
                         dict[ConstConfig.RING] = reader.GetString(reader.GetOrdinal(ConstConfig.RING));
                         dict[ConstConfig.WING] = reader.GetString(reader.GetOrdinal(ConstConfig.WING));
-                        dict[ConstConfig.ARMOE] = reader.GetString(reader.GetOrdinal(ConstConfig.ARMOE));
+                        dict[ConstConfig.ARMOR] = reader.GetString(reader.GetOrdinal(ConstConfig.ARMOR));
                         dict[ConstConfig.PANTS] = reader.GetString(reader.GetOrdinal(ConstConfig.PANTS));
                         dict[ConstConfig.SHOES] = reader.GetString(reader.GetOrdinal(ConstConfig.SHOES));
                     } // end while
@@ -241,7 +241,7 @@ namespace Framework {
             /// <param name="username"> 用户名 </param>
             /// <param name="roleindex"> 角色索引 </param>
             /// <param name="packType"> 背包类型 </param>
-            /// <param name="dict"> 背包数据 </param>
+            /// <param name="dict"> 背包数据, 索引0 是ID, 索引1 是数量 </param>
             public static void GetPackInfoWithID(string username, int roleindex, string packType, out Dictionary<int, string[]> dict) {
                 dict = new Dictionary<int, string[]>();
                 string tableName = "pack_list_table_" + username;

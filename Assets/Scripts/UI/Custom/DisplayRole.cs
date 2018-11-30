@@ -7,7 +7,9 @@
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
+using Solider.Config.Interface;
 using Solider.Manager;
+using Solider.Model.Interface;
 using Solider.UI.Interface;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,41 +35,60 @@ namespace Solider {
                 public DisplayRole(string roleType) {
                     this.roleType = roleType;
                     Init(roleType);
-                    Dictionary<string, string> wearEquip = new Dictionary<string, string>();
+                    string weaponID = "";
                     switch (roleType) {
                         case ConstConfig.SWORDMAN:
-                            wearEquip[ConstConfig.WEAPON] = "100005";
+                            weaponID = "100005";
                             break;
                         case ConstConfig.ARCHER:
-                            wearEquip[ConstConfig.WEAPON] = "100010";
+                            weaponID = "100010";
                             break;
                         case ConstConfig.MAGICIAN:
-                            wearEquip[ConstConfig.WEAPON] = "100015";
+                            weaponID = "100015";
                             break;
                         default:
                             DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");
                             return;
                     } // end switch
-                    wearEquip[ConstConfig.ARMOE] = "103005";
-                    wearEquip[ConstConfig.WING] = "106005";
-                    Freshen(wearEquip);
+                    ReloadWing(Configs.itemConfig.GetItemInfo("106005") as IEquipInfo);
+                    ReloadArmor(Configs.itemConfig.GetItemInfo("103005") as IEquipInfo);
+                    ReloadWeapon(Configs.itemConfig.GetItemInfo(weaponID) as IEquipInfo);
                     InitAvatar(roleType);
                 } // end DisplayRole
 
-                public DisplayRole(string roleType, Dictionary<string, string> wearEquip) {
+                public DisplayRole(string roleType, IWearInfo wearInfo) {
                     this.roleType = roleType;
                     Init(roleType);
-                    Freshen(wearEquip);
+                    Freshen(wearInfo);
                     InitAvatar(roleType);
                 } // end DisplayRole
+
+                public DisplayRole(string roleType, Dictionary<string, string> wearDict) {
+                    this.roleType = roleType;
+                    Init(roleType);
+                    if (wearDict.ContainsKey(ConstConfig.WING)) 
+                        ReloadWing(Configs.itemConfig.GetItemInfo(wearDict[ConstConfig.WING]) as IEquipInfo);
+                    else 
+                        ReloadWing(null);
+                    // end if
+                    if (wearDict.ContainsKey(ConstConfig.ARMOR)) 
+                        ReloadArmor(Configs.itemConfig.GetItemInfo(wearDict[ConstConfig.ARMOR]) as IEquipInfo);
+                    else 
+                        ReloadArmor(null);
+                    // end if
+                    if (wearDict.ContainsKey(ConstConfig.ARMOR))
+                        ReloadWeapon(Configs.itemConfig.GetItemInfo(wearDict[ConstConfig.WEAPON]) as IEquipInfo);
+                    else
+                        ReloadWeapon(null);
+                    // end if
+                    InitAvatar(roleType);
+                } // end DisplayRole
+
 
                 public void Freshen() {
                     if (null == GameManager.playerInfo.pack) return;
                     // end if
-                    Dictionary<string, string> wearEquip = GameManager.playerInfo.pack.GetWearInfo().GetWearEquip();
-                    if (null == wearEquip) return;
-                    // end if
-                    Freshen(wearEquip);
+                    Freshen(GameManager.playerInfo.pack.GetWearInfo());
                 } // end Freshen
 
                 public void Reset(Transform parent) {
@@ -91,23 +112,21 @@ namespace Solider {
                     displayGo.transform.localEulerAngles -= rotSpeed * offset;
                 } // end Rotate
 
-                private void Freshen(Dictionary<string, string> wearEquip) {
-                    if (null == wearEquip) return;
+                private void Freshen(IWearInfo wearInfo) {
+                    if (null == wearInfo) return;
                     // end if
-                    if (wearEquip.ContainsKey(ConstConfig.WING)) {
-                        ReloadWing(wearEquip[ConstConfig.WING]);
-                    } // end if
-                    if (wearEquip.ContainsKey(ConstConfig.ARMOE)) {
-                        ReloadArmor(wearEquip[ConstConfig.ARMOE]);
-                    } // end if
-                    if (wearEquip.ContainsKey(ConstConfig.WEAPON)) {
-                        ReloadWeapon(wearEquip[ConstConfig.WEAPON]);
-                    } // end if
+                    ReloadWing(wearInfo.GetEquipInfo(ConstConfig.WING));
+                    ReloadArmor(wearInfo.GetEquipInfo(ConstConfig.ARMOR));
+                    ReloadWeapon(wearInfo.GetEquipInfo(ConstConfig.WEAPON));
                 } // end ReloadEquip
 
-                private void ReloadWeapon(string id) {
-                    if ("0" == id) id = roleType + "0";
-                    // end if             
+                private void ReloadWeapon(IEquipInfo info) {
+                    string id;
+                    if (null == info)
+                        id = roleType + "0";
+                    else
+                        id = info.id;
+                    // end if            
                     GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
                     if (null == Go) {
                         DebugTool.ThrowException("ReloadWeapon ID: " + id + " path: " +
@@ -126,11 +145,12 @@ namespace Solider {
                     } // end foreach     
                 } // end ReloadWeapon
 
-                private void ReloadWing(string id) {
-                    if ("0" == id) {
+                private void ReloadWing(IEquipInfo info) {
+                    if (null == info) {
                         if (null != wingGo) Object.Destroy(wingGo);
                         return;
                     } // end if
+                    string id = info.id;
                     GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
                     if (null == Go) {
                         DebugTool.ThrowException("ReloadWing ID: " + id + " path: " +
@@ -150,7 +170,13 @@ namespace Solider {
                     } // end foreach  
                 } // end ReloadWing
 
-                private void ReloadArmor(string id) {
+                private void ReloadArmor(IEquipInfo info) {
+                    string id;
+                    if (null == info)
+                        id = roleType + "0";
+                    else
+                        id = info.id;
+                    // end if   
                     Material material = Resources.Load<Material>(Configs.materialConfig.GetPath(roleType + id));
                     if (null == material) {
                         DebugTool.ThrowException("ReloadArmor ID: " + id + " path: " +

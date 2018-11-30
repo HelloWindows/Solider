@@ -5,7 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Model;
-using Solider.Interface;
+using Solider.Model.Interface;
 
 namespace Solider {
     namespace Manager {

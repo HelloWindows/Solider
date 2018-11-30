@@ -10,9 +10,8 @@ using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
-using Solider.Config.Item;
-using Solider.Interface;
 using Solider.Manager;
+using Solider.Model.Interface;
 using Solider.UI.Custom;
 using UnityEngine;
 

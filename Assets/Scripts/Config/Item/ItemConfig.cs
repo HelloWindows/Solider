@@ -108,6 +108,7 @@ namespace Solider {
                     IItemInfo info;
                     if (itemConfig[type].TryGetValue(id, out info)) return info;
                     // end if
+                    DebugTool.ThrowException("ItemConfig GetItemInfo id is not config!!!" + " ID:" + id);
                     return null;
                 } // end GetItemInfo
 
@@ -118,16 +119,23 @@ namespace Solider {
                     IItemInfo info;
                     if (itemConfig[type].TryGetValue(id, out info)) return info.grade;
                     // end if
+                    DebugTool.ThrowException("ItemConfig GetItemGrade id is not config!!!" + " ID:" + id);
                     return "Z";
                 } // end GetItemGradeWithID
 
                 public string GetItemType(string id) {
-                    if (id.Length < 2) return "null";
-                    // end if
+                    if (null == id) {
+                        DebugTool.ThrowException("ItemConfig GetItemType id is null!!!");
+                        return "null";
+                    } // end if
+                    if (id.Length < 2) {
+                        ConsoleTool.SetWarning("ItemConfig GetItemType ID:" + id);
+                        return "null";
+                    } // end if
                     string prefix = id.Substring(0, 2);
                     switch (prefix) {
                         default:
-                            DebugTool.ThrowException("ItemConfig GetItemType id error!!!" + " id:" + id);
+                            DebugTool.ThrowException("ItemConfig GetItemType id error!!!" + " ID:" + id);
                             return "null";
                         case "10": return ConstConfig.EQUIP;
                         case "20": return ConstConfig.CONSUME;

@@ -24,7 +24,6 @@ using Solider.Character.Hero;
 namespace Solider {
     namespace Scene {
         public class FightScene : IScene {
-            private float timer;
             public IFSM uiPanelFSM { get; private set; }
             public ICamera mainCamera { get; private set; }
             public ICanvas mainCanvas { get; private set; }
@@ -41,7 +40,6 @@ namespace Solider {
             } // end NoviceVillage
 
             public void Initialize() {
-                timer = 0;
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
                 uiPanelFSM.PerformTransition(new UIFightPanel());
@@ -68,13 +66,6 @@ namespace Solider {
                 for (int i = 0; i < charList.Count; i++) {
                     charList[i].Update(deltaTime);
                 } // end for
-                timer += deltaTime;
-                if (timer > 1) {
-                    timer = 0;
-                    for (int i = 0; i < charList.Count; i++) {
-                        charList[i].info.SelfHealing();
-                    } // end if
-                } // end if
             } // end Update
 
             public void LateUpdate(float deltaTime) {
@@ -93,13 +84,13 @@ namespace Solider {
                 // end if
                 switch (GameManager.playerInfo.roleType) {
                     case ConstConfig.SWORDMAN:
-                        return new SwordmanCharacter(position, GameManager.playerInfo.rolename);
+                        return new SwordmanCharacter(ConstConfig.SWORDMAN, position, GameManager.playerInfo.rolename);
 
                     case ConstConfig.ARCHER:
-                        return new ArcherCharacter(position, GameManager.playerInfo.rolename);
+                        return new ArcherCharacter(ConstConfig.ARCHER, position, GameManager.playerInfo.rolename);
 
                     case ConstConfig.MAGICIAN:
-                        return new MagicianCharacter(position, GameManager.playerInfo.rolename);
+                        return new MagicianCharacter(ConstConfig.MAGICIAN, position, GameManager.playerInfo.rolename);
                 } // end switch
                 return null;
             } // end CreateMainCharacter

@@ -7,22 +7,21 @@
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Manager;
-using Solider.Interface;
 using System.Collections.Generic;
 using Framework.Broadcast;
-using Solider.Config.Item;
+using Solider.Model.Interface;
 using Solider.Config.Interface;
 
 namespace Solider {
     namespace Model {
-        public class EquipPack : IPack, IWearInfo {
+        public class EquipPack : IEquipPack {
             private readonly int roleindex;
             private readonly string username;
             private readonly string packType;
             private readonly string roleType;
 
             private string[] idList;
-            private Dictionary<string, string> wearDict;
+            private Dictionary<string, IEquipInfo> wearDict;
 
             public bool IsFull {
                 get {
@@ -56,15 +55,15 @@ namespace Solider {
                 #endregion
 
                 #region ******** 初始化装备穿戴信息 ********
-                Dictionary<string, string> wearDict;
-                SqliteManager.GetWearInfoWithID(username, roleindex, out wearDict);
-                this.wearDict = new Dictionary<string, string>();
+                Dictionary<string, string> initWear;
+                SqliteManager.GetWearInfoWithID(username, roleindex, out initWear);
+                wearDict = new Dictionary<string, IEquipInfo>();
                 for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                     string type = ConstConfig.EquipTypeList[i];
-                    if (wearDict.ContainsKey(type)) {
-                        this.wearDict[type] = wearDict[type];
+                    if (initWear.ContainsKey(type)) {
+                        wearDict[type] = Configs.itemConfig.GetItemInfo(initWear[type]) as IEquipInfo;
                     } else {
-                        this.wearDict[type] = "0";
+                        wearDict[type] = null;
                     } // end if
                 } // end for
                 #endregion
@@ -91,18 +90,22 @@ namespace Solider {
             public void UseItemWithGid(int gid) {
                 if (gid < 0 || gid >= idList.Length) return;
                 // end if
-                string tempID = idList[gid];
-                EquipInfo info = Configs.itemConfig.GetItemInfo(tempID) as EquipInfo;
+                string itemID = idList[gid];
+                IEquipInfo info = Configs.itemConfig.GetItemInfo(itemID) as IEquipInfo;
                 if (null == info || (info.role != ConstConfig.ALLROLE && info.role != roleType)) return; // 检测是否是装备，是否符合当前角色类型
                 // end if
                 string type = info.type;
                 if (!wearDict.ContainsKey(type)) return; // 检测装备类型是否存在
                 // end if
-                idList[gid] = wearDict[type];
-                wearDict[type] = tempID;
+                if (null == wearDict[type])
+                    idList[gid] = "0";
+                else
+                    idList[gid] = wearDict[type].id;
+                // end if
+                wearDict[type] = info;
                 WriteGridInfo(gid, idList[gid], 0);
                 BroadcastCenter.Broadcast(BroadcastType.ReloadEquip);
-                SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
+                SqliteManager.SetWearInfoWithID(username, roleindex, type, info.id);
             } // end UseItemWithGid
 
             public void ExpendItemWithID(string itemID, int count) {
@@ -163,33 +166,24 @@ namespace Solider {
             } // end ArrangePack
 
             public void DiscardItem(int gid, int count) {
-                if (gid < 0 || gid >= idList.Length || count < 0) return;
+                if (gid < 0 || gid >= idList.Length) return;
                 // end if
                 idList[gid] = "0";
                 WriteGridInfo(gid, idList[gid], 0);
             } // end DiscardItem
 
-            public Dictionary<string, string> GetWearEquip() {
-                Dictionary<string, string> dict = new Dictionary<string, string>();
-                foreach (KeyValuePair<string, string> pair in wearDict) {
-                    dict[pair.Key] = pair.Value;
-                } // end foreach
-                return dict;
-            } // end GetWearEquip
-
             public void TakeOffEquip(string type) {
-                if ("0" == wearDict[type] || !wearDict.ContainsKey(type)) return;
+                if (!wearDict.ContainsKey(type) || null == wearDict[type]) return;
                 // end if
-                PackItem(wearDict[type], 0);
-                wearDict[type] = "0";
-                SqliteManager.SetWearInfoWithID(username, roleindex, type, wearDict[type]);
+                PackItem(wearDict[type].id, 0);
+                wearDict[type] = null;
+                SqliteManager.SetWearInfoWithID(username, roleindex, type, "0");
             } // end TakeOffEquip
 
-            public EquipInfo GetEquipInfo(string type) {
-                if (!wearDict.ContainsKey(type)) {
-                    return null;
-                } // end if
-                return Configs.itemConfig.GetItemInfo(wearDict[type]) as EquipInfo;
+            public IEquipInfo GetEquipInfo(string type) {
+                if (false == wearDict.ContainsKey(type)) return null;
+                // end if
+                return wearDict[type];
             } // end GetItemInfo
 
             private void WriteGridInfo(int gid, string id, int count) {

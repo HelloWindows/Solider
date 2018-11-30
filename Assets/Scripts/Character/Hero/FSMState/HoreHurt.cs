@@ -13,17 +13,18 @@ namespace Solider {
             public class HoreHurt : IFSMState {
                 public string id { get { return "hurt"; } }
                 private string anim { get { return "hurt"; } }
-                private string sound;
                 private ICharacter character;
 
-                public HoreHurt(ICharacter character, string sound) {
-                    this.sound = sound;
+                public HoreHurt(ICharacter character) {
                     this.character = character;
                 } // end HoreHurt
 
                 public void DoBeforeEntering() {
                     character.avatar.Play(anim);
-                    character.audio.PlaySoundCache(sound);
+                    string soundPath;
+                    if (character.config.TryGetSoundPath("hurt", out soundPath))
+                        character.audio.PlaySoundCacheForPath("hurt", soundPath);
+                    // end if
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {
