@@ -4,8 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Character.Model;
 using System;
+using Solider.ModelData.Character;
 
 namespace Solider {
     namespace Character {

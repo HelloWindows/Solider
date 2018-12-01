@@ -24,7 +24,7 @@ namespace Solider {
                         return config;
                     } // end get
                 } // end instance
-                #region ******** 初始化物品配置信息 ********
+                #region ******** 初始化配置信息 ********
                 private IconConfig() {
                     skillConfig = new Dictionary<string, ISkillInfo>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");

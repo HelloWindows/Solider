@@ -23,7 +23,7 @@ namespace Solider {
                     move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
                     avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
-                    info = new CharacterInfo(hashID, name, ConstConfig.ARCHER);
+                    info = new CharacterInfo(name, ConstConfig.ARCHER, config.initAttribute);
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;

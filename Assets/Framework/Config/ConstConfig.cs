@@ -13,11 +13,11 @@ namespace Framework {
                 public static string[] EquipTypeList { get { return equipTypeList; } }
                 private static readonly string[] equipTypeList = { WEAPON, NECKLACE, RING, WING, ARMOR, PANTS, SHOES };
                 /// <summary>
-                /// 战士
+                /// 狂战士
                 /// </summary>
                 public const string SWORDMAN = "swordman";
                 /// <summary>
-                /// 射手
+                /// 弓箭手
                 /// </summary>
                 public const string ARCHER = "archer";
                 /// <summary>

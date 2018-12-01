@@ -94,11 +94,11 @@ namespace Solider {
                     }// end 
                     switch (role) {
                         case ConstConfig.SWORDMAN:
-                            infoBuilder.Append("剑客");
+                            infoBuilder.Append("狂战士");
                             break;
 
                         case ConstConfig.ARCHER:
-                            infoBuilder.Append("射手");
+                            infoBuilder.Append("弓箭手");
                             break;
 
                         case ConstConfig.MAGICIAN:

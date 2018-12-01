@@ -1,32 +1,82 @@
 ﻿{
   "itemlist": [
     {
-      "id": "300001",
-      "name": "硝石",
-      "grade": "D",
-      "spritepath": "Sprite/ItemSprite/nitre",
-      "intro": "制作子弹的材料"
+      "id": "swordman",
+      "name": "狂战士",
+      "attribute": {
+        "XHP": 900,
+        "XMP": 300,
+        "NATK": 1,
+        "XATK": 3,
+        "NMGK": 0,
+        "XMGK": 0,
+        "HOT": 10,
+        "MOT": 3,
+        "DEF": 5,
+        "RGS": 5,
+        "ASP": 0,
+        "MSP": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack": "Character/Hero/Swordman/Sound/swordman_attack_1",
+        "hurt": "Character/Hero/Swordman/Sound/swordman_hurt",
+        "die": "Character/Hero/Swordman/Sound/swordman_die"
+      }
+    },
+    {  
+      "id": "archer",
+      "name": "弓箭手",
+      "attribute": {
+        "XHP": 800,
+        "XMP": 400,
+        "NATK": 2,
+        "XATK": 5,
+        "NMGK": 0,
+        "XMGK": 0,
+        "HOT": 8,
+        "MOT": 4,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack": "Character/Hero/Swordman/Sound/archer_attack",
+        "hurt": "Character/Hero/Swordman/Sound/archer_hurt",
+        "die": "Character/Hero/Swordman/Sound/archer_die"
+      }
     },
     {
-      "grade": "C",
-      "id": "300002",
-      "intro": "只是铁矿，仅此而已！",
-      "name": "铁矿",
-      "spritepath": true
-    },
-    {
-      "id": "300003",
-      "name": "银矿",
-      "grade": "B",
-      "spritepath": "Sprite/ItemSprite/silver",
-      "intro": "听说用银弹打打僵尸挺爽！"
-    },
-     {
-      "id": "300004",
-      "name": "金矿",
-      "grade": "A",
-      "spritepath": "Sprite/ItemSprite/gold",
-      "intro": "金子，人人都喜欢！"
+      "id": "magician",
+      "name": "魔法师",
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 5,
+        "XATK": 8,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 0,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack": "Character/Hero/Swordman/Sound/magician_attack1",
+        "hurt": "Character/Hero/Swordman/Sound/magician_hurt",
+        "die": "Character/Hero/Swordman/Sound/magician_die"
+      }
     }
   ]
 }

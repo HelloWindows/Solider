@@ -8,7 +8,7 @@ namespace Solider {
     namespace Config {
         namespace Interface {
             public interface ICharacterConfigMgr {
-                bool TryGetCharacterConfig(string id, out ICharacterConfig config);
+                ICharacterConfig GetCharacterConfig(string id);
             } // end interface ICharacterConfigMgr 
         } // end namespace Interface
     } // end namespace Config

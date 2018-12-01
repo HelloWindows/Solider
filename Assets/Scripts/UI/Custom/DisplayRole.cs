@@ -173,7 +173,7 @@ namespace Solider {
                 private void ReloadArmor(IEquipInfo info) {
                     string id;
                     if (null == info)
-                        id = roleType + "0";
+                        id = "0";
                     else
                         id = info.id;
                     // end if   
