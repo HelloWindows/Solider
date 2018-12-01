@@ -26,10 +26,11 @@ namespace Solider {
                     /// </summary>
                     NEGATE = 2 
                 } // end enum AttackMode
-                public string id { get { return "atkStep3"; } }
+                public string id { get { return "attack3"; } }
                 private float step;
                 private AttackMode mode;
                 private IHeroCharacter character;
+                private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_3"; } }
 
                 public SwordmanAttack3(IHeroCharacter character) {
                     step = 1f;
@@ -38,7 +39,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mode = AttackMode.DEFAULT;
-                    character.audio.PlaySoundCache("swordman_attack_3");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2" });
                 } // end DoBeforeEntering
 

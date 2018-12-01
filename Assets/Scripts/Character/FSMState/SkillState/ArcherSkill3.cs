@@ -5,31 +5,41 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Tools;
 using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class ArcherSkill3 : IFSMState {
+            public class ArcherSkill3 : IFSMState, ICharacterFSMState {
                 private enum SkillStep : int{
                     Step1 = 0,
                     Step2 = 1,
                     End = 2
                 } // end enum SkillStep
-                public string id { get { return "archer_skill3"; } }
+                public string id { get { return "600203"; } }
                 private bool[] signArr;
                 private ICharacter character;
                 private SkillStep skillStep;
+                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_skill3"; } }
 
                 public ArcherSkill3(ICharacter character) {
                     signArr = new bool[18];
                     this.character = character;
-                } // end ArcherCrit
+                } // end ArcherSkill1
+
+                public IFSMState CreateInstance(ICharacter character) {
+                    if (null == character) {
+                        DebugTool.ThrowException("ArcherSkill3 CreateInstance character is null!!!");
+                        return null;
+                    } // end if
+                    return new ArcherSkill3(character);
+                } // end CreateInstance
 
                 public void DoBeforeEntering() {
                     skillStep = SkillStep.Step1;
-                    character.audio.PlaySoundCache("skill3");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.Play("skill3_1");
                     for (int i = 0; i < signArr.Length; i++) {
                         signArr[i] = false;

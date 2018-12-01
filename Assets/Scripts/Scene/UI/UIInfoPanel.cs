@@ -121,7 +121,7 @@ namespace Solider {
 
                 public void Act(float deltaTime) {
                     if (null != SceneManager.mainCharacter)
-                        infoText.text = SceneManager.mainCharacter.info.GetAttributeData().ToString();
+                        infoText.text = SceneManager.mainCharacter.info.GetCharacterData().ToString();
                     // end if
                 } // end Act
             } // end class UIInfoPanel 

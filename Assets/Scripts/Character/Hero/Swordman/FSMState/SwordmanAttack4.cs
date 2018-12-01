@@ -11,9 +11,10 @@ namespace Solider {
     namespace Character {
         namespace Hero {
             public class SwordmanAttack4 : IFSMState {
-                public string id { get { return "atkStep4"; } }
+                public string id { get { return "attack3"; } }
                 private float step;
                 private ICharacter character;
+                private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_4"; } }
 
                 public SwordmanAttack4( ICharacter character) {
                     step = 2f;
@@ -21,7 +22,7 @@ namespace Solider {
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("swordman_attack_4");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.PlayQueued(new string[] { "attack4_1", "attack4_2", "attack4_3" });
                 } // end DoBeforeEntering
 

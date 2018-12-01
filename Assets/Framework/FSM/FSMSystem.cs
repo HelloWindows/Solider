@@ -4,9 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.FSM.Interface;
-using Framework.Tools;
 
 namespace Framework {
     namespace FSM {
@@ -38,12 +36,6 @@ namespace Framework {
             } // end PerformTransition
 
             public void PerformTransition(string stateID) {
-                IFSMState state = Configs.fsmStateConfig.GetCharacterState(stateID);
-                if (null == state) {
-                    DebugTool.ThrowException("FSMSystem PerformTransition is don't exsit!!！ stateID: " + stateID);
-                    return;
-                } // end if
-                PerformTransition(state);
             } // end PerformTransition
         } // end class FSMSystem 
     } // end namespace FSM 

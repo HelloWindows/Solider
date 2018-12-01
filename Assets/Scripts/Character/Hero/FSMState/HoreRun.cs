@@ -19,11 +19,13 @@ namespace Solider {
                 private IHeroCharacter character;
                 private float[] timeArr;
                 private bool[] signArr;
+                private string soundPath;
 
                 public HoreRun(IHeroCharacter character) {
                     this.character = character;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };
+                    character.config.TryGetSoundPath("run", out soundPath);
                 } // end HoreRun
 
                 public void DoBeforeEntering() {
@@ -65,7 +67,7 @@ namespace Solider {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if
                     signArr[index] = true;
-                    character.audio.PlaySoundCache("heroRun");
+                    character.audio.PlaySoundCacheForPath("run", soundPath);
                     EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
                 } // end PlayRunSound
             } // end class HoreRun

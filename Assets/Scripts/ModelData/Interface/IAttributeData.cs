@@ -71,4 +71,4 @@ namespace Solider {
             } // end interface IAttributeData
         } // end namespace Interface
     } // end namespace ModelData
-} // end namespace Solider
+} // end namespace Solider 

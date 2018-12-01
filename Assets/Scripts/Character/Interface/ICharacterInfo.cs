@@ -5,26 +5,21 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System;
-using Solider.ModelData.Character;
+using Solider.ModelData.Interface;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacterInfo : IDisposable{
-                /// <summary>
-                /// 是否存活
-                /// </summary>
-                /// <returns> 是否存活 </returns>
-                bool IsLive { get; }
+            public interface ICharacterInfo : IDisposable {
                 /// <summary>
                 /// 自愈
                 /// </summary>
                 void Update(float deltaTime);
                 /// <summary>
-                /// 获取角色属性数据
+                /// 获取角色数据
                 /// </summary>
-                /// <returns> 属性数据 </returns>
-                CharacterAttribute GetAttributeData();
+                /// <returns> 角色数据 </returns>
+                ICharacterData GetCharacterData();
                 /// <summary>
                 /// 复活
                 /// </summary>

@@ -14,6 +14,7 @@ using Framework.Config.FSM;
 using Framework.Config.Interface;
 using Solider.Config.Interface;
 using Solider.Config.Character;
+using Solider.Config.Audio;
 
 namespace Framework {
     namespace Config {

@@ -23,7 +23,8 @@
       "sound": {
         "attack": "Character/Hero/Swordman/Sound/swordman_attack_1",
         "hurt": "Character/Hero/Swordman/Sound/swordman_hurt",
-        "die": "Character/Hero/Swordman/Sound/swordman_die"
+        "die": "Character/Hero/Swordman/Sound/swordman_die",
+        "run": "Character/Hero/Swordman/Sound/swordman_die"
       }
     },
     {  
@@ -49,7 +50,8 @@
       "sound": {
         "attack": "Character/Hero/Swordman/Sound/archer_attack",
         "hurt": "Character/Hero/Swordman/Sound/archer_hurt",
-        "die": "Character/Hero/Swordman/Sound/archer_die"
+        "die": "Character/Hero/Swordman/Sound/archer_die",
+        "run": "Character/Hero/Swordman/Sound/swordman_die"
       }
     },
     {
@@ -75,7 +77,8 @@
       "sound": {
         "attack": "Character/Hero/Swordman/Sound/magician_attack1",
         "hurt": "Character/Hero/Swordman/Sound/magician_hurt",
-        "die": "Character/Hero/Swordman/Sound/magician_die"
+        "die": "Character/Hero/Swordman/Sound/magician_die",
+        "run": "Character/Hero/Swordman/Sound/swordman_die"
       }
     }
   ]

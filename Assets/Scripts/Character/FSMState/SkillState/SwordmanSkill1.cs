@@ -1,28 +1,38 @@
 ﻿/*******************************************************************
- * FileName: SwordmanAttack1.cs
+ * FileName: SwordmanSkill1.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Tools;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class SwordmanSkill1 : IFSMState {
-                public string id { get { return "skill1"; } }
+            public class SwordmanSkill1 : IFSMState, ICharacterFSMState {
+                public string id { get { return "600001"; } }
                 private float step;
                 private ICharacter character;
+                private string soundPath { get { return "Character/Sound/FSMState/600001"; } }
 
                 public SwordmanSkill1(ICharacter character) {
                     step = 3f;
                     this.character = character;
-                } // end SwordmanAttack1
+                } // end SwordmanSkill1
+
+                public IFSMState CreateInstance(ICharacter character) {
+                    if (null == character) {
+                        DebugTool.ThrowException("SwordmanSkill1 CreateInstance character is null!!!");
+                        return null;
+                    } // end if
+                    return new SwordmanSkill1(character);
+                } // end CreateInstance
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("swordman_skill_1");
                     character.avatar.Play("skill1");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                 } // end DoBeforeEntering
 
                 public void Reason(float deltaTime) {

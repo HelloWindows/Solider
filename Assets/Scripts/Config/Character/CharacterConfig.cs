@@ -34,6 +34,7 @@ namespace Solider {
                     characterSoundConfig["attack"] = JsonTool.GetJsonData_String(data, "attack");
                     characterSoundConfig["hurt"] = JsonTool.GetJsonData_String(data, "hurt");
                     characterSoundConfig["die"] = JsonTool.GetJsonData_String(data, "die");
+                    characterSoundConfig["run"] = JsonTool.GetJsonData_String(data, "run");
                 } // end InitCharacterSoundConfig
 
                 public bool TryGetSoundPath(string name, out string path) {

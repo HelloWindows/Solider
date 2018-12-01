@@ -15,6 +15,7 @@ namespace Solider {
             public class HoreWalk : IFSMState {
                 public string id { get { return "walk"; } }
                 private string anim { get { return "walk"; } }
+                private string soundPath;
                 private IHeroCharacter character;
                 private float[] timeArr;
                 private bool[] signArr;
@@ -23,6 +24,7 @@ namespace Solider {
                     this.character = character;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };
+                    character.config.TryGetSoundPath("run", out soundPath);
                 } // end HoreWalk
 
                 public void DoBeforeEntering() {
@@ -60,7 +62,7 @@ namespace Solider {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if
                     signArr[index] = true;
-                    character.audio.PlaySoundCache("heroRun");
+                    character.audio.PlaySoundCacheForPath("run", soundPath);
                     EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
                 } // end PlayRunSound
             } // end class HoreWalk

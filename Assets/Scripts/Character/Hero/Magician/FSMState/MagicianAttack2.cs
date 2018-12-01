@@ -26,9 +26,10 @@ namespace Solider {
                     /// </summary>
                     NEGATE = 2 
                 } // end enum AttackMode
-                public string id { get { return "magician_attack2"; } }
+                public string id { get { return "attack2"; } }
                 private AttackMode mode;
                 private IHeroCharacter character;
+                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_1"; } }
 
                 public MagicianAttack2(IHeroCharacter character) {
                     this.character = character;
@@ -36,7 +37,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mode = AttackMode.DEFAULT;
-                    character.audio.PlaySoundCache("magician_attack1");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.PlayQueued(new string[] { "attack2_1", "attack2_2" });
                 } // end DoBeforeEntering
 

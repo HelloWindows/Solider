@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.ModelData.Character;
-
 namespace Solider {
     namespace ModelData {
         namespace Interface {
@@ -35,10 +33,13 @@ namespace Solider {
                 /// </summary>
                 float XMR { get; }
                 /// <summary>
-                /// 初始化为角色状态恢复的数据
+                /// 是否命中
                 /// </summary>
-                /// <param name="character"></param>
-                void Init(CharacterAttribute character);
+                bool ismiss { get; }
+                /// <summary>
+                /// 是否暴击
+                /// </summary>
+                bool iscrit { get; }
             } // end class IRealData
         } // end namespace Interface
     } // end namespace ModelData

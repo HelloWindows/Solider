@@ -9,8 +9,8 @@ using Framework.Config.Const;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.Manager;
-using Solider.ModelData.Data;
 using Solider.ModelData.Character;
+using Solider.ModelData.Data;
 using Solider.ModelData.Interface;
 
 namespace Solider {
@@ -21,33 +21,30 @@ namespace Solider {
                 get {
                     if (!isLive) return false;
                     // end if
-                    if (characterArribute.HP > 0) return true;
+                    if (charcterDataAction.HP > 0) return true;
                     // end if
                     isLive = false;
                     return isLive;
                 } // end get
             } // end IsLive
             private float timer;
-            private IRealData selfTreat;
-            private CharacterAttribute characterArribute;
-            private CharacterAttribute tempArribute;
+            private IRealDataAction selfTreatAction;
+            private ICharacterDataAction charcterDataAction;
             private IAttributeInfo initArribute;
 
             public CharacterInfo(string name, string roleType, IAttributeInfo initArribute) {
                 timer = 0;
                 isLive = true;
-                selfTreat = new RealData();
-                characterArribute = new CharacterAttribute(name, roleType);
-                tempArribute = new CharacterAttribute(name, roleType);
+                charcterDataAction = new CharacterDataAction(name, roleType);
                 this.initArribute = initArribute;
                 CheckAttributeData();
-                characterArribute += selfTreat;
+                selfTreatAction = new RealData();
+                charcterDataAction.Plus(selfTreatAction);
                 BroadcastCenter.AddListener(BroadcastType.ReloadEquip, CheckAttributeData);
             } // end CharacterInfo
 
-            public CharacterAttribute GetAttributeData() {
-                tempArribute += characterArribute;
-                return tempArribute;
+            public ICharacterData GetCharacterData() {
+                return charcterDataAction;
             } // end GetAttributeData
 
             public void Update(float deltaTime) {
@@ -57,21 +54,20 @@ namespace Solider {
                 if (timer < 1) return;
                 // end if
                 timer = 0;
-                selfTreat.Init(characterArribute);
-                characterArribute += selfTreat;
+                selfTreatAction.SetSelfTreat(charcterDataAction);
+                charcterDataAction.Plus(selfTreatAction);
             } // end SelfHealing
 
             private void CheckAttributeData() {
                 if (null == GameManager.playerInfo.pack) return;
                 // end if
-                //tempArribute += roleInitArribute;
+                charcterDataAction.Init(initArribute);
                 for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) { // 累加所有已穿戴的装备的属性
                     IEquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.EquipTypeList[i]);
                     if (null == info) continue;
                     // end if
-                    tempArribute += info;
+                    charcterDataAction.Plus(info);
                 } // end for
-                characterArribute += tempArribute;
             } // end CheckAttributeData
 
             public void Revive() {

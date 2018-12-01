@@ -14,13 +14,14 @@ namespace Solider {
                 public string id { get { return "attCrit"; } }
                 private string anim { get { return "attCrit"; } }
                 private ICharacter character;
+                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_crit"; } }
 
                 public ArcherCrit(ICharacter character) {
                     this.character = character;
                 } // end ArcherCrit
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("archer_crit");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.Play(anim);
                 } // end DoBeforeEntering
 

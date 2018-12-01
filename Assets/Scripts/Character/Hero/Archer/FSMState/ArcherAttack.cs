@@ -31,6 +31,7 @@ namespace Solider {
                 private string anim { get { return "attack"; } }
                 private AttackMode mode;
                 private IHeroCharacter character;
+                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_attack"; } }
 
                 public ArcherAttack(IHeroCharacter character) {
                     this.character = character;
@@ -38,7 +39,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mode = AttackMode.DEFAULT;
-                    character.audio.PlaySoundCache("archer_attack");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.Play(anim);
                 } // end DoBeforeEntering
 

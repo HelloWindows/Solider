@@ -5,21 +5,31 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Framework.Tools;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class ArcherSkill2 : IFSMState {
-                public string id { get { return "archer_skill2"; } }
+            public class ArcherSkill2 : IFSMState, ICharacterFSMState {
+                public string id { get { return "600202"; } }
                 private ICharacter character;
+                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_skill2"; } }
 
                 public ArcherSkill2(ICharacter character) {
                     this.character = character;
-                } // end ArcherCrit
+                } // end ArcherSkill1
+
+                public IFSMState CreateInstance(ICharacter character){
+                    if (null == character) {
+                        DebugTool.ThrowException("ArcherSkill2 CreateInstance character is null!!!");
+                        return null;
+                    } // end if
+                    return new ArcherSkill2(character);
+                } // end CreateInstance
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("archer_skill2");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.PlayQueued(new string[] { "skill2_1", "skill2_2", "skill2_3" });
                 } // end DoBeforeEntering
 

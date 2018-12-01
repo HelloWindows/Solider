@@ -11,15 +11,16 @@ namespace Solider {
     namespace Character {
         namespace Hero {
             public class MagicianAttack3 : IFSMState {
-                public string id { get { return "magician_attack3"; } }
+                public string id { get { return "attack3"; } }
                 private ICharacter character;
+                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_2"; } }
 
                 public MagicianAttack3(ICharacter character) {
                     this.character = character;
                 } // end MagicianAttack2
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCache("magician_attack2");
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     character.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2", "attack3_3" });
                 } // end DoBeforeEntering
 
