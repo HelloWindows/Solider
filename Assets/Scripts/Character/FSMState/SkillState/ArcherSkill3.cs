@@ -4,9 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.Character.Interface;
+using Solider.Config.Interface;
 using UnityEngine;
 
 namespace Solider {
@@ -22,11 +24,14 @@ namespace Solider {
                 private bool[] signArr;
                 private ICharacter character;
                 private SkillStep skillStep;
-                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_skill3"; } }
+                private static ICharacterFSMStateInfo info;
 
                 public ArcherSkill3(ICharacter character) {
                     signArr = new bool[18];
                     this.character = character;
+                    if (null == info)
+                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
+                    // end if
                 } // end ArcherSkill1
 
                 public IFSMState CreateInstance(ICharacter character) {
@@ -39,7 +44,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     skillStep = SkillStep.Step1;
-                    character.audio.PlaySoundCacheForPath(id, soundPath);
+                    character.audio.PlaySoundCacheForPath(id, info.soundPath);
                     character.avatar.Play("skill3_1");
                     for (int i = 0; i < signArr.Length; i++) {
                         signArr[i] = false;

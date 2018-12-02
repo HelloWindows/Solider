@@ -6,7 +6,6 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.FSM.Interface;
-using Framework.Tools;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using UnityEngine;
@@ -37,7 +36,6 @@ namespace Solider {
                 hashID = gameObject.GetHashCode().ToString();
                 gameObject.name = hashID;
                 config = Configs.characterConfig.GetCharacterConfig(id);
-                if (null == config) DebugTool.ThrowException("Character was configure error!!! ID:" + id);
             } // end Character
 
             public virtual void Update(float deltaTime) {

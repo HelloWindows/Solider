@@ -29,6 +29,7 @@ namespace Solider {
                     characterConfig = new Dictionary<string, ICharacterConfig>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
                     string jsonInfo = assetbundle.LoadAsset<TextAsset>("assets/config/character_config.json").text;
+                    assetbundle.Unload(false);
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];
                     for (int i = 0; i < list.Count; i++) {
@@ -38,9 +39,10 @@ namespace Solider {
                 #endregion
 
                 public ICharacterConfig GetCharacterConfig(string id) {
-                    if (false == characterConfig.ContainsKey(id)) return null;
+                    if (characterConfig.ContainsKey(id)) return characterConfig[id];
                     // end if
-                    return characterConfig[id];
+                    DebugTool.ThrowException("CharacterConfigMgr character was configure error!!! ID:" + id);
+                    return null;
                 } // end GetCharacterConfig
             } // end interface ICharacterConfigMgr
         } // end namespace Character

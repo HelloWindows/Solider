@@ -10,11 +10,9 @@ using Framework.Config.Prefab;
 using Framework.Config.Material;
 using Solider.Config.Item;
 using Solider.Config.Icon;
-using Framework.Config.FSM;
 using Framework.Config.Interface;
 using Solider.Config.Interface;
 using Solider.Config.Character;
-using Solider.Config.Audio;
 
 namespace Framework {
     namespace Config {
@@ -25,8 +23,8 @@ namespace Framework {
             public static readonly IPathConfig effectConfig = EffectConfig.instance;
             public static readonly IPathConfig prefabConfig = PrefabConfig.instance;
             public static readonly IPathConfig materialConfig = MaterialConfig.instance;
-            public static readonly FSMStateConfig fsmStateConfig = FSMStateConfig.instance;
             public static readonly ICharacterConfigMgr characterConfig = CharacterConfigMgr.instance;
+            public static readonly ICharacterFSMStateConfig characterFSMStateConfig = CharacterFSMStateConfig.instance;
         } // end class Configs 
     } // end  namespace Config
 } // end namespace Framework

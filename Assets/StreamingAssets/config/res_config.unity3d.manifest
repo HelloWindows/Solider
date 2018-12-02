@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 620905690
+CRC: 1440021954
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 35c722b727dbce7f505b9f65075acb1c
+    Hash: 656815cbee04b9ba763718831e4f674a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -18,4 +18,5 @@ Assets:
 - Assets/Config/skill_info_config.json
 - Assets/Config/equipment_res_config.json
 - Assets/Config/stuff_res_config.json
+- Assets/Config/charcter_state_config.json
 Dependencies: []

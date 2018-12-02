@@ -33,11 +33,11 @@ namespace Solider {
                     string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
                     string consumeJson = assetbundle.LoadAsset<TextAsset>("assets/config/consumable_res_config.json").text;
                     string bluePrintJson = assetbundle.LoadAsset<TextAsset>("assets/config/blueprint_res_config.json").text;
+                    assetbundle.Unload(false);
                     InitStuffConfig(stuffJson);
                     InitEquipConfig(equipJson);
                     InitConsumeConfig(consumeJson);
                     InitBluePrintConfig(bluePrintJson);
-                    assetbundle.Unload(false);
                 } // end ItemConfig
 
                 private void InitStuffConfig(string jsonInfo) {

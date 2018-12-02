@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Middleware;
+using Solider.Character.FSMState;
 using Solider.Manager;
 
 namespace Framework {
@@ -22,6 +23,7 @@ namespace Framework {
                 _ButtonInput = ButtonInput.instance;
                 _ObjectManager = new ObjectManager();
                 _ShareSDKManager = ShareSDKManager.instance;
+                CharacterFSMActivator.GetCharacterFSMState("600001");
             } // end GetInstance
 
             public static ButtonInput GetButtonInput() { return _ButtonInput; } // end ButtonInput

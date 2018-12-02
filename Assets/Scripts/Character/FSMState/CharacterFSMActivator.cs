@@ -14,7 +14,7 @@ namespace Solider {
         namespace FSMState {
             public static class CharacterFSMActivator {
                 private static Dictionary<string, ICharacterFSMState> stateMap;
-                public static Dictionary<string, ICharacterFSMState> StateMap {
+                private static Dictionary<string, ICharacterFSMState> StateMap {
                     get {
                         if (null == stateMap) {
                             stateMap = new Dictionary<string, ICharacterFSMState>();
@@ -31,6 +31,14 @@ namespace Solider {
                         return stateMap;
                     } // end get
                 } // end StateMap
+
+                public static ICharacterFSMState GetCharacterFSMState(string id) {
+                    ICharacterFSMState state;
+                    if (StateMap.TryGetValue(id, out state)) return state;
+                    // end if
+                    DebugTool.ThrowException("CharacterFSMActivator GetCharacterFSMState id is error!!! ID:" + id);
+                    return null;
+                } // end GetCharacterFSMState
 
                 private static void PushState(ICharacterFSMState state) {
                     if (null == state) {

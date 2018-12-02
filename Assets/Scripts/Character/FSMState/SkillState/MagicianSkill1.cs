@@ -4,9 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.Character.Interface;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace Character {
@@ -14,10 +16,13 @@ namespace Solider {
             public class MagicianSkill1 : IFSMState, ICharacterFSMState {
                 public string id { get { return "600101"; } }
                 private ICharacter character;
-                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_skill1"; } }
+                private static ICharacterFSMStateInfo info;
 
                 public MagicianSkill1(ICharacter character) {
                     this.character = character;
+                    if (null == info)
+                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
+                    // end if
                 } // end MagicianSkill1
 
                 public IFSMState CreateInstance(ICharacter character) {
@@ -29,7 +34,7 @@ namespace Solider {
                 } // end CreateInstance
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCacheForPath(id, soundPath);
+                    character.audio.PlaySoundCacheForPath(id, info.soundPath);
                     character.avatar.Play("skill1");
                 } // end DoBeforeEntering
 

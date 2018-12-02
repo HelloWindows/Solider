@@ -38,7 +38,7 @@ namespace Test {
     } // end TypeTest
 
     public class Test : MonoBehaviour {
-
+        public string soundPath { get; private set; }
         public RectTransform parent;
 
         private void Start() {
