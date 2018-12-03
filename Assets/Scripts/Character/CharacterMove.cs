@@ -11,13 +11,11 @@ namespace Solider {
     namespace Character {
         public class CharacterMove : ICharacterMove {
             private float speed;
-            private Rigidbody rgd;
             private Transform transform;
 
-            public CharacterMove(Rigidbody rgd) {
+            public CharacterMove(Transform transform) {
                 speed = 3f;
-                this.rgd = rgd;
-                transform = rgd.transform;
+                this.transform = transform;
             } // end CharacterMove
 
             public void StepForward(float step, float deltaTime) {
@@ -34,7 +32,7 @@ namespace Solider {
             public void MoveForward(Vector2 dir, float deltaTime) {
                 Vector3 forward = new Vector3(dir.x, 0, dir.y);
                 transform.Translate(forward * speed * deltaTime, Space.World);
-                rgd.MoveRotation(Quaternion.LookRotation(forward));
+                transform.rotation = Quaternion.LookRotation(forward);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end MoveForward
 
@@ -46,7 +44,7 @@ namespace Solider {
             public void MoveBackward(Vector2 dir, float deltaTime) {
                 Vector3 forward = new Vector3(-dir.x, 0, -dir.y);
                 transform.Translate(forward * speed * deltaTime, Space.World);
-                rgd.MoveRotation(Quaternion.LookRotation(forward));
+                transform.rotation = Quaternion.LookRotation(forward);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end MoveBackward
         } // end class CharacterMove

@@ -21,7 +21,7 @@ namespace Solider {
                     Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
-                    move = new CharacterMove(gameObject.GetComponent<Rigidbody>());
+                    move = new CharacterMove(transform);
                     avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
                     audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new CharacterInfo(name, ConstConfig.MAGICIAN, config.initAttribute);
