@@ -32,12 +32,14 @@ namespace Solider {
             public ICharacter mainCharacter { get; private set; }
             public string sceneName { get; private set; }
             private IFSMSystem fsmSystem;
-            private List<ICharacter> charList;
+            private List<int> indexList;
+            private List<ICharacter> characterList;
 
             public NoviceVillage() {
                 sceneName = GameConfig.NOVICE_VILLAGE;
                 fsmSystem = new FSMSystem();
-                charList = new List<ICharacter>();
+                indexList = new List<int>();
+                characterList = new List<ICharacter>();
                 uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
 
@@ -58,21 +60,21 @@ namespace Solider {
                     null, new Vector3(17, 0, -24), new Vector3(0, 270, 0), Vector3.one).AddComponent<NPC_Transmitter>();
                 mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("idle");
-                charList.Add(mainCharacter);
+                characterList.Add(mainCharacter);
             } // end Initialize
 
             public void Update(float deltaTime) {
                 fsmSystem.Update(deltaTime);
-                List<int> indexList = new List<int>();
-                for (int i = 0; i < charList.Count; i++) {
-                    if (charList[i].isDisposed) indexList.Add(i);
+                indexList.Clear();
+                for (int i = 0; i < characterList.Count; i++) {
+                    if (characterList[i].isDisposed) indexList.Add(i);
                     // end if
                 } // end for
                 for (int i = 0; i < indexList.Count; i++) {
-                    charList.RemoveAt(i);
+                    characterList.RemoveAt(indexList[i]);
                 } // end for
-                for (int i = 0; i < charList.Count; i++) {
-                    charList[i].Update(deltaTime);
+                for (int i = 0; i < characterList.Count; i++) {
+                    characterList[i].Update(deltaTime);
                 } // end for
             } // end Update
 

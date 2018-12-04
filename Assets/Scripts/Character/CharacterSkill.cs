@@ -5,52 +5,43 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
+using Framework.Tools;
 using Solider.Character.Interface;
-using Solider.Config.Icon;
 using Solider.Config.Interface;
+using Solider.ModelData.Interface;
 using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
         public class CharacterSkill : ICharacterSkill {
             #region /******** 技能计时器 *******/
-            private class SkillTimer {
-                public string id { get; private set; }
-                public bool isCooldown { get { return timer == 0; } }
+            private class SkillTimer : ITimer {
+                public ISkillInfo info { get; private set; }
+                public bool isCD { get { return timer == 0; } }
                 public float schedule { get { return timer / CD; } }
                 public float timer { get; private set; }
-                private float CD;
+                public float CD { get; private set; }
 
                 public SkillTimer(ISkillInfo info) {
-                    id = info.id;
+                    this.info = info;
                     timer = 0;
                     CD = info.CD;
                 } // end SkillTimer
 
-                public void Cooldown(float deltaTime) {
-                    if (isCooldown) return;
+                public void Cooldown(float coolTime) {
+                    if (isCD) return;
                     // end if
-                    timer -= deltaTime;
-                    if (timer < 0) timer = 0;
-                    // end if
+                    timer = MathTool.LimitZero(timer - coolTime);
                 } // end Cooldown
 
-                public void Cast() {
-                    timer = 0;
+                public void Cast(bool ignoreCD) {
+                    if (ignoreCD) return;
+                    // end if
+                    timer = CD;
                 } // end Cast
             } // end class SkillTimer
             #endregion
             private List<SkillTimer> skillList;
-            public List<string> skillIDList {
-                get {
-                    if (skillList.Count == 0) return null;
-                    List<string> list = new List<string>();
-                    for (int i = 0; i < skillList.Count; i++) {
-                        list.Add(skillList[i].id);
-                    } // end for
-                    return list;
-                } // end get
-            } // end skillIDList
 
             public CharacterSkill() {
                 skillList = new List<SkillTimer>();
@@ -64,46 +55,41 @@ namespace Solider {
 
             public void PushSkill(string id) {
                 ISkillInfo info;
-                if(false == Configs.iconConfig.TryGetSkillInfo(id, out info)) return;
+                if (false == Configs.iconConfig.TryGetSkillInfo(id, out info)) return;
                 // end if
                 if (null == info) return;
                 // end if
                 for (int i = 0; i < skillList.Count; i++)
-                    if (skillList[i].id == id) return;
-                    // end if
+                    if (skillList[i].info.id == id) {
+                        DebugTool.ThrowException("CharacterSkill PushSkill id is repeat!!! ID:" + id);
+                        return;
+                    } // end if
                 // end for         
                 skillList.Add(new SkillTimer(info));
             } // end PushSkill
 
-            public bool CastSkill(string id) {
+            public bool CastSkill(string id, bool ignoreCD = false) {
                 for (int i = 0; i < skillList.Count; i++) {
-                    if (skillList[i].id != id) continue;
+                    if (skillList[i].info.id != id) continue;
                     // end if
-                    if (false == skillList[i].isCooldown) return false;
+                    if (false == skillList[i].isCD) return false;
                     // end if
-                    skillList[i].Cast();
+                    skillList[i].Cast(ignoreCD);
                     return true;
                 } // end for
                 return false;
             } // end CastSkill
 
-            public float GetSchedule(string id) {
-                for (int i = 0; i < skillList.Count; i++) {
-                    if (skillList[i].id != id) continue;
-                    // end if
-                    return skillList[i].schedule;
+            public ITimer[] GetTimerArray(params string[] idArray) {
+                if (null == idArray || 0 == idArray.Length) return null;
+                // end if
+                ITimer[] timerArr = new ITimer[idArray.Length];
+                for (int i = 0; i < idArray.Length; i++) {
+                    for (int j = 0; j < skillList.Count; i++) {
+                    } // end for
                 } // end for
-                return 0;
-            } // end GetSchedule
-
-            public float GetTimer(string id) {
-                for (int i = 0; i < skillList.Count; i++) {
-                    if (skillList[i].id != id) continue;
-                    // end if
-                    return skillList[i].timer;
-                } // end for
-                return 0;
-            } // end GetTimer
+                return timerArr;
+            } // end GetTimerArray
         } // end class CharacterSkill 
     } // end namespace Character
 } // end namespace Solider

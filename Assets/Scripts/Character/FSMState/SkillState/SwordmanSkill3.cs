@@ -13,7 +13,7 @@ using Solider.Config.Interface;
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class SwordmanSkill3 : IFSMState, ICharacterFSMState {
+            public class SwordmanSkill3 : IFSMState, ISkillFSMState {
                 public string id { get { return "600003"; } }
                 private ICharacter character;
                 private static ICharacterFSMStateInfo info;
@@ -25,7 +25,7 @@ namespace Solider {
                     // end if
                 } // end SwordmanSkill3
 
-                public IFSMState CreateInstance(ICharacter character) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
                     if (null == character) {
                         DebugTool.ThrowException("SwordmanSkill3 CreateInstance character is null!!!");
                         return null;

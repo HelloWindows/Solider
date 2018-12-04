@@ -14,7 +14,7 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class SwordmanSkill2 : IFSMState, ICharacterFSMState {
+            public class SwordmanSkill2 : IFSMState, ISkillFSMState {
                 public string id { get { return "600002"; } }
                 private IHeroCharacter character;
                 private static ICharacterFSMStateInfo info;
@@ -27,7 +27,7 @@ namespace Solider {
                     // end if
                 } // end SwordmanSkill2
 
-                public IFSMState CreateInstance(ICharacter character) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
                     IHeroCharacter horeCharacter = character as IHeroCharacter;
                     if (null == horeCharacter) {
                         DebugTool.ThrowException("SwordmanSkill2 CreateInstance character is null!!!");

@@ -14,7 +14,7 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class ArcherSkill1 : IFSMState, ICharacterFSMState {
+            public class ArcherSkill1 : IFSMState, ISkillFSMState {
                 public string id { get { return "600201"; } }
                 private float step;
                 private ICharacter character;
@@ -28,7 +28,7 @@ namespace Solider {
                     // end if
                 } // end ArcherSkill1
 
-                public IFSMState CreateInstance(ICharacter character) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
                     if (null == character) {
                         DebugTool.ThrowException("ArcherSkill1 CreateInstance character is null!!!");
                         return null;

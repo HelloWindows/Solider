@@ -4,19 +4,17 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Solider.ModelData.Interface;
+
 namespace Solider {
     namespace Character {
         namespace Interface {
             public interface ICharacterSkill {
-                List<string> skillIDList { get; }
                 void Update(float deltaTime);
                 void PushSkill(string id);
-                bool CastSkill(string id);
-                float GetSchedule(string id);
-                float GetTimer(string id);
+                bool CastSkill(string id, bool ignoreCD = false);
+                ITimer GetTimer(string id);
+                ITimer[] GetTimerArray(params string[] idArray);
             } // end interface ICharacterSkill 
         } // end namespace Interface
     } // end namespace Character

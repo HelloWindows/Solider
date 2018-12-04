@@ -13,11 +13,11 @@ namespace Solider {
     namespace Character {
         namespace FSMState {
             public static class CharacterFSMActivator {
-                private static Dictionary<string, ICharacterFSMState> stateMap;
-                private static Dictionary<string, ICharacterFSMState> StateMap {
+                private static Dictionary<string, ISkillFSMState> stateMap;
+                private static Dictionary<string, ISkillFSMState> StateMap {
                     get {
                         if (null == stateMap) {
-                            stateMap = new Dictionary<string, ICharacterFSMState>();
+                            stateMap = new Dictionary<string, ISkillFSMState>();
                             PushState(new ArcherSkill1(null));
                             PushState(new ArcherSkill2(null));
                             PushState(new ArcherSkill3(null));
@@ -32,15 +32,15 @@ namespace Solider {
                     } // end get
                 } // end StateMap
 
-                public static ICharacterFSMState GetCharacterFSMState(string id) {
-                    ICharacterFSMState state;
+                public static ISkillFSMState GetCharacterFSMState(string id) {
+                    ISkillFSMState state;
                     if (StateMap.TryGetValue(id, out state)) return state;
                     // end if
                     DebugTool.ThrowException("CharacterFSMActivator GetCharacterFSMState id is error!!! ID:" + id);
                     return null;
                 } // end GetCharacterFSMState
 
-                private static void PushState(ICharacterFSMState state) {
+                private static void PushState(ISkillFSMState state) {
                     if (null == state) {
                         DebugTool.ThrowException("CharacterFSMActivator PushState state is null!!!");
                         return;
