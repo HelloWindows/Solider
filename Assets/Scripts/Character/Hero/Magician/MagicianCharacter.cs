@@ -23,7 +23,6 @@ namespace Solider {
                     buff = new CharacterBuff();
                     move = new CharacterMove(transform);
                     avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
-                    audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new CharacterInfo(name, ConstConfig.MAGICIAN, config.initAttribute);
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();

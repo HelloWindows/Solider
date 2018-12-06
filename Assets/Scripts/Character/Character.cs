@@ -17,13 +17,17 @@ namespace Solider {
             public bool isDisposed { get; private set; }
             public string hashID { get; private set; }
             public IFSM fsm { get; protected set; }
-            public ICharacterAudio audio { get; protected set; }
-            public ICharacterMove move { get; protected set; }
+            public ICharacterMove move { get { return _move; } }
             public ICharacterInfo info { get; protected set; }
             public ICharacterBuff buff { get; protected set; }
+            public ICharacterAudio audio { get { return _audio; } }
             public ICharacterAvatar avatar { get; protected set; }
             public ICharacterConfig config { get; protected set; }
             public Vector3 position { get { return null == transform ? Vector3.zero : transform.position; } }
+
+            private CharacterMove _move;
+            private CharacterAduio _audio;
+
             protected IFSMSystem fsmSystem;
             protected GameObject gameObject;
             protected Transform transform;
@@ -36,6 +40,9 @@ namespace Solider {
                 hashID = gameObject.GetHashCode().ToString();
                 gameObject.name = hashID;
                 config = Configs.characterConfig.GetCharacterConfig(id);
+
+                _move = new CharacterMove(transform);
+                _audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
             } // end Character
 
             public virtual void Update(float deltaTime) {
@@ -46,10 +53,12 @@ namespace Solider {
             public virtual void Dispose() {
                 if (true == isDisposed) return;
                 // end if
-                if (null != gameObject) Object.Destroy(gameObject); 
+                if (null != gameObject) Object.Destroy(gameObject);
                 // end if
-                if (null != audio) audio.Dispose();
-                // end if
+                if (null != _audio) {
+                    _audio.Dispose();
+                    _audio = null;
+                } // end if
                 if (null != info) info.Dispose();
                 // end if
                 isDisposed = true;

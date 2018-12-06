@@ -21,35 +21,42 @@ using Framework.FSM.Interface;
 
 namespace Test {
 
-    public class TypeTest {
-        public string name { get; private set; }
+    public class SS : MonoBehaviour {
+        public TT tt { get { return _tt; } }
 
-        public TypeTest(string name) {
-            this.name = name;
-        } // end TypeTest
+        private TT _tt;
 
-        public TypeTest(TypeTest type) {
-            name = type.name;
-        } // end TypeTest
+        private void Awake() {
+            _tt = new TT();
+        }
 
-        public void Log() {
-            Debug.Log(name);
-        } // end Log
-    } // end TypeTest
+        private void OnDestroy()
+        {
+            _tt = null;
+        }
+    } // end class SS 
+
+    public class TT {
+        public int i { get { return 1; } }
+    } // end class TT
 
     public class Test : MonoBehaviour {
-        public string soundPath { get; private set; }
-        public RectTransform parent;
+
+        public SS ss;
+        public TT tt;
+        public SS ssss;
 
         private void Start() {
-            Type type = typeof(UITownPanel);
-            object[] constructParms = new object[] { parent };
-            IFSMState tmp = (IFSMState)Activator.CreateInstance(type, constructParms);
-            tmp.DoBeforeEntering();
+            ss = new GameObject().AddComponent<SS>();
+            tt = ss.tt;
+            ssss = ss;
+            Destroy(ss.gameObject);
         } // end Start
 
         private void Update() {
-
+            Debug.Log(ss);
+            Debug.Log(tt);
+            Debug.Log(ssss.tt);
         } // end Update
 
         public void OnClick(string name) {

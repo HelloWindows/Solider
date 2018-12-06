@@ -4,13 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacterAudio : IDisposable {
+            public interface ICharacterAudio {
                 void PlaySoundOnce(string name);
                 void PlaySoundCache(string name);
                 void PlaySoundOnceForPath(string path);

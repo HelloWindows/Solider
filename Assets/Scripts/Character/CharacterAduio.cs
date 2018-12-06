@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using System;
 using Framework.Config;
 using Solider.Character.Interface;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public class CharacterAduio : ICharacterAudio {
+        public class CharacterAduio : ICharacterAudio, IDisposable {
             private float valume;
             private AudioSource audio;
             private static Dictionary<string, AudioClip> clipCache;
@@ -75,12 +76,6 @@ namespace Solider {
                 AudioSource.PlayClipAtPoint(clip, position, valume);
             } // end PlaySoundOnceAtPoint
 
-            public void Dispose() {
-                if (null == clipCache || clipCache.Count == 0) return;
-                // end if
-                clipCache.Clear();
-            } // end ClearSoundCache
-
             private AudioClip GetClipAtCache(string name) {
                 if (clipCache.ContainsKey(name) == false) {
                     AudioClip clip = Resources.Load<AudioClip>(Configs.soundConfig.GetPath(name));
@@ -90,6 +85,13 @@ namespace Solider {
                 } // end if
                 return clipCache[name];
             } // end GetClipAtCache
+
+            public void Dispose() {
+                if (null == clipCache) return;
+                // end if
+                clipCache.Clear();
+                clipCache = null;
+            } // end ClearSoundCache
         } // end class CharacterAduio
     } // end namespace Character
 } // end namespace Solider 

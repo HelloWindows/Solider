@@ -20,9 +20,7 @@ namespace Solider {
                     Configs.prefabConfig.GetPath(ConstConfig.ARCHER), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
                     buff = new CharacterBuff();
-                    move = new CharacterMove(transform);
                     avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
-                    audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
                     info = new CharacterInfo(name, ConstConfig.ARCHER, config.initAttribute);
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
