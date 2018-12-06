@@ -8,6 +8,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Framework.Tools;
+using Solider.Config.Interface;
 
 namespace Solider {
     namespace UI {
@@ -17,8 +18,8 @@ namespace Solider {
                 private Image mask;
                 private Text timer;
 
-                public UISkill(string id, RectTransform parent, string spritePath, Vector2 iconSize) {
-                    icon = CanvasTool.InstantiateImage(id, parent, spritePath, Vector3.zero, iconSize);
+                public UISkill(ISkillInfo info, RectTransform parent, Vector2 iconSize) {
+                    icon = CanvasTool.InstantiateImage(info.id, parent, info.spritepath, Vector3.zero, iconSize);
                     mask = CanvasTool.InstantiateImage("mask", icon.rectTransform, Vector3.zero, iconSize);
                     timer = CanvasTool.InstantiateText("timer", parent, Vector3.zero);
                     timer.fontSize = 20;

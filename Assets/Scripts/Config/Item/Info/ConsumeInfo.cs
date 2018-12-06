@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using LitJson;
 using Solider.Config.Icon;
 using Solider.Config.Interface;
@@ -30,12 +31,12 @@ namespace Solider {
                     spritepath = (string)data["spritepath"];
                     intro = (string)data["intro"];
                     JsonData property = data["property"];
-                    HP = (int)property["HP"];
-                    MP = (int)property["MP"];
-                    HPR = (float)property["HPR"];
-                    MPR = (float)property["MPR"];
-                    XHR = (float)property["XHR"];
-                    XMR = (float)property["XMR"];
+                    HP = JsonTool.GetJsonData_Int(property, "HP");
+                    MP = JsonTool.GetJsonData_Int(property, "MP");
+                    HPR = JsonTool.GetJsonData_Float(property, "HPR");
+                    MPR = JsonTool.GetJsonData_Float(property, "MPR");
+                    XHR = JsonTool.GetJsonData_Float(property, "XHR");
+                    XMR = JsonTool.GetJsonData_Float(property, "XMR");
                     CD = (int)property["CD"];
                     if ((bool)data["buff"]) buff = new BuffInfo(data);
                     // end if

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public class CharacterAduio : ICharacterAduio {
+        public class CharacterAduio : ICharacterAudio {
             private float valume;
             private AudioSource audio;
             private static Dictionary<string, AudioClip> clipCache;

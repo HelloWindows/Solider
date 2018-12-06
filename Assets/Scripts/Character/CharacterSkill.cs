@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
+using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
@@ -34,6 +35,10 @@ namespace Solider {
                     timer = MathTool.LimitZero(timer - coolTime);
                 } // end Cooldown
 
+                public void InstantCooldown() {
+                    timer = 0;
+                } // end InstantCooldown
+
                 public void Cast(bool ignoreCD) {
                     if (ignoreCD) return;
                     // end if
@@ -41,9 +46,12 @@ namespace Solider {
                 } // end Cast
             } // end class SkillTimer
             #endregion
+            private ICharacter character;
             private List<SkillTimer> skillList;
+            private Dictionary<string, ISkillFSMState> stateDict;
 
-            public CharacterSkill() {
+            public CharacterSkill(ICharacter character) {
+                this.character = character;
                 skillList = new List<SkillTimer>();
             } // end CharacterSkill
 
@@ -75,21 +83,71 @@ namespace Solider {
                     if (false == skillList[i].isCD) return false;
                     // end if
                     skillList[i].Cast(ignoreCD);
+                    ISkillFSMState skillState;
+                    if (false == stateDict.TryGetValue(id, out skillState)) {
+                        DebugTool.ThrowException("CharacterSkill CastSkill id is not exsit!!! ID:" + id);
+                        return false;
+                    } // end if
+                    IFSMState state = skillState.CreateInstance(character, skillList[i].info);
+                    character.fsm.PerformTransition(state);
                     return true;
                 } // end for
                 return false;
             } // end CastSkill
 
-            public ITimer[] GetTimerArray(params string[] idArray) {
-                if (null == idArray || 0 == idArray.Length) return null;
-                // end if
-                ITimer[] timerArr = new ITimer[idArray.Length];
-                for (int i = 0; i < idArray.Length; i++) {
-                    for (int j = 0; j < skillList.Count; i++) {
-                    } // end for
+            public ITimer GetTimer(string id) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    if (skillList[i].info.id != id) continue;
+                    // end if
+                    return skillList[i];
                 } // end for
-                return timerArr;
+                return null;
             } // end GetTimerArray
+
+            public void Cooldown(string id, float coolTime) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    if (skillList[i].info.id != id) continue;
+                    // end if
+                    skillList[i].Cooldown(coolTime);
+                    break;
+                } // end for
+            } // end Cooldown
+
+            public void CooldownAll(float coolTime) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    skillList[i].Cooldown(coolTime);
+                } // end for
+            } // end CooldownAll
+
+            public void InstantCooldown(string id) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    if (skillList[i].info.id != id) continue;
+                    // end if
+                    skillList[i].InstantCooldown();
+                    break;
+                } // end for
+            } // end InstantCooldown
+
+            public void InstantCooldownAll() {
+                for (int i = 0; i < skillList.Count; i++) {
+                    skillList[i].InstantCooldown();
+                } // end for
+            } // end InstantCooldownAll
+
+            public void InstantCooldownAll(params string[] ignoreIDList) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    bool isIgnore = false;
+                    for (int j = 0; j < ignoreIDList.Length; i++) {
+                        if (skillList[i].info.id == ignoreIDList[j]) {
+                            isIgnore = true;
+                            break;
+                        } // end if
+                    } // end for
+                    if (isIgnore) continue;
+                    // end if
+                    skillList[i].InstantCooldown();
+                } // end for
+            } // end InstantCooldownAlls
         } // end class CharacterSkill 
     } // end namespace Character
 } // end namespace Solider

@@ -17,7 +17,7 @@ namespace Solider {
                 string hashID { get; }
                 bool isDisposed { get; }
                 IFSM fsm { get; }
-                ICharacterAduio audio { get; }
+                ICharacterAudio audio { get; }
                 ICharacterMove move { get; }
                 ICharacterInfo info { get; }
                 ICharacterBuff buff { get; }

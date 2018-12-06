@@ -5,7 +5,10 @@
       "name": "前翻",
       "spritepath": "Sprite/ItemSprite/lit_hp",
       "intro": "先前方向翻滚一段距离。",
+      "soundPath": "Character/Sound/SkillState/500001",
       "property": {
+        "ATK": 0,
+        "MGK": 0,
         "ATKR": 0,
         "MGKR": 0,
         "DEFR": 0,
@@ -20,7 +23,10 @@
       "name": "旋风斩",
       "spritepath": "Sprite/ItemSprite/mid_hp",
       "intro": "对周围敌人造成",
+      "soundPath": "Character/Sound/SkillState/500002",
       "property": {
+        "ATK": 0,
+        "MGK": 0,
         "ATKR": 175,
         "MGKR": 0,
         "DEFR": 0,
@@ -35,7 +41,10 @@
       "name": "前劈",
       "spritepath": "Sprite/ItemSprite/big_hp",
       "intro": "对正前方敌人造成",
+      "soundPath": "Character/Sound/SkillState/500003",
       "property": {
+        "ATK": 0,
+        "MGK": 0,
         "ATKR": 325,
         "MGKR": 0,
         "DEFR": 0,

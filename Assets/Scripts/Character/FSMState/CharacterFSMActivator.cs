@@ -18,15 +18,15 @@ namespace Solider {
                     get {
                         if (null == stateMap) {
                             stateMap = new Dictionary<string, ISkillFSMState>();
-                            PushState(new ArcherSkill1(null));
-                            PushState(new ArcherSkill2(null));
-                            PushState(new ArcherSkill3(null));
-                            PushState(new MagicianSkill1(null));
-                            PushState(new MagicianSkill2(null));
-                            PushState(new MagicianSkill3(null));
-                            PushState(new SwordmanSkill1(null));
-                            PushState(new SwordmanSkill2(null));
-                            PushState(new SwordmanSkill3(null));
+                            PushState(new ArcherSkill1(null, null));
+                            PushState(new ArcherSkill2(null, null));
+                            PushState(new ArcherSkill3(null, null));
+                            PushState(new MagicianSkill1(null, null));
+                            PushState(new MagicianSkill2(null, null));
+                            PushState(new MagicianSkill3(null, null));
+                            PushState(new SwordmanSkill1(null, null));
+                            PushState(new SwordmanSkill2(null, null));
+                            PushState(new SwordmanSkill3(null, null));
                         } // end if
                         return stateMap;
                     } // end get

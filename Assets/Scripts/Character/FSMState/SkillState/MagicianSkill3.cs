@@ -16,21 +16,23 @@ namespace Solider {
             public class MagicianSkill3 : IFSMState, ISkillFSMState {
                 public string id { get { return "600103"; } }
                 private ICharacter character;
-                private static ICharacterFSMStateInfo info;
+                private ISkillInfo info;
 
-                public MagicianSkill3(ICharacter character) {
+                public MagicianSkill3(ICharacter character, ISkillInfo info) {
                     this.character = character;
-                    if (null == info)
-                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
-                    // end if
+                    this.info = info;
                 } // end MagicianSkill3
 
-                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
                     if (null == character) {
                         DebugTool.ThrowException("MagicianSkill3 CreateInstance character is null!!!");
                         return null;
                     } // end if
-                    return new MagicianSkill3(character);
+                    if (null == info) {
+                        DebugTool.ThrowException("MagicianSkill3 CreateInstance SkillInfo is null!!!");
+                        return null;
+                    } // end if
+                    return new MagicianSkill3(character, info);
                 } // end CreateInstance
 
                 public void DoBeforeEntering() {

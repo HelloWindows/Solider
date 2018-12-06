@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.Character.Interface;
@@ -16,21 +15,23 @@ namespace Solider {
             public class ArcherSkill2 : IFSMState, ISkillFSMState {
                 public string id { get { return "600202"; } }
                 private ICharacter character;
-                private static ICharacterFSMStateInfo info;
+                private ISkillInfo info;
 
-                public ArcherSkill2(ICharacter character) {
+                public ArcherSkill2(ICharacter character, ISkillInfo info) {
                     this.character = character;
-                    if (null == info)
-                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
-                    // end if
+                    this.info = info;
                 } // end ArcherSkill1
 
-                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
                     if (null == character) {
                         DebugTool.ThrowException("ArcherSkill2 CreateInstance character is null!!!");
                         return null;
                     } // end if
-                    return new ArcherSkill2(character);
+                    if (null == info) {
+                        DebugTool.ThrowException("ArcherSkill2 CreateInstance SkillInfo is null!!!");
+                        return null;
+                    } // end if
+                    return new ArcherSkill2(character, info);
                 } // end CreateInstance
 
                 public void DoBeforeEntering() {

@@ -17,7 +17,7 @@ namespace Solider {
             public bool isDisposed { get; private set; }
             public string hashID { get; private set; }
             public IFSM fsm { get; protected set; }
-            public ICharacterAduio audio { get; protected set; }
+            public ICharacterAudio audio { get; protected set; }
             public ICharacterMove move { get; protected set; }
             public ICharacterInfo info { get; protected set; }
             public ICharacterBuff buff { get; protected set; }

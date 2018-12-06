@@ -24,7 +24,6 @@ namespace Framework {
             public static readonly IPathConfig prefabConfig = PrefabConfig.instance;
             public static readonly IPathConfig materialConfig = MaterialConfig.instance;
             public static readonly ICharacterConfigMgr characterConfig = CharacterConfigMgr.instance;
-            public static readonly ICharacterFSMStateConfig characterFSMStateConfig = CharacterFSMStateConfig.instance;
         } // end class Configs 
     } // end  namespace Config
 } // end namespace Framework

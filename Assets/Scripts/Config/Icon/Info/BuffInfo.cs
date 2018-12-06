@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using LitJson;
 using Solider.Config.Interface;
 
@@ -42,22 +43,22 @@ namespace Solider {
                     isDebuff = (bool)property["isDebuff"];
                     isPassive = (bool)property["isPassive"];
                     removable = (bool)property["removable"];
-                    HOT = (int)property["HOT"];
-                    MOT = (int)property["MOT"];
-                    HPR = (float)property["HPR"];
-                    MPR = (float)property["MPR"];
-                    XHR = (float)property["XHR"];
-                    XMR = (float)property["XMR"];
-                    ATKR = (float)property["ATKR"];
-                    MGKR = (float)property["MGKR"];
-                    DEFR = (float)property["DEFR"];
-                    RGSR = (float)property["RGSR"];
-                    ASPR = (float)property["ASPR"];
-                    MSPR = (float)property["MSPR"];
-                    HIT = (float)property["HIT"];
-                    AVD = (float)property["AVD"];
-                    CRT = (float)property["CRT"];
-                    LOT = (float)property["LOT"];
+                    HOT = JsonTool.GetJsonData_Int(property, "HOT");
+                    MOT = JsonTool.GetJsonData_Int(property, "MOT");
+                    HPR = JsonTool.GetJsonData_Float(property, "HPR");
+                    MPR = JsonTool.GetJsonData_Float(property, "MPR");
+                    XHR = JsonTool.GetJsonData_Float(property, "XHR");
+                    XMR = JsonTool.GetJsonData_Float(property, "XMR");
+                    ATKR = JsonTool.GetJsonData_Float(property, "ATKR");
+                    MGKR = JsonTool.GetJsonData_Float(property, "MGKR");
+                    DEFR = JsonTool.GetJsonData_Float(property, "DEFR");
+                    RGSR = JsonTool.GetJsonData_Float(property, "RGSR");
+                    ASPR = JsonTool.GetJsonData_Float(property, "ASPR");
+                    MSPR = JsonTool.GetJsonData_Float(property, "MSPR");
+                    HIT = JsonTool.GetJsonData_Float(property, "HIT");
+                    AVD = JsonTool.GetJsonData_Float(property, "AVD");
+                    CRT = JsonTool.GetJsonData_Float(property, "CRT");
+                    LOT = JsonTool.GetJsonData_Float(property, "LOT");
                 } // end BuffInfo
             } // end class BuffInfo
         } // end namespace Icon 

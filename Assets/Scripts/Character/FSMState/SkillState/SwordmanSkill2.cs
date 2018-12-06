@@ -17,23 +17,25 @@ namespace Solider {
             public class SwordmanSkill2 : IFSMState, ISkillFSMState {
                 public string id { get { return "600002"; } }
                 private IHeroCharacter character;
-                private static ICharacterFSMStateInfo info;
+                private ISkillInfo info;
 
 
-                public SwordmanSkill2(IHeroCharacter character) {
-                    this.character = character;
-                    if (null == info)
-                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
-                    // end if
+                public SwordmanSkill2(IHeroCharacter horeCharacter, ISkillInfo info) {
+                    character = horeCharacter;
+                    this.info = info;
                 } // end SwordmanSkill2
 
-                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
                     IHeroCharacter horeCharacter = character as IHeroCharacter;
                     if (null == horeCharacter) {
                         DebugTool.ThrowException("SwordmanSkill2 CreateInstance character is null!!!");
                         return null;
                     } // end if
-                    return new SwordmanSkill2(horeCharacter);
+                    if (null == info) {
+                        DebugTool.ThrowException("SwordmanSkill2 CreateInstance SkillInfo is null!!!");
+                        return null;
+                    } // end if
+                    return new SwordmanSkill2(horeCharacter, info);
                 } // end CreateInstance
 
                 public void DoBeforeEntering() {

@@ -17,22 +17,24 @@ namespace Solider {
                 public string id { get { return "600001"; } }
                 private float step;
                 private ICharacter character;
-                private static ICharacterFSMStateInfo info;
+                private ISkillInfo info;
 
-                public SwordmanSkill1(ICharacter character) {
+                public SwordmanSkill1(ICharacter character, ISkillInfo info) {
                     step = 3f;
                     this.character = character;
-                    if (null == info)
-                        info = Configs.characterFSMStateConfig.GetCharacterFSMStateInfo(id);
-                    // end if
+                    this.info = info;
                 } // end SwordmanSkill1
 
-                public IFSMState CreateInstance(ICharacter character, ISkillInfo skillInfo) {
+                public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
                     if (null == character) {
                         DebugTool.ThrowException("SwordmanSkill1 CreateInstance character is null!!!");
                         return null;
                     } // end if
-                    return new SwordmanSkill1(character);
+                    if (null == info) {
+                        DebugTool.ThrowException("SwordmanSkill1 CreateInstance SkillInfo is null!!!");
+                        return null;
+                    } // end if
+                    return new SwordmanSkill1(character, info);
                 } // end CreateInstance
 
                 public void DoBeforeEntering() {
