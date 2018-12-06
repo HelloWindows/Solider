@@ -7,7 +7,7 @@
 namespace Solider {
     namespace ModelData {
         namespace Interface {
-            public interface IRealDataAction : IRealData {
+            public interface IRealDataAction {
                 /// <summary>
                 /// 设置为角色自我状态恢复的数据
                 /// </summary>
