@@ -9,7 +9,7 @@ using Solider.Config.Interface;
 namespace Solider {
     namespace ModelData {
         namespace Interface {
-            public interface ICharacterDataAction {
+            public interface ICharacterDataAction : ICharacterData {
                 /// <summary>
                 /// 初始化角色数据
                 /// </summary>

@@ -15,15 +15,17 @@ namespace Solider {
                 public IIputInfo input { get; protected set; }
                 public IHeroCharacterSurface surface { get; protected set; }
 
+
+
                 protected HeroCharacter(string id, GameObject gameObject) : base(id, gameObject) {
                 } // end HeroCharacter
 
                 public override void Dispose() {
+                    if (true == isDisposed) return;
+                    // end if
                     base.Dispose();
-                    if (null != surface) {
-                        surface.Dispose();
-                        surface = null;
-                    } // end if
+                    if (null != surface) surface.Dispose();
+                    // end if
                 } // end Dispose
             } // end class HeroCharacter
         } // end namespace Hero

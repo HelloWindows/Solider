@@ -10,7 +10,7 @@ using Solider.ModelData.Interface;
 namespace Solider {
     namespace ModelData {
         namespace Data {
-            public class RealData : IRealData, IRealDataAction {
+            public class RealData : IRealDataAction {
                 public int HP { get; private set; }
                 public int MP { get; private set; }
                 public float HPR { get; private set; }
