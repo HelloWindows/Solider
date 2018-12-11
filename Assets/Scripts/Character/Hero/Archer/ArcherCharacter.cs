@@ -7,7 +7,6 @@
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Custom;
-using Framework.FSM.Interface;
 using Framework.Tools;
 using UnityEngine;
 
@@ -19,11 +18,10 @@ namespace Solider {
                 public ArcherCharacter(string id, Vector3 pos, string name) : base(id, ObjectTool.InstantiateGo(name,
                     Configs.prefabConfig.GetPath(ConstConfig.ARCHER), null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
-                    buff = new CharacterBuff();
-                    avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
-                    info = new CharacterInfo(name, ConstConfig.ARCHER, config.initAttribute);
-                    SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
-                    Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
+                    m_info = new CharacterInfo(name, ConstConfig.ARCHER, config.initAttribute);
+                    m_avatar = new ArcherAvatar(m_gameObject.AddComponent<Animation>());
+                    SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
+                    Transform[] allChildren = m_transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;
                     Transform liftTrans = null;
                     Transform furlTrans = null;
@@ -47,9 +45,16 @@ namespace Solider {
                     } // end foreach
                     surface = new HeroCharacterSurface(wingTrans, liftTrans, furlTrans, meshRenderer);
                     surface.Freshen();
-                    fsmSystem = new ArcherFSM(this);
-                    fsm = fsmSystem as IFSM;
+                    m_fsmSystem = new ArcherFSM(this);
                 } // end ArcherCharacter
+
+                public override void Dispose() {
+                    base.Dispose();
+                    if (null != m_avatar) {
+                        m_avatar.Dispose();
+                        m_avatar = null;
+                    } // end if
+                } // end Dispose
             } // end class ArcherCharacter
         } // end namespace Hero
     } // end namespace Character

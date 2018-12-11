@@ -13,7 +13,7 @@ using System.Text;
 namespace Solider {
     namespace ModelData {
         namespace Character {
-            public class CharacterDataAction : ICharacterDataAction {
+            public class CharacterDataAction : ICharacterDataAction, ICharacterData, IAttributeData {
                 private bool isLive;
                 public bool IsLive {
                     get {

@@ -10,11 +10,7 @@ using Solider.ModelData.Interface;
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacterInfo : IDisposable {
-                /// <summary>
-                /// 自愈
-                /// </summary>
-                void Update(float deltaTime);
+            public interface ICharacterInfo {
                 /// <summary>
                 /// 获取角色数据
                 /// </summary>

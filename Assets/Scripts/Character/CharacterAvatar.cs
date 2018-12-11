@@ -5,11 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Character.Interface;
+using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public abstract class CharacterAvatar : ICharacterAvatar {
+        public abstract class CharacterAvatar : ICharacterAvatar, IDisposable {
             public bool isPlaying { get { return avatar.isPlaying; } } // end isPlaying
             protected Animation avatar;
 
@@ -39,6 +40,11 @@ namespace Solider {
                 // end if
                 return avatar[name];
             } // end GetAnimationState
+
+            public void Dispose() {
+                if (null != avatar) UnityEngine.Object.Destroy(avatar);
+                // end if
+            } // end Dispose
         } // end class CharacterAvatar 
     } // end namespace Character
 } // end namespace Solider

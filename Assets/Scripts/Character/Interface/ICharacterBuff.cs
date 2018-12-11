@@ -11,7 +11,6 @@ namespace Solider {
     namespace Character {
         namespace Interface {
             public interface ICharacterBuff {
-                void Update(float deltaTime);
                 void InsertBuff(BuffInfo buffInfo);
                 List<BuffInfo> GetBuffInfoList();
                 List<float> GetScheduleList();
