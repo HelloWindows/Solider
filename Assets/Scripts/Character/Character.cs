@@ -38,7 +38,7 @@ namespace Solider {
             protected Character(string id, GameObject gameObject) {
                 this.id = id;
                 isDisposed = false;
-                this.m_gameObject = gameObject;
+                m_gameObject = gameObject;
                 m_transform = gameObject.transform;
                 hashID = gameObject.GetHashCode().ToString();
                 gameObject.name = hashID;

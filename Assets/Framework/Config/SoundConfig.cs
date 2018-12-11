@@ -24,15 +24,7 @@ namespace Framework {
 
 
                 private SoundConfig() : base() {
-                    AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
-                    string soundJson = assetbundle.LoadAsset<TextAsset>("assets/config/charcter_state_config.json").text;
-                    assetbundle.Unload(false);
-                    JsonData data = JsonMapper.ToObject(soundJson);
-                    JsonData list = data["itemlist"];
-                    for (int i = 0; i < list.Count; i++) {
-                        string id = (string)list[i]["id"];
-                        pathDict.Add(id, JsonTool.GetJsonData_String(list[i], "soundPath"));
-                    } // end for
+
                 } // end AudioConfig
             } // end class SoundConfig
         } // end namespace Audio

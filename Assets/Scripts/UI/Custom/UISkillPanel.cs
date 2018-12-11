@@ -33,6 +33,14 @@ namespace Solider {
                     } // end for
                 } // end UISkillPanel
 
+                public void Update() {
+                    for (int i = 0; i < skillUIArr.Length; i++) {
+                        if (null == skillUIArr[i]) continue;
+                        // end if
+                        skillUIArr[i].Update();
+                    } // end for
+                } // end Update
+
                 public void Dispose() {
                     for (int i = 0; i < skillUIArr.Length; i++) {
                         if (null == skillUIArr[i]) continue;

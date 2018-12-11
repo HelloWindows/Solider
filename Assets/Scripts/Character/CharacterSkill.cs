@@ -19,7 +19,7 @@ namespace Solider {
             private class SkillTimer : ITimer {
                 public ISkillInfo info { get; private set; }
                 public bool isCD { get { return timer == 0; } }
-                public float schedule { get { return timer / CD; } }
+                public float schedule { get { return timer == 0 ? 0 : timer / CD; } }
                 public float timer { get; private set; }
                 public float CD { get; private set; }
 
