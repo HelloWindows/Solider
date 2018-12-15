@@ -42,8 +42,8 @@ namespace Solider {
             public void Initialize() {
                 mainCamera = new MainCamera();
                 mainCanvas = new MainCanvas(mainCamera.camera);
-                uiPanelFSM.PerformTransition(new UIFightPanel());
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
+                uiPanelFSM.PerformTransition(new UIFightPanel());
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;

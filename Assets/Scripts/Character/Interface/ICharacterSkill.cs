@@ -10,7 +10,6 @@ namespace Solider {
     namespace Character {
         namespace Interface {
             public interface ICharacterSkill {
-                void Update(float deltaTime);
                 void PushSkill(string id);
                 bool CastSkill(string id, bool ignoreCD = false);
                 void Cooldown(string id, float coolTime);
@@ -18,7 +17,8 @@ namespace Solider {
                 void InstantCooldown(string id);
                 void InstantCooldownAll();
                 void InstantCooldownAll(params string[] ignoreList);
-                ITimer GetTimer(string id);
+                int GetSkillIDArray(out string[] idArr);
+                bool GetTimer(string id, out ITimer timer);
             } // end interface ICharacterSkill 
         } // end namespace Interface
     } // end namespace Character

@@ -18,6 +18,7 @@ namespace Solider {
                 bool isDisposed { get; }
                 IFSM fsm { get; }
                 ICharacterAudio audio { get; }
+                ICharacterSkill skill { get; }
                 ICharacterMove move { get; }
                 ICharacterInfo info { get; }
                 ICharacterBuff buff { get; }

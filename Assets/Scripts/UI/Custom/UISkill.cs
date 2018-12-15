@@ -18,12 +18,15 @@ namespace Solider {
                 private Image icon;
                 private Image mask;
                 private Text timeText;
+                private RectTransform transfrom;
                 private ITimer timer;
 
-                public UISkill(ISkillInfo info, RectTransform parent, Vector2 iconSize) {
-                    icon = CanvasTool.InstantiateImage(info.id, parent, info.spritepath, Vector3.zero, iconSize);
+                public UISkill(ISkillInfo info, ITimer timer, RectTransform parent, Vector3 localPos, Vector2 iconSize) {
+                    this.timer = timer;
+                    transfrom = CanvasTool.InstantiateEmptyUI("uiskill", parent, localPos).GetComponent<RectTransform>();
+                    icon = CanvasTool.InstantiateImage(info.id, transfrom, info.spritepath, Vector3.zero, iconSize);
                     mask = CanvasTool.InstantiateImage("mask", icon.rectTransform, Vector3.zero, iconSize);
-                    timeText = CanvasTool.InstantiateText("timer", parent, Vector3.zero);
+                    timeText = CanvasTool.InstantiateText("timer", transfrom, Vector3.zero);
                     timeText.fontSize = 20;
                     timeText.alignment = TextAnchor.MiddleCenter;
                     mask.color = new Color(0, 0, 0, 0.33f);

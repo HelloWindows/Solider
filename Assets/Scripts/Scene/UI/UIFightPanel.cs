@@ -18,10 +18,11 @@ namespace Solider {
             public class UIFightPanel : IFSMState {
                 public string id { get { return "UIFightPanel"; } }
 
-                private Transform transform;
+                private RectTransform transform;
                 private RectTransform parent;
                 private GameObject gameObject;
                 private UIBuffPanel buffPanel;
+                private UISkillPanel skillPanel;
 
                 public UIFightPanel() {
                     parent = SceneManager.mainCanvas.rectTransform;
@@ -33,11 +34,12 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
-                    transform = gameObject.transform;
+                    transform = gameObject.GetComponent<RectTransform>();
                     buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));
                     BroadcastCenter.AddListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
                     transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
                     transform.Find("AttackBtn").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.ATTACK);
+                    skillPanel = new UISkillPanel(transform);
                     transform.Find("SkillBtn_0").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_1);
                     transform.Find("SkillBtn_1").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_2);
                     transform.Find("SkillBtn_2").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_3);
@@ -47,6 +49,7 @@ namespace Solider {
 
                 public void Act(float deltaTime) {
                     buffPanel.Update();
+                    skillPanel.Update();
                 } // end Act
 
                 public void Reason(float deltaTime) {

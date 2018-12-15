@@ -5,8 +5,11 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
+using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
+using Solider.Manager;
+using Solider.ModelData.Interface;
 using System;
 using UnityEngine;
 
@@ -16,9 +19,13 @@ namespace Solider {
             public class UISkillPanel : IDisposable {
                 private UISkill[] skillUIArr;
                 private RectTransform transform;
+                private Vector3[] localPosArr = { new Vector3(-300, 100, 0), new Vector3(-220, 220, 0), new Vector3(-100, 300, 0) };
 
-                public UISkillPanel(params string[] idArr) {
-                    if (null == idArr || idArr.Length == 0) {
+                public UISkillPanel(RectTransform parent) {
+                    transform = CanvasTool.InstantiateEmptyUI("UISkillPanel", parent, Vector3.zero).GetComponent<RectTransform>();
+                    string[] idArr;
+                    SceneManager.mainCharacter.skill.GetSkillIDArray(out idArr);
+                    if (null == idArr || idArr.Length == 0 || idArr.Length > localPosArr.Length) {
                         DebugTool.ThrowException("UISkillPanel UISkillPanel iaArr is null!!!");
                         return;
                     } // end if
@@ -29,7 +36,11 @@ namespace Solider {
                         // end if
                         if (null == info) return;
                         // end if
-                        skillUIArr[i] = new UISkill(info, transform, new Vector2(100, 100));
+                        ITimer timer;
+                        if (false == SceneManager.mainCharacter.skill.GetTimer(idArr[i], out timer)) {
+                            DebugTool.ThrowException("UISkillPanel timer is null!!! ID:" + idArr[i]);
+                        } // end if
+                        skillUIArr[i] = new UISkill(info, timer, transform, localPosArr[i], new Vector2(100, 100));
                     } // end for
                 } // end UISkillPanel
 

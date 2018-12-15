@@ -53,6 +53,9 @@ namespace Solider {
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillTimer>();
+                PushSkill("500001");
+                PushSkill("500002");
+                PushSkill("500003");
             } // end CharacterSkill
 
             public void Update(float deltaTime) {
@@ -76,6 +79,14 @@ namespace Solider {
                 skillList.Add(new SkillTimer(info));
             } // end PushSkill
 
+            public int GetSkillIDArray(out string[] idArr) {
+                idArr = new string[skillList.Count];
+                for (int i = 0; i < skillList.Count; i++) {
+                    idArr[i] = skillList[i].info.id;
+                } // end for
+                return skillList.Count;
+            } // end GetSkillIDArray
+
             public bool CastSkill(string id, bool ignoreCD = false) {
                 for (int i = 0; i < skillList.Count; i++) {
                     if (skillList[i].info.id != id) continue;
@@ -95,13 +106,15 @@ namespace Solider {
                 return false;
             } // end CastSkill
 
-            public ITimer GetTimer(string id) {
+            public bool GetTimer(string id, out ITimer timer) {
                 for (int i = 0; i < skillList.Count; i++) {
                     if (skillList[i].info.id != id) continue;
                     // end if
-                    return skillList[i];
+                    timer = skillList[i];
+                    return true;
                 } // end for
-                return null;
+                timer = null;
+                return false;
             } // end GetTimerArray
 
             public void Cooldown(string id, float coolTime) {
