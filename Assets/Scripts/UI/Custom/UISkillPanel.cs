@@ -8,7 +8,6 @@ using Framework.Config;
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
-using Solider.Manager;
 using Solider.ModelData.Interface;
 using System;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace Solider {
             public class UISkillPanel : IDisposable {
                 private UISkill[] skillUIArr;
                 private RectTransform transform;
-                private Vector3[] localPosArr = { new Vector3(-300, 100, 0), new Vector3(-220, 220, 0), new Vector3(-100, 300, 0) };
+                private Vector3[] localPosArr = { new Vector3(212f, -220f, 0f), new Vector3(292f, -100f, 0f), new Vector3(412f, -20f, 0f) };
 
                 public UISkillPanel(RectTransform parent) {
                     transform = CanvasTool.InstantiateEmptyUI("UISkillPanel", parent, Vector3.zero).GetComponent<RectTransform>();

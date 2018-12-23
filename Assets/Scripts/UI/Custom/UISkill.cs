@@ -27,6 +27,7 @@ namespace Solider {
                     icon = CanvasTool.InstantiateImage(info.id, transfrom, info.spritepath, Vector3.zero, iconSize);
                     mask = CanvasTool.InstantiateImage("mask", icon.rectTransform, Vector3.zero, iconSize);
                     timeText = CanvasTool.InstantiateText("timer", transfrom, Vector3.zero);
+                    timeText.font = Font.CreateDynamicFontFromOSFont("Arial", 20);
                     timeText.fontSize = 20;
                     timeText.alignment = TextAnchor.MiddleCenter;
                     mask.color = new Color(0, 0, 0, 0.33f);
