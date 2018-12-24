@@ -28,7 +28,7 @@ namespace Solider {
                 private CharacterConfigMgr() {
                     characterConfig = new Dictionary<string, ICharacterConfig>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
-                    string jsonInfo = assetbundle.LoadAsset<TextAsset>("assets/config/character_config.json").text;
+                    string jsonInfo = assetbundle.LoadAsset<TextAsset>("character_config.json").text;
                     assetbundle.Unload(false);
                     JsonData data = JsonMapper.ToObject(jsonInfo);
                     JsonData list = data["itemlist"];

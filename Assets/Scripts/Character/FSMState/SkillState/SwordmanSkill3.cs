@@ -14,7 +14,7 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class SwordmanSkill3 : IFSMState, ISkillFSMState {
-                public string id { get { return "600003"; } }
+                public string id { get { return "500003"; } }
                 private ICharacter character;
                 private ISkillInfo info;
 

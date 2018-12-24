@@ -26,6 +26,7 @@ namespace Framework {
 
             public static Text InstantiateText(string name, RectTransform parent, Vector2 sizeDelta) {
                 Text text = InstantiateText(name, parent, Vector3.zero, Vector3.zero, Vector3.one);
+                text.raycastTarget = false;
                 text.rectTransform.sizeDelta = sizeDelta;
                 return text;
             } // end InstantiateText

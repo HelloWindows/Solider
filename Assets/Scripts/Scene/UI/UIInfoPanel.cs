@@ -51,7 +51,7 @@ namespace Solider {
                             cellDict[type].HideItem();
                             continue;
                         } // end if
-                        cellDict[type].SetUIItem(Resources.Load<Sprite>(info.spritepath), 0);
+                        cellDict[type].SetUIItem(ResourcesTool.LoadSprite(info.spritepath), 0);
                     } // end for
                 } // end UpdateShowInfo
 

@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace MyEdior {
+namespace CustomEditor {
     /// <summary>
     /// BMFont reader. C# implementation of http://www.angelcode.com/products/bmfont/
     /// </summary>

@@ -29,10 +29,10 @@ namespace Solider {
                 private ItemConfig() {
                     itemConfig = new Dictionary<string, Dictionary<string, IItemInfo>>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
-                    string stuffJson = assetbundle.LoadAsset<TextAsset>("assets/config/stuff_res_config.json").text;
-                    string equipJson = assetbundle.LoadAsset<TextAsset>("assets/config/equipment_res_config.json").text;
-                    string consumeJson = assetbundle.LoadAsset<TextAsset>("assets/config/consumable_res_config.json").text;
-                    string bluePrintJson = assetbundle.LoadAsset<TextAsset>("assets/config/blueprint_res_config.json").text;
+                    string stuffJson = assetbundle.LoadAsset<TextAsset>("stuff_res_config.json").text;
+                    string equipJson = assetbundle.LoadAsset<TextAsset>("equipment_res_config.json").text;
+                    string consumeJson = assetbundle.LoadAsset<TextAsset>("consumable_res_config.json").text;
+                    string bluePrintJson = assetbundle.LoadAsset<TextAsset>("blueprint_res_config.json").text;
                     assetbundle.Unload(false);
                     InitStuffConfig(stuffJson);
                     InitEquipConfig(equipJson);

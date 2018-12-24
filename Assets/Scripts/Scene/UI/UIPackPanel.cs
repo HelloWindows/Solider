@@ -80,7 +80,7 @@ namespace Solider {
                             continue;
                         } // end 
                         int count = currentPack.GetCountForGrid(i);
-                        gridArray[i].SetUIItem(Resources.Load<Sprite>(info.spritepath), count);
+                        gridArray[i].SetUIItem(ResourcesTool.LoadSprite(info.spritepath), count);
                     } // end for
                 } // end SwitchPack
 

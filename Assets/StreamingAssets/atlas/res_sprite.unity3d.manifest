@@ -1,0 +1,115 @@
+ManifestFileVersion: 0
+CRC: 1778127252
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3606d1e2e455f8be52645d3b76481971
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4d24bf54f46935ed9e6cf78ac481bb9d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Atlas/skill/fashi_huanying.png
+- Assets/Atlas/item/ring_blueprin.png
+- Assets/Atlas/equipment/shoes_D.png
+- Assets/Atlas/equipment/necklace_B.png
+- Assets/Atlas/item/big_hp.png
+- Assets/Atlas/item/pact_yellow.png
+- Assets/Atlas/equipment/sword_B.png
+- Assets/Atlas/skill/renxing.png
+- Assets/Atlas/equipment/sword_C.png
+- Assets/Atlas/skill/somersault.png
+- Assets/Atlas/skill/shanbi.png
+- Assets/Atlas/skill/pozhao.png
+- Assets/Atlas/equipment/staff_C.png
+- Assets/Atlas/skill/shouhu.png
+- Assets/Atlas/equipment/necklace_C.png
+- Assets/Atlas/equipment/bow_B.png
+- Assets/Atlas/item/lit_hp.png
+- Assets/Atlas/equipment/armor_C.png
+- Assets/Atlas/skill/zhanshi_attack.png
+- Assets/Atlas/skill/leishang.png
+- Assets/Atlas/equipment/shoes_E.png
+- Assets/Atlas/skill/huokang.png
+- Assets/Atlas/skill/fangyu.png
+- Assets/Atlas/equipment/necklace_A.png
+- Assets/Atlas/item/hearthstone.png
+- Assets/Atlas/skill/zhaojia.png
+- Assets/Atlas/item/staff_blueprin.png
+- Assets/Atlas/skill/bingshang.png
+- Assets/Atlas/item/bow_blueprint.png
+- Assets/Atlas/equipment/staff_B.png
+- Assets/Atlas/skill/fashi_longyan.png
+- Assets/Atlas/item/armor_blueprint.png
+- Assets/Atlas/equipment/staff_A.png
+- Assets/Atlas/equipment/ring_E.png
+- Assets/Atlas/item/gem_red.png
+- Assets/Atlas/skill/shengming.png
+- Assets/Atlas/equipment/pants_A.png
+- Assets/Atlas/equipment/wing.png
+- Assets/Atlas/equipment/staff_D.png
+- Assets/Atlas/equipment/sword_D.png
+- Assets/Atlas/skill/zhanshi_chongjibo.png
+- Assets/Atlas/item/shoe_blueprin.png
+- Assets/Atlas/skill/baoji.png
+- Assets/Atlas/skill/gongjian_shalu.png
+- Assets/Atlas/item/mid_hp.png
+- Assets/Atlas/equipment/necklace_D.png
+- Assets/Atlas/equipment/shoes_B.png
+- Assets/Atlas/skill/dushang.png
+- Assets/Atlas/skill/gongji.png
+- Assets/Atlas/equipment/pants_D.png
+- Assets/Atlas/equipment/staff_E.png
+- Assets/Atlas/equipment/armor_E.png
+- Assets/Atlas/skill/sabrecut.png
+- Assets/Atlas/equipment/bow_C.png
+- Assets/Atlas/item/pact_blue.png
+- Assets/Atlas/equipment/shoes_C.png
+- Assets/Atlas/equipment/necklace_E.png
+- Assets/Atlas/equipment/bow_D.png
+- Assets/Atlas/skill/bisha.png
+- Assets/Atlas/skill/judgment.png
+- Assets/Atlas/skill/mofa.png
+- Assets/Atlas/item/necklace_blueprin.png
+- Assets/Atlas/skill/gongjian_attack.png
+- Assets/Atlas/equipment/bow_A.png
+- Assets/Atlas/item/sword_blueprin.png
+- Assets/Atlas/item/gem_black.png
+- Assets/Atlas/skill/skill_lock.png
+- Assets/Atlas/skill/dukang.png
+- Assets/Atlas/item/gem_orange.png
+- Assets/Atlas/equipment/pants_B.png
+- Assets/Atlas/skill/gongjian_jianyu.png
+- Assets/Atlas/skill/fashi_leiyun.png
+- Assets/Atlas/equipment/pants_C.png
+- Assets/Atlas/equipment/pants_E.png
+- Assets/Atlas/skill/fashi_attack.png
+- Assets/Atlas/item/pact_red.png
+- Assets/Atlas/equipment/ring_C.png
+- Assets/Atlas/equipment/armor_B.png
+- Assets/Atlas/item/empty.png
+- Assets/Atlas/skill/huoshang.png
+- Assets/Atlas/equipment/ring_D.png
+- Assets/Atlas/item/pact_white.png
+- Assets/Atlas/equipment/armor_D.png
+- Assets/Atlas/skill/mingzhong.png
+- Assets/Atlas/skill/leikang.png
+- Assets/Atlas/equipment/sword_A.png
+- Assets/Atlas/item/gem_white.png
+- Assets/Atlas/equipment/sword_E.png
+- Assets/Atlas/skill/fashi_binghuan.png
+- Assets/Atlas/skill/bingkang.png
+- Assets/Atlas/equipment/ring_B.png
+- Assets/Atlas/equipment/armor_A.png
+- Assets/Atlas/skill/gongjian_bingshuang.png
+- Assets/Atlas/equipment/shoes_A.png
+- Assets/Atlas/item/pants_blueprin.png
+- Assets/Atlas/equipment/ring_A.png
+- Assets/Atlas/equipment/bow_E.png
+- Assets/Atlas/skill/gongjian_chuanci.png
+Dependencies: []

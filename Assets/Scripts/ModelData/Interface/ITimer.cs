@@ -10,7 +10,7 @@ namespace Solider {
             public interface ITimer {
                 bool isCD { get; }
                 float schedule { get; }
-                float timer { get;}
+                float time { get;}
                 float CD { get; }
             } // end interface ITimer 
         } // end namespace Interface

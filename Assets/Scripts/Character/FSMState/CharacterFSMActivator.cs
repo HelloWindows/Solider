@@ -32,13 +32,13 @@ namespace Solider {
                     } // end get
                 } // end StateMap
 
-                public static ISkillFSMState GetCharacterFSMState(string id) {
+                public static ISkillFSMState GetSkillFSMState(string id) {
                     ISkillFSMState state;
                     if (StateMap.TryGetValue(id, out state)) return state;
                     // end if
                     DebugTool.ThrowException("CharacterFSMActivator GetCharacterFSMState id is error!!! ID:" + id);
                     return null;
-                } // end GetCharacterFSMState
+                } // end GetSkillFSMState
 
                 private static void PushState(ISkillFSMState state) {
                     if (null == state) {

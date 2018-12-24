@@ -7,7 +7,7 @@
       "maximum": 1, 
       "type": "weapon",
       "role": "swordman",
-      "spritepath": "Sprite/ItemSprite/sword_E",
+      "spritepath": "sword_E",
       "intro": "将就着用吧",
       "property": {
         "XHP": 0,
@@ -32,7 +32,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "swordman",
-      "spritepath": "Sprite/ItemSprite/sword_D",
+      "spritepath": "sword_D",
       "intro": "哥布林将军佩剑！",
       "property": {
         "XHP": 0,
@@ -57,7 +57,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "swordman",
-      "spritepath": "Sprite/ItemSprite/sword_C",
+      "spritepath": "sword_C",
       "intro": "佩佩佩佩剑！",
       "property": {
         "XHP": 0,
@@ -82,7 +82,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "swordman",
-      "spritepath": "Sprite/ItemSprite/sword_B",
+      "spritepath": "sword_B",
       "intro": "太耀眼，无法鉴定！",
       "property": {
         "XHP": 0,
@@ -107,7 +107,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "swordman",
-      "spritepath": "Sprite/ItemSprite/sword_A",
+      "spritepath": "sword_A",
       "intro": "一起去屠龙！",
       "property": {
         "XHP": 0,
@@ -132,7 +132,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "archer",
-      "spritepath": "Sprite/ItemSprite/bow_E",
+      "spritepath": "bow_E",
       "intro": "原始遗留物品！",
       "property": {
         "XHP": 0,
@@ -157,7 +157,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "archer",
-      "spritepath": "Sprite/ItemSprite/bow_D",
+      "spritepath": "bow_D",
       "intro": "木质的弓！",
       "property": {
         "XHP": 0,
@@ -182,7 +182,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "archer",
-      "spritepath": "Sprite/ItemSprite/bow_C",
+      "spritepath": "bow_C",
       "intro": "挺好用的",
       "property": {
         "XHP": 0,
@@ -207,7 +207,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "archer",
-      "spritepath": "Sprite/ItemSprite/bow_B",
+      "spritepath": "bow_B",
       "intro": "稳！",
       "property": {
         "XHP": 0,
@@ -232,7 +232,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "archer",
-      "spritepath": "Sprite/ItemSprite/bow_A",
+      "spritepath": "bow_A",
       "intro": "致命之箭！",
       "property": {
         "XHP": 0,
@@ -257,7 +257,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "magician",
-      "spritepath": "Sprite/ItemSprite/staff_E",
+      "spritepath": "staff_E",
       "intro": "原始法杖",
       "property": {
         "XHP": 0,
@@ -282,7 +282,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "magician",
-      "spritepath": "Sprite/ItemSprite/staff_D",
+      "spritepath": "staff_D",
       "intro": "木质的法杖",
       "property": {
         "XHP": 0,
@@ -307,7 +307,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "magician",
-      "spritepath": "Sprite/ItemSprite/staff_C",
+      "spritepath": "staff_C",
       "intro": "精致的法杖",
       "property": {
         "XHP": 0,
@@ -332,7 +332,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "magician",
-      "spritepath": "Sprite/ItemSprite/staff_B",
+      "spritepath": "staff_B",
       "intro": "灰袍甘道夫的法杖",
       "property": {
         "XHP": 0,
@@ -357,7 +357,7 @@
       "maximum": 1,
       "type": "weapon",
       "role": "magician",
-      "spritepath": "Sprite/ItemSprite/staff_A",
+      "spritepath": "staff_A",
       "intro": "白袍甘道夫的法杖",
       "property": {
         "XHP": 0,
@@ -382,7 +382,7 @@
       "maximum": 1,
       "type": "necklace",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/necklace_E",
+      "spritepath": "necklace_E",
       "intro": "石头",
       "property": {
         "XHP": 0,
@@ -407,7 +407,7 @@
       "maximum": 1,
       "type": "necklace",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/necklace_D",
+      "spritepath": "necklace_D",
       "intro": "木头",
       "property": {
         "XHP": 0,
@@ -432,7 +432,7 @@
       "maximum": 1,
       "type": "necklace",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/necklace_C",
+      "spritepath": "necklace_C",
       "intro": "狼牙",
       "property": {
         "XHP": 0,
@@ -457,7 +457,7 @@
       "maximum": 1,
       "type": "necklace",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/necklace_B",
+      "spritepath": "necklace_B",
       "intro": "金子",
       "property": {
         "XHP": 0,
@@ -482,7 +482,7 @@
       "maximum": 1,
       "type": "necklace",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/necklace_A",
+      "spritepath": "necklace_A",
       "intro": "玉石",
       "property": {
         "XHP": 0,
@@ -507,7 +507,7 @@
       "maximum": 1,
       "type": "ring",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/ring_E",
+      "spritepath": "ring_E",
       "intro": "石头",
       "property": {
         "XHP": 0,
@@ -532,7 +532,7 @@
       "maximum": 1,
       "type": "ring",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/ring_D",
+      "spritepath": "ring_D",
       "intro": "木质",
       "property": {
         "XHP": 0,
@@ -557,7 +557,7 @@
       "maximum": 1,
       "type": "ring",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/ring_C",
+      "spritepath": "ring_C",
       "intro": "骨头",
       "property": {
         "XHP": 0,
@@ -582,7 +582,7 @@
       "maximum": 1,
       "type": "ring",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/ring_B",
+      "spritepath": "ring_B",
       "intro": "金子",
       "property": {
         "XHP": 0,
@@ -607,7 +607,7 @@
       "maximum": 1,
       "type": "ring",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/ring_A",
+      "spritepath": "ring_A",
       "intro": "玉石",
       "property": {
         "XHP": 0,
@@ -632,7 +632,7 @@
       "maximum": 1,
       "type": "armor",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/armor_E",
+      "spritepath": "armor_E",
       "intro": "藤草编织",
       "property": {
         "XHP": 200,
@@ -657,7 +657,7 @@
       "maximum": 1,
       "type": "armor",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/armor_D",
+      "spritepath": "armor_D",
       "intro": "木质",
       "property": {
         "XHP": 400,
@@ -682,7 +682,7 @@
       "maximum": 1,
       "type": "armor",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/armor_C",
+      "spritepath": "armor_C",
       "intro": "青铜",
       "property": {
         "XHP": 600,
@@ -707,7 +707,7 @@
       "maximum": 1,
       "type": "armor",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/armor_B",
+      "spritepath": "armor_B",
       "intro": "铁质",
       "property": {
         "XHP": 800,
@@ -732,7 +732,7 @@
       "maximum": 1,
       "type": "armor",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/armor_A",
+      "spritepath": "armor_A",
       "intro": "钛合金",
       "property": {
         "XHP": 1000,
@@ -757,7 +757,7 @@
       "maximum": 1,
       "type": "pants",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/pants_E",
+      "spritepath": "pants_E",
       "intro": "藤草编织",
       "property": {
         "XHP": 200,
@@ -782,7 +782,7 @@
       "maximum": 1,
       "type": "pants",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/pants_D",
+      "spritepath": "pants_D",
       "intro": "木质",
       "property": {
         "XHP": 400,
@@ -807,7 +807,7 @@
       "maximum": 1,
       "type": "pants",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/pants_C",
+      "spritepath": "pants_C",
       "intro": "青铜",
       "property": {
         "XHP": 600,
@@ -832,7 +832,7 @@
       "maximum": 1,
       "type": "pants",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/pants_B",
+      "spritepath": "pants_B",
       "intro": "铁质",
       "property": {
         "XHP": 800,
@@ -857,7 +857,7 @@
       "maximum": 1,
       "type": "pants",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/pants_A",
+      "spritepath": "pants_A",
       "intro": "钛合金",
       "property": {
         "XHP": 1000,
@@ -882,7 +882,7 @@
       "maximum": 1,
       "type": "shoes",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/shoes_E",
+      "spritepath": "shoes_E",
       "intro": "藤草编织",
       "property": {
         "XHP": 0,
@@ -907,7 +907,7 @@
       "maximum": 1,
       "type": "shoes",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/shoes_D",
+      "spritepath": "shoes_D",
       "intro": "青铜",
       "property": {
         "XHP": 0,
@@ -932,7 +932,7 @@
       "maximum": 1,
       "type": "shoes",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/shoes_C",
+      "spritepath": "shoes_C",
       "intro": "青铜",
       "property": {
         "XHP": 0,
@@ -957,7 +957,7 @@
       "maximum": 1,
       "type": "shoes",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/shoes_B",
+      "spritepath": "shoes_B",
       "intro": "铁质",
       "property": {
         "XHP": 0,
@@ -982,7 +982,7 @@
       "maximum": 1,
       "type": "shoes",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/shoes_A",
+      "spritepath": "shoes_A",
       "intro": "钛合金",
       "property": {
           "XHP": 0,
@@ -1007,7 +1007,7 @@
       "maximum": 1,
       "type": "wing",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/wing",
+      "spritepath": "wing",
       "intro": "为了保持每个人的华丽",
       "property": {
         "XHP": 0,
@@ -1032,7 +1032,7 @@
       "maximum": 1,
       "type": "wing",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/wing",
+      "spritepath": "wing",
       "intro": "更华丽",
       "property": {
         "XHP": 0,
@@ -1057,7 +1057,7 @@
       "maximum": 1,
       "type": "wing",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/wing",
+      "spritepath": "wing",
       "intro": "更、更华丽",
       "property": {
         "XHP": 0,
@@ -1082,7 +1082,7 @@
       "maximum": 1,
       "type": "wing",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/wing",
+      "spritepath": "wing",
       "intro": "更、更、更华丽",
       "property": {
         "XHP": 0,
@@ -1107,7 +1107,7 @@
       "maximum": 1,
       "type": "wing",
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/wing",
+      "spritepath": "wing",
       "intro": "顶级华丽",
       "property": {
         "XHP": 0,

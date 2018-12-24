@@ -8,7 +8,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MyEdior {
+namespace CustomEditor {
     /// <summary>
     /// MemoryStream.ReadLine has an interesting oddity: it doesn't always advance the stream's position by the correct amount:
     /// http://social.msdn.microsoft.com/Forums/en-AU/Vsexpressvcs/thread/b8f7837b-e396-494e-88e1-30547fcf385f

@@ -40,9 +40,6 @@ namespace Solider {
                     transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
                     transform.Find("AttackBtn").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.ATTACK);
                     skillPanel = new UISkillPanel(transform);
-                    transform.Find("SkillBtn_0").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_1);
-                    transform.Find("SkillBtn_1").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_2);
-                    transform.Find("SkillBtn_2").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.SKILL_3);
                     GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
@@ -56,6 +53,8 @@ namespace Solider {
                 } // end Reason
 
                 public void DoBeforeLeaving() {
+                    if (null != skillPanel) skillPanel.Dispose();
+                    // end if
                     BroadcastCenter.RemoveListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
                 } // end DoBeforeLeaving
 

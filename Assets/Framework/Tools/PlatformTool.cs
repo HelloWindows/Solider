@@ -54,7 +54,7 @@ namespace Framework {
             /// <param name="assetbundle"> assetbundle 名字 </param>
             /// <returns></returns>
             public static AssetBundle LoadFromPersistantDataPath(string assetbundle) {
-                return AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + assetbundle);
+                return AssetBundle.LoadFromFile(GetPersistentDataPath(assetbundle));
             } // end LoadFromPersistantDataPath
         } // end class PlatformTool 
     } // end namespace Tools

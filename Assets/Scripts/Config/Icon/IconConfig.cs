@@ -28,7 +28,7 @@ namespace Solider {
                 private IconConfig() {
                     skillConfig = new Dictionary<string, ISkillInfo>();
                     AssetBundle assetbundle = PlatformTool.LoadFromStreamingAssets("config/res_config.unity3d");
-                    string skillJson = assetbundle.LoadAsset<TextAsset>("assets/config/skill_info_config.json").text;
+                    string skillJson = assetbundle.LoadAsset<TextAsset>("skill_info_config.json").text;
                     assetbundle.Unload(false);
                     InitSkillConfig(skillJson);
                 } // end IconConfig

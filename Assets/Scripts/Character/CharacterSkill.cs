@@ -7,6 +7,7 @@
 using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
+using Solider.Character.FSMState;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.ModelData.Interface;
@@ -18,31 +19,31 @@ namespace Solider {
             #region /******** 技能计时器 *******/
             private class SkillTimer : ITimer {
                 public ISkillInfo info { get; private set; }
-                public bool isCD { get { return timer == 0; } }
-                public float schedule { get { return timer == 0 ? 0 : timer / CD; } }
-                public float timer { get; private set; }
+                public bool isCD { get { return time == 0; } }
+                public float schedule { get { return time == 0 ? 0 : time / CD; } }
+                public float time { get; private set; }
                 public float CD { get; private set; }
 
                 public SkillTimer(ISkillInfo info) {
                     this.info = info;
-                    timer = 0;
+                    time = 0;
                     CD = info.CD;
                 } // end SkillTimer
 
                 public void Cooldown(float coolTime) {
                     if (isCD) return;
                     // end if
-                    timer = MathTool.LimitZero(timer - coolTime);
+                    time = MathTool.LimitZero(time - coolTime);
                 } // end Cooldown
 
                 public void InstantCooldown() {
-                    timer = 0;
+                    time = 0;
                 } // end InstantCooldown
 
                 public void Cast(bool ignoreCD) {
                     if (ignoreCD) return;
                     // end if
-                    timer = CD;
+                    time = CD;
                 } // end Cast
             } // end class SkillTimer
             #endregion
@@ -53,6 +54,7 @@ namespace Solider {
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillTimer>();
+                stateDict = new Dictionary<string, ISkillFSMState>();
                 PushSkill("500001");
                 PushSkill("500002");
                 PushSkill("500003");
@@ -77,6 +79,14 @@ namespace Solider {
                     } // end if
                 // end for         
                 skillList.Add(new SkillTimer(info));
+                ISkillFSMState state = CharacterFSMActivator.GetSkillFSMState(id);
+                if (null == state) return;
+                // end if
+                if (stateDict.ContainsKey(id)) {
+                    DebugTool.ThrowException("CharacterSkill PushSkill id is repeat!!! ID:" + id);
+                    return;
+                } // end if
+                stateDict.Add(id, state);
             } // end PushSkill
 
             public int GetSkillIDArray(out string[] idArr) {

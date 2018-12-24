@@ -55,6 +55,7 @@ namespace Solider {
             public virtual void Update(float deltaTime) {
                 m_info.Update(deltaTime);
                 m_buff.Update(deltaTime);
+                m_skill.Update(deltaTime);
                 m_fsmSystem.Update(deltaTime);
             } // end Update
 

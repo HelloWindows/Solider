@@ -6,7 +6,7 @@
       "grade": "D",
       "maximum": 20, 
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/lit_hp",
+      "spritepath": "lit_hp",
       "intro": "穷人专用！",
       "property": {
         "HP": 100,
@@ -25,7 +25,7 @@
       "grade": "C",
       "maximum": 10, 
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/mid_hp",
+      "spritepath": "mid_hp",
       "intro": "心疼钱！",
       "property": {
         "HP": 500,
@@ -66,7 +66,7 @@
       "grade": "B",
       "maximum": 5, 
       "role": "all",
-      "spritepath": "Sprite/ItemSprite/big_hp",
+      "spritepath": "big_hp",
       "intro": "死贵，死贵的！",
       "property": {
         "HP": 1000,

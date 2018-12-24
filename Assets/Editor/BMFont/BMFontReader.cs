@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Text;
 
-namespace MyEdior {
+namespace CustomEditor {
     /// <summary>
     /// Helper class that takes care of loading BMFont's glyph information from the specified byte array.
     /// This functionality is not a part of BMFont anymore because Flash export option can't handle System.IO functions.

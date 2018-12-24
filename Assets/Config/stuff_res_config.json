@@ -5,7 +5,7 @@
       "name": "白宝石",
       "grade": "D",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/gem_white",
+      "spritepath": "gem_white",
       "intro": "制作低级装备的材料"
     },
     {
@@ -13,7 +13,7 @@
       "name": "黑宝石",
       "grade": "C",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/gem_black",
+      "spritepath": "gem_black",
       "intro": "制作中级装备的材料"
     },
     {
@@ -21,7 +21,7 @@
       "name": "红宝石",
       "grade": "B",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/gem_red",
+      "spritepath": "gem_red",
       "intro": "制作高级装备的材料"
     },
     {
@@ -29,7 +29,7 @@
       "name": "橙宝石",
       "grade": "A",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/gem_orange",
+      "spritepath": "gem_orange",
       "intro": "制作顶级装备的材料"
     },
     {
@@ -37,7 +37,7 @@
       "name": "能量石",
       "grade": "A",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/hearthstone",
+      "spritepath": "hearthstone",
       "intro": "里面蓄含巨大能量"
     },
     {
@@ -45,7 +45,7 @@
       "name": "铁块",
       "grade": "D",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/pact_white",
+      "spritepath": "pact_white",
       "intro": "里面蓄含巨大能量"
     },
     {
@@ -53,7 +53,7 @@
       "name": "蓝矿石",
       "grade": "C",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/pact_blue",
+      "spritepath": "pact_blue",
       "intro": "制作低级装备的材料"
     },
     {
@@ -61,7 +61,7 @@
       "name": "红矿石",
       "grade": "B",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/pact_red",
+      "spritepath": "pact_red",
       "intro": "制作低级装备的材料"
     },
     {
@@ -69,7 +69,7 @@
       "name": "金矿石",
       "grade": "A",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/pact_yellow",
+      "spritepath": "pact_yellow",
       "intro": "制作低级装备的材料"
     },
     {
@@ -77,7 +77,7 @@
       "name": "羽毛",
       "grade": "A",
       "maximum": 20, 
-      "spritepath": "Sprite/ItemSprite/plume",
+      "spritepath": "plume",
       "intro": "制作翅膀的材料"
     }
   ]

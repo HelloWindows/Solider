@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace MyEdior {
+namespace CustomEditor {
     /// <summary>
     /// Glyph structure used by BMFont. For more information see http://www.angelcode.com/products/bmfont/
     /// </summary>
