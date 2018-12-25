@@ -1,20 +1,17 @@
 ﻿/*******************************************************************
- * FileName: ICamera.cs
+ * FileName: IUICamera.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Framework {
     namespace Interface {
         namespace View {
-            public interface ICamera {
+            public interface IUICamera {
                 Camera camera { get; }
-                void LateUpdate(float deltaTime);
-                void SetTarget(ICharacter target);
-            } // end interface ICamera 
+            } // end interface IUICamera 
         } // end namespace View
     } // end namespace Interface
 } // end namespace Framework

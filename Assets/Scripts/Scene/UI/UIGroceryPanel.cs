@@ -22,7 +22,7 @@ namespace Solider {
                 private Transform transform { get { return gameObject.transform; } }
 
                 public UIGroceryPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UIGroceryPanel
 
                 public UIGroceryPanel(RectTransform parent) {

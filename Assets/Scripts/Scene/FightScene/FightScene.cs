@@ -25,10 +25,14 @@ namespace Solider {
     namespace Scene {
         public class FightScene : IScene {
             public IFSM uiPanelFSM { get; private set; }
-            public ICamera mainCamera { get; private set; }
-            public ICanvas mainCanvas { get; private set; }
-            public ICharacter mainCharacter { get; private set; }
+            public IUICamera uiCamera { get { return m_uiCamera; } }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public ICanvas uiCanvas { get { return m_uiCanvas; } }
+            public IMainCharacter mainCharacter { get; private set; }
             public string sceneName { get; private set; }
+            private MainCamera m_mainCamera;
+            private UICamera m_uiCamera;
+            private UICanvas m_uiCanvas;
             private IFSMSystem fsmSystem;
             private List<ICharacter> charList;
 
@@ -40,15 +44,16 @@ namespace Solider {
             } // end NoviceVillage
 
             public void Initialize() {
-                mainCamera = new MainCamera();
-                mainCanvas = new MainCanvas(mainCamera.camera);
+                m_mainCamera = new MainCamera();
+                m_uiCamera = new UICamera();
+                m_uiCanvas = new UICanvas(m_uiCamera.camera);
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 uiPanelFSM.PerformTransition(new UIFightPanel());
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
-                mainCamera.SetTarget(mainCharacter);
+                m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("wait");
                 charList.Add(mainCharacter);
             } // end Initialize
@@ -71,14 +76,14 @@ namespace Solider {
             public void LateUpdate(float deltaTime) {
                 if (null == mainCamera) return;
                 // end if
-                mainCamera.LateUpdate(deltaTime);
+                m_mainCamera.LateUpdate(deltaTime);
             } // end LateUpdate
 
             public void Dispose() {
                 mainCharacter.Dispose();
             } // end Dispose
 
-            public ICharacter CreateMainCharacter(Vector3 position) {
+            public IMainCharacter CreateMainCharacter(Vector3 position) {
                 if (null == GameManager.playerInfo || null == GameManager.playerInfo.roleType ||
                     GameManager.playerInfo.roleType == "" || null != mainCharacter) return null;
                 // end if

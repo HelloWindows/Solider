@@ -15,9 +15,10 @@ namespace Framework {
         namespace Scene {
             public interface IScene : IDisposable {
                 IFSM uiPanelFSM { get; }
-                ICamera mainCamera { get; }
-                ICanvas mainCanvas { get; }
-                ICharacter mainCharacter { get; }
+                IMainCamera mainCamera { get; }
+                IUICamera uiCamera { get; }
+                ICanvas uiCanvas { get; }
+                IMainCharacter mainCharacter { get; }
                 string sceneName { get; }
                 void Initialize();
                 void Update(float deltaTime);

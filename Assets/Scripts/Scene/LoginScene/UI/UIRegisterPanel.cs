@@ -27,7 +27,7 @@ namespace Solider {
                 public string id { get { return "UIRegisterPanel"; } }
 
                 public UIRegisterPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UIRegisterPanel
 
                 public UIRegisterPanel(RectTransform parent) {
@@ -103,10 +103,10 @@ namespace Solider {
                     } // end if
                     if (false == SqliteManager.RegisterPlayer(userNameInput.text, comfirmInput.text)) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
+                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
                     } else {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
+                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
                     } // end if
                 } // end OnClickRegisterBtn
 

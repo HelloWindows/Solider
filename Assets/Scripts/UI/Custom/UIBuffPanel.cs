@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Solider.Config.Icon;
+using Framework.Manager;
 
 namespace Solider {
     namespace UI {
@@ -65,6 +66,7 @@ namespace Solider {
                     this.iconSize = iconSize;
                     interval = 2f;
                     iconList = new List<Icon>();
+                    SceneManager.mainCharacter.center.AddListener(FreshenIcon);
                 } // end UIBuffPanel
 
                 public void Update() {
@@ -78,7 +80,10 @@ namespace Solider {
                     } // end for
                 } // end Update
 
-                public void FreshenIcon() {
+                private void FreshenIcon(Character.CenterEvent type) {
+                } // end FreshenIcon
+
+                private void FreshenIcon() {
                     List<BuffInfo> buffList  = new List<BuffInfo>();
                     if (null == buffList) {
                         for (int i = 0; i < iconList.Count; i++) {
@@ -112,6 +117,7 @@ namespace Solider {
                         iconList[i].Dispose();
                     } // end for
                     iconList.Clear();
+                    SceneManager.mainCharacter.center.RemoveListener(FreshenIcon);
                 } // end Dispose
             } // end class UIBuffPanel 
         } // end namespace Custom

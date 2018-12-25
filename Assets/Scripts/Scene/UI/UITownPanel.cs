@@ -21,7 +21,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UITownPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UITownPanel
 
                 public UITownPanel(RectTransform parent) {

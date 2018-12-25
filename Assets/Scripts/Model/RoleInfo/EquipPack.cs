@@ -104,7 +104,7 @@ namespace Solider {
                 // end if
                 wearDict[type] = info;
                 WriteGridInfo(gid, idList[gid], 0);
-                BroadcastCenter.Broadcast(BroadcastType.ReloadEquip);
+                SceneManager.mainCharacter.center.Broadcast(Character.CenterEvent.ReloadEquip);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, info.id);
             } // end UseItemWithGid
 
@@ -177,6 +177,7 @@ namespace Solider {
                 // end if
                 PackItem(wearDict[type].id, 0);
                 wearDict[type] = null;
+                SceneManager.mainCharacter.center.Broadcast(Character.CenterEvent.ReloadEquip);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, "0");
             } // end TakeOffEquip
 

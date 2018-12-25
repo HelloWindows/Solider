@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config.Game;
 using Framework.Interface.View;
 using Solider.Character.Interface;
 using UnityEngine;
@@ -11,7 +12,7 @@ using UnityEngine;
 namespace Framework {
     namespace Custom {
         namespace View {
-            public class MainCamera : ICamera {
+            public class MainCamera : IMainCamera {
                 private ICharacter target;//目标物体
                 private float smoothing = 3;//平滑系数
                 public Camera camera { get; private set; }
@@ -21,8 +22,10 @@ namespace Framework {
                     camera = Go.AddComponent<Camera>();
                     camera.tag = "MainCamera";
                     camera.clearFlags = CameraClearFlags.Skybox;
+                    camera.cullingMask = ~LayerMask.GetMask(LayerConfig.UI); // 不显示UI层
                     camera.orthographic = false;
-                    camera.fieldOfView = 60f;
+                    camera.fieldOfView = 60f * System.Convert.ToSingle(Screen.height) / GameConfig.STANDARD_HEIGHT;
+                    ConsoleTool.SetConsole(camera.fieldOfView.ToString());
                     camera.depth = -1;
                     camera.renderingPath = RenderingPath.UsePlayerSettings;
                     Go.AddComponent<GUILayer>();

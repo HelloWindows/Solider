@@ -14,7 +14,7 @@ namespace Solider {
                 void InsertBuff(BuffInfo buffInfo);
                 List<BuffInfo> GetBuffInfoList();
                 List<float> GetScheduleList();
-            } // end interface ICharacter
+            } // end interface ICharacterBuff
         } // end namespace Interface
     } // end namespace Character
 } // end namespace Solider 

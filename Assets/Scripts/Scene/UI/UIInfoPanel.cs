@@ -16,7 +16,6 @@ using Framework.Tools;
 using Framework.Manager;
 using Framework.Broadcast;
 using Solider.Config.Interface;
-using Solider.Model.Interface;
 
 namespace Solider {
     namespace Scene {
@@ -36,7 +35,7 @@ namespace Solider {
                 private UIDisplayRaw display;
 
                 public UIInfoPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UIInfoPanel
 
                 public UIInfoPanel(RectTransform parent) {
@@ -75,7 +74,6 @@ namespace Solider {
                     selected = "";
                     UpdateShowInfo();
                     selector.SetActive(false);
-                    BroadcastCenter.Broadcast(BroadcastType.ReloadEquip);
                     if (null == display) return;
                     // end if
                     display.FreshenDisplay();

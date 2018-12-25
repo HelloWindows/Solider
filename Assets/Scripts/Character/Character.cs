@@ -20,16 +20,15 @@ namespace Solider {
             public ICharacterMove move { get { return m_move; } }
             public ICharacterInfo info { get { return m_info; } }
             public ICharacterBuff buff { get { return m_buff; } }
-            public ICharacterSkill skill { get { return m_skill; } }
             public ICharacterAudio audio { get { return m_audio; } }
             public ICharacterAvatar avatar { get { return m_avatar; } }
-            public ICharacterConfig config { get; protected set; }
+            public ICharacterConfig config { get; private set; }
+            public ICharacterCenter center { get; private set; }
             public Vector3 position { get { return null == m_transform ? Vector3.zero : m_transform.position; } }
 
             private CharacterMove m_move;
             private CharacterBuff m_buff;
             private CharacterAduio m_audio;
-            private CharacterSkill m_skill;
 
             protected CharacterInfo m_info;
             protected CharacterAvatar m_avatar;
@@ -47,15 +46,13 @@ namespace Solider {
                 config = Configs.characterConfig.GetCharacterConfig(id);
 
                 m_move = new CharacterMove(m_transform);
-                m_buff = new CharacterBuff();
+                m_buff = new CharacterBuff(center);
                 m_audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
-                m_skill = new CharacterSkill(this);
             } // end Character
 
             public virtual void Update(float deltaTime) {
                 m_info.Update(deltaTime);
                 m_buff.Update(deltaTime);
-                m_skill.Update(deltaTime);
                 m_fsmSystem.Update(deltaTime);
             } // end Update
 

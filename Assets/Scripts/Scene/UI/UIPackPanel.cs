@@ -32,7 +32,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UIPackPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UIPackPanel
 
                 public UIPackPanel(RectTransform parent) {
@@ -116,7 +116,7 @@ namespace Solider {
                     // end if
                     int count = currentPack.GetCountForGrid(currentGid);
                     UIConfirmNumBox box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", "UI/Custom/ConfirmNumBoxUI", 
-                        SceneManager.mainCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
+                        SceneManager.uiCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
                     if (count > 1) {
                         box.InitInfo("输入丢弃的数量", count);
                     } else {

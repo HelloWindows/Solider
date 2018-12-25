@@ -27,7 +27,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UICreateRolePanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UICreateRolePanel 
 
                 public UICreateRolePanel(RectTransform parent) {
@@ -43,7 +43,7 @@ namespace Solider {
 
                 private void OnClickCreateBtn() {
                     if (nameInputField.text == "" || nameInputField.text == null) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                         return;
                     } // end if
                     SqliteManager.CreateRole(GameManager.playerInfo.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);

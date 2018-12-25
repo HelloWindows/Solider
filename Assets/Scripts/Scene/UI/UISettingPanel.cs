@@ -23,7 +23,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UISettingPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UISettingPanel
 
                 public UISettingPanel(RectTransform parent) {

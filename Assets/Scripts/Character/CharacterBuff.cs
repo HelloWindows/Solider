@@ -33,8 +33,10 @@ namespace Solider {
             #endregion
             private List<int> signList;
             private List<BuffTimer> buffList;
+            private ICharacterCenter center;
 
-            public CharacterBuff() {
+            public CharacterBuff(ICharacterCenter center) {
+                this.center = center;
                 signList = new List<int>();
                 buffList = new List<BuffTimer>();
             } // end CharacterBuff
@@ -53,7 +55,9 @@ namespace Solider {
                 for (int i = 0; i < signList.Count; i++) {
                     buffList.RemoveAt(signList[i]);
                 } // end for
-                BroadcastCenter.Broadcast(BroadcastType.BuffChange);
+                if (null == center) return;
+                // end if
+                center.Broadcast(CenterEvent.BuffChange);
             } // end Update
 
             public void InsertBuff(BuffInfo buffInfo) {
@@ -66,7 +70,9 @@ namespace Solider {
                     return;
                 } // end for
                 buffList.Add(new BuffTimer(buffInfo));
-                BroadcastCenter.Broadcast(BroadcastType.BuffChange);
+                if (null == center) return;
+                // end if
+                center.Broadcast(CenterEvent.BuffChange);
             } // end InsertBuff
 
             public List<BuffInfo> GetBuffInfoList() {

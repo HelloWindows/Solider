@@ -11,14 +11,6 @@ namespace Framework {
     namespace Broadcast {
         public enum BroadcastType : int {
             NULL = 0,
-            /// <summary>
-            /// 更换装备
-            /// </summary>
-            ReloadEquip = 1,
-            /// <summary>
-            /// Buff 改变
-            /// </summary>
-            BuffChange = 2,
         } // end enum BroadcastType
         public static class BroadcastCenter {
             private static Dictionary<BroadcastType, Action> actionMap = new Dictionary<BroadcastType, Action>();

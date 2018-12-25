@@ -31,7 +31,7 @@ namespace Solider {
                 public static int createIndex { get; private set; }
 
                 public UISelectRolePanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UISelectRolePanel 
 
                 public UISelectRolePanel(RectTransform parent) {
@@ -94,7 +94,7 @@ namespace Solider {
                     if (!ChechExitID(roleindex)) return;
                     // end if          
                     UIDialogBox dialog = ObjectTool.InstantiateGo("DialogBoxUI", "UI/Custom/DialogBoxUI", 
-                        SceneManager.mainCanvas.rectTransform).AddComponent<UIDialogBox>();
+                        SceneManager.uiCanvas.rectTransform).AddComponent<UIDialogBox>();
                     dialog.SetMessage("确定删除角色!");
                     dialog.AddAction(DeleteRole);
                 } // end OnClickDeleteRole
@@ -114,7 +114,7 @@ namespace Solider {
                 private void OnClickStartGameBtn() {
                     if (!ChechExitID(roleindex)) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
+                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                         return;
                     } // end if
                     GameManager.playerInfo.SelectedRole(roleindex, roleDict[roleindex][0], roleDict[roleindex][1]);

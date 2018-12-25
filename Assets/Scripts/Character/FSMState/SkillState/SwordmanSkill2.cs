@@ -16,17 +16,17 @@ namespace Solider {
         namespace Skill {
             public class SwordmanSkill2 : IFSMState, ISkillFSMState {
                 public string id { get { return "500002"; } }
-                private IHeroCharacter character;
+                private IMainCharacter character;
                 private ISkillInfo info;
 
 
-                public SwordmanSkill2(IHeroCharacter horeCharacter, ISkillInfo info) {
+                public SwordmanSkill2(IMainCharacter horeCharacter, ISkillInfo info) {
                     character = horeCharacter;
                     this.info = info;
                 } // end SwordmanSkill2
 
                 public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
-                    IHeroCharacter horeCharacter = character as IHeroCharacter;
+                    IMainCharacter horeCharacter = character as IMainCharacter;
                     if (null == horeCharacter) {
                         DebugTool.ThrowException("SwordmanSkill2 CreateInstance character is null!!!");
                         return null;

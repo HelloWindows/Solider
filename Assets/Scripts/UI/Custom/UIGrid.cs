@@ -40,15 +40,15 @@ namespace Solider {
                 public void OnBeginDrag(PointerEventData eventData) {
                     if (null == item || !item.gameObject.activeSelf) return;
                     // end if
-                    item.transform.SetParent(SceneManager.mainCanvas.rectTransform);
+                    item.transform.SetParent(SceneManager.uiCanvas.rectTransform);
                 } // end OnBeginDrag
 
                 public void OnDrag(PointerEventData eventData) {
                     if (null == item || false == item.gameObject.activeSelf) return;
                     // end if
                     Vector2 pos;
-                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.mainCanvas.rectTransform,
-                        eventData.position, null, out pos))
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.uiCanvas.rectTransform,
+                        eventData.position, eventData.pressEventCamera, out pos))
                         item.transform.localPosition = pos;
                     // end if 
                 } // end OnDrag

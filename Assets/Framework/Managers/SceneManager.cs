@@ -17,10 +17,11 @@ namespace Framework {
     namespace Manager {
         public class SceneManager : MonoBehaviour {
             private static IScene m_scene;
-            public static ICamera mainCamera { get { return m_scene.mainCamera; } }
-            public static ICanvas mainCanvas { get { return m_scene.mainCanvas; } }
+            public static IMainCamera mainCamera { get { return m_scene.mainCamera; } }
+            public static IUICamera uiCamera { get { return m_scene.uiCamera; } }
+            public static ICanvas uiCanvas { get { return m_scene.uiCanvas; } }
             public static IFSM uiPanelFMS { get { return m_scene.uiPanelFSM; } }
-            public static ICharacter mainCharacter { get { return m_scene.mainCharacter; } }
+            public static IMainCharacter mainCharacter { get { return m_scene.mainCharacter; } }
 
             public static void SetScene(IScene scene) {
                 GameManager.SetGameState(GameState.SWITCH);
@@ -35,7 +36,7 @@ namespace Framework {
                 m_scene = scene;
             } // end SetSceneName
 
-            void Start() {
+            private void Start() {
                 GameManager.SetGameState(GameState.INITIALIZATION);
                 InstanceMgr.Init();
                 m_scene.Initialize();

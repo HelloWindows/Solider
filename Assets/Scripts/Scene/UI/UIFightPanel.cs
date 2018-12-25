@@ -25,7 +25,7 @@ namespace Solider {
                 private UISkillPanel skillPanel;
 
                 public UIFightPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UIFightPanel
 
                 public UIFightPanel(RectTransform parent) {
@@ -35,8 +35,7 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
                     transform = gameObject.GetComponent<RectTransform>();
-                    buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));
-                    BroadcastCenter.AddListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
+                    buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
                     transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
                     transform.Find("AttackBtn").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.ATTACK);
                     skillPanel = new UISkillPanel(transform);
@@ -55,7 +54,8 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                     if (null != skillPanel) skillPanel.Dispose();
                     // end if
-                    BroadcastCenter.RemoveListener(BroadcastType.BuffChange, buffPanel.FreshenIcon);
+                    if (null != buffPanel) buffPanel.Dispose();
+                    // end if
                 } // end DoBeforeLeaving
 
                 private void OnClickBarBtn() {

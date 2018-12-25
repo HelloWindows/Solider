@@ -22,9 +22,12 @@ namespace Solider {
         public class LoginScene : IScene {
             public string sceneName { get; private set; }
             public IFSM uiPanelFSM { get; private set; }
-            public ICamera mainCamera { get; private set; }
-            public ICanvas mainCanvas { get; private set; }
-            public ICharacter mainCharacter { get; private set; }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public IUICamera uiCamera { get { return m_uiCamera; } }
+            public ICanvas uiCanvas { get; private set; }
+            public IMainCharacter mainCharacter { get; private set; }
+            private MainCamera m_mainCamera;
+            private UICamera m_uiCamera;
             private IFSMSystem fsmSystem;
             private GameObject gameObject;
 
@@ -35,8 +38,9 @@ namespace Solider {
             } // end LoginScene
 
             public void Initialize() {
-                mainCamera = new MainCamera();
-                mainCanvas = new MainCanvas(mainCamera.camera);
+                m_mainCamera = new MainCamera();
+                m_uiCamera = new UICamera();
+                uiCanvas = new UICanvas(m_uiCamera.camera);
                 gameObject = ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
                     null, new Vector3(0, 0, 5.1f), Vector3.zero, Vector3.one);
                 uiPanelFSM.PerformTransition(new UILoginPanel());
@@ -49,7 +53,7 @@ namespace Solider {
             public void LateUpdate(float deltaTime) {
                 if (null == mainCamera) return;
                 // end if
-                mainCamera.LateUpdate(deltaTime);
+                m_mainCamera.LateUpdate(deltaTime);
             } // end LateUpdate
 
             public void Dispose() {

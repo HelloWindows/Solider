@@ -27,10 +27,13 @@ namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
             public IFSM uiPanelFSM { get; private set; }
-            public ICamera mainCamera { get; private set; }
-            public ICanvas mainCanvas { get; private set; }
-            public ICharacter mainCharacter { get; private set; }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public IUICamera uiCamera { get { return m_uiCamera; } }
+            public ICanvas uiCanvas { get; private set; }
+            public IMainCharacter mainCharacter { get; private set; }
             public string sceneName { get; private set; }
+            private UICamera m_uiCamera;
+            private MainCamera m_mainCamera;
             private IFSMSystem fsmSystem;
             private List<int> indexList;
             private List<ICharacter> characterList;
@@ -44,8 +47,9 @@ namespace Solider {
             } // end NoviceVillage
 
             public void Initialize() {
-                mainCamera = new MainCamera();
-                mainCanvas = new MainCanvas(mainCamera.camera);
+                m_mainCamera = new MainCamera();
+                m_uiCamera = new UICamera();
+                uiCanvas = new UICanvas(m_uiCamera.camera);
                 uiPanelFSM.PerformTransition(new UITownPanel());
                 mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
@@ -58,7 +62,7 @@ namespace Solider {
                     null, new Vector3(-5, 0, 2), new Vector3(0, 160, 0), Vector3.one).AddComponent<NPC_Forge>();
                 ObjectTool.InstantiateGo("npc_transmitter", Configs.prefabConfig.GetPath("npc_transmitter"),
                     null, new Vector3(17, 0, -24), new Vector3(0, 270, 0), Vector3.one).AddComponent<NPC_Transmitter>();
-                mainCamera.SetTarget(mainCharacter);
+                m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("idle");
                 characterList.Add(mainCharacter);
             } // end Initialize
@@ -81,14 +85,14 @@ namespace Solider {
             public void LateUpdate(float deltaTime) {
                 if (null == mainCamera) return;
                 // end if
-                mainCamera.LateUpdate(deltaTime);
+                m_mainCamera.LateUpdate(deltaTime);
             } // end LateUpdate
 
             public void Dispose() {
                 mainCharacter.Dispose();
             } // end Dispose
 
-            public ICharacter CreateMainCharacter(Vector3 position) {
+            public IMainCharacter CreateMainCharacter(Vector3 position) {
                 if (null == GameManager.playerInfo || null == GameManager.playerInfo.roleType ||
                     GameManager.playerInfo.roleType == "" || null != mainCharacter) return null;
                 // end if

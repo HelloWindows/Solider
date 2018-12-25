@@ -27,7 +27,7 @@ namespace Solider {
                 public string id { get { return "UILoginPanel"; } }
 
                 public UILoginPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UILoginPanel
 
                 public UILoginPanel(RectTransform parent) {
@@ -62,7 +62,7 @@ namespace Solider {
                     if (userNameInput.text == "" || userNameInput.text == null ||
                         passwordInput.text == "" || passwordInput.text == null) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
+                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
                         return;
                     } // end if
                     string msg = "";
@@ -74,7 +74,7 @@ namespace Solider {
                         return;
                     } // end if
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                        SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
+                        SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
                 } // end OnClickLoginBtn
 
                 /// <summary>

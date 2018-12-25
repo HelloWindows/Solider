@@ -21,7 +21,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UITransmitterPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
+                    parent = SceneManager.uiCanvas.rectTransform;
                 } // end UITownPanel
 
                 public UITransmitterPanel(RectTransform parent) {
