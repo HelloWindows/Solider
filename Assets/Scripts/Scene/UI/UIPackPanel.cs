@@ -71,7 +71,7 @@ namespace Solider {
                 private void SwitchPack(string name) {
                     LoseItem();
                     packName = name;
-                    currentPack = GameManager.playerInfo.pack.GetItemPack(name);
+                    currentPack = SceneManager.mainCharacter.pack.GetItemPack(name);
                     for (int i = 0; i < gridArray.Length; i++) {
                         string itemID = currentPack.GetItemIDForGrid(i);
                         IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);

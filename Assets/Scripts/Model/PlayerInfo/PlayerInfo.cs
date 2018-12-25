@@ -14,8 +14,6 @@ namespace Solider {
             public string roleType { get; private set; }
             public string username { get; private set; }
 
-            public IPackInfo pack { get; private set; }
-
             public PlayerInfo() {
                 roleindex = -1;
                 rolename = "";
@@ -31,7 +29,6 @@ namespace Solider {
                 this.rolename = rolename;
                 this.roleType = roleType;
                 this.roleindex = roleindex;
-                pack = new PackInfo(username, roleindex, rolename, roleType);
             } // end SelectedRole
         } // end class PlayerInfo 
     } // end namespace Model

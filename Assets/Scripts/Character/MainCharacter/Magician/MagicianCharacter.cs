@@ -7,20 +7,19 @@
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Custom;
-using Framework.FSM.Interface;
 using Framework.Tools;
-using Solider.Character.Hero;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class MagicianCharacter : MainCharacter {
 
-                public MagicianCharacter(string id, Vector3 pos, string name) : base(id, ObjectTool.InstantiateGo(name,
-                    Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), null, pos, Vector3.zero, Vector3.one)) {
+                public MagicianCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.MAGICIAN,
+                    ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), 
+                        null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();              
-                    m_info = new CharacterInfo(name, ConstConfig.MAGICIAN, config.initAttribute, center);
+                    m_info = new MainCharacterInfo(name, ConstConfig.MAGICIAN, this);
                     m_avatar = new MagicianAvatar(m_gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = m_transform.GetComponentsInChildren<Transform>();
@@ -45,11 +44,10 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new MainCharacterSurface(center, wingTrans, liftTrans, furlTrans, meshRenderer);
-                    surface.Freshen();
+                    surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
                     m_fsmSystem = new MagicianFSM(this);
                 } // end MagicianCharacter
             } // end class MagicianCharacter 
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider

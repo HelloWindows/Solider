@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class ArcherAttack : IFSMState {
                 private enum AttackMode : int {
                     /// <summary>
@@ -75,6 +75,6 @@ namespace Solider {
 
                 } // end DoBeforeLeaving
             } // end class ArcherAttack1
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider 

@@ -4,14 +4,13 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Broadcast;
 using Solider.Character.Interface;
 using Solider.Config.Icon;
 using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        public class CharacterBuff : ICharacterBuff{
+        public class CharacterBuff : ICharacterBuff {
             #region /************* BuffTimer ************/
             private class BuffTimer {
                 private float time;

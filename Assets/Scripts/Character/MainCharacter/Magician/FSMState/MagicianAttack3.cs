@@ -9,7 +9,7 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class MagicianAttack3 : IFSMState {
                 public string id { get { return "attack3"; } }
                 private ICharacter character;
@@ -36,6 +36,6 @@ namespace Solider {
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
             } // end class MagicianAttack3 
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider

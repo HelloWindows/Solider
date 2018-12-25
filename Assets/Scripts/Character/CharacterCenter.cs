@@ -9,18 +9,30 @@ using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
-        public class CharacterCenter : ICharacterCenter {
+        public class CharacterCenter : ICharacterCenter, IDisposable {
+
+            private Action<CenterEvent> m_action;
+
+            public CharacterCenter() {
+            } // end CharacterCenter
+
             public void AddListener(Action<CenterEvent> action) {
-                throw new NotImplementedException();
+                m_action += action;
             } // end AddListener
+            
+            public void RemoveListener(Action<CenterEvent> action) {
+                m_action -= action;
+            } // end RemoveListener
 
             public void Broadcast(CenterEvent content) {
-                throw new NotImplementedException();
+                if (null == m_action) return;
+                // end if
+                m_action(content);
             } // end Broadcast
 
-            public void RemoveListener(Action<CenterEvent> action) {
-                throw new NotImplementedException();
-            } // end RemoveListener
+            public void Dispose() {
+                m_action = null;
+            } // end Dispose
         } // end class CharacterCenter 
     } // end namespace Character
 } // end namespace Solider

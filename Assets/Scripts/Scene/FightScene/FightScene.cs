@@ -19,7 +19,7 @@ using Solider.Manager;
 using Framework.Tools;
 using Framework.Config.Const;
 using Framework.Config.Game;
-using Solider.Character.Hero;
+using Solider.Character.MainCharacter;
 
 namespace Solider {
     namespace Scene {

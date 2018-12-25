@@ -6,9 +6,9 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Config.Const;
+using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
-using Solider.Manager;
 using Solider.Model.Interface;
 using Solider.UI.Interface;
 using System.Collections.Generic;
@@ -86,9 +86,9 @@ namespace Solider {
 
 
                 public void Freshen() {
-                    if (null == GameManager.playerInfo.pack) return;
+                    if (null == SceneManager.mainCharacter) return;
                     // end if
-                    Freshen(GameManager.playerInfo.pack.GetWearInfo());
+                    Freshen(SceneManager.mainCharacter.pack.GetWearInfo());
                 } // end Freshen
 
                 public void Reset(Transform parent) {

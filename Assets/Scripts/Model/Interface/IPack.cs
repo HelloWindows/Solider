@@ -17,7 +17,7 @@ namespace Solider {
                 /// </summary>
                 /// <param name="itemID"> 物品ID </param>
                 /// <param name="count"> 物品数量 </param>
-                void PackItem(string itemID, int count);
+                bool PackItem(string itemID, int count);
                 /// <summary>
                 /// 判断对应物品是否足够数量
                 /// </summary>

@@ -7,7 +7,7 @@
 using UnityEngine;
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class MagicianAvatar : CharacterAvatar {
                 public MagicianAvatar(Animation avatar) : base(avatar) {
                     string prefix = "Character/Hero/Magician/Animation/";
@@ -32,6 +32,6 @@ namespace Solider {
                     } // end for
                 } // end SwordsmanAvatar
             } // end class MagicianAvatar 
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider

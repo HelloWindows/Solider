@@ -52,11 +52,11 @@ namespace Solider {
                 } // end for
             } // end Pack
 
-            public void PackItem(string itemID, int count) {
-                if (packType != Configs.itemConfig.GetItemType(itemID)) return;
+            public bool PackItem(string itemID, int count) {
+                if (packType != Configs.itemConfig.GetItemType(itemID)) return false;
                 // end if
                 IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
-                if (null == info) return;
+                if (null == info) return false;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != itemID) continue; 
@@ -71,24 +71,24 @@ namespace Solider {
                     } else {
                         countList[i] = sum;
                         WriteGridInfo(i, idList[i], countList[i]);
-                        return;
-                    }// end if
+                        return true;
+                    } // end if
                 } // end for
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != "0") continue;
                     // end if                  
                     idList[i] = itemID;
-                    if (count >= info.maximum) {
+                    if (count > info.maximum) {
                         count -= info.maximum;
                         countList[i] = info.maximum;
                         WriteGridInfo(i, idList[i], countList[i]);
                         continue;
-                    } else {
-                        countList[i] = count;
-                    }// end if
+                    } // end if
+                    countList[i] = count;
                     WriteGridInfo(i, idList[i], countList[i]);
-                    return;
+                    return true;
                 } // end for
+                return false;
                 // 背包已满
             } // end PackItem
 

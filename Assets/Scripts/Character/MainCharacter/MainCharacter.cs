@@ -6,20 +6,23 @@
  *******************************************************************/
 using Framework.Interface.Input;
 using Solider.Character.Interface;
+using Solider.Model.Interface;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public abstract class MainCharacter : Character, IMainCharacter {
+                public IPackInfo pack { get; private set; }
                 public IIputInfo input { get; protected set; }
                 public ICharacterSkill skill { get { return m_skill; } }
                 public IMainCharacterSurface surface { get; protected set; }
 
                 private CharacterSkill m_skill;
 
-                protected MainCharacter(string id, GameObject gameObject) : base(id, gameObject) {
+                protected MainCharacter(string id, string roleType, GameObject gameObject) : base(id, gameObject) {
                     m_skill = new CharacterSkill(this);
+                    pack = new MainCharacterPack(roleType, center);
                 } // end MainCharacter
 
                 public override void Update(float deltaTime) {
@@ -28,13 +31,11 @@ namespace Solider {
                 } // end Update
 
                 public override void Dispose() {
+                    if (null != surface) surface.Dispose();
+                    // end if
                     base.Dispose();
-                    if (null != surface) {
-                        surface.Dispose();
-                        surface = null;
-                    } // end if
                 } // end Dispose
             } // end class MainCharacter
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character 
 } // end namespace Solider 

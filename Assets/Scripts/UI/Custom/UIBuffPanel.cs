@@ -81,6 +81,10 @@ namespace Solider {
                 } // end Update
 
                 private void FreshenIcon(Character.CenterEvent type) {
+                    Debug.Log(type);
+                    if (Character.CenterEvent.BuffChange != type) return;
+                    // end if
+                    FreshenIcon();
                 } // end FreshenIcon
 
                 private void FreshenIcon() {

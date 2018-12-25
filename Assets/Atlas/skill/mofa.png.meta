@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: skill
   userData: 
   assetBundleName: atlas/res_sprite.unity3d
   assetBundleVariant: 

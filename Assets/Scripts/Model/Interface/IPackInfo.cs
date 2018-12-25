@@ -24,7 +24,7 @@ namespace Solider {
                 /// </summary>
                 /// <param name="id"> 物品id </param>
                 /// <param name="count"> 物品数量 </param>
-                void PackItem(string id, int count);
+                bool PackItem(string id, int count);
             } // end class IPackInfo
         } // end namespace Interface 
     } // end namespace Model

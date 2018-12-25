@@ -12,13 +12,14 @@ using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class SwordmanCharacter : MainCharacter {
 
-                public SwordmanCharacter(string id, Vector3 pos, string name) : base(id, ObjectTool.InstantiateGo(name, 
-                    Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one)) {
+                public SwordmanCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.SWORDMAN,
+                    ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), 
+                        null, pos, Vector3.zero, Vector3.one)) {
                     input = new CrossInput();
-                    m_info = new CharacterInfo(name, ConstConfig.SWORDMAN, config.initAttribute, center);
+                    m_info = new MainCharacterInfo(name, ConstConfig.SWORDMAN, this);
                     m_avatar = new SwordmanAvatar(m_gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
                     Transform[] allChildren = m_transform.GetComponentsInChildren<Transform>();
@@ -43,11 +44,10 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new MainCharacterSurface(center, wingTrans, liftTrans, furlTrans, meshRenderer);
-                    surface.Freshen();
+                    surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
                     m_fsmSystem = new SwordmanFSM(this);
                 } // end SwordmanCharacter
             } // end class SwordmanCharacter
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
-} // end namespace Custom 
+} // end namespace Solider 

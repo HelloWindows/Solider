@@ -22,13 +22,14 @@ namespace Solider {
             public ICharacterBuff buff { get { return m_buff; } }
             public ICharacterAudio audio { get { return m_audio; } }
             public ICharacterAvatar avatar { get { return m_avatar; } }
+            public ICharacterCenter center { get { return m_center; } }
             public ICharacterConfig config { get; private set; }
-            public ICharacterCenter center { get; private set; }
             public Vector3 position { get { return null == m_transform ? Vector3.zero : m_transform.position; } }
 
             private CharacterMove m_move;
             private CharacterBuff m_buff;
             private CharacterAduio m_audio;
+            private CharacterCenter m_center;
 
             protected CharacterInfo m_info;
             protected CharacterAvatar m_avatar;
@@ -45,6 +46,7 @@ namespace Solider {
                 gameObject.name = hashID;
                 config = Configs.characterConfig.GetCharacterConfig(id);
 
+                m_center = new CharacterCenter();
                 m_move = new CharacterMove(m_transform);
                 m_buff = new CharacterBuff(center);
                 m_audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
@@ -58,17 +60,15 @@ namespace Solider {
 
             public virtual void Dispose() {
                 isDisposed = true;
-                if (null != m_audio) {
-                    m_audio.Dispose();
-                    m_audio = null;
-                } // end if
-                if (null != m_info) {
-                    m_info.Dispose();
-                    m_info = null;
-                } // end if
-                m_transform = null;
+                if (null != m_center) m_center.Dispose();
+                // end if
+                if (null != m_audio) m_audio.Dispose();
+                // end if
+                if (null != m_info) m_info.Dispose();
+                // end if
                 if (null != m_gameObject) Object.Destroy(m_gameObject);
                 // end if
+                m_transform = null;
             } // end Dispose
         } // end class Character
     } // end namespace Character 

@@ -23,8 +23,20 @@ namespace Solider {
 
         namespace Interface {
             public interface ICharacterCenter {
+                /// <summary>
+                /// 监听广播
+                /// </summary>
+                /// <param name="action"></param>
                 void AddListener(Action<CenterEvent> action);
+                /// <summary>
+                /// 移除监听
+                /// </summary>
+                /// <param name="action"></param>
                 void RemoveListener(Action<CenterEvent> action);
+                /// <summary>
+                /// 广播
+                /// </summary>
+                /// <param name="content"></param>
                 void Broadcast(CenterEvent content);
             } // end interface ICharacterCenter
         } // end namespace Interface

@@ -16,10 +16,10 @@ namespace Solider {
                 /// <param name="type"> 装备类型 </param>
                 void TakeOffEquip(string type);
                 /// <summary>
-                /// 根据装备类型获取装备信息
+                /// 根据装备类型获取穿戴装备信息
                 /// </summary>
                 /// <param name="type"> 装备类型 </param>
-                /// <returns> 装备信息 </returns>
+                /// <returns> 穿戴装备信息 </returns>
                 IEquipInfo GetEquipInfo(string type);
             } // end interface IWearInfo
         } // end namespace Interface

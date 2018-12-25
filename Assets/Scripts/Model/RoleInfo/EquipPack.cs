@@ -8,9 +8,9 @@ using Framework.Config;
 using Framework.Config.Const;
 using Framework.Manager;
 using System.Collections.Generic;
-using Framework.Broadcast;
 using Solider.Model.Interface;
 using Solider.Config.Interface;
+using Solider.Character.Interface;
 
 namespace Solider {
     namespace Model {
@@ -22,6 +22,7 @@ namespace Solider {
 
             private string[] idList;
             private Dictionary<string, IEquipInfo> wearDict;
+            private ICharacterCenter center;
 
             public bool IsFull {
                 get {
@@ -33,11 +34,12 @@ namespace Solider {
                 } // end get
             } // end IsFull
 
-            public EquipPack(string username, int roleindex, string packType, string roleType) {
+            public EquipPack(string username, int roleindex, string packType, string roleType, ICharacterCenter center) {
                 this.username = username;
                 this.roleindex = roleindex;
                 this.packType = packType;
                 this.roleType = roleType;
+                this.center = center;
                 idList = new string[ConstConfig.GRID_COUNT];
 
                 #region ******** 初始化背包信息 ********
@@ -69,16 +71,17 @@ namespace Solider {
                 #endregion
             } // end Pack
 
-            public void PackItem(string itemID, int count) {
-                if (packType != Configs.itemConfig.GetItemType(itemID)) return;
+            public bool PackItem(string itemID, int count) {
+                if (packType != Configs.itemConfig.GetItemType(itemID)) return false;
                 // end if
                 for (int i = 0; i < idList.Length; i++) {
                     if (idList[i] != "0") continue;
                     // end if
                     idList[i] = itemID;
                     WriteGridInfo(i, idList[i], 1);
-                    return;
+                    return true;
                 } // end for
+                return false;
             } // end PackItem
 
             public bool EnoughWithIDAndCount(string itemID, int count) {
@@ -104,8 +107,10 @@ namespace Solider {
                 // end if
                 wearDict[type] = info;
                 WriteGridInfo(gid, idList[gid], 0);
-                SceneManager.mainCharacter.center.Broadcast(Character.CenterEvent.ReloadEquip);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, info.id);
+                if (null == center) return;
+                // end if
+                center.Broadcast(Character.CenterEvent.ReloadEquip);
             } // end UseItemWithGid
 
             public void ExpendItemWithID(string itemID, int count) {
@@ -175,10 +180,14 @@ namespace Solider {
             public void TakeOffEquip(string type) {
                 if (!wearDict.ContainsKey(type) || null == wearDict[type]) return;
                 // end if
+                if (IsFull) return;
+                // end if
                 PackItem(wearDict[type].id, 0);
                 wearDict[type] = null;
-                SceneManager.mainCharacter.center.Broadcast(Character.CenterEvent.ReloadEquip);
                 SqliteManager.SetWearInfoWithID(username, roleindex, type, "0");
+                if (null == center) return;
+                // end if
+                center.Broadcast(Character.CenterEvent.ReloadEquip);
             } // end TakeOffEquip
 
             public IEquipInfo GetEquipInfo(string type) {

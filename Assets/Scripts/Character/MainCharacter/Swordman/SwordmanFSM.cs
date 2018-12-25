@@ -7,13 +7,12 @@
 using Framework.FSM;
 using Framework.FSM.Interface;
 using Framework.Tools;
-using Solider.Character.Hore;
 using Solider.Character.Interface;
 using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class SwordmanFSM : IFSMSystem {
                 private IFSMSystem fsmSystem;
                 private Dictionary<string, IFSMState> baseStateDict;
@@ -21,13 +20,13 @@ namespace Solider {
                 public SwordmanFSM(IMainCharacter character) {
                     fsmSystem = new FSMSystem();
                     baseStateDict = new Dictionary<string, IFSMState>();
-                    PushBaseState(new HoreWalk(character));
-                    PushBaseState(new HoreIdle(character));
-                    PushBaseState(new HoreRun(character));
-                    PushBaseState(new HoreWait(character));
+                    PushBaseState(new MainCharacterWalk(character));
+                    PushBaseState(new MainCharacterIdle(character));
+                    PushBaseState(new MainCharacterRun(character));
+                    PushBaseState(new MainCharacterWait(character));
                     PushBaseState(new SwordmanAttack1(character));
-                    PushBaseState(new HoreDie(character));
-                    PushBaseState(new HoreHurt(character));
+                    PushBaseState(new MainCharacterDie(character));
+                    PushBaseState(new MainCharacterHurt(character));
                 } // end SwordmanFSM
 
                 public void PerformTransition(string stateID) {
@@ -58,6 +57,6 @@ namespace Solider {
                     baseStateDict[state.id] = state;
                 } // end PushBaseState
             } // end class SwordmanFSM
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider 

@@ -4,19 +4,17 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Broadcast;
 using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.Manager;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class MainCharacterSurface : IMainCharacterSurface {
                 private GameObject wingGo;
                 private GameObject weaponGo;
@@ -25,23 +23,16 @@ namespace Solider {
                 private Transform liftTrans; // 拿起武器的位置
                 private Transform furlTrans; // 收起武器的位置
                 private SkinnedMeshRenderer renderer;
-                private ICharacterCenter center;
-                private Dictionary<string, string> checkDict;
+                private IMainCharacter mainCharacter;
 
-                public MainCharacterSurface(ICharacterCenter center, Transform wingTrans, Transform liftTrans, Transform furlTrans, SkinnedMeshRenderer renderer) {
-                    this.center = center;
+                public MainCharacterSurface(IMainCharacter mainCharacter, Transform wingTrans, Transform liftTrans, Transform furlTrans, SkinnedMeshRenderer renderer) {
+                    this.mainCharacter = mainCharacter;
                     this.wingTrans = wingTrans;
                     this.liftTrans = liftTrans;
                     this.furlTrans = furlTrans;
                     this.renderer = renderer;
-                    checkDict = new Dictionary<string, string>();
-                    for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
-                        checkDict[ConstConfig.EquipTypeList[i]] = "0";
-                    } // end for
-                    checkDict[ConstConfig.WEAPON] = "-1";
-                    if (null == center) return;
-                    // end if
-                    center.AddListener(Freshen);
+                    mainCharacter.center.AddListener(Freshen);
+                    Freshen();
                 } // end MainCharacterSurface
 
                 public void FurlWeapon() {
@@ -61,12 +52,15 @@ namespace Solider {
                 } // end LiftWeapon
 
                 public void Freshen() {
-                    ReloadWing(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.WING));
-                    ReloadArmor(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.ARMOR));
-                    ReloadWeapon(GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(ConstConfig.WEAPON));
+                    ReloadWing(mainCharacter.pack.GetWearInfo().GetEquipInfo(ConstConfig.WING));
+                    ReloadArmor(mainCharacter.pack.GetWearInfo().GetEquipInfo(ConstConfig.ARMOR));
+                    ReloadWeapon(mainCharacter.pack.GetWearInfo().GetEquipInfo(ConstConfig.WEAPON));
                 } // end ReloadEquip
 
                 private void Freshen(CenterEvent type) {
+                    if (CenterEvent.ReloadEquip != type) return;
+                    // end if
+                    Freshen();
                 } // end Freshen
 
                 private void ReloadWeapon(IEquipInfo info) {
@@ -126,11 +120,11 @@ namespace Solider {
                 } // end ReloadArmor
 
                 public void Dispose() {
-                    if (null == center) return;
+                    if (null == mainCharacter) return;
                     // end if
-                    center.RemoveListener(Freshen);
+                    mainCharacter.center.RemoveListener(Freshen);
                 } // end Dispose
             } // end class MainCharacterSurface
-        } // end namespace Hero 
+        } // end namespace MainCharacter 
     } // end namespace Character
-} // end namespace Custom 
+} // end namespace Solider 

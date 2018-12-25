@@ -45,7 +45,7 @@ namespace Solider {
                 private void UpdateShowInfo() {
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         string type = ConstConfig.EquipTypeList[i];
-                        IEquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(type);
+                        IEquipInfo info = SceneManager.mainCharacter.pack.GetWearInfo().GetEquipInfo(type);
                         if (null == info) {
                             cellDict[type].HideItem();
                             continue;
@@ -60,7 +60,7 @@ namespace Solider {
                         infoPanel.SetActive(false);
                         return;
                     } // end if
-                    IEquipInfo info = GameManager.playerInfo.pack.GetWearInfo().GetEquipInfo(type);
+                    IEquipInfo info = SceneManager.mainCharacter.pack.GetWearInfo().GetEquipInfo(type);
                     if (null == info) return;
                     // end if
                     selector.transform.position = cellDict[type].transform.position;
@@ -70,7 +70,7 @@ namespace Solider {
                 } // end OnPointerDownCell
 
                 private void OnClickTakeOffBtn() {
-                    GameManager.playerInfo.pack.GetWearInfo().TakeOffEquip(selected);
+                    SceneManager.mainCharacter.pack.GetWearInfo().TakeOffEquip(selected);
                     selected = "";
                     UpdateShowInfo();
                     selector.SetActive(false);
@@ -90,7 +90,7 @@ namespace Solider {
                     infoText = transform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
-                    display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType, GameManager.playerInfo.pack.GetWearInfo()));
+                    display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType, SceneManager.mainCharacter.pack.GetWearInfo()));
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         string type = ConstConfig.EquipTypeList[i];

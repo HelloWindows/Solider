@@ -21,7 +21,7 @@ using Solider.Character.NPC;
 using Framework.Config.Const;
 using Framework.Config.Game;
 using Framework.Custom.View;
-using Solider.Character.Hero;
+using Solider.Character.MainCharacter;
 
 namespace Solider {
     namespace Scene {

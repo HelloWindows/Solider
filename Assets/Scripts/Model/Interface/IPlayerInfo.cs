@@ -12,7 +12,6 @@ namespace Solider {
                 string rolename { get; }
                 string roleType { get; }
                 string username { get; }
-                IPackInfo pack { get; }
                 void LoginGame(string username);
                 void SelectedRole(int roleindex, string rolename, string roleType);
             } // end class IPlayerInfo 

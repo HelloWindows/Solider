@@ -41,7 +41,7 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     stuffArray = new UICell[4];
                     cellArray = new UICell[ConstConfig.GRID_COUNT];
-                    blueprintPack = GameManager.playerInfo.pack.GetItemPack(ConstConfig.PRINT);
+                    blueprintPack = SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.PRINT);
                     gameObject = ObjectTool.InstantiateGo("ForgePanelUI", "UI/Common/ForgePanelUI", parent);
                     buleprint = transform.Find("Blueprint/Print").gameObject.AddComponent<UICell>();
                     for (int i = 0; i < cellArray.Length; i++) {
@@ -86,7 +86,7 @@ namespace Solider {
                             // end if
                             stuffArray[i].transform.localPosition = new Vector3((x - 80 * i), 0, 0);
                             stuffArray[i].gameObject.SetActive(true);
-                            int numerator = GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).GetCountForID(stuff.id);
+                            int numerator = SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.STUFF).GetCountForID(stuff.id);
                             stuffArray[i].SetUIItem(Resources.Load<Sprite>(stuff.spritepath), 0);
                             stuffArray[i].item.SetPercent(numerator, stuffCount);
                             continue;
@@ -105,7 +105,7 @@ namespace Solider {
                             SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择制作图！");
                         return;
                     } // end if
-                    if (GameManager.playerInfo.pack.GetItemPack(ConstConfig.EQUIP).IsFull) {
+                    if (SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.EQUIP).IsFull) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                             SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("装备背包已满！");
                         return;
@@ -119,13 +119,13 @@ namespace Solider {
                                 SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
                             return;
                         } // end if
-                        if (false == GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(stuffID, stuffCount)) {
+                        if (false == SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(stuffID, stuffCount)) {
                             ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                                 SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("材料不够！");
                             return;
                         } // end if
                     } // end for
-                    GameManager.playerInfo.pack.GetItemPack(ConstConfig.PRINT).ExpendItemWithID(printInfo.id, 1);
+                    SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.PRINT).ExpendItemWithID(printInfo.id, 1);
                     for (int i = 0; i < printInfo.stuffNumber; i++) {
                         string stuffID = "";
                         int stuffCount = 0;
@@ -135,9 +135,9 @@ namespace Solider {
                                 SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
                             return;
                         } // end if
-                        GameManager.playerInfo.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(stuffID, stuffCount);
+                        SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(stuffID, stuffCount);
                     } // end for
-                    GameManager.playerInfo.pack.GetItemPack(ConstConfig.EQUIP).PackItem(printInfo.targetID, 1);
+                    SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.EQUIP).PackItem(printInfo.targetID, 1);
                     printInfo = null;
                     buleprint.SetUIItem(null, 0);
                     for (int i = 0; i < stuffArray.Length; i++) {

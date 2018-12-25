@@ -7,13 +7,12 @@
 using Framework.FSM;
 using Framework.FSM.Interface;
 using Framework.Tools;
-using Solider.Character.Hore;
 using Solider.Character.Interface;
 using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        namespace Hero {
+        namespace MainCharacter {
             public class ArcherFSM : IFSMSystem {
                 private IFSMSystem fsmSystem;
                 private Dictionary<string, IFSMState> baseStateDict;
@@ -21,13 +20,13 @@ namespace Solider {
                 public ArcherFSM(IMainCharacter character) {
                     fsmSystem = new FSMSystem();
                     baseStateDict = new Dictionary<string, IFSMState>();
-                    PushBaseState(new HoreWait(character));
-                    PushBaseState(new HoreWalk(character));
-                    PushBaseState(new HoreIdle(character));
-                    PushBaseState(new HoreRun(character));
+                    PushBaseState(new MainCharacterWait(character));
+                    PushBaseState(new MainCharacterWalk(character));
+                    PushBaseState(new MainCharacterIdle(character));
+                    PushBaseState(new MainCharacterRun(character));
                     PushBaseState(new ArcherAttack(character));
-                    PushBaseState(new HoreDie(character));
-                    PushBaseState(new HoreHurt(character));
+                    PushBaseState(new MainCharacterDie(character));
+                    PushBaseState(new MainCharacterHurt(character));
                 } // end ArcherFSM
 
                 public void PerformTransition(IFSMState state) {
@@ -57,6 +56,6 @@ namespace Solider {
                 public void PerformTransition(string stateID) {
                 } // end PerformTransition
             } // end class Archer
-        } // end namespace Hero
+        } // end namespace MainCharacter
     } // end namespace Character
 } // end namespace Solider 
