@@ -15,7 +15,7 @@ namespace Framework {
                 /// <summary>
                 /// 点击攻击按钮
                 /// </summary>
-                ClickAttack = 1
+                OnAttack = 1
             } // end enum ClickEvent
 
             public interface IInputCenter {

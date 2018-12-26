@@ -13,28 +13,28 @@ namespace Solider {
             public class SwordmanAttack4 : IFSMState {
                 public string id { get { return "attack3"; } }
                 private float step;
-                private ICharacter character;
+                private IMainCharacter mainCharacter;
                 private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_4"; } }
 
-                public SwordmanAttack4( ICharacter character) {
+                public SwordmanAttack4(IMainCharacter mainCharacter) {
                     step = 2f;
-                    this.character = character;
-                } // end SwordmanAttack1
+                    this.mainCharacter = mainCharacter;
+                } // end SwordmanAttack4
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCacheForPath(id, soundPath);
-                    character.avatar.PlayQueued(new string[] { "attack4_1", "attack4_2", "attack4_3" });
+                    mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
+                    mainCharacter.avatar.PlayQueued(new string[] { "attack4_1", "attack4_2", "attack4_3" });
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                    if (false == mainCharacter.avatar.isPlaying) {
+                        mainCharacter.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    if (character.avatar.IsPlaying("attack4_2")) {
-                        character.move.StepForward(step, UnityEngine.Time.deltaTime);
+                    if (mainCharacter.avatar.IsPlaying("attack4_2")) {
+                        mainCharacter.move.StepForward(step, UnityEngine.Time.deltaTime);
                     } // end if
                 } // end Act
 

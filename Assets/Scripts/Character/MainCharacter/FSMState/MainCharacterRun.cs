@@ -16,43 +16,40 @@ namespace Solider {
             public class MainCharacterRun : IFSMState {
                 public string id { get { return "run"; } }
                 private string anim { get { return "run"; } }
-                private IMainCharacter character;
+                private IMainCharacter mainCharacter;
                 private float[] timeArr;
                 private bool[] signArr;
                 private string soundPath;
 
-                public MainCharacterRun(IMainCharacter character) {
-                    this.character = character;
+                public MainCharacterRun(IMainCharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };
-                    character.config.TryGetSoundPath("run", out soundPath);
+                    mainCharacter.config.TryGetSoundPath("run", out soundPath);
                 } // end MainCharacterRun
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play(anim);
+                    mainCharacter.avatar.Play(anim);
                     for (int i = 0; i < signArr.Length; i++) {
                         signArr[i] = false;
                     } // end for
+                    mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (character.input.joystickDir.magnitude == 0f) {
-                        character.fsm.PerformTransition(new MainCharacterWait(character));
+                    if (mainCharacter.input.joystickDir.magnitude == 0f) {
+                        mainCharacter.fsm.PerformTransition(new MainCharacterWait(mainCharacter));
                         return;
                     } // end if
-                    if (character.input.GetButtonDown(ButtonCode.ATTACK)) {
-                        character.fsm.PerformTransition("attack");
-                        return;
-                    } // end if
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition(this);
+                    if (false == mainCharacter.avatar.isPlaying) {
+                        mainCharacter.fsm.PerformTransition(this);
                         return;
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    character.move.MoveForward(character.input.joystickDir, Time.deltaTime);
-                    AnimationState state = character.avatar.GetCurrentState(anim);
+                    mainCharacter.move.MoveForward(mainCharacter.input.joystickDir, Time.deltaTime);
+                    AnimationState state = mainCharacter.avatar.GetCurrentState(anim);
                     if (null == state) return;
                     // end if
                     for (int i = 0; i < signArr.Length; i++) {
@@ -60,15 +57,22 @@ namespace Solider {
                     } // end for
                 } // end Act
 
-                public void DoBeforeLeaving() {           
+                public void DoBeforeLeaving() {
+                    mainCharacter.input.RemoveListener(OnClickAttack);
                 } // end DoBeforeLeaving
+
+                private void OnClickAttack(ClickEvent type) {
+                    if (ClickEvent.OnAttack != type) return;
+                    // end if
+                    mainCharacter.fsm.PerformTransition("attack");
+                } // end OnClickAttack
 
                 private void PlayRunEffect(int index, float normalizedTime) {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if
                     signArr[index] = true;
-                    character.audio.PlaySoundCacheForPath("run", soundPath);
-                    EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
+                    mainCharacter.audio.PlaySoundCacheForPath("run", soundPath);
+                    EffectTool.ShowEffectFromPool("runEffect", 0.5f, mainCharacter.position);
                 } // end PlayRunSound
             } // end class MainCharacterRun
         } // end namespace MainCharacter

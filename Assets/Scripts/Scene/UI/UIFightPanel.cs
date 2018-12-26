@@ -9,7 +9,6 @@ using Framework.FSM.Interface;
 using Framework.Tools;
 using Solider.UI.Custom;
 using UnityEngine;
-using Framework.Broadcast;
 using Framework.Manager;
 
 namespace Solider {
@@ -37,7 +36,7 @@ namespace Solider {
                     transform = gameObject.GetComponent<RectTransform>();
                     buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
                     transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });
-                    transform.Find("AttackBtn").gameObject.AddComponent<UIButtonCode>().SetButtonCode(ButtonCode.ATTACK);
+                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickAttackBtn);
                     skillPanel = new UISkillPanel(transform);
                     GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
@@ -57,6 +56,10 @@ namespace Solider {
                     if (null != buffPanel) buffPanel.Dispose();
                     // end if
                 } // end DoBeforeLeaving
+
+                private void OnClickAttackBtn() {
+                    SceneManager.mainCharacter.input.Broadcast(ClickEvent.OnAttack);
+                } // end OnClickAttackBtn
 
                 private void OnClickBarBtn() {
                 } // end OnClickBarBtn

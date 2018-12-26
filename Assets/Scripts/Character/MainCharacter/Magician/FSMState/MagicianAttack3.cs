@@ -12,21 +12,21 @@ namespace Solider {
         namespace MainCharacter {
             public class MagicianAttack3 : IFSMState {
                 public string id { get { return "attack3"; } }
-                private ICharacter character;
+                private ICharacter mainCharacter;
                 private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_2"; } }
 
-                public MagicianAttack3(ICharacter character) {
-                    this.character = character;
+                public MagicianAttack3(ICharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                 } // end MagicianAttack2
 
                 public void DoBeforeEntering() {
-                    character.audio.PlaySoundCacheForPath(id, soundPath);
-                    character.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2", "attack3_3" });
+                    mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
+                    mainCharacter.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2", "attack3_3" });
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                    if (false == mainCharacter.avatar.isPlaying) {
+                        mainCharacter.fsm.PerformTransition("wait");
                     } // end if   
                 } // end Reason
 

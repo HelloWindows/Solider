@@ -12,23 +12,9 @@ namespace Solider {
     namespace Character {
         namespace MainCharacter {
             public class SwordmanAttack1 : IFSMState {
-                private enum AttackMode : int {
-                    /// <summary>
-                    /// 默认
-                    /// </summary>
-                    DEFAULT = 0, 
-                    /// <summary>
-                    /// 连击
-                    /// </summary>
-                    CAROM = 1,
-                    /// <summary>
-                    /// 失效
-                    /// </summary>
-                    NEGATE = 2 
-                } // end enum AttackMode
-                public string id { get { return "attack1"; } }
+                public string id { get { return "attack"; } }
                 private float step;
-                private AttackMode mode;
+                private bool isCarom;
                 private IMainCharacter mainCharacter;
                 private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_1"; } }
 
@@ -38,41 +24,39 @@ namespace Solider {
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
-                    mode = AttackMode.DEFAULT;
+                    isCarom = false;
                     mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
                     mainCharacter.avatar.PlayQueued(new string[] { "attack1_1", "attack1_2" });
+                    mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 
                 public void Reason() {
                     if (mainCharacter.avatar.isPlaying) return;
                     // end if
-                    if (mode != AttackMode.NEGATE) {
-                        switch (mode) {
-                            default:
-                                mainCharacter.avatar.Play("attack1_3");
-                                break;
-                            case AttackMode.CAROM:
-                                mainCharacter.fsm.PerformTransition(new SwordmanAttack2(mainCharacter));
-                                break;
-                        } // end switch
-                        mode = AttackMode.NEGATE;
+                    if (isCarom) {
+                        mainCharacter.fsm.PerformTransition(new SwordmanAttack2(mainCharacter));
                     } else {
+                        mainCharacter.avatar.Play("attack1_3");
                         mainCharacter.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    if (mainCharacter.avatar.IsPlaying("attack1_2")) {
+                    if (mainCharacter.avatar.IsPlaying("attack1_2"))  {
                         mainCharacter.move.StepForward(step, UnityEngine.Time.deltaTime);
-                        if (mode != AttackMode.DEFAULT) return;
-                        // end if
-                        if (mainCharacter.input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;
-                        // end if
                     } // end if
                 } // end Act
 
                 public void DoBeforeLeaving() {
+                    mainCharacter.input.RemoveListener(OnClickAttack);
                 } // end DoBeforeLeaving
+
+                private void OnClickAttack(ClickEvent type) {
+                    if (isCarom || ClickEvent.OnAttack != type) return;
+                    // end if
+                    if (mainCharacter.avatar.IsPlaying("attack1_2")) isCarom = true;
+                    // end if
+                } // end OnClickAttack
             } // end class SwordmanAttack1
         } // end namespace MainCharacter
     } // end namespace Character

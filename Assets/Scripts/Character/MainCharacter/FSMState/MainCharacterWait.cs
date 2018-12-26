@@ -14,24 +14,21 @@ namespace Solider {
             public class MainCharacterWait : IFSMState {
                 public string id { get { return "wait"; } }
                 private string anim { get { return "wait"; } }
-                private IMainCharacter character;
+                private IMainCharacter mainCharacter;
 
-                public MainCharacterWait(IMainCharacter character) {
-                    this.character = character;
+                public MainCharacterWait(IMainCharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                 } // end MainCharacterWait
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play(anim);
-                    character.surface.LiftWeapon();
+                    mainCharacter.avatar.Play(anim);
+                    mainCharacter.surface.LiftWeapon();
+                    mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (character.input.joystickDir.magnitude > 0f) {
-                        character.fsm.PerformTransition("run");
-                        return;
-                    } // end if
-                    if (character.input.GetButtonDown(ButtonCode.ATTACK)) {
-                        character.fsm.PerformTransition("attack");
+                    if (mainCharacter.input.joystickDir.magnitude > 0f) {
+                        mainCharacter.fsm.PerformTransition("run");
                         return;
                     } // end if
                 } // end Reason
@@ -40,7 +37,14 @@ namespace Solider {
                 } // end Act
 
                 public void DoBeforeLeaving() {
+                    mainCharacter.input.RemoveListener(OnClickAttack);
                 } // end DoBeforeLeaving
+
+                private void OnClickAttack(ClickEvent type) {
+                    if (ClickEvent.OnAttack != type) return;
+                    // end if
+                    mainCharacter.fsm.PerformTransition("attack");
+                } // end OnClickAttack
             } // end class MainCharacterWait
         } // end namespace MainCharacter
     } // end namespace Character

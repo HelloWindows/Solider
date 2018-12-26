@@ -48,14 +48,18 @@ namespace Framework {
                 public void RemoveListener(Action<ClickEvent> action) {
                     if (null == m_action) return;
                     // end if
+                    m_action -= action;
                 } // end RemoveListener
 
                 public void Broadcast(ClickEvent content) {
+                    if (null == m_action) return;
+                    // end if
+                    m_action(content);
                 } // end Broadcast
 
                 public void Dispose() {
                     m_action = null;
-                } // end 
+                } // end Dispose
             } // end class CrossInput
         } // end namespace Input   
     } // end namespace Custom 

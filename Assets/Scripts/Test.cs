@@ -18,45 +18,34 @@ using Solider.UI.Custom;
 using UnityEngine.UI;
 using Solider.Scene.UI;
 using Framework.FSM.Interface;
+using Framework.Interface.Input;
 
 namespace Test {
 
-    public class SS : MonoBehaviour {
-        public TT tt { get { return _tt; } }
 
-        private TT _tt;
+    public class TT : UnityEngine.Object {
+        public int i;
 
-        private void Awake() {
-            _tt = new TT();
-        }
-
-        private void OnDestroy()
-        {
-            _tt = null;
-        }
-    } // end class SS 
-
-    public class TT {
-        public int i { get { return 1; } }
+        public TT() {
+            i = 10;
+        } // end TT
     } // end class TT
 
     public class Test : MonoBehaviour {
 
-        public SS ss;
-        public TT tt;
-        public SS ssss;
+        private TT tt;
 
         private void Start() {
-            ss = new GameObject().AddComponent<SS>();
-            tt = ss.tt;
-            ssss = ss;
-            Destroy(ss.gameObject);
+            tt = new TT();
+            Debug.Log(tt);
         } // end Start
 
         private void Update() {
-            Debug.Log(ss);
-            Debug.Log(tt);
-            Debug.Log(ssss.tt);
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Destroy(tt);
+            } // end if
+            //Debug.Log(tt);
         } // end Update
 
         public void OnClick(string name) {
