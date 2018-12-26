@@ -44,15 +44,14 @@ namespace Framework {
             } // end Start
 
             private void Update() {
-                float deltaTime = Time.deltaTime;
-                m_scene.Update(deltaTime);
+                m_scene.Update();
                 if (GameManager.state == GameState.PLAY)
-                    InstanceMgr.Update(Time.deltaTime);
+                    InstanceMgr.Update();
                 // end if
             } // end Update
 
             private void LateUpdate() {
-                m_scene.LateUpdate(Time.deltaTime);
+                m_scene.LateUpdate();
             } // end LateUpdate
         } // end class SceneManager
     } // end namespace Manager 

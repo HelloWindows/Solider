@@ -11,8 +11,7 @@ namespace Framework {
                 /// <summary>
                 /// 运行
                 /// </summary>
-                /// <param name="deltaTime"> 时间变量 </param>
-                void Update(float deltaTime);
+                void Update();
             } // end class IFSMSystem 
         } // end namespace Interface 
     } // end namespace FSM

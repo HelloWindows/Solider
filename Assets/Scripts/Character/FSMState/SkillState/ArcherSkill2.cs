@@ -39,13 +39,13 @@ namespace Solider {
                     character.avatar.PlayQueued(new string[] { "skill2_1", "skill2_2", "skill2_3" });
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
                 public void DoBeforeLeaving() {

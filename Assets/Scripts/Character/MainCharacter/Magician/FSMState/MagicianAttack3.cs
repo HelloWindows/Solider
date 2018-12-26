@@ -24,13 +24,13 @@ namespace Solider {
                     character.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2", "attack3_3" });
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if   
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
                 public void DoBeforeLeaving() {

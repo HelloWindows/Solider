@@ -41,10 +41,10 @@ namespace Solider {
                 uiPanelFSM.PerformTransition(new UISelectRolePanel());
             } // end Initialize
 
-            public void Update(float deltaTime) {
+            public void Update() {
             } // end Update
 
-            public void LateUpdate(float deltaTime) {
+            public void LateUpdate() {
             } // end LateUpdate
 
             public void Dispose() {

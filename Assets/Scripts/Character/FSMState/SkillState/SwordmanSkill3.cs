@@ -40,13 +40,13 @@ namespace Solider {
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
                 public void DoBeforeLeaving() {

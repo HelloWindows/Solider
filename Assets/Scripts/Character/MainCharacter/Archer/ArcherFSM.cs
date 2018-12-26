@@ -41,8 +41,8 @@ namespace Solider {
                     fsmSystem.TransitionPrev();
                 } // end TransitionPrev
 
-                public void Update(float deltaTime) {
-                    fsmSystem.Update(deltaTime);
+                public void Update() {
+                    fsmSystem.Update();
                 } // end Update
 
                 private void PushBaseState(IFSMState state) {

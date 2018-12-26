@@ -6,7 +6,6 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Config.Const;
-using Framework.Custom;
 using Framework.Tools;
 using UnityEngine;
 
@@ -18,7 +17,6 @@ namespace Solider {
                 public MagicianCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.MAGICIAN,
                     ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), 
                         null, pos, Vector3.zero, Vector3.one)) {
-                    input = new CrossInput();              
                     m_info = new MainCharacterInfo(name, ConstConfig.MAGICIAN, this);
                     m_avatar = new MagicianAvatar(m_gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -44,9 +42,24 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
+                    m_surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
                     m_fsmSystem = new MagicianFSM(this);
                 } // end MagicianCharacter
+
+                public override void Update() {
+                    m_info.Update();
+                    m_fsmSystem.Update();
+                } // end Update
+
+                public override void Dispose() {
+                    if (null != m_info) m_info.Dispose();
+                    // end if
+                    if (null != m_avatar) m_avatar.Dispose();
+                    // end if
+                    if (null != m_surface) m_surface.Dispose();
+                    // end if
+                    base.Dispose();
+                } // end Dispose
             } // end class MagicianCharacter 
         } // end namespace MainCharacter
     } // end namespace Character

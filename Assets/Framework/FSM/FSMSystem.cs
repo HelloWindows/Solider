@@ -15,11 +15,11 @@ namespace Framework {
             public FSMSystem() {
             } // end FSMSystem
 
-            public void Update(float deltaTime) {
+            public void Update() {
                 if (null == currentState) return;
                 // end if
-                currentState.Reason(deltaTime);
-                currentState.Act(deltaTime);
+                currentState.Reason();
+                currentState.Act();
             } // end Update
 
             public void TransitionPrev() {

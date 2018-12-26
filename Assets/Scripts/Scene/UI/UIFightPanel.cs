@@ -43,12 +43,12 @@ namespace Solider {
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     buffPanel.Update();
                     skillPanel.Update();
                 } // end Act
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason
 
                 public void DoBeforeLeaving() {

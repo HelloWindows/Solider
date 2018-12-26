@@ -33,7 +33,7 @@ namespace Framework {
                     Go.AddComponent<AudioListener>();
                 } // end MainCamera
 
-                public void LateUpdate(float deltaTime) {
+                public void LateUpdate() {
                     if (null == target) return;
                     // end if
                     //目标物体要到达的目标位置 = 当前物体的位置 + 当前摄像机的位置
@@ -43,7 +43,7 @@ namespace Framework {
                     //使用Quaternion.LookRotation方法可以计算出目标位置旋转后相机需要旋转的角度
                     Quaternion angle = Quaternion.LookRotation(target.position + Vector3.up * 0.5f - camera.transform.position);
                     //使用球形差值计算可以得到从当前的位置旋转到移动后的位置
-                    camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, angle, smoothing * deltaTime);
+                    camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, angle, smoothing * Time.deltaTime);
                 } // end LateUpdate
 
                 public void SetTarget(ICharacter target) {

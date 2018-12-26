@@ -4,72 +4,59 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using System;
 using Framework.Interface.Input;
-using Framework.Manager;
 using Solider.UI.Custom;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Framework {
     namespace Custom {
-        public class CrossInput : IIputInfo {
-            public Vector2 joystickDir {
-                get {
+        namespace Input {
+            public class CrossInput : IInputCenter, IDisposable {
+                public Vector2 joystickDir {
+                    get {
 #if UNITY_EDITOR
-                    float x = 0;
-                    float y = 0;
-                    if (Input.GetKey(KeyCode.A)) {
-                        x = -1;
-                    } else if (Input.GetKey(KeyCode.D)) {
-                        x = 1;
-                    } // end if
+                        float x = 0;
+                        float y = 0;
+                        if (UnityEngine.Input.GetKey(KeyCode.A)) {
+                            x = -1;
+                        } else if (UnityEngine.Input.GetKey(KeyCode.D)) {
+                            x = 1;
+                        } // end if
 
-                    if (Input.GetKey(KeyCode.S)) {
-                        y = -1;
-                    } else if (Input.GetKey(KeyCode.W)) {
-                        y = 1;
-                    } // end if
-                    Vector2 dir = new Vector2(x, y).normalized;
-                    return dir == Vector2.zero ? UIJoystick.dir : dir;
+                        if (UnityEngine.Input.GetKey(KeyCode.S)) {
+                            y = -1;
+                        } else if (UnityEngine.Input.GetKey(KeyCode.W)) {
+                            y = 1;
+                        } // end if
+                        Vector2 dir = new Vector2(x, y).normalized;
+                        return dir == Vector2.zero ? UIJoystick.dir : dir;
 #else
                     return UIJoystick.dir;
 #endif
-                } // end get
-            } // end joystickDir
-            private Dictionary<ButtonCode, KeyCode> keymap;
+                    } // end get
+                } // end joystickDir
+                private Action<ClickEvent> m_action;
 
-            public CrossInput() {
-                keymap = new Dictionary<ButtonCode, KeyCode>();
-                keymap[ButtonCode.ATTACK] = KeyCode.J;
-                keymap[ButtonCode.SKILL_1] = KeyCode.K;
-                keymap[ButtonCode.SKILL_2] = KeyCode.L;
-                keymap[ButtonCode.SKILL_3] = KeyCode.P;
-            } // end CrossInput
+                public CrossInput() {
+                } // end CrossInput
 
-            public bool GetButton(ButtonCode btn) {
-#if UNITY_EDITOR
-                return Input.GetKey(keymap[btn]) || InstanceMgr.GetButtonInput().GetButton(btn);
-#else
-                return InstanceMgr.GetButtonInput().GetButton(btn);
-#endif
+                public void AddListener(Action<ClickEvent> action) {
+                    m_action += action;
+                } // end AddListener
 
-            } // end GetButton
+                public void RemoveListener(Action<ClickEvent> action) {
+                    if (null == m_action) return;
+                    // end if
+                } // end RemoveListener
 
-            public bool GetButtonUp(ButtonCode btn) {
-#if UNITY_EDITOR            
-                return Input.GetKeyUp(keymap[btn]) || InstanceMgr.GetButtonInput().GetButtonUp(btn);
-#else
-                return InstanceMgr.GetButtonInput().GetButtonUp(btn);
-#endif
-            } // end GetButtonUp
+                public void Broadcast(ClickEvent content) {
+                } // end Broadcast
 
-            public bool GetButtonDown(ButtonCode btn) {
-#if UNITY_EDITOR 
-                return Input.GetKeyDown(keymap[btn]) || InstanceMgr.GetButtonInput().GetButtonDown(btn);
-#else
-                return InstanceMgr.GetButtonInput().GetButtonDown(btn);
-#endif
-            } // end GetButtonDown
-        } // end class CrossInput
+                public void Dispose() {
+                    m_action = null;
+                } // end 
+            } // end class CrossInput
+        } // end namespace Input   
     } // end namespace Custom 
 } // end namespace Framework 

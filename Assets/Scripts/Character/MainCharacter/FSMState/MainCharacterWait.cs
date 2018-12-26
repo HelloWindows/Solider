@@ -25,7 +25,7 @@ namespace Solider {
                     character.surface.LiftWeapon();
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (character.input.joystickDir.magnitude > 0f) {
                         character.fsm.PerformTransition("run");
                         return;
@@ -36,7 +36,7 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
                 public void DoBeforeLeaving() {

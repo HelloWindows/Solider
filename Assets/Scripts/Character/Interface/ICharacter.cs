@@ -6,13 +6,12 @@
  *******************************************************************/
 using Framework.FSM.Interface;
 using Solider.Config.Interface;
-using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface ICharacter : IDisposable {
+            public interface ICharacter {
                 string id { get; }
                 string hashID { get; }
                 bool isDisposed { get; }
@@ -25,7 +24,7 @@ namespace Solider {
                 ICharacterConfig config { get; }
                 ICharacterCenter center { get; }
                 Vector3 position { get; }
-                void Update(float deltaTime);
+                void Update();
             } // end interface ICharacter
         } // end namespace Interface
     } // end namespace Character

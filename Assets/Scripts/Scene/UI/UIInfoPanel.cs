@@ -114,10 +114,10 @@ namespace Solider {
                     Object.Destroy(gameObject);
                 } // end DoBeforeLeaving
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     if (null != SceneManager.mainCharacter)
                         infoText.text = SceneManager.mainCharacter.info.GetCharacterData().ToString();
                     // end if

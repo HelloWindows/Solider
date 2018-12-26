@@ -43,15 +43,15 @@ namespace Solider {
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     AnimationState state = character.avatar.GetCurrentState("skill2");
                     if (null != state && state.normalizedTime >= 7) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
-                    character.move.StepForward(character.input.joystickDir, deltaTime);
+                public void Act() {
+                    character.move.StepForward(character.input.joystickDir, Time.deltaTime);
                 } // end Act
 
                 public void DoBeforeLeaving() {

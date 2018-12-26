@@ -58,10 +58,10 @@ namespace Solider {
                     transform = null;
                 } // end DoBeforeLeaving
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
             } // end class UITownPanel 
         } // end namespace UI

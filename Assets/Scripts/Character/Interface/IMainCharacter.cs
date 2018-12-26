@@ -12,7 +12,7 @@ namespace Solider {
         namespace Interface {
             public interface IMainCharacter : ICharacter {
                 IPackInfo pack { get; }
-                IIputInfo input { get; }
+                IInputCenter input { get; }
                 ICharacterSkill skill { get; }
                 IMainCharacterSurface surface { get; }
             } // end interface IMainCharacter

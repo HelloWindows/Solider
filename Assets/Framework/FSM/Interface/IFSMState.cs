@@ -11,8 +11,8 @@ namespace Framework {
                 string id { get; }
                 void DoBeforeEntering();
                 void DoBeforeLeaving();
-                void Reason(float deltaTime);
-                void Act(float deltaTime);
+                void Reason();
+                void Act();
             } // end class IFSMState 
         } // end namespace Interface
     } // end namespace FSM

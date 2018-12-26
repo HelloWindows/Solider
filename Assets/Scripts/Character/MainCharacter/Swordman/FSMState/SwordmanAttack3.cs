@@ -43,7 +43,7 @@ namespace Solider {
                     character.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2" });
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (character.avatar.isPlaying) return;
                     // end if
                     if (mode != AttackMode.NEGATE) {
@@ -61,9 +61,9 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     if (character.avatar.IsPlaying("attack3_2")) {
-                        character.move.StepForward(step, deltaTime);
+                        character.move.StepForward(step, UnityEngine.Time.deltaTime);
                         if (mode != AttackMode.DEFAULT) return;
                         // end if
                         if (character.input.GetButton(ButtonCode.ATTACK)) mode = AttackMode.CAROM;

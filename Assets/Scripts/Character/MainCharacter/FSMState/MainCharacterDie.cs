@@ -27,10 +27,10 @@ namespace Solider {
                     // end if
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
                 public void DoBeforeLeaving() {

@@ -42,20 +42,20 @@ namespace Solider {
                     character.avatar.PlayQueued(new string[] { "skill1_1", "skill1_2" });
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     AnimationState state = character.avatar.GetCurrentState("skill1_1");
                     if (null == state) return;
                     // end if
                     if (state.normalizedTime < 0.5f) {
-                        character.move.StepForward(step, deltaTime);
+                        character.move.StepForward(step, Time.deltaTime);
                     } else {
-                        character.move.StepBackward(step, deltaTime);
+                        character.move.StepBackward(step, Time.deltaTime);
                     } // end if
                 } // end Act
 

@@ -46,14 +46,14 @@ namespace Solider {
                 uiPanelFSM.PerformTransition(new UILoginPanel());
             } // end Initialize
 
-            public void Update(float deltaTime) {
-                fsmSystem.Update(deltaTime);
+            public void Update() {
+                fsmSystem.Update();
             } // end Update
 
-            public void LateUpdate(float deltaTime) {
+            public void LateUpdate() {
                 if (null == mainCamera) return;
                 // end if
-                m_mainCamera.LateUpdate(deltaTime);
+                m_mainCamera.LateUpdate();
             } // end LateUpdate
 
             public void Dispose() {

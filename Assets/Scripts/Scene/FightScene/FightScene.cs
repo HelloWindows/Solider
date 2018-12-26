@@ -28,18 +28,20 @@ namespace Solider {
             public IUICamera uiCamera { get { return m_uiCamera; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
             public ICanvas uiCanvas { get { return m_uiCanvas; } }
-            public IMainCharacter mainCharacter { get; private set; }
+            public IMainCharacter mainCharacter { get { return m_mainCharacter; } }
             public string sceneName { get; private set; }
+
             private MainCamera m_mainCamera;
+            private MainCharacter m_mainCharacter;
             private UICamera m_uiCamera;
             private UICanvas m_uiCanvas;
             private IFSMSystem fsmSystem;
-            private List<ICharacter> charList;
+            private List<Character.Character> charList;
 
             public FightScene() {
                 sceneName = GameConfig.FIGHT_SCENE;
                 fsmSystem = new FSMSystem();
-                charList = new List<ICharacter>();
+                charList = new List<Character.Character>();
                 uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
 
@@ -47,7 +49,7 @@ namespace Solider {
                 m_mainCamera = new MainCamera();
                 m_uiCamera = new UICamera();
                 m_uiCanvas = new UICanvas(m_uiCamera.camera);
-                mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
+                m_mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 uiPanelFSM.PerformTransition(new UIFightPanel());
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
@@ -55,11 +57,11 @@ namespace Solider {
                 } // end if
                 m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("wait");
-                charList.Add(mainCharacter);
+                charList.Add(m_mainCharacter);
             } // end Initialize
 
-            public void Update(float deltaTime) {
-                fsmSystem.Update(deltaTime);
+            public void Update() {
+                fsmSystem.Update();
                 List<int> indexList = new List<int>();
                 for (int i = 0; i < charList.Count; i++) {
                     if (charList[i].isDisposed) indexList.Add(i);
@@ -69,21 +71,22 @@ namespace Solider {
                     charList.RemoveAt(i);
                 } // end for
                 for (int i = 0; i < charList.Count; i++) {
-                    charList[i].Update(deltaTime);
+                    charList[i].Update();
                 } // end for
             } // end Update
 
-            public void LateUpdate(float deltaTime) {
+            public void LateUpdate() {
                 if (null == mainCamera) return;
                 // end if
-                m_mainCamera.LateUpdate(deltaTime);
+                m_mainCamera.LateUpdate();
             } // end LateUpdate
 
             public void Dispose() {
-                mainCharacter.Dispose();
+                if(null != m_mainCharacter) m_mainCharacter.Dispose();
+                // end if
             } // end Dispose
 
-            public IMainCharacter CreateMainCharacter(Vector3 position) {
+            public MainCharacter CreateMainCharacter(Vector3 position) {
                 if (null == GameManager.playerInfo || null == GameManager.playerInfo.roleType ||
                     GameManager.playerInfo.roleType == "" || null != mainCharacter) return null;
                 // end if

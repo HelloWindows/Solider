@@ -21,8 +21,8 @@ namespace Framework {
                 IMainCharacter mainCharacter { get; }
                 string sceneName { get; }
                 void Initialize();
-                void Update(float deltaTime);
-                void LateUpdate(float deltaTime);
+                void Update();
+                void LateUpdate();
             } // end interface IScene 
         } // end namespace Scene
     } // end namespace Interface

@@ -40,13 +40,13 @@ namespace Solider {
                 buffList = new List<BuffTimer>();
             } // end CharacterBuff
 
-            public void Update(float deltaTime) {
+            public void Update() {
                 if (buffList.Count == 0) return;
                 // end if
                 signList.Clear();
                 for (int i = 0; i < buffList.Count; i++) {
                     int index = i;
-                    if (buffList[index].IsOverTime(deltaTime)) signList.Add(index);
+                    if (buffList[index].IsOverTime(UnityEngine.Time.deltaTime)) signList.Add(index);
                     // end if
                 } // end for
                 if (signList.Count == 0) return;

@@ -43,7 +43,7 @@ namespace Solider {
                     character.avatar.Play(anim);
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (character.avatar.isPlaying) return;
                     // end if
                     if (mode != AttackMode.NEGATE) {
@@ -59,7 +59,7 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     AnimationState state = character.avatar.GetCurrentState(anim);
                     if (null == state || state.normalizedTime < 0.5f) return;
                     // end if
@@ -74,6 +74,11 @@ namespace Solider {
                 public void DoBeforeLeaving() {
 
                 } // end DoBeforeLeaving
+
+                private void OnPressedAttack(CenterEvent type) {
+                    if (CenterEvent.PressedAttack != type) return;
+                    // end if
+                } // end OnPressedAttack
             } // end class ArcherAttack1
         } // end namespace MainCharacter
     } // end namespace Character

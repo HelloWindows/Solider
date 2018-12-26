@@ -41,7 +41,7 @@ namespace Solider {
                     character.avatar.PlayQueued(new string[] { "attack1_1", "attack1_2" });
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (character.avatar.isPlaying) return;
                     // end if
                     if (mode != AttackMode.NEGATE) {
@@ -59,7 +59,7 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     if (character.avatar.IsPlaying("attack1_2")) {
                         if (mode != AttackMode.DEFAULT) return;
                         // end if

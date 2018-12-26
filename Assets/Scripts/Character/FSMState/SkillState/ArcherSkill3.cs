@@ -52,7 +52,7 @@ namespace Solider {
                     } // end if
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (skillStep != SkillStep.End) {
                         switch (skillStep) {
                             default:
@@ -81,7 +81,7 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
+                public void Act() {
                     if (skillStep != SkillStep.Step2) return;
                     // end if
                     AnimationState state = character.avatar.GetCurrentState("skill3_2");
@@ -93,7 +93,6 @@ namespace Solider {
                     if (true == signArr[index]) return;
                     // end if
                     signArr[index] = true;
-                    Debug.Log("Shoot: " + index);
                 } // end Act
 
                 public void DoBeforeLeaving() {

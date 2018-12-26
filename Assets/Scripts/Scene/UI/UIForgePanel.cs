@@ -158,10 +158,10 @@ namespace Solider {
                     Object.Destroy(gameObject);
                 } // end DoBeforeLeaving
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason 
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
             } // end class UIForgePanel 
         } // end namespace UI

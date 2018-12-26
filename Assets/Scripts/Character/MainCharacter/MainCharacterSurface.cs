@@ -10,12 +10,13 @@ using Framework.Tools;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.Manager;
+using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterSurface : IMainCharacterSurface {
+            public class MainCharacterSurface : IMainCharacterSurface, IDisposable {
                 private GameObject wingGo;
                 private GameObject weaponGo;
 
@@ -76,7 +77,7 @@ namespace Solider {
                             Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
                         return;
                     } // end if
-                    if (null != weaponGo) Object.Destroy(weaponGo);
+                    if (null != weaponGo) UnityEngine.Object.Destroy(weaponGo);
                     // end if
                     weaponGo = Go;
                     FurlWeapon();
@@ -84,7 +85,7 @@ namespace Solider {
 
                 private void ReloadWing(IEquipInfo info) {
                     if (null == info) {
-                        if (null != wingGo) Object.Destroy(wingGo);
+                        if (null != wingGo) UnityEngine.Object.Destroy(wingGo);
                         // end if
                         return;
                     } // end if
@@ -95,7 +96,7 @@ namespace Solider {
                             Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
                         return;
                     } // end if
-                    if (null != wingGo) Object.Destroy(wingGo);
+                    if (null != wingGo) UnityEngine.Object.Destroy(wingGo);
                     // end if
                     wingGo = Go;
                     wingGo.transform.SetParent(wingTrans);
@@ -120,8 +121,6 @@ namespace Solider {
                 } // end ReloadArmor
 
                 public void Dispose() {
-                    if (null == mainCharacter) return;
-                    // end if
                     mainCharacter.center.RemoveListener(Freshen);
                 } // end Dispose
             } // end class MainCharacterSurface

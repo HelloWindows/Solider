@@ -42,14 +42,14 @@ namespace Solider {
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
-                    character.move.StepForward(step, deltaTime);
+                public void Act() {
+                    character.move.StepForward(step, UnityEngine.Time.deltaTime);
                 } // end Act
 
                 public void DoBeforeLeaving() {

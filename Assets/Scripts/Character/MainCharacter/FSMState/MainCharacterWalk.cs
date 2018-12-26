@@ -34,7 +34,7 @@ namespace Solider {
                     } // end for
                 } // end DoBeforeEntering
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                     if (character.input.joystickDir.magnitude == 0f) {
                         character.fsm.PerformTransition(new MainCharacterIdle(character));
                         return;
@@ -45,8 +45,8 @@ namespace Solider {
                     } // end if
                 } // end Reason
 
-                public void Act(float deltaTime) {
-                    character.move.MoveForward(character.input.joystickDir, deltaTime);
+                public void Act() {
+                    character.move.MoveForward(character.input.joystickDir, Time.deltaTime);
                     AnimationState state = character.avatar.GetCurrentState(anim);
                     if (null == state) return;
                     // end if

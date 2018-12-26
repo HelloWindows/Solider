@@ -8,11 +8,12 @@ using Framework.Config;
 using Framework.FSM.Interface;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
+using System;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
-        public abstract class Character : ICharacter {
+        public abstract class Character : ICharacter, IDisposable  {
             public string id { get; private set; }
             public bool isDisposed { get; private set; }
             public string hashID { get; private set; }
@@ -52,10 +53,8 @@ namespace Solider {
                 m_audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
             } // end Character
 
-            public virtual void Update(float deltaTime) {
-                m_info.Update(deltaTime);
-                m_buff.Update(deltaTime);
-                m_fsmSystem.Update(deltaTime);
+            public virtual void Update() {
+                m_buff.Update();
             } // end Update
 
             public virtual void Dispose() {
@@ -64,9 +63,7 @@ namespace Solider {
                 // end if
                 if (null != m_audio) m_audio.Dispose();
                 // end if
-                if (null != m_info) m_info.Dispose();
-                // end if
-                if (null != m_gameObject) Object.Destroy(m_gameObject);
+                if (null != m_gameObject) UnityEngine.Object.Destroy(m_gameObject);
                 // end if
                 m_transform = null;
             } // end Dispose

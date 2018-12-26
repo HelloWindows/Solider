@@ -63,10 +63,10 @@ namespace Solider {
                     transform = null;
                 } // end DoBeforeLeaving
 
-                public void Act(float deltaTime) {
+                public void Act() {
                 } // end Act
 
-                public void Reason(float deltaTime) {
+                public void Reason() {
                 } // end Reason
 
                 private void OnUserNameEndEdit(string name) {

@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System;
-using Solider.Character;
 
 namespace Solider {
     namespace Character {
@@ -18,7 +17,7 @@ namespace Solider {
             /// <summary>
             /// 改变了 Buff
             /// </summary>
-            BuffChange = 2
+            BuffChange = 2,
         } // end CenterEvent
 
         namespace Interface {

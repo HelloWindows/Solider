@@ -60,9 +60,9 @@ namespace Solider {
                 PushSkill("500003");
             } // end CharacterSkill
 
-            public void Update(float deltaTime) {
+            public void Update() {
                 for (int i = 0; i < skillList.Count; i++) {
-                    skillList[i].Cooldown(deltaTime);
+                    skillList[i].Cooldown(UnityEngine.Time.deltaTime);
                 } // end for
             } // end Update
 
