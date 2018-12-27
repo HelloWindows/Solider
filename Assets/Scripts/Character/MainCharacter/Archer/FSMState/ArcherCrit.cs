@@ -4,14 +4,15 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class ArcherCrit : IFSMState {
+            public class ArcherCrit : ICharacterState {
                 public string id { get { return "attCrit"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "attCrit"; } }
                 private ICharacter character;
                 private string soundPath { get { return "Character/Hero/Archer/Sound/archer_crit"; } }

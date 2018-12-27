@@ -22,16 +22,15 @@ namespace Solider {
             public IUICamera uiCamera { get { return m_uiCamera; } }
             public ICanvas uiCanvas { get; private set; }
             public IMainCharacter mainCharacter { get; private set; }
-            public IFSM uiPanelFSM { get; private set; }
+            public IFSM uiPanelFSM { get { return fsmSystem; } }
             public string sceneName{ get; private set; }
             private UICamera m_uiCamera;
             private MainCamera m_mainCamera;
-            private IFSMSystem fsmSystem;
+            private FSMSystem fsmSystem;
 
             public SelectRoleScene() {
                 sceneName = GameConfig.EMPTY_SCENE;
                 fsmSystem = new FSMSystem();
-                uiPanelFSM = fsmSystem as IFSM;
             } // end SelectRoleScene
 
             public void Initialize() {

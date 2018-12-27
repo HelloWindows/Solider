@@ -4,17 +4,18 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 
 namespace Solider {
     namespace Character {
         namespace Skill {
-            public class MagicianSkill2 : IFSMState, ISkillFSMState {
+            public class MagicianSkill2 : ICharacterState {
                 public string id { get { return "600102"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;
 
@@ -22,18 +23,6 @@ namespace Solider {
                     this.character = character;
                     this.info = info;
                 } // end MagicianSkill2
-
-                public IFSMState CreateInstance(ICharacter character, ISkillInfo info) {
-                    if (null == character) {
-                        DebugTool.ThrowException("MagicianSkill2 CreateInstance character is null!!!");
-                        return null;
-                    } // end if
-                    if (null == info) {
-                        DebugTool.ThrowException("MagicianSkill2 CreateInstance SkillInfo is null!!!");
-                        return null;
-                    } // end if
-                    return new MagicianSkill2(character, info);
-                } // end CreateInstance
 
                 public void DoBeforeEntering() {
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);

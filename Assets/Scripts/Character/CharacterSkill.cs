@@ -7,7 +7,6 @@
 using Framework.Config;
 using Framework.FSM.Interface;
 using Framework.Tools;
-using Solider.Character.FSMState;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.ModelData.Interface;
@@ -49,12 +48,12 @@ namespace Solider {
             #endregion
             private ICharacter character;
             private List<SkillTimer> skillList;
-            private Dictionary<string, ISkillFSMState> stateDict;
+            private Dictionary<string, ICharacterState> stateDict;
 
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillTimer>();
-                stateDict = new Dictionary<string, ISkillFSMState>();
+                stateDict = new Dictionary<string, ICharacterState>();
                 PushSkill("500001");
                 PushSkill("500002");
                 PushSkill("500003");
@@ -79,14 +78,14 @@ namespace Solider {
                     } // end if
                 // end for         
                 skillList.Add(new SkillTimer(info));
-                ISkillFSMState state = CharacterFSMActivator.GetSkillFSMState(id);
-                if (null == state) return;
-                // end if
-                if (stateDict.ContainsKey(id)) {
-                    DebugTool.ThrowException("CharacterSkill PushSkill id is repeat!!! ID:" + id);
-                    return;
-                } // end if
-                stateDict.Add(id, state);
+                //ISkillFSMState state = CharacterFSMActivator.GetSkillFSMState(id);
+                //if (null == state) return;
+                //// end if
+                //if (stateDict.ContainsKey(id)) {
+                //    DebugTool.ThrowException("CharacterSkill PushSkill id is repeat!!! ID:" + id);
+                //    return;
+                //} // end if
+                //stateDict.Add(id, state);
             } // end PushSkill
 
             public int GetSkillIDArray(out string[] idArr) {
@@ -104,13 +103,13 @@ namespace Solider {
                     if (false == skillList[i].isCD) return false;
                     // end if
                     skillList[i].Cast(ignoreCD);
-                    ISkillFSMState skillState;
-                    if (false == stateDict.TryGetValue(id, out skillState)) {
-                        DebugTool.ThrowException("CharacterSkill CastSkill id is not exsit!!! ID:" + id);
-                        return false;
-                    } // end if
-                    IFSMState state = skillState.CreateInstance(character, skillList[i].info);
-                    character.fsm.PerformTransition(state);
+                    //ISkillFSMState skillState;
+                    //if (false == stateDict.TryGetValue(id, out skillState)) {
+                    //    DebugTool.ThrowException("CharacterSkill CastSkill id is not exsit!!! ID:" + id);
+                    //    return false;
+                    //} // end if
+                    //IFSMState state = skillState.CreateInstance(character, skillList[i].info);
+                    //character.fsm.PerformTransition(state);
                     return true;
                 } // end for
                 return false;

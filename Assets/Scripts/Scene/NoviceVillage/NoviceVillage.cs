@@ -26,7 +26,7 @@ using Solider.Character.MainCharacter;
 namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
-            public IFSM uiPanelFSM { get; private set; }
+            public IFSM uiPanelFSM { get { return fsmSystem; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
             public IUICamera uiCamera { get { return m_uiCamera; } }
             public ICanvas uiCanvas { get; private set; }
@@ -35,7 +35,7 @@ namespace Solider {
             private UICamera m_uiCamera;
             private MainCamera m_mainCamera;
             private MainCharacter m_mainCharacter;
-            private IFSMSystem fsmSystem;
+            private FSMSystem fsmSystem;
             private List<int> indexList;
             private List<Character.Character> characterList;
 
@@ -44,7 +44,6 @@ namespace Solider {
                 fsmSystem = new FSMSystem();
                 indexList = new List<int>();
                 characterList = new List<Character.Character>();
-                uiPanelFSM = fsmSystem as IFSM;
             } // end NoviceVillage
 
             public void Initialize() {

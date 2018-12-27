@@ -21,20 +21,19 @@ namespace Solider {
     namespace Scene {
         public class LoginScene : IScene {
             public string sceneName { get; private set; }
-            public IFSM uiPanelFSM { get; private set; }
+            public IFSM uiPanelFSM { get { return fsmSystem; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
             public IUICamera uiCamera { get { return m_uiCamera; } }
             public ICanvas uiCanvas { get; private set; }
             public IMainCharacter mainCharacter { get; private set; }
             private MainCamera m_mainCamera;
             private UICamera m_uiCamera;
-            private IFSMSystem fsmSystem;
+            private FSMSystem fsmSystem;
             private GameObject gameObject;
 
             public LoginScene() {
                 sceneName = GameConfig.EMPTY_SCENE;
                 fsmSystem = new FSMSystem();
-                uiPanelFSM = fsmSystem as IFSM;
             } // end LoginScene
 
             public void Initialize() {

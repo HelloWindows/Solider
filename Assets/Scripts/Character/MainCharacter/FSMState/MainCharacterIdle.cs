@@ -4,29 +4,30 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterIdle : IFSMState {
+            public class MainCharacterIdle : ICharacterState {
                 public string id { get { return "idle"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "idle"; } }
-                private IMainCharacter character;
+                private IMainCharacter mainCharacter;
 
-                public MainCharacterIdle(IMainCharacter character) {
-                    this.character = character;
+                public MainCharacterIdle(IMainCharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                 } // end MainCharacterIdle
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play(anim);
-                    character.surface.FurlWeapon();
+                    mainCharacter.avatar.Play(anim);
+                    mainCharacter.surface.FurlWeapon();
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (character.input.joystickDir.magnitude > 0f) {
-                        character.fsm.PerformTransition("walk");
+                    if (mainCharacter.input.joystickDir.magnitude > 0f) {
+                        mainCharacter.fsm.PerformTransition("walk");
                     } // end if
                 } // end Reason
 

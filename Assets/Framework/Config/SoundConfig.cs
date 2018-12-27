@@ -4,10 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Tools;
-using LitJson;
-using Solider.Character.FSMState;
-using UnityEngine;
 
 namespace Framework {
     namespace Config {

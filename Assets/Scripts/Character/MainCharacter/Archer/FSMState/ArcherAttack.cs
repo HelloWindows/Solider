@@ -4,16 +4,17 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
 using Framework.Interface.Input;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 using UnityEngine;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class ArcherAttack : IFSMState {
+            public class ArcherAttack : ICharacterState {
                 public string id { get { return "attack"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "attack"; } }
                 private bool isCarom;
                 private IMainCharacter mainCharacter;

@@ -43,12 +43,12 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     m_surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
-                    m_fsmSystem = new ArcherFSM(this);
+                    m_fsm = new ArcherFSM(this);
                 } // end ArcherCharacter
 
                 public override void Update() {
                     m_info.Update();
-                    m_fsmSystem.Update();
+                    m_fsm.Update();
                 } // end Update
 
                 public override void Dispose() {

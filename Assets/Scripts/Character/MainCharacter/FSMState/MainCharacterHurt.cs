@@ -4,32 +4,33 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterHurt : IFSMState {
+            public class MainCharacterHurt : ICharacterState {
                 public string id { get { return "hurt"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "hurt"; } }
-                private ICharacter character;
+                private IMainCharacter mainCharacter;
 
-                public MainCharacterHurt(ICharacter character) {
-                    this.character = character;
+                public MainCharacterHurt(IMainCharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                 } // end MainCharacterHurt
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play(anim);
+                    mainCharacter.avatar.Play(anim);
                     string soundPath;
-                    if (character.config.TryGetSoundPath("hurt", out soundPath))
-                        character.audio.PlaySoundCacheForPath("hurt", soundPath);
+                    if (mainCharacter.config.TryGetSoundPath("hurt", out soundPath))
+                        mainCharacter.audio.PlaySoundCacheForPath("hurt", soundPath);
                     // end if
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition("wait");
+                    if (false == mainCharacter.avatar.isPlaying) {
+                        mainCharacter.fsm.PerformTransition("wait");
                         return;
                     } // end if
                 } // end Reason

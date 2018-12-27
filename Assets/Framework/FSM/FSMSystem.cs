@@ -8,7 +8,7 @@ using Framework.FSM.Interface;
 
 namespace Framework {
     namespace FSM {
-        public class FSMSystem : IFSMSystem {
+        public class FSMSystem : IFSM {
             private IFSMState previousState;
             private IFSMState currentState;
 

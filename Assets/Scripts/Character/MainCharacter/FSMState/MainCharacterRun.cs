@@ -5,16 +5,17 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Tools;
-using Framework.FSM.Interface;
 using Solider.Character.Interface;
 using UnityEngine;
 using Framework.Interface.Input;
+using Solider.Character.FSM;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterRun : IFSMState {
+            public class MainCharacterRun : ICharacterState {
                 public string id { get { return "run"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "run"; } }
                 private IMainCharacter mainCharacter;
                 private float[] timeArr;
@@ -38,7 +39,7 @@ namespace Solider {
 
                 public void Reason() {
                     if (mainCharacter.input.joystickDir.magnitude == 0f) {
-                        mainCharacter.fsm.PerformTransition(new MainCharacterWait(mainCharacter));
+                        mainCharacter.fsm.PerformTransition("wait");
                         return;
                     } // end if
                     if (false == mainCharacter.avatar.isPlaying) {

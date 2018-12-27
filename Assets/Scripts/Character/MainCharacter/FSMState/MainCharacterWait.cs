@@ -4,15 +4,16 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
 using Framework.Interface.Input;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterWait : IFSMState {
+            public class MainCharacterWait : ICharacterState {
                 public string id { get { return "wait"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "wait"; } }
                 private IMainCharacter mainCharacter;
 

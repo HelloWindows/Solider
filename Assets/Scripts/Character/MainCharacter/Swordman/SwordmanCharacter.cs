@@ -43,12 +43,12 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     m_surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
-                    m_fsmSystem = new SwordmanFSM(this);
+                    m_fsm = new SwordmanFSM(this);
                 } // end SwordmanCharacter
 
                 public override void Update() {
                     m_info.Update();
-                    m_fsmSystem.Update();
+                    m_fsm.Update();
                 } // end Update
 
                 public override void Dispose() {

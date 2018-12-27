@@ -4,14 +4,16 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.Character.FSM;
 using Framework.FSM.Interface;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MagicianAttack3 : IFSMState {
+            public class MagicianAttack3 : ICharacterState {
                 public string id { get { return "attack3"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private ICharacter mainCharacter;
                 private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_2"; } }
 

@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
+using Framework.FSM;
 using Framework.FSM.Interface;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
@@ -17,7 +18,7 @@ namespace Solider {
             public string id { get; private set; }
             public bool isDisposed { get; private set; }
             public string hashID { get; private set; }
-            public IFSM fsm { get { return m_fsmSystem; } }
+            public ICharacterFSM fsm { get { return m_fsm; } }
             public ICharacterMove move { get { return m_move; } }
             public ICharacterInfo info { get { return m_info; } }
             public ICharacterBuff buff { get { return m_buff; } }
@@ -34,7 +35,7 @@ namespace Solider {
 
             protected CharacterInfo m_info;
             protected CharacterAvatar m_avatar;
-            protected IFSMSystem m_fsmSystem;
+            protected CharacterFSM m_fsm;
             protected GameObject m_gameObject;
             protected Transform m_transform;
 

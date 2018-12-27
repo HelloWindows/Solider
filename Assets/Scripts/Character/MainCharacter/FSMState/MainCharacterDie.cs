@@ -4,14 +4,15 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterDie : IFSMState {
+            public class MainCharacterDie : ICharacterState {
                 public string id { get { return "die"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Highest); } }
                 private string anim { get { return "die"; } }
                 private ICharacter character;
 

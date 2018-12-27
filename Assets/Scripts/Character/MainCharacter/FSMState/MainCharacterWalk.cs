@@ -5,6 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.FSM.Interface;
+using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Tools;
 using UnityEngine;
@@ -12,8 +13,9 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterWalk : IFSMState {
+            public class MainCharacterWalk : ICharacterState {
                 public string id { get { return "walk"; } }
+                public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "walk"; } }
                 private string soundPath;
                 private IMainCharacter character;

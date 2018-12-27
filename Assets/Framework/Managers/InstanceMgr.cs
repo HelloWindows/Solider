@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Middleware;
-using Solider.Character.FSMState;
 using Solider.Manager;
 
 namespace Framework {
