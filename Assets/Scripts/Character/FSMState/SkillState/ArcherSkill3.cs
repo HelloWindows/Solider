@@ -13,19 +13,24 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class ArcherSkill3 : ICharacterState {
+                public const string ID = "500203";
+                public static ICharacterState CreateInstance(ICharacter character, ISkillInfo info) {
+                    return new ArcherSkill3(character, info);
+                } // end CreateInstance
+
                 private enum SkillStep : int{
                     Step1 = 0,
                     Step2 = 1,
                     End = 2
                 } // end enum SkillStep
-                public string id { get { return "600203"; } }
+                public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private bool[] signArr;
                 private ICharacter character;
                 private SkillStep skillStep;
                 private ISkillInfo info;
 
-                public ArcherSkill3(ICharacter character, ISkillInfo info) {
+                private ArcherSkill3(ICharacter character, ISkillInfo info) {
                     signArr = new bool[18];
                     this.character = character;
                     this.info = info;

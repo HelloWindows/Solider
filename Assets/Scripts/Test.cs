@@ -19,33 +19,25 @@ using UnityEngine.UI;
 using Solider.Scene.UI;
 using Framework.FSM.Interface;
 using Framework.Interface.Input;
+using Solider.Character.Interface;
+using Solider.Config.Interface;
+using Solider.Character.Skill;
 
 namespace Test {
 
-
-    public class TT : UnityEngine.Object {
-        public int i;
-
-        public TT() {
-            i = 10;
-        } // end TT
-    } // end class TT
-
     public class Test : MonoBehaviour {
 
-        private TT tt;
+        public delegate ICharacterState CreateInstance(ICharacter character, ISkillInfo skillInfo);
+
+        private static Dictionary<string, CreateInstance> dict;
 
         private void Start() {
-            tt = new TT();
-            Debug.Log(tt);
+            dict = new Dictionary<string, CreateInstance>();
+            dict["123"] = ArcherSkill1.CreateInstance;
         } // end Start
 
         private void Update() {
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Destroy(tt);
-            } // end if
-            //Debug.Log(tt);
         } // end Update
 
         public void OnClick(string name) {

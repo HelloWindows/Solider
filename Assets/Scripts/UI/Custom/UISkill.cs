@@ -8,9 +8,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Framework.Tools;
-using Solider.Config.Interface;
-using Solider.ModelData.Interface;
 using Framework.Manager;
+using Solider.Model.Interface;
 
 namespace Solider {
     namespace UI {
@@ -20,15 +19,13 @@ namespace Solider {
                 private Image mask;
                 private Text timeText;
                 private RectTransform transfrom;
-                private string skillID;
-                private ITimer timer;
+                private ISkillModle modle;
 
-                public UISkill(ISkillInfo info, ITimer timer, RectTransform parent, Vector3 localPos, Vector2 iconSize) {
-                    this.timer = timer;
-                    skillID = info.id;
+                public UISkill(ISkillModle modle, RectTransform parent, Vector3 localPos, Vector2 iconSize) {
+                    this.modle = modle;
                     transfrom = CanvasTool.InstantiateEmptyUI("uiskill", parent, localPos).GetComponent<RectTransform>();
-                    icon = CanvasTool.InstantiateImage(info.id, transfrom, Vector3.zero, iconSize);
-                    icon.sprite = ResourcesTool.LoadSprite(info.spritepath);
+                    icon = CanvasTool.InstantiateImage(modle.info.id, transfrom, Vector3.zero, iconSize);
+                    icon.sprite = ResourcesTool.LoadSprite(modle.info.spritepath);
                     icon.gameObject.AddComponent<UIButton>().AddAction(CastSkill);
                     icon.raycastTarget = true;
                     mask = CanvasTool.InstantiateImage("mask", icon.rectTransform, Vector3.zero, iconSize);
@@ -47,20 +44,24 @@ namespace Solider {
                 } // end Icon
 
                 public void Update() {
-                    if (null == timer) return;
+                    if (null == modle) return;
                     // end if
-                    mask.fillAmount = timer.schedule;
-                    if (timer.time == 0) {
+                    mask.fillAmount = modle.schedule;
+                    if (modle.time == 0) {
                         timeText.text = "";
                     } else {
-                        timeText.text = timer.time.ToString("f1");
+                        timeText.text = modle.time.ToString("f1");
                     } // end if
                 } // end Update
 
                 private void CastSkill() {
+                    if (false == modle.isCD) return;
+                    // end if
                     if (null == SceneManager.mainCharacter) return;
                     // end if
-                    SceneManager.mainCharacter.skill.CastSkill(skillID);
+                    if (modle.layer <= SceneManager.mainCharacter.fsm.currentLayer) return;
+                    // end if
+                    SceneManager.mainCharacter.skill.CastSkill(modle.info.id);
                 } // end CastSkill
 
                 public void Dispose() {

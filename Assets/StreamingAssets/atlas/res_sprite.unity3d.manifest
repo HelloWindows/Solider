@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1778127252
+CRC: 2360647576
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3606d1e2e455f8be52645d3b76481971
+    Hash: a3e53c88be02a547e22b596ef3f4f2cc
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4d24bf54f46935ed9e6cf78ac481bb9d
@@ -23,7 +23,7 @@ Assets:
 - Assets/Atlas/equipment/sword_B.png
 - Assets/Atlas/skill/renxing.png
 - Assets/Atlas/equipment/sword_C.png
-- Assets/Atlas/skill/somersault.png
+- Assets/Atlas/skill/skill_500001.png
 - Assets/Atlas/skill/shanbi.png
 - Assets/Atlas/skill/pozhao.png
 - Assets/Atlas/equipment/staff_C.png
@@ -66,14 +66,14 @@ Assets:
 - Assets/Atlas/equipment/pants_D.png
 - Assets/Atlas/equipment/staff_E.png
 - Assets/Atlas/equipment/armor_E.png
-- Assets/Atlas/skill/sabrecut.png
+- Assets/Atlas/skill/skill_500003.png
 - Assets/Atlas/equipment/bow_C.png
 - Assets/Atlas/item/pact_blue.png
 - Assets/Atlas/equipment/shoes_C.png
 - Assets/Atlas/equipment/necklace_E.png
 - Assets/Atlas/equipment/bow_D.png
 - Assets/Atlas/skill/bisha.png
-- Assets/Atlas/skill/judgment.png
+- Assets/Atlas/skill/skill_500002.png
 - Assets/Atlas/skill/mofa.png
 - Assets/Atlas/item/necklace_blueprin.png
 - Assets/Atlas/skill/gongjian_attack.png

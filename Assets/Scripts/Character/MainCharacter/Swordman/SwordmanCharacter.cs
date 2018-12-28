@@ -47,6 +47,7 @@ namespace Solider {
                 } // end SwordmanCharacter
 
                 public override void Update() {
+                    base.Update();
                     m_info.Update();
                     m_fsm.Update();
                 } // end Update

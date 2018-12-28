@@ -3,7 +3,7 @@
     {
       "id": "500001",
       "name": "前翻",
-      "spritepath": "somersault",
+      "spritepath": "skill_500001",
       "intro": "先前方向翻滚一段距离。",
       "soundPath": "Character/Sound/SkillState/500001",
       "property": {
@@ -21,7 +21,7 @@
     {
       "id": "500002",
       "name": "旋风斩",
-      "spritepath": "judgment",
+      "spritepath": "skill_500002",
       "intro": "对周围敌人造成",
       "soundPath": "Character/Sound/SkillState/500002",
       "property": {
@@ -39,7 +39,7 @@
     {
       "id": "500003",
       "name": "前劈",
-      "spritepath": "sabrecut",
+      "spritepath": "skill_500003",
       "intro": "对正前方敌人造成",
       "soundPath": "Character/Sound/SkillState/500003",
       "property": {

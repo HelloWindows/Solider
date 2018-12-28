@@ -15,15 +15,19 @@ namespace Solider {
                 public string id { get { return "attack"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private bool isCarom;
+                private bool isFinish;
+                private ICharacterState caromState;
                 private IMainCharacter mainCharacter;
                 private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_1"; } }
 
                 public MagicianAttack1(IMainCharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;
+                    caromState = new MagicianAttack2(mainCharacter);
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
                     isCarom = false;
+                    isFinish = false;
                     mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
                     mainCharacter.avatar.PlayQueued(new string[] { "attack1_1", "attack1_2" });
                     mainCharacter.input.AddListener(OnClickAttack);
@@ -32,10 +36,15 @@ namespace Solider {
                 public void Reason() {
                     if (mainCharacter.avatar.isPlaying) return;
                     // end if
-                    if (isCarom) {
-                        mainCharacter.fsm.PerformTransition(new MagicianAttack2(mainCharacter));
-                    } else {
+                    if (isFinish) {
                         mainCharacter.fsm.PerformTransition("wait");
+                        return;
+                    } // end if
+                    if (isCarom) {
+                        mainCharacter.fsm.PerformTransition(caromState);
+                    } else {
+                        mainCharacter.avatar.Play("attack1_3");
+                        isFinish = true;
                     } // end if
                 } // end Reason
 

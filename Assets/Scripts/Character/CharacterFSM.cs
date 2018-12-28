@@ -50,6 +50,21 @@ namespace Solider {
                 }// end if
             } // end PerformTransitions
 
+            public bool TransitionOnLayer(ICharacterState state) {
+                if (null == state) {
+                    DebugTool.ThrowException("CharacterFSM TransitionOnLayer state is null!!!");
+                    return false;
+                } // end if
+                if (null == currentState) {
+                    PerformTransition(state);
+                    return true;
+                } // end if
+                if (state.layer <= currentState.layer) return false;
+                // end if
+                PerformTransition(state);
+                return true;
+            } // end TransitionOnLayer
+
             protected void AddState(ICharacterState state) {
                 if (null == stateDict) stateDict = new Dictionary<string, ICharacterState>();
                 // end if

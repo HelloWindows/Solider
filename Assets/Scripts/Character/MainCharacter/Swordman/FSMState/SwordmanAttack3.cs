@@ -16,16 +16,20 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private float step;
                 private bool isCarom;
+                private bool isFinish;
                 private IMainCharacter mainCharacter;
+                private ICharacterState caromState;
                 private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_3"; } }
 
                 public SwordmanAttack3(IMainCharacter mainCharacter) {
                     step = 1f;
                     this.mainCharacter = mainCharacter;
+                    caromState = new SwordmanAttack4(mainCharacter);
                 } // end SwordmanAttack1
 
                 public void DoBeforeEntering() {
                     isCarom = false;
+                    isFinish = false;
                     mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
                     mainCharacter.avatar.PlayQueued(new string[] { "attack3_1", "attack3_2" });
                     mainCharacter.input.AddListener(OnClickAttack);
@@ -34,11 +38,15 @@ namespace Solider {
                 public void Reason() {
                     if (mainCharacter.avatar.isPlaying) return;
                     // end if
+                    if (isFinish) {
+                        mainCharacter.fsm.PerformTransition("wait");
+                        return;
+                    } // end if
                     if (isCarom) {
-                        mainCharacter.fsm.PerformTransition(new SwordmanAttack4(mainCharacter));
+                        mainCharacter.fsm.PerformTransition(caromState);
                     } else {
                         mainCharacter.avatar.Play("attack3_3");
-                        mainCharacter.fsm.PerformTransition("wait");
+                        isFinish = true;
                     } // end if
                 } // end Reason
 

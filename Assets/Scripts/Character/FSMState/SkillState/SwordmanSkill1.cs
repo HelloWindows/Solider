@@ -14,13 +14,18 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class SwordmanSkill1 : ICharacterState {
-                public string id { get { return "500001"; } }
+                public const string ID = "500001";
+                public static ICharacterState CreateInstance(ICharacter character, ISkillInfo info) {
+                    return new SwordmanSkill1(character, info);
+                } // end CreateInstance
+
+                public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private float step;
                 private ICharacter character;
                 private ISkillInfo info;
 
-                public SwordmanSkill1(ICharacter character, ISkillInfo info) {
+                private SwordmanSkill1(ICharacter character, ISkillInfo info) {
                     step = 3f;
                     this.character = character;
                     this.info = info;

@@ -13,15 +13,21 @@ namespace Solider {
                 /// </summary>
                 int currentLayer { get; }
                 /// <summary>
-                /// 却换状态
+                /// 切换状态
                 /// </summary>
                 /// <param name="state"> 状态 </param>
                 void PerformTransition(ICharacterState state);
                 /// <summary>
-                /// 却换状态
+                /// 切换状态
                 /// </summary>
                 /// <param name="state"> 名字 </param>
                 void PerformTransition(string name);
+                /// <summary>
+                /// 切换状态基于层级关系
+                /// </summary>
+                /// <param name="state"> 切换成功返回 true </param>
+                /// <returns></returns>
+                bool TransitionOnLayer(ICharacterState state);
             } // end class ICharacterFSM
         } // end namespace Interface
     } // end namespace Character

@@ -4,11 +4,9 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Manager;
 using Framework.Tools;
-using Solider.Config.Interface;
-using Solider.ModelData.Interface;
+using Solider.Model.Interface;
 using System;
 using UnityEngine;
 
@@ -22,24 +20,14 @@ namespace Solider {
 
                 public UISkillPanel(RectTransform parent) {
                     transform = CanvasTool.InstantiateEmptyUI("UISkillPanel", parent, Vector3.zero).GetComponent<RectTransform>();
-                    string[] idArr;
-                    SceneManager.mainCharacter.skill.GetSkillIDArray(out idArr);
-                    if (null == idArr || idArr.Length == 0 || idArr.Length > localPosArr.Length) {
-                        DebugTool.ThrowException("UISkillPanel UISkillPanel iaArr is null!!!");
+                    ISkillModle[] modleArr =  SceneManager.mainCharacter.skill.GetSkillModleArray();
+                    if (null == modleArr || modleArr.Length == 0 || modleArr.Length > localPosArr.Length) {
+                        DebugTool.ThrowException("UISkillPanel UISkillPanel modleArr is error!!!");
                         return;
                     } // end if
-                    skillUIArr = new UISkill[idArr.Length];
-                    for (int i = 0; i < idArr.Length; i++) {
-                        ISkillInfo info;
-                        if (false == Configs.iconConfig.TryGetSkillInfo(idArr[i], out info)) return;
-                        // end if
-                        if (null == info) return;
-                        // end if
-                        ITimer timer;
-                        if (false == SceneManager.mainCharacter.skill.GetTimer(idArr[i], out timer)) {
-                            DebugTool.ThrowException("UISkillPanel timer is null!!! ID:" + idArr[i]);
-                        } // end if
-                        skillUIArr[i] = new UISkill(info, timer, transform, localPosArr[i], new Vector2(100, 100));
+                    skillUIArr = new UISkill[modleArr.Length];
+                    for (int i = 0; i < modleArr.Length; i++) {
+                        skillUIArr[i] = new UISkill(modleArr[i], transform, localPosArr[i], new Vector2(100, 100));
                     } // end for
                 } // end UISkillPanel
 

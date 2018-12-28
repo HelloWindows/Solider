@@ -12,7 +12,12 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class SwordmanSkill3 : ICharacterState {
-                public string id { get { return "500003"; } }
+                public const string ID = "500003";
+                public static ICharacterState CreateInstance(ICharacter character, ISkillInfo info) {
+                    return new SwordmanSkill3(character, info);
+                } // end CreateInstance
+
+                public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;

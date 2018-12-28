@@ -13,12 +13,17 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class ArcherSkill2 : IFSMState, ICharacterState {
-                public string id { get { return "600202"; } }
+                public const string ID = "500202";
+                public static ICharacterState CreateInstance(ICharacter character, ISkillInfo info) {
+                    return new ArcherSkill2(character, info);
+                } // end CreateInstance
+
+                public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;
 
-                public ArcherSkill2(ICharacter character, ISkillInfo info) {
+                private ArcherSkill2(ICharacter character, ISkillInfo info) {
                     this.character = character;
                     this.info = info;
                 } // end ArcherSkill1

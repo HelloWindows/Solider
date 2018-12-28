@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
-using Framework.Tools;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
@@ -14,12 +12,17 @@ namespace Solider {
     namespace Character {
         namespace Skill {
             public class MagicianSkill1 : ICharacterState {
-                public string id { get { return "600101"; } }
+                public const string ID = "500101";
+                public static ICharacterState CreateInstance(ICharacter character, ISkillInfo info) {
+                    return new MagicianSkill1(character, info);
+                } // end CreateInstance
+
+                public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;
 
-                public MagicianSkill1(ICharacter character, ISkillInfo info) {
+                private MagicianSkill1(ICharacter character, ISkillInfo info) {
                     this.character = character;
                     this.info = info;
                 } // end MagicianSkill1
