@@ -27,7 +27,7 @@ namespace CustomEditor {
                 if (string.IsNullOrEmpty(textureImporter.spritePackingTag)) return;
                 // end if
                 textureImporter.spritePackingTag = string.Empty;
-                Debug.LogWarning("OnPostprocessTexture sprite atlas must put in Assets/Atlas");
+                Debug.LogWarning("OnPostprocessTexture sprite atlas must put in Assets/Atlas, assetpath:" + assetPath);
             } // end if
         } // end OnPostprocessTexture
     } // end class Postprocessor
