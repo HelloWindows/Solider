@@ -15,7 +15,7 @@ namespace Solider {
                 public string id { get { return "attack3"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private ICharacter mainCharacter;
-                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_2"; } }
+                private string soundPath { get { return "magician_attack_2"; } }
 
                 public MagicianAttack3(ICharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;

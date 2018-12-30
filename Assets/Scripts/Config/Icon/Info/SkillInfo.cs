@@ -29,6 +29,7 @@ namespace Solider {
                     name = (string)data["name"];
                     spritepath = (string)data["spritepath"];
                     intro = (string)data["intro"];
+                    soundPath = JsonTool.GetJsonData_String(data, "soundPath");
                     isBuff = (bool)data["buff"];
                     isPassive = (bool)data["passive"];
                     JsonData property = data["property"];
@@ -39,7 +40,6 @@ namespace Solider {
                     DEFR = JsonTool.GetJsonData_Float(property, "DEFR");
                     RGSR = JsonTool.GetJsonData_Float(property, "RGSR");
                     CD = JsonTool.GetJsonData_Float(property, "CD");
-                    soundPath = JsonTool.GetJsonData_String(property, "soundPath");
                     buff = null;
                     if (isBuff || isPassive) buff = new BuffInfo(data);
                     // end if

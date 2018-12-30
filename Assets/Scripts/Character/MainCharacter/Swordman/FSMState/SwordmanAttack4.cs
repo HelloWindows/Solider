@@ -15,7 +15,7 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private float step;
                 private IMainCharacter mainCharacter;
-                private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_4"; } }
+                private string soundPath { get { return "swordman_attack_4"; } }
 
                 public SwordmanAttack4(IMainCharacter mainCharacter) {
                     step = 2f;

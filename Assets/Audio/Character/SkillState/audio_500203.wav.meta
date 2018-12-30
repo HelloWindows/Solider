@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5035a5db69c381c4f8c0970342f9d4e2
+guid: 09fe8661696fe15488c07c5f93911f7c
 timeCreated: 1532308518
 licenseType: Pro
 AudioImporter:
@@ -18,5 +18,5 @@ AudioImporter:
   loadInBackground: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: aduio/res_aduio.unity3d
   assetBundleVariant: 

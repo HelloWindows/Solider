@@ -18,7 +18,7 @@ namespace Solider {
                 private bool isFinish;
                 private ICharacterState caromState;
                 private IMainCharacter mainCharacter;
-                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_1"; } }
+                private string soundPath { get { return "magician_attack_1"; } }
 
                 public MagicianAttack2(IMainCharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;
@@ -30,6 +30,7 @@ namespace Solider {
                     isFinish = false;
                     mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
                     mainCharacter.avatar.PlayQueued(new string[] { "attack2_1", "attack2_2" });
+                    mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 
                 public void Reason() {

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace CustomEditor {
 	public class SpritePacker {
-        [MenuItem("Custom Editor/Make Atlas", false, 100)]
+        //[MenuItem("Custom Editor/Make Atlas", false, 100)]
         static private void MakeAtlas() {
             string spriteDir = Application.dataPath + "/Resources/Sprite";
             if (!Directory.Exists(spriteDir)) {

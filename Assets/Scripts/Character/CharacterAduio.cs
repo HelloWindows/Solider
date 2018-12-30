@@ -9,6 +9,7 @@ using Framework.Config;
 using Solider.Character.Interface;
 using System.Collections.Generic;
 using UnityEngine;
+using Framework.Tools;
 
 namespace Solider {
     namespace Character {
@@ -52,7 +53,7 @@ namespace Solider {
                 // end if
                 AudioClip clip;
                 if (false == clipCache.TryGetValue(name, out clip)) {
-                    clip = Resources.Load<AudioClip>(path);
+                    clip = ResourcesTool.LoadAudioClip(path);
                     if (null == clip) return;
                     // end if
                     clipCache[name] = clip;

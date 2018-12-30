@@ -15,7 +15,7 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "attCrit"; } }
                 private ICharacter character;
-                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_crit"; } }
+                private string soundPath { get { return "archer_crit"; } }
 
                 public ArcherCrit(ICharacter character) {
                     this.character = character;

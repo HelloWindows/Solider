@@ -19,7 +19,7 @@ namespace Solider {
                 private bool isFinish;
                 private IMainCharacter mainCharacter;
                 private ICharacterState caromState;
-                private string soundPath { get { return "Character/Hero/Swordman/Sound/swordman_attack_2"; } }
+                private string soundPath { get { return "swordman_attack_2"; } }
 
                 public SwordmanAttack2(IMainCharacter mainCharacter) {
                     step = 1f;

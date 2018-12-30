@@ -9,7 +9,6 @@ using Framework.Middleware;
 using Mono.Data.Sqlite;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Framework {
     namespace Manager {

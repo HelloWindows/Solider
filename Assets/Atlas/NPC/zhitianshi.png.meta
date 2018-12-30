@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: NPC
+  spritePackingTag: npc
   userData: 
   assetBundleName: 
   assetBundleVariant: 

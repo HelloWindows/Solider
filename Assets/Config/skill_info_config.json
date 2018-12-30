@@ -5,7 +5,7 @@
       "name": "前翻",
       "spritepath": "skill_500001",
       "intro": "先前方向翻滚一段距离。",
-      "soundPath": "Character/Sound/SkillState/500001",
+      "soundPath": "audio_500001",
       "property": {
         "ATK": 0,
         "MGK": 0,
@@ -23,7 +23,7 @@
       "name": "旋风斩",
       "spritepath": "skill_500002",
       "intro": "对周围敌人造成",
-      "soundPath": "Character/Sound/SkillState/500002",
+      "soundPath": "audio_500002",
       "property": {
         "ATK": 0,
         "MGK": 0,
@@ -41,7 +41,7 @@
       "name": "前劈",
       "spritepath": "skill_500003",
       "intro": "对正前方敌人造成",
-      "soundPath": "Character/Sound/SkillState/500003",
+      "soundPath": "audio_500003",
       "property": {
         "ATK": 0,
         "MGK": 0,
@@ -57,7 +57,7 @@
         "buffID": "600001",
         "isDebuff": true,
         "isPassive": false,
-        "removable": false, 
+        "removable": false,
         "HOT": 0,
         "MOT": 0,
         "HPR": 0,
@@ -75,6 +75,114 @@
         "CRT": 0,
         "LOT": 10
       }
+    },
+    {
+      "id": "500101",
+      "name": "闪现",
+      "spritepath": "skill_500101",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500101",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 12
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500102",
+      "name": "冰霜",
+      "spritepath": "skill_500102",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500102",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 20
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500103",
+      "name": "落雷",
+      "spritepath": "skill_500103",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500103",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 0,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 26
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500201",
+      "name": "体术射击",
+      "spritepath": "skill_500201",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500201",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 12
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500202",
+      "name": "穿心箭",
+      "spritepath": "skill_500202",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500202",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 12
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "500203",
+      "name": "杀戮",
+      "spritepath": "skill_500203",
+      "intro": "对周围敌人造成",
+      "soundPath": "audio_500203",
+      "property": {
+        "ATK": 0,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0,
+        "CD": 25
+      },
+      "buff": false,
+      "passive": false
     }
   ]
 }

@@ -18,7 +18,7 @@ namespace Solider {
                 private string anim { get { return "attack"; } }
                 private bool isCarom;
                 private IMainCharacter mainCharacter;
-                private string soundPath { get { return "Character/Hero/Archer/Sound/archer_attack"; } }
+                private string soundPath { get { return "archer_attack"; } }
 
                 public ArcherAttack(IMainCharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;

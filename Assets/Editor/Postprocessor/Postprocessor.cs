@@ -30,5 +30,9 @@ namespace CustomEditor {
                 Debug.LogWarning("OnPostprocessTexture sprite atlas must put in Assets/Atlas, assetpath:" + assetPath);
             } // end if
         } // end OnPostprocessTexture
+
+        void OnPreprocessAudio() {
+
+        } // end OnPreprocessAudio
     } // end class Postprocessor
 } // end namespace CustomEditor 

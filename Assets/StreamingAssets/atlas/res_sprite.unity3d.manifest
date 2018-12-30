@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2360647576
+CRC: 3201254101
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a3e53c88be02a547e22b596ef3f4f2cc
+    Hash: 3d4fd74e87ff367ea1c2bb5f2b1492f5
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4d24bf54f46935ed9e6cf78ac481bb9d
@@ -14,7 +14,7 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Atlas/skill/fashi_huanying.png
+- Assets/Atlas/skill/skill_500101.png
 - Assets/Atlas/item/ring_blueprin.png
 - Assets/Atlas/equipment/shoes_D.png
 - Assets/Atlas/equipment/necklace_B.png
@@ -32,7 +32,7 @@ Assets:
 - Assets/Atlas/equipment/bow_B.png
 - Assets/Atlas/item/lit_hp.png
 - Assets/Atlas/equipment/armor_C.png
-- Assets/Atlas/skill/zhanshi_attack.png
+- Assets/Atlas/skill/swordman_attack.png
 - Assets/Atlas/skill/leishang.png
 - Assets/Atlas/equipment/shoes_E.png
 - Assets/Atlas/skill/huokang.png
@@ -57,7 +57,7 @@ Assets:
 - Assets/Atlas/skill/zhanshi_chongjibo.png
 - Assets/Atlas/item/shoe_blueprin.png
 - Assets/Atlas/skill/baoji.png
-- Assets/Atlas/skill/gongjian_shalu.png
+- Assets/Atlas/skill/skill_500203.png
 - Assets/Atlas/item/mid_hp.png
 - Assets/Atlas/equipment/necklace_D.png
 - Assets/Atlas/equipment/shoes_B.png
@@ -76,7 +76,7 @@ Assets:
 - Assets/Atlas/skill/skill_500002.png
 - Assets/Atlas/skill/mofa.png
 - Assets/Atlas/item/necklace_blueprin.png
-- Assets/Atlas/skill/gongjian_attack.png
+- Assets/Atlas/skill/archer_attack.png
 - Assets/Atlas/equipment/bow_A.png
 - Assets/Atlas/item/sword_blueprin.png
 - Assets/Atlas/item/gem_black.png
@@ -85,10 +85,10 @@ Assets:
 - Assets/Atlas/item/gem_orange.png
 - Assets/Atlas/equipment/pants_B.png
 - Assets/Atlas/skill/gongjian_jianyu.png
-- Assets/Atlas/skill/fashi_leiyun.png
+- Assets/Atlas/skill/skill_500103.png
 - Assets/Atlas/equipment/pants_C.png
 - Assets/Atlas/equipment/pants_E.png
-- Assets/Atlas/skill/fashi_attack.png
+- Assets/Atlas/skill/magician_attack.png
 - Assets/Atlas/item/pact_red.png
 - Assets/Atlas/equipment/ring_C.png
 - Assets/Atlas/equipment/armor_B.png
@@ -102,14 +102,14 @@ Assets:
 - Assets/Atlas/equipment/sword_A.png
 - Assets/Atlas/item/gem_white.png
 - Assets/Atlas/equipment/sword_E.png
-- Assets/Atlas/skill/fashi_binghuan.png
+- Assets/Atlas/skill/skill_500102.png
 - Assets/Atlas/skill/bingkang.png
 - Assets/Atlas/equipment/ring_B.png
 - Assets/Atlas/equipment/armor_A.png
-- Assets/Atlas/skill/gongjian_bingshuang.png
+- Assets/Atlas/skill/skill_500201.png
 - Assets/Atlas/equipment/shoes_A.png
 - Assets/Atlas/item/pants_blueprin.png
 - Assets/Atlas/equipment/ring_A.png
 - Assets/Atlas/equipment/bow_E.png
-- Assets/Atlas/skill/gongjian_chuanci.png
+- Assets/Atlas/skill/skill_500202.png
 Dependencies: []

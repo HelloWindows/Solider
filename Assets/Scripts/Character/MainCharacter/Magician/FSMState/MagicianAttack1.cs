@@ -18,7 +18,7 @@ namespace Solider {
                 private bool isFinish;
                 private ICharacterState caromState;
                 private IMainCharacter mainCharacter;
-                private string soundPath { get { return "Character/Hero/Magician/Sound/magician_attack_1"; } }
+                private string soundPath { get { return "magician_attack_1"; } }
 
                 public MagicianAttack1(IMainCharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;

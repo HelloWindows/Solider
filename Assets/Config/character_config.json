@@ -21,10 +21,10 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "Character/Hero/Swordman/Sound/swordman_attack_1",
-        "hurt": "Character/Hero/Swordman/Sound/swordman_hurt",
-        "die": "Character/Hero/Swordman/Sound/swordman_die",
-        "run": "Character/Sound/Common/heroRun"
+        "attack": "swordman_attack_1",
+        "hurt": "swordman_hurt",
+        "die": "swordman_die",
+        "run": "heroRun"
       }
     },
     {  
@@ -48,10 +48,10 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "Character/Hero/Swordman/Sound/archer_attack",
-        "hurt": "Character/Hero/Swordman/Sound/archer_hurt",
-        "die": "Character/Hero/Swordman/Sound/archer_die",
-        "run": "Character/Sound/Common/heroRun"
+        "attack": "archer_attack",
+        "hurt": "archer_hurt",
+        "die": "archer_die",
+        "run": "heroRun"
       }
     },
     {
@@ -75,10 +75,10 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "Character/Hero/Swordman/Sound/magician_attack1",
-        "hurt": "Character/Hero/Swordman/Sound/magician_hurt",
-        "die": "Character/Hero/Swordman/Sound/magician_die",
-        "run": "Character/Sound/Common/heroRun"
+        "attack": "magician_attack1",
+        "hurt": "magician_hurt",
+        "die": "magician_die",
+        "run": "heroRun"
       }
     }
   ]
