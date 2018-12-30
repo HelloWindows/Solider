@@ -25,7 +25,7 @@ namespace Framework {
                     camera.clearFlags = CameraClearFlags.Skybox;
                     camera.cullingMask = ~LayerMask.GetMask(LayerConfig.UI); // 不显示UI层
                     camera.orthographic = false;
-                    camera.fieldOfView = 60f * System.Convert.ToSingle(Screen.height) / GameConfig.STANDARD_HEIGHT;
+                    camera.fieldOfView = 60f;
                     ConsoleTool.SetConsole(camera.fieldOfView.ToString());
                     camera.depth = -1;
                     camera.renderingPath = RenderingPath.UsePlayerSettings;

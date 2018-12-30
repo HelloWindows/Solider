@@ -8,6 +8,7 @@ namespace Framework {
     namespace Config {
         namespace Game {
             public static class GameConfig {
+                public const int PIXEL_PER_UNIT = 100;
                 public const float STANDARD_WIDTH = 1024f;
                 public const float STANDARD_HEIGHT = 640f;
 

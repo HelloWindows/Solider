@@ -54,6 +54,7 @@ namespace Solider {
                 m_mainAudio = new MainAudio();
                 m_mainCanvas = new MainCanvas();
                 m_mainCamera = new MainCamera();
+                m_mainAudio.PlayBackgroundMusic("novice_village_bgm");
                 m_mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");

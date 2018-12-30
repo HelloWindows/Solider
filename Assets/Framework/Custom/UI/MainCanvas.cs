@@ -34,6 +34,7 @@ namespace Framework {
                     scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                     scaler.referenceResolution = new Vector2(GameConfig.STANDARD_WIDTH, GameConfig.STANDARD_HEIGHT);
                     scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+                    scaler.referencePixelsPerUnit = GameConfig.PIXEL_PER_UNIT;
                     GraphicRaycaster raycaster = Go.AddComponent<GraphicRaycaster>();
                     raycaster.ignoreReversedGraphics = true;
                     raycaster.blockingObjects = GraphicRaycaster.BlockingObjects.None;

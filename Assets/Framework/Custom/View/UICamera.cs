@@ -21,7 +21,7 @@ namespace Framework {
                     camera.clearFlags = CameraClearFlags.Nothing;
                     camera.cullingMask = LayerMask.GetMask(LayerConfig.UI); // 显示UI层
                     camera.orthographic = true;
-                    camera.orthographicSize = System.Convert.ToSingle(Screen.height) / 2f / 100;
+                    camera.orthographicSize = Convert.ToSingle(Screen.height) / 2f / 100;
                     camera.nearClipPlane = 0;
                     camera.farClipPlane = 20;
                     camera.depth = 0;
