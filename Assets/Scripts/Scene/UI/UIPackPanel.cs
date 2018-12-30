@@ -32,7 +32,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UIPackPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIPackPanel
 
                 public UIPackPanel(RectTransform parent) {
@@ -116,7 +116,7 @@ namespace Solider {
                     // end if
                     int count = currentPack.GetCountForGrid(currentGid);
                     UIConfirmNumBox box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", "UI/Custom/ConfirmNumBoxUI", 
-                        SceneManager.uiCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
                     if (count > 1) {
                         box.InitInfo("输入丢弃的数量", count);
                     } else {
@@ -155,10 +155,10 @@ namespace Solider {
                     transform.Find("GridPanel/ToggleGroup/Consumable").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleConsumable);
                     transform.Find("GridPanel/ToggleGroup/Stuff").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleStuff);
                     transform.Find("GridPanel/ToggleGroup/Blueprint").GetComponent<Toggle>().onValueChanged.AddListener(OnTogglePrint);
-                    transform.Find("ArrangeBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnArrangeBtn(); });
-                    transform.Find("UseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickUseBtn(); });
-                    transform.Find("DiscardBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickDiscardBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+                    transform.Find("ArrangeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnArrangeBtn(); });
+                    transform.Find("UseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickUseBtn(); });
+                    transform.Find("DiscardBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickDiscardBtn(); });
+                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {

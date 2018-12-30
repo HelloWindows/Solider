@@ -27,7 +27,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UICreateRolePanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UICreateRolePanel 
 
                 public UICreateRolePanel(RectTransform parent) {
@@ -43,7 +43,7 @@ namespace Solider {
 
                 private void OnClickCreateBtn() {
                     if (nameInputField.text == "" || nameInputField.text == null) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                         return;
                     } // end if
                     SqliteManager.CreateRole(GameManager.playerInfo.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
@@ -61,11 +61,11 @@ namespace Solider {
                     nameInputField = transform.Find("NameInputField").GetComponent<InputField>();
                     nameInputField.characterLimit = 5;
                     display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
-                    transform.Find("RoleList/Role_0").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.SWORDMAN); });
-                    transform.Find("RoleList/Role_1").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.ARCHER); });
-                    transform.Find("RoleList/Role_2").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(ConstConfig.MAGICIAN); });
-                    transform.Find("CreateBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickCreateBtn);
-                    transform.Find("BackBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickBackBtn);
+                    transform.Find("RoleList/Role_0").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(ConstConfig.SWORDMAN); });
+                    transform.Find("RoleList/Role_1").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(ConstConfig.ARCHER); });
+                    transform.Find("RoleList/Role_2").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(ConstConfig.MAGICIAN); });
+                    transform.Find("CreateBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickCreateBtn);
+                    transform.Find("BackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickBackBtn);
                     OnSwitchRole(ConstConfig.SWORDMAN);
                 } // end DoBeforeEntering
 

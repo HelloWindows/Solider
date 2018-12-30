@@ -4,26 +4,26 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System;
-using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIConfirmNumBox : MonoBehaviour {
+            public class UIConfirmNumBox : UIBehaviour {
                 private int value;
                 private int maxValue;
                 private Text msgText;
-                private Action<int> action;
+                private UnityAction<int> action;
                 private InputField input;
 
                 // Use this for initialization
-                void Awake() {
+                protected override void Awake() {
                     msgText = transform.Find("MsgText").GetComponent<Text>();
-                    transform.Find("MaxValueBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickMaxValueBtn);
-                    transform.Find("CancelBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickCancelBtn);
-                    transform.Find("ConfirmBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickConfirmBtn);
+                    transform.Find("MaxValueBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickMaxValueBtn);
+                    transform.Find("CancelBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickCancelBtn);
+                    transform.Find("ConfirmBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickConfirmBtn);
                     input = transform.Find("InputField").GetComponent<InputField>();
                     input.onValueChanged.AddListener(OnValueChanged);
                 } // end Start
@@ -42,11 +42,11 @@ namespace Solider {
                     msgText.text = msg;
                 } // end InitInfo
 
-                public void AddAction(Action<int> call) {
+                public void AddAction(UnityAction<int> call) {
                     action += call;
                 } // end AddAction
 
-                public void RemoveAction(Action<int> call) {
+                public void RemoveAction(UnityAction<int> call) {
                     action -= call;
                 } // end RemoveAction
 
@@ -74,6 +74,8 @@ namespace Solider {
                 } // end OnClickConfirmBtn
 
                 private void OnClickCancelBtn() {
+                    if (null != action) action = null;
+                    // end if
                     if (null == gameObject) return;
                     // end if
                     Destroy(gameObject);

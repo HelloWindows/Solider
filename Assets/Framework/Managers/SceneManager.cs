@@ -12,16 +12,19 @@ using Framework.Tools;
 using Solider.Manager;
 using Solider.Character.Interface;
 using Framework.FSM.Interface;
+using Framework.Interface.Audio;
 
 namespace Framework {
     namespace Manager {
         public class SceneManager : MonoBehaviour {
-            private static IScene m_scene;
-            public static IMainCamera mainCamera { get { return m_scene.mainCamera; } }
-            public static IUICamera uiCamera { get { return m_scene.uiCamera; } }
-            public static ICanvas uiCanvas { get { return m_scene.uiCanvas; } }
+            public static string seneName { get { return m_scene.sceneName; } }
             public static IFSM uiPanelFMS { get { return m_scene.uiPanelFSM; } }
+            public static IMainAudio mainAudio { get { return m_scene.mainAudio; } }
+            public static IMainCamera mainCamera { get { return m_scene.mainCamera; } }
+            public static IMainCanvas mainCanvas { get { return m_scene.mainCanvas; } }
             public static IMainCharacter mainCharacter { get { return m_scene.mainCharacter; } }
+
+            private static IScene m_scene;
 
             public static void SetScene(IScene scene) {
                 GameManager.SetGameState(GameState.SWITCH);

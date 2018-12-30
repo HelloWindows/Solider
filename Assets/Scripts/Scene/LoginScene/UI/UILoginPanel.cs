@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using cn.sharesdk.unity3d;
 using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Middleware;
@@ -27,7 +26,7 @@ namespace Solider {
                 public string id { get { return "UILoginPanel"; } }
 
                 public UILoginPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UILoginPanel
 
                 public UILoginPanel(RectTransform parent) {
@@ -42,11 +41,11 @@ namespace Solider {
                     passwordInput = transform.Find("PasswordInput").GetComponent<InputField>();
                     passwordInput.inputType = InputField.InputType.Password;
                     passwordInput.text = "";
-                    transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegisterBtn);
-                    transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginBtn);
-                    transform.Find("QQLoginBtn").GetComponent<Button>().onClick.AddListener(OnClickQQLoginBtn);
-                    transform.Find("WXLoginBtn").GetComponent<Button>().onClick.AddListener(OnClickWXLoginBtn);
-                    transform.Find("QuitBtn").GetComponent<Button>().onClick.AddListener(OnClickQuitBtn);
+                    transform.Find("RegisterBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickRegisterBtn);
+                    transform.Find("LoginBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickLoginBtn);
+                    transform.Find("QQLoginBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickQQLoginBtn);
+                    transform.Find("WXLoginBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickWXLoginBtn);
+                    transform.Find("QuitBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickQuitBtn);
                 } // end DoBeforeEntering
                 /// <summary>
                 /// 点击注册按钮
@@ -62,7 +61,7 @@ namespace Solider {
                     if (userNameInput.text == "" || userNameInput.text == null ||
                         passwordInput.text == "" || passwordInput.text == null) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
                         return;
                     } // end if
                     string msg = "";
@@ -74,7 +73,7 @@ namespace Solider {
                         return;
                     } // end if
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                        SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
                 } // end OnClickLoginBtn
 
                 /// <summary>
@@ -82,7 +81,6 @@ namespace Solider {
                 /// </summary>
                 void OnClickQQLoginBtn() {
                     ConsoleTool.SetConsole("OnClickQQLoginBtn");
-                    InstanceMgr.GetShareSDKManager().Authorize(PlatformType.QQ);
                 } // end OnClickQQLoginBtn
 
                 /// <summary>

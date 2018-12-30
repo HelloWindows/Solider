@@ -25,7 +25,7 @@ namespace Solider {
                 private UISkillPanel skillPanel;
 
                 public UIFightPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIFightPanel
 
                 public UIFightPanel(RectTransform parent) {
@@ -36,8 +36,8 @@ namespace Solider {
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
                     transform = gameObject.GetComponent<RectTransform>();
                     buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
-                    transform.Find("BarBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickBarBtn(); });      
-                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickAttackBtn);
+                    transform.Find("BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });      
+                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddListener(OnClickAttackBtn);
                     skillPanel = new UISkillPanel(transform);
                     GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();

@@ -31,7 +31,7 @@ namespace Solider {
                 private IBluePrintInfo printInfo;
 
                 public UIForgePanel() {
-                    this.parent = SceneManager.uiCanvas.rectTransform;
+                    this.parent = SceneManager.mainCanvas.rectTransform;
                 } // end UISettingPanel
 
                 public UIForgePanel(RectTransform parent) {
@@ -60,8 +60,8 @@ namespace Solider {
                         stuffArray[i] = transform.Find("Blueprint/Stuff_" + i).gameObject.AddComponent<UICell>();
                         stuffArray[i].gameObject.SetActive(false);
                     } // end for
-                    transform.Find("ForgeBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickForgeBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+                    transform.Find("ForgeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickForgeBtn(); });
+                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 private void OnSelectedGrid(int id) {
@@ -102,12 +102,12 @@ namespace Solider {
                 private void OnClickForgeBtn() {
                     if (null == printInfo) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择制作图！");
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择制作图！");
                         return;
                     } // end if
                     if (SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.EQUIP).IsFull) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("装备背包已满！");
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("装备背包已满！");
                         return;
                     } // end if
                     for (int i = 0; i < printInfo.stuffNumber; i++) {
@@ -116,12 +116,12 @@ namespace Solider {
                         if (false == printInfo.TryGetStuffID(i, out stuffID) ||
                             false == printInfo.TryGetStuffCount(i, out stuffCount)) {
                             ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                                SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
                             return;
                         } // end if
                         if (false == SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.STUFF).EnoughWithIDAndCount(stuffID, stuffCount)) {
                             ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                                SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("材料不够！");
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("材料不够！");
                             return;
                         } // end if
                     } // end for
@@ -132,7 +132,7 @@ namespace Solider {
                         if (false == printInfo.TryGetStuffID(i, out stuffID) ||
                             false == printInfo.TryGetStuffCount(i, out stuffCount)) {
                             ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                                SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
+                                SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("系统错误！");
                             return;
                         } // end if
                         SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.STUFF).ExpendItemWithID(stuffID, stuffCount);
@@ -149,7 +149,7 @@ namespace Solider {
                         // end if
                     } // end for
                     ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                        SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("锻造成功！");
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("锻造成功！");
                 } // end OnClickForgeBtn
 
                 public void DoBeforeLeaving() {

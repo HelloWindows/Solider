@@ -5,21 +5,21 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIDialogBox : MonoBehaviour {
+            public class UIDialogBox : UIBehaviour {
                 private Text msgText;
                 private Action action;
 
                 // Use this for initialization
-                void Awake() {
+                protected override void Awake() {
                     msgText = transform.Find("MsgText").GetComponent<Text>();
-                    transform.Find("CancelBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickCancelBtn);
-                    transform.Find("ConfirmBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickConfirmBtn);
+                    transform.Find("CancelBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickCancelBtn);
+                    transform.Find("ConfirmBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickConfirmBtn);
                 } // end Start
 
                 public void SetMessage(string msg) {
@@ -47,6 +47,8 @@ namespace Solider {
                 } // end OnClickConfirmBtn
 
                 private void OnClickCancelBtn() {
+                    if (null != action) action = null;
+                    // end if
                     if (null == gameObject) return;
                     // end if
                     Destroy(gameObject);

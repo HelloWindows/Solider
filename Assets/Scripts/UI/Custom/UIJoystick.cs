@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler {
+            public class UIJoystick : UIBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler {
                 public static Vector2 dir { get; private set; }
 
                 private float radius;
@@ -19,7 +19,7 @@ namespace Solider {
                 private Transform pointTrans;
                 private Transform joystickTrans;
 
-                private void Start() {
+                protected override void Start() {
                     radius = 50f;
                     joystickTrans = transform.Find("Joystick");
                     pointTrans = joystickTrans.Find("Point");
@@ -40,7 +40,7 @@ namespace Solider {
                     pointTrans.localPosition = Vector3.zero;
                 } // end OnPointerUp
 
-                private void OnDisable() {
+                protected override void OnDisable() {
                     dir = Vector2.zero;
                 } // end OnDisable
             } // end class UIJoystick 

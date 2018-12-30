@@ -17,7 +17,6 @@ namespace Solider {
             public class UIRegisterPanel : IFSMState {
                 private GameObject gameObject;
                 private Transform transform;
-                private RectTransform parent;
                 private InputField userNameInput;
                 private InputField passwordInput;
                 private InputField comfirmInput;
@@ -27,15 +26,11 @@ namespace Solider {
                 public string id { get { return "UIRegisterPanel"; } }
 
                 public UIRegisterPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
-                } // end UIRegisterPanel
-
-                public UIRegisterPanel(RectTransform parent) {
-                    this.parent = parent;
                 } // end UIRegisterPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("RegisterPanelUI", "Scene/LoginScene/RegisterPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("RegisterPanelUI", "Scene/LoginScene/RegisterPanelUI", 
+                        SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.transform;
                     userNameInput = transform.Find("UserNameInput").GetComponent<InputField>();
                     userNameInput.onEndEdit.AddListener(OnUserNameEndEdit);
@@ -51,8 +46,8 @@ namespace Solider {
                     comfirmWarningGo.SetActive(false);
 
                     comfirmInput.onEndEdit.AddListener(OnComfirmEndEdit);
-                    transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegisterBtn);
-                    transform.Find("BackBtn").GetComponent<Button>().onClick.AddListener(OnClickBackBtn);
+                    transform.Find("RegisterBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickRegisterBtn);
+                    transform.Find("BackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickBackBtn);
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
@@ -103,10 +98,10 @@ namespace Solider {
                     } // end if
                     if (false == SqliteManager.RegisterPlayer(userNameInput.text, comfirmInput.text)) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
                     } else {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
                     } // end if
                 } // end OnClickRegisterBtn
 

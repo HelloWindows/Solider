@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Tools;
 using Solider.UI.Interface;
 using UnityEngine;
@@ -14,7 +13,7 @@ using UnityEngine.UI;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIDisplayRaw : MonoBehaviour, IDragHandler, IBeginDragHandler {
+            public class UIDisplayRaw : UIBehaviour, IDragHandler, IBeginDragHandler {
                 private float lastX;
                 private Camera m_camera;
                 private bool disableDrag;
@@ -53,7 +52,7 @@ namespace Solider {
                 } // end Freshen
 
                 // Use this for initialization
-                private void Awake() {
+                protected override void Awake() {
                     disableDrag = false;
                     RenderTexture texture = new RenderTexture(320, 420, 24, RenderTextureFormat.ARGB32);
                     texture.anisoLevel = 0;

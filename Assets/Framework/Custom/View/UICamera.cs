@@ -6,12 +6,13 @@
  *******************************************************************/
 using Framework.Config.Game;
 using Framework.Interface.View;
+using System;
 using UnityEngine;
 
 namespace Framework {
     namespace Custom {
         namespace View {
-            public class UICamera : IUICamera {
+            public class UICamera : IUICamera, IDisposable {
                 public Camera camera { get; private set; }
 
                 public UICamera() {
@@ -26,6 +27,11 @@ namespace Framework {
                     camera.depth = 0;
                     camera.renderingPath = RenderingPath.UsePlayerSettings;
                 } // end UICamera
+
+                public void Dispose() {
+                    if (null != camera) UnityEngine.Object.Destroy(camera.gameObject);
+                    // end if
+                } // end Dispose
             } // end class UICamera 
         } // end namespace View 
     } // end namespace Custom

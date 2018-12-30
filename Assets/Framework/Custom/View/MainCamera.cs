@@ -7,12 +7,13 @@
 using Framework.Config.Game;
 using Framework.Interface.View;
 using Solider.Character.Interface;
+using System;
 using UnityEngine;
 
 namespace Framework {
     namespace Custom {
         namespace View {
-            public class MainCamera : IMainCamera {
+            public class MainCamera : IMainCamera, IDisposable {
                 private ICharacter target;//目标物体
                 private float smoothing = 3;//平滑系数
                 public Camera camera { get; private set; }
@@ -49,6 +50,11 @@ namespace Framework {
                 public void SetTarget(ICharacter target) {
                     this.target = target;
                 } // end SetTarget
+
+                public void Dispose() {
+                    if (null != camera) UnityEngine.Object.Destroy(camera.gameObject);
+                    // end if
+                } // end Dispose
             } // end class MainCamera 
         } // end namespace View 
     } // end namespace Custom

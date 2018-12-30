@@ -22,17 +22,21 @@ using Framework.Config.Const;
 using Framework.Config.Game;
 using Framework.Custom.View;
 using Solider.Character.MainCharacter;
+using Framework.Interface.Audio;
+using Framework.Custom.Audio;
 
 namespace Solider {
     namespace Scene {
         public class NoviceVillage : IScene {
-            public IFSM uiPanelFSM { get { return fsmSystem; } }
-            public IMainCamera mainCamera { get { return m_mainCamera; } }
-            public IUICamera uiCamera { get { return m_uiCamera; } }
-            public ICanvas uiCanvas { get; private set; }
-            public IMainCharacter mainCharacter { get { return m_mainCharacter; } }
             public string sceneName { get; private set; }
-            private UICamera m_uiCamera;
+            public IFSM uiPanelFSM { get { return fsmSystem; } }
+            public IMainAudio mainAudio { get { return m_mainAudio; } }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
+            public IMainCharacter mainCharacter { get { return m_mainCharacter; } }
+
+            private MainAudio m_mainAudio;
+            private MainCanvas m_mainCanvas;
             private MainCamera m_mainCamera;
             private MainCharacter m_mainCharacter;
             private FSMSystem fsmSystem;
@@ -47,10 +51,9 @@ namespace Solider {
             } // end NoviceVillage
 
             public void Initialize() {
+                m_mainAudio = new MainAudio();
+                m_mainCanvas = new MainCanvas();
                 m_mainCamera = new MainCamera();
-                m_uiCamera = new UICamera();
-                uiCanvas = new UICanvas(m_uiCamera.camera);
-                uiPanelFSM.PerformTransition(new UITownPanel());
                 m_mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
@@ -65,6 +68,7 @@ namespace Solider {
                 m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("idle");
                 characterList.Add(m_mainCharacter);
+                uiPanelFSM.PerformTransition(new UITownPanel());
             } // end Initialize
 
             public void Update() {

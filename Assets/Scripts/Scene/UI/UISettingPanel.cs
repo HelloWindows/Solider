@@ -23,7 +23,7 @@ namespace Solider {
                 private GameObject gameObject;
 
                 public UISettingPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UISettingPanel
 
                 public UISettingPanel(RectTransform parent) {
@@ -65,8 +65,8 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("SettingPanelUI", "UI/Common/SettingPanelUI", parent);
                     transform = gameObject.transform;
-                    transform.Find("ExitBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickExitBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+                    transform.Find("ExitBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickExitBtn(); });
+                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                     Slider musicSlider = transform.Find("MusicSlider").GetComponent<Slider>();
                     musicSlider.minValue = 0f;
                     musicSlider.maxValue = 1f;

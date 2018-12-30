@@ -31,7 +31,7 @@ namespace Solider {
                 public static int createIndex { get; private set; }
 
                 public UISelectRolePanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UISelectRolePanel 
 
                 public UISelectRolePanel(RectTransform parent) {
@@ -52,12 +52,12 @@ namespace Solider {
                     for (int i = 0; i < 3; i++) {
                         int index = i;
                         roleDict.Add(index, SqliteManager.GetRoleWithID(GameManager.playerInfo.username, index));
-                        transform.Find(prefix + i).gameObject.AddComponent<UIButton>().AddAction(delegate () { OnSwitchRole(index); });
+                        transform.Find(prefix + i).gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(index); });
                         if (null != roleDict[index]) transform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
                         // end if
                     } // end for
-                    transform.Find("DeleteRoleBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickDeleteRoleBtn);
-                    transform.Find("StartGameBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickStartGameBtn);
+                    transform.Find("DeleteRoleBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickDeleteRoleBtn);
+                    transform.Find("StartGameBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickStartGameBtn);
                     InitialSwitchRole();
                 } // end DoBeforeEntering
 
@@ -94,7 +94,7 @@ namespace Solider {
                     if (!ChechExitID(roleindex)) return;
                     // end if          
                     UIDialogBox dialog = ObjectTool.InstantiateGo("DialogBoxUI", "UI/Custom/DialogBoxUI", 
-                        SceneManager.uiCanvas.rectTransform).AddComponent<UIDialogBox>();
+                        SceneManager.mainCanvas.rectTransform).AddComponent<UIDialogBox>();
                     dialog.SetMessage("确定删除角色!");
                     dialog.AddAction(DeleteRole);
                 } // end OnClickDeleteRole
@@ -114,7 +114,7 @@ namespace Solider {
                 private void OnClickStartGameBtn() {
                     if (!ChechExitID(roleindex)) {
                         ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
-                            SceneManager.uiCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请选择角色");
                         return;
                     } // end if
                     GameManager.playerInfo.SelectedRole(roleindex, roleDict[roleindex][0], roleDict[roleindex][1]);

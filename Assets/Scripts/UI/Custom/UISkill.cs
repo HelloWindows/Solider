@@ -26,7 +26,7 @@ namespace Solider {
                     transfrom = CanvasTool.InstantiateEmptyUI("uiskill", parent, localPos).GetComponent<RectTransform>();
                     icon = CanvasTool.InstantiateImage(modle.info.id, transfrom, Vector3.zero, iconSize);
                     icon.sprite = ResourcesTool.LoadSprite(modle.info.spritepath);
-                    icon.gameObject.AddComponent<UIButton>().AddAction(CastSkill);
+                    icon.gameObject.AddComponent<UIButton>().AddListener(CastSkill);
                     icon.raycastTarget = true;
                     mask = CanvasTool.InstantiateImage("mask", icon.rectTransform, Vector3.zero, iconSize);
                     mask.sprite = icon.sprite;

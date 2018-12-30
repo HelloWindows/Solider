@@ -20,36 +20,37 @@ using Framework.Tools;
 using Framework.Config.Const;
 using Framework.Config.Game;
 using Solider.Character.MainCharacter;
+using Framework.Interface.Audio;
+using Framework.Custom.Audio;
 
 namespace Solider {
     namespace Scene {
         public class FightScene : IScene {
-            public IFSM uiPanelFSM { get { return fsmSystem; } }
-            public IUICamera uiCamera { get { return m_uiCamera; } }
-            public IMainCamera mainCamera { get { return m_mainCamera; } }
-            public ICanvas uiCanvas { get { return m_uiCanvas; } }
-            public IMainCharacter mainCharacter { get { return m_mainCharacter; } }
             public string sceneName { get; private set; }
+            public IFSM uiPanelFSM { get { return m_fsmSystem; } }
+            public IMainAudio mainAudio { get { return m_mainAudio; } }
+            public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public IMainCharacter mainCharacter { get { return m_mainCharacter; } }
 
+            private FSMSystem m_fsmSystem;
+            private MainAudio m_mainAudio;
+            private MainCanvas m_mainCanvas;
             private MainCamera m_mainCamera;
             private MainCharacter m_mainCharacter;
-            private UICamera m_uiCamera;
-            private UICanvas m_uiCanvas;
-            private FSMSystem fsmSystem;
             private List<Character.Character> charList;
 
             public FightScene() {
                 sceneName = GameConfig.FIGHT_SCENE;
-                fsmSystem = new FSMSystem();
+                m_fsmSystem = new FSMSystem();
                 charList = new List<Character.Character>();
             } // end NoviceVillage
 
             public void Initialize() {
+                m_mainCanvas = new MainCanvas();
+                m_mainAudio = new MainAudio();
                 m_mainCamera = new MainCamera();
-                m_uiCamera = new UICamera();
-                m_uiCanvas = new UICanvas(m_uiCamera.camera);
                 m_mainCharacter = CreateMainCharacter(new Vector3(0, 0, -20));
-                uiPanelFSM.PerformTransition(new UIFightPanel());
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;
@@ -57,10 +58,11 @@ namespace Solider {
                 m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("wait");
                 charList.Add(m_mainCharacter);
+                uiPanelFSM.PerformTransition(new UIFightPanel());
             } // end Initialize
 
             public void Update() {
-                fsmSystem.Update();
+                m_fsmSystem.Update();
                 List<int> indexList = new List<int>();
                 for (int i = 0; i < charList.Count; i++) {
                     if (charList[i].isDisposed) indexList.Add(i);
@@ -81,7 +83,13 @@ namespace Solider {
             } // end LateUpdate
 
             public void Dispose() {
-                if(null != m_mainCharacter) m_mainCharacter.Dispose();
+                if (null != m_mainAudio) m_mainAudio.Dispose();
+                // end if
+                if (null != m_mainCanvas) m_mainCanvas.Dispose();
+                // end if
+                if (null != m_mainCamera) m_mainCamera.Dispose();
+                // end if
+                if (null != m_mainCharacter) m_mainCharacter.Dispose();
                 // end if
             } // end Dispose
 

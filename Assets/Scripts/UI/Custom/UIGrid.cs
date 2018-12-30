@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIGrid : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler {
+            public class UIGrid : UIBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler {
                 private Action pointerDownCall;
                 private Action<int, int> dropCall;
 
@@ -40,14 +40,14 @@ namespace Solider {
                 public void OnBeginDrag(PointerEventData eventData) {
                     if (null == item || !item.gameObject.activeSelf) return;
                     // end if
-                    item.transform.SetParent(SceneManager.uiCanvas.rectTransform);
+                    item.transform.SetParent(SceneManager.mainCanvas.rectTransform);
                 } // end OnBeginDrag
 
                 public void OnDrag(PointerEventData eventData) {
                     if (null == item || false == item.gameObject.activeSelf) return;
                     // end if
                     Vector2 pos;
-                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.uiCanvas.rectTransform,
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.mainCanvas.rectTransform,
                         eventData.position, eventData.pressEventCamera, out pos))
                         item.transform.localPosition = pos;
                     // end if 
@@ -68,6 +68,7 @@ namespace Solider {
                 public void RemoveAction(Action call) {
                     pointerDownCall -= call;
                 } // end RemoveAction
+
                 public void OnPointerDown(PointerEventData eventData) {
                     if (null == pointerDownCall) return;
                     // end if

@@ -23,7 +23,7 @@ namespace Solider {
                 public UIScrollItem(RectTransform parent, Vector3 localPos, Action<string> onClick) {
                     gameObject = ObjectTool.InstantiateGo("ScrollItemUI", "UI/Custom/ScrollItemUI", 
                         parent, localPos, Vector3.zero, Vector3.one);
-                    gameObject.AddComponent<UIButton>().AddAction(delegate() { onClick(id); });
+                    gameObject.AddComponent<UIButton>().AddListener(delegate() { onClick(id); });
                     infoText = transform.Find("Info").GetComponent<Text>();
                     iconImage = transform.Find("Icon").GetComponent<Image>();
                 } // end UIScrollItem

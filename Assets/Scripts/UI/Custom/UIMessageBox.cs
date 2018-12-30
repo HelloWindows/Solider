@@ -5,20 +5,20 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using System;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIMessageBox : MonoBehaviour {
+            public class UIMessageBox : UIBehaviour {
                 private Action action;
                 private Text msgText;
 
                 // Use this for initialization
-                void Awake() {
+                protected override void Awake() {
                     msgText = transform.Find("MsgText").GetComponent<Text>();
-                    transform.Find("BackBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickBackBtn);
+                    transform.Find("BackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickBackBtn);
                 } // end Start
 
                 public void SetMessage(string msg) {

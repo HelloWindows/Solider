@@ -22,7 +22,7 @@ namespace Solider {
                 private Transform transform { get { return gameObject.transform; } }
 
                 public UIGroceryPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIGroceryPanel
 
                 public UIGroceryPanel(RectTransform parent) {
@@ -32,7 +32,7 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("GroceryPanelUI", "UI/Common/GroceryPanelUI", parent);
                     new UIScrollView(gameObject.transform.Find("Scroll View").GetComponent<ScrollRect>());
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 private void OnClickCloseBtn() {

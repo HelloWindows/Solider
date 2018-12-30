@@ -5,19 +5,20 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UIItem : MonoBehaviour {
+            public class UIItem : UIBehaviour {
                 private Image image;
                 public Text text;
 
                 public int count { get; private set; }
                 public Sprite sprite { get; private set; }
 
-                private void Awake() {
+                protected override void Awake() {
                     image = transform.Find("Image").GetComponent<Image>();
                     image.raycastTarget = false;
                     text = transform.Find("Text").GetComponent<Text>();

@@ -35,7 +35,7 @@ namespace Solider {
                 private UIDisplayRaw display;
 
                 public UIInfoPanel() {
-                    parent = SceneManager.uiCanvas.rectTransform;
+                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIInfoPanel
 
                 public UIInfoPanel(RectTransform parent) {
@@ -103,8 +103,8 @@ namespace Solider {
                     cellText = infoPanel.transform.Find("InfoText").GetComponent<Text>();
                     cellText.fontSize = 10;
                     infoPanel.SetActive(false);
-                    transform.Find("TakeOffBtn").gameObject.AddComponent<UIButton>().AddAction(OnClickTakeOffBtn);
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButton>().AddAction(delegate () { OnClickCloseBtn(); });
+                    transform.Find("TakeOffBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickTakeOffBtn);
+                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); },  "ui_close");
                     UpdateShowInfo();
                 } // end DoBeforeEntering
 

@@ -14,17 +14,21 @@ using Framework.FSM;
 using Solider.Character.Interface;
 using Framework.Config.Game;
 using Framework.Custom.UI;
+using Framework.Interface.Audio;
+using Framework.Custom.Audio;
 
 namespace Solider {
     namespace Scene {
         public class SelectRoleScene : IScene {
-            public IMainCamera mainCamera { get { return m_mainCamera; } }
-            public IUICamera uiCamera { get { return m_uiCamera; } }
-            public ICanvas uiCanvas { get; private set; }
-            public IMainCharacter mainCharacter { get; private set; }
+            public string sceneName { get; private set; }
             public IFSM uiPanelFSM { get { return fsmSystem; } }
-            public string sceneName{ get; private set; }
-            private UICamera m_uiCamera;
+            public IMainAudio mainAudio { get { return m_mainAudio; } }
+            public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
+            public IMainCamera mainCamera { get { return m_mainCamera; } }
+            public IMainCharacter mainCharacter { get; private set; }
+
+            private MainAudio m_mainAudio;
+            private MainCanvas m_mainCanvas;
             private MainCamera m_mainCamera;
             private FSMSystem fsmSystem;
 
@@ -34,9 +38,10 @@ namespace Solider {
             } // end SelectRoleScene
 
             public void Initialize() {
+                m_mainAudio = new MainAudio();
+                m_mainCanvas = new MainCanvas();
                 m_mainCamera = new MainCamera();
-                m_uiCamera = new UICamera();
-                uiCanvas = new UICanvas(m_uiCamera.camera);
+                m_mainAudio.PlayBackgroundMusic("select_role_scene_bgm");
                 uiPanelFSM.PerformTransition(new UISelectRolePanel());
             } // end Initialize
 

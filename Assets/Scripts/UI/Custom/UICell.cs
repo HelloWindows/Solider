@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 namespace Solider {
     namespace UI {
         namespace Custom {
-            public class UICell : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+            public class UICell : UIBehaviour, IPointerDownHandler, IPointerUpHandler {
                 private Action pointerDownCall;
                 public UIItem item { get; private set; }
 

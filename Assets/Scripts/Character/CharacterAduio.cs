@@ -21,6 +21,8 @@ namespace Solider {
             public CharacterAduio(AudioSource audio) {
                 valume = 1;
                 this.audio = audio;
+                audio.spatialBlend = 1f;
+                audio.minDistance = 10;
                 if (null == clipCache) clipCache = new Dictionary<string, AudioClip>();
                 // end if
             } // end CharacterAduio
