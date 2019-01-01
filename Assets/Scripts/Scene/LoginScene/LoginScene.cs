@@ -27,7 +27,8 @@ namespace Solider {
             public IMainAudio mainAudio { get { return m_mainAudio; } }
             public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
-            public IMainCharacter mainCharacter { get; private set; }
+            public IMainCharacter mainCharacter { get { return null; } }
+            public ICharacterFactory charcterFactory { get { return null; } }
 
             private FSMSystem m_fsmSystem;
             private MainAudio m_mainAudio;

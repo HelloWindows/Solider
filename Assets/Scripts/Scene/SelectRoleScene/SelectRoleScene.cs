@@ -25,7 +25,8 @@ namespace Solider {
             public IMainAudio mainAudio { get { return m_mainAudio; } }
             public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
-            public IMainCharacter mainCharacter { get; private set; }
+            public IMainCharacter mainCharacter { get { return null; } }
+            public ICharacterFactory charcterFactory { get { return null; } }
 
             private MainAudio m_mainAudio;
             private MainCanvas m_mainCanvas;
@@ -52,6 +53,12 @@ namespace Solider {
             } // end LateUpdate
 
             public void Dispose() {
+                if (null != m_mainAudio) m_mainAudio.Dispose();
+                // end if
+                if (null != m_mainCanvas) m_mainCanvas.Dispose();
+                // end if
+                if (null != m_mainCamera) m_mainCamera.Dispose();
+                // end if
             } // end Dispose
         } // end class SelectRoleScene 
     } // end namespace Scene
