@@ -18,9 +18,9 @@ namespace Solider {
                     ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), 
                         null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.MAGICIAN, this);
-                    m_avatar = new MagicianAvatar(m_gameObject.AddComponent<Animation>());
-                    SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
-                    Transform[] allChildren = m_transform.GetComponentsInChildren<Transform>();
+                    m_avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
+                    SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
+                    Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;
                     Transform liftTrans = null;
                     Transform furlTrans = null;

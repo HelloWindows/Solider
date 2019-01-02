@@ -45,7 +45,7 @@ namespace Solider {
                         DebugTool.ThrowException(GetType() + "DoBeforeEntering SceneManager mainCharacter is null!");
                         return;
                     } // end if
-                    string roleType = SceneManager.mainCharacter.info.GetCharacterData().roleType;
+                    string roleType = SceneManager.mainCharacter.info.characterData.roleType;
                     transform.Find("AttackBtn").GetComponent<Image>().sprite = ResourcesTool.LoadSprite(roleType + "_attack");
                 } // end DoBeforeEntering
 

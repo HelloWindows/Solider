@@ -119,7 +119,7 @@ namespace Solider {
 
                 public void Act() {
                     if (null != SceneManager.mainCharacter)
-                        infoText.text = SceneManager.mainCharacter.info.GetCharacterData().ToString();
+                        infoText.text = SceneManager.mainCharacter.info.characterData.ToString();
                     // end if
                 } // end Act
             } // end class UIInfoPanel 

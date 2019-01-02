@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: NPC_Grocery.cs
+ * FileName: NPC_Forge.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace NPC {
-            public class NPC_Grocery : MonoBehaviour {
+            public class NPC_Forge : MonoBehaviour {
                 // Use this for initialization
                 void Start() {
                     Animation anim = GetComponent<Animation>();
@@ -21,8 +21,11 @@ namespace Solider {
 
                 private void OnMouseDown() {
                     if (Vector3.Distance(transform.position, SceneManager.mainCharacter.position) < 4) {
-                        transform.LookAt(SceneManager.mainCharacter.position);
-                        SceneManager.uiPanelFMS.PerformTransition(new UIGroceryPanel());
+                        SceneManager.uiPanelFMS.PerformTransition(new UIForgePanel());
+                        if (null == SceneManager.mainCharacter) return;
+                        // end if
+                        Vector3 position = new Vector3(SceneManager.mainCharacter.position.x, transform.position.y, SceneManager.mainCharacter.position.z);
+                        transform.LookAt(position);  
                     } // end if
                 } // end OnMouseDown
             } // end class NPC_Grocery 

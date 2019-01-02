@@ -26,7 +26,7 @@ namespace Solider {
             public ICharacterAvatar avatar { get { return m_avatar; } }
             public ICharacterCenter center { get { return m_center; } }
             public ICharacterConfig config { get; private set; }
-            public Vector3 position { get { return null == m_transform ? Vector3.zero : m_transform.position; } }
+            public Vector3 position { get { return null == transform ? Vector3.zero : transform.position; } }
 
             private CharacterMove m_move;
             private CharacterBuff m_buff;
@@ -36,8 +36,11 @@ namespace Solider {
             protected CharacterInfo m_info;
             protected CharacterAvatar m_avatar;
             protected CharacterFSM m_fsm;
-            protected GameObject m_gameObject;
-            protected Transform m_transform;
+            protected GameObject gameObject { get { return m_gameObject; } }
+            protected Transform transform { get { return m_transform; } }
+
+            private GameObject m_gameObject;
+            private Transform m_transform;
 
             protected Character(string id, GameObject gameObject) {
                 this.id = id;
@@ -49,7 +52,7 @@ namespace Solider {
                 config = Configs.characterConfig.GetCharacterConfig(id);
 
                 m_center = new CharacterCenter();
-                m_move = new CharacterMove(m_transform);
+                m_move = new CharacterMove(transform);
                 m_buff = new CharacterBuff(center);
                 m_audio = new CharacterAduio(gameObject.AddComponent<AudioSource>());
             } // end Character

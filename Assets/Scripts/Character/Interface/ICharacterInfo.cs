@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using System;
 using Solider.ModelData.Interface;
 
 namespace Solider {
@@ -12,14 +11,22 @@ namespace Solider {
         namespace Interface {
             public interface ICharacterInfo {
                 /// <summary>
-                /// 获取角色数据
+                /// 锁定的角色
                 /// </summary>
-                /// <returns> 角色数据 </returns>
-                ICharacterData GetCharacterData();
+                ICharacter lockCharacter { get; }
+                /// <summary>
+                /// 重新锁定角色
+                /// </summary>
+                /// <param name="hashID"> 锁定角色的 hashID </param>
+                void RelockCharacter(string hashID);
+                /// <summary>
+                /// 角色数据
+                /// </summary>
+                ICharacterData characterData { get; }
                 /// <summary>
                 /// 复活
                 /// </summary>
-                void Revive();
+                void Revive();                
             } // end interface ICharacterInfo 
         } // end namespace Interface
     } // end namespace Character 

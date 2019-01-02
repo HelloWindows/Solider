@@ -36,7 +36,7 @@ namespace Solider {
                     ATK = ismiss ? 0 : MathTool.LimitZero(ATK - data.DEF);
                     MGK = 0;
                     return new RealData(this);
-                } // end Minus
+                } // end AttackTo
             } // end class AttackData
         } // end namespace Data
     } // end namespace ModelData

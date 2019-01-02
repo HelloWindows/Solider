@@ -19,27 +19,25 @@ namespace Solider {
                 get {
                     if (!isLive) return false;
                     // end if
-                    if (charcterData.HP > 0) return true;
+                    if (m_charcterData.HP > 0) return true;
                     // end if
                     isLive = false;
                     return isLive;
                 } // end get
             } // end IsLive
+            public ICharacter lockCharacter { get; private set; }
+            public ICharacterData characterData { get { return m_charcterData; } }
             private float timer;
             protected RealData m_selfTreat { get; private set; }
 
             protected IAttributeInfo initArribute;
-            protected CharacterData charcterData;
+            protected CharacterData m_charcterData;
 
             public CharacterInfo(string name, string roleType) {
                 timer = 0;
                 isLive = true;
                 m_selfTreat = new RealData();
             } // end CharacterInfo
-
-            public ICharacterData GetCharacterData() {
-                return charcterData;
-            } // end GetAttributeData
 
             public void Update() {
                 if (!IsLive) return;
@@ -48,14 +46,17 @@ namespace Solider {
                 if (timer < 1) return;
                 // end if
                 timer = 0;
-                m_selfTreat.SetSelfTreat(charcterData);
-                charcterData.Plus(m_selfTreat);
+                m_selfTreat.SetSelfTreat(m_charcterData);
+                m_charcterData.Plus(m_selfTreat);
             } // end SelfHealing
 
             private void CheckAttributeData(CenterEvent type) {
                 if (CenterEvent.BuffChange != type) return;
                 // end if
             } // end CheckAttributeData
+
+            public void RelockCharacter(string hashID) {
+            } // end RelockCharacter
 
             public void Revive() {
 

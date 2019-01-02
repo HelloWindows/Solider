@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
 using Solider.Config.Interface;
 using UnityEngine;
 

@@ -18,9 +18,9 @@ namespace Solider {
                     ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), 
                         null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.SWORDMAN, this);
-                    m_avatar = new SwordmanAvatar(m_gameObject.AddComponent<Animation>());
-                    SkinnedMeshRenderer meshRenderer = m_transform.GetComponentInChildren<SkinnedMeshRenderer>();
-                    Transform[] allChildren = m_transform.GetComponentsInChildren<Transform>();
+                    m_avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
+                    SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
+                    Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
                     Transform wingTrans = null;
                     Transform liftTrans = null;
                     Transform furlTrans = null;
