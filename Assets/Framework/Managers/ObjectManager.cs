@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Tools;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,18 +13,14 @@ namespace Framework {
         public class ObjectManager {
             private Transform poolParent;
             private Queue<ObjectTimer> objQueue;
-            private Dictionary<string, string> objPath;
-            private Dictionary<string, GameObject> prefabDict;
             private Dictionary<string, List<GameObject>> objListDict;
 
             public ObjectManager() {
                 objQueue = new Queue<ObjectTimer>();
-                poolParent = new GameObject("ObjectManager").transform;
-                objPath = new Dictionary<string, string>();
-                prefabDict = new Dictionary<string, GameObject>();          
+                poolParent = new GameObject("ObjectManager").transform;    
                 objListDict = new Dictionary<string, List<GameObject>>();
 
-                BuildPool("runEffect", Configs.effectConfig.GetPath("runEffect"));
+                BuildPool("maincharachter_run_effect");
             } // end AudioManager
 
             public void Update(float deltaTime) {
@@ -41,7 +36,7 @@ namespace Framework {
             public GameObject GetGameObject(string name, float time) {
                 if (!objListDict.ContainsKey(name)) {
 #if __MY_DEBUG__
-                    Debug.LogError("ObjectPool GetGameObject Name:" + name + " Don't exsit!");
+                    Debug.LogError(GetType() + "GetGameObject Name:" + name + " Don't exsit!");
 #endif
                     return null;
                 } // end if
@@ -52,8 +47,11 @@ namespace Framework {
                     objQueue.Enqueue(new ObjectTimer(name, Go, time));
                     return Go;
                 } // end if
-                GameObject prefab = GetPrefab(name);
-                if (null == prefabDict) {
+                GameObject prefab = ResourcesTool.LoadPrefab(name);
+                if (null == prefab) {
+#if __MY_DEBUG__
+                    Debug.LogError(GetType() + "GetGameObject prefab is null! name:" + name);
+#endif
                     return null;
                 } // end if
                 Go = ObjectTool.InstantiateGo(name, prefab, poolParent);
@@ -75,8 +73,11 @@ namespace Framework {
                     objListDict[name].RemoveAt(0);
                     return Go;
                 } // end if
-                GameObject prefab = GetPrefab(name);
-                if (null == prefabDict) {
+                GameObject prefab = ResourcesTool.LoadPrefab(name);
+                if (null == prefab) {
+#if __MY_DEBUG__
+                    Debug.LogError(GetType() + "GetGameObject prefab is null! name:" + name);
+#endif
                     return null;
                 } // end if
                 Go = ObjectTool.InstantiateGo(name, prefab, poolParent);
@@ -111,32 +112,16 @@ namespace Framework {
                 Go.SetActive(false);
             } // end Recycling
 
-            private void BuildPool(string name, string path) {
+            private void BuildPool(string name) {
 
-                if (objListDict.ContainsKey(name) || objPath.ContainsKey(name)) {
+                if (objListDict.ContainsKey(name)) {
 #if __MY_DEBUG__
                     Debug.LogWarning("ObjectPool BuildPool Name:" + name + " is exist!!");
 #endif
                     return;
                 } // end if
                 objListDict[name] = new List<GameObject>();
-                objPath[name] = path;
             } // end BuildPool
-
-            public GameObject GetPrefab(string name) {
-                if (prefabDict.ContainsKey(name)) {
-                    return prefabDict[name];
-                } // end 
-                GameObject Go = Resources.Load<GameObject>(objPath[name]);
-                if (null == Go) {
-#if __MY_DEBUG__
-                    Debug.LogWarning(" GetPrefab name: " + name + " path: " + objPath[name] + " Don't exsit!!");
-#endif
-                    return null;
-                } // end if
-                prefabDict[name] = Go;
-                return Go;
-            } // end GetPrefab
         } // end class ObjectManager
     } // end namespace Manager
 } // end namespace Framework

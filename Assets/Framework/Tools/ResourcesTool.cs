@@ -28,6 +28,26 @@ namespace Framework {
                 } // end get
             } // end audioAsset
 
+            private static AssetBundle m_prefabAsset;
+            private static AssetBundle prefabAsset {
+                get {
+                    if (null == m_prefabAsset) {
+                        m_prefabAsset = PlatformTool.LoadFromStreamingAssets("prefab/res_prefab.unity3d");
+                    } // end if
+                    return m_prefabAsset;
+                } // end get
+            } // end prefabAsset
+
+            private static AssetBundle m_animationAsset;
+            private static AssetBundle animationAsset {
+                get {
+                    if (null == m_animationAsset) {
+                        m_animationAsset = PlatformTool.LoadFromStreamingAssets("animation/res_animation.unity3d");
+                    } // end if
+                    return m_animationAsset;
+                } // end get
+            } // end animationAsset
+
             public static Sprite LoadSprite(string spriteName) {
                 if (string.IsNullOrEmpty(spriteName)) return null;
                 // end if
@@ -39,6 +59,19 @@ namespace Framework {
                 // end if
                 return audioAsset.LoadAsset<AudioClip>(audioName);
             } // end LoadAudioClip
+
+            public static GameObject LoadPrefab(string prefabName) {
+                if (string.IsNullOrEmpty(prefabName)) return null;
+                // end if
+                return prefabAsset.LoadAsset<GameObject>(prefabName);
+            } // end LoadPrefab
+
+            public static AnimationClip LoadAnimationClip(string animationPath) {
+                if (string.IsNullOrEmpty(animationPath)) return null;
+                // end if
+                AnimationClip clip  = animationAsset.LoadAsset<AnimationClip>(animationPath);
+                return clip;
+            } // end LoadAnimationClip
         } // end class ResourcesTool 
     } // end namespace Tools
 } // end namespace Framework

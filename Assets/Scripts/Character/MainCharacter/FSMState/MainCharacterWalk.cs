@@ -65,7 +65,7 @@ namespace Solider {
                     // end if
                     signArr[index] = true;
                     character.audio.PlaySoundCacheForPath("run", soundPath);
-                    EffectTool.ShowEffectFromPool("runEffect", 0.5f, character.position);
+                    EffectTool.ShowEffectFromPool("maincharachter_run_effect", 0.5f, character.position);
                 } // end PlayRunSound
             } // end class MainCharacterWalk
         } // end namespace MainCharacter

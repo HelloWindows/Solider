@@ -4,8 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-
-using Framework.Config;
 using Framework.Manager;
 using Framework.Tools;
 using UnityEngine;
@@ -14,7 +12,7 @@ namespace Solider {
     namespace Tools {
         public static class EffectTool {
             public static void ShowEffectOnce(string name, Vector3 posistion) {
-                ObjectTool.InstantiateGo(name, Configs.effectConfig.GetPath(name), null, posistion, Vector3.zero, Vector3.one);
+                ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(name), null, posistion, Vector3.zero, Vector3.one);
             } // end ShowEffectOnce
 
             public static void ShowEffectFromPool(string name, float time, Vector3 posistion) {

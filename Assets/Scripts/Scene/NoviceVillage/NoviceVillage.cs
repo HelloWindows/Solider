@@ -60,11 +60,11 @@ namespace Solider {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
-                ObjectTool.InstantiateGo("npc_grocery", Configs.prefabConfig.GetPath("npc_grocery"),
+                ObjectTool.InstantiateGo("npc_grocery", ResourcesTool.LoadPrefab("npc_grocery"),
                     null, new Vector3(24, 0, 3), new Vector3(0, 210, 0), Vector3.one).AddComponent<NPC_Grocery>();
-                ObjectTool.InstantiateGo("npc_forge", Configs.prefabConfig.GetPath("npc_forge"),
+                ObjectTool.InstantiateGo("npc_forge", ResourcesTool.LoadPrefab("npc_forge"),
                     null, new Vector3(-5, 0, 2), new Vector3(0, 160, 0), Vector3.one).AddComponent<NPC_Forge>();
-                ObjectTool.InstantiateGo("npc_transmitter", Configs.prefabConfig.GetPath("npc_transmitter"),
+                ObjectTool.InstantiateGo("npc_transmitter", ResourcesTool.LoadPrefab("npc_transmitter"),
                     null, new Vector3(17, 0, -24), new Vector3(0, 270, 0), Vector3.one).AddComponent<NPC_Transmitter>();
                 m_mainCamera.SetTarget(mainCharacter);
                 mainCharacter.fsm.PerformTransition("idle");

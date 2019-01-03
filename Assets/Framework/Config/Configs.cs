@@ -19,9 +19,6 @@ namespace Framework {
         public static class Configs {
             public static readonly IIconConfig iconConfig = IconConfig.instance;
             public static readonly IItemConfig itemConfig = ItemConfig.instance;
-            public static readonly IPathConfig soundConfig = SoundConfig.instance;
-            public static readonly IPathConfig effectConfig = EffectConfig.instance;
-            public static readonly IPathConfig prefabConfig = PrefabConfig.instance;
             public static readonly IPathConfig materialConfig = MaterialConfig.instance;
             public static readonly ICharacterConfigMgr characterConfig = CharacterConfigMgr.instance;
         } // end class Configs 

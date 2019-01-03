@@ -15,8 +15,7 @@ namespace Solider {
             public class ArcherCharacter : MainCharacter {
 
                 public ArcherCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.ARCHER,
-                    ObjectTool.InstantiateGo(name,Configs.prefabConfig.GetPath(ConstConfig.ARCHER),
-                        null, pos, Vector3.zero, Vector3.one)) {
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.ARCHER, this);
                     m_avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();

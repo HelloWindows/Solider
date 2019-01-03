@@ -15,8 +15,7 @@ namespace Solider {
             public class MagicianCharacter : MainCharacter {
 
                 public MagicianCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.MAGICIAN,
-                    ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.MAGICIAN), 
-                        null, pos, Vector3.zero, Vector3.one)) {
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.MAGICIAN, this);
                     m_avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();

@@ -73,7 +73,7 @@ namespace Solider {
                     // end if
                     signArr[index] = true;
                     mainCharacter.audio.PlaySoundCacheForPath("run", soundPath);
-                    EffectTool.ShowEffectFromPool("runEffect", 0.5f, mainCharacter.position);
+                    EffectTool.ShowEffectFromPool("maincharachter_run_effect", 0.5f, mainCharacter.position);
                 } // end PlayRunSound
             } // end class MainCharacterRun
         } // end namespace MainCharacter

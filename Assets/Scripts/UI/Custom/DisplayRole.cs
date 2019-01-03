@@ -123,14 +123,13 @@ namespace Solider {
                 private void ReloadWeapon(IEquipInfo info) {
                     string id;
                     if (null == info)
-                        id = roleType + "0";
+                        id = roleType + "_weapon";
                     else
                         id = info.id;
                     // end if            
-                    GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
+                    GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWeapon ID: " + id + " path: " +
-                            Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
+                        DebugTool.ThrowException("ReloadWeapon ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if (null != weaponGo) Object.Destroy(weaponGo);
@@ -151,10 +150,9 @@ namespace Solider {
                         return;
                     } // end if
                     string id = info.id;
-                    GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
+                    GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWing ID: " + id + " path: " +
-                            Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
+                        DebugTool.ThrowException("ReloadWing ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if(null != wingGo) Object.Destroy(wingGo);
@@ -187,7 +185,7 @@ namespace Solider {
                 } // end ReloadArmor
 
                 private void Init(string roleType) {
-                    displayGo = ObjectTool.InstantiateGo(roleType, Configs.prefabConfig.GetPath(roleType));
+                    displayGo = ObjectTool.InstantiateGo(roleType, ResourcesTool.LoadPrefab(roleType));
                     if (null == displayGo) return;
                     rotSpeed = new Vector3(0, 1, 0);
                     localPos = new Vector3(0, -7f, 30);
@@ -229,13 +227,13 @@ namespace Solider {
                     string prefix = "";
                     switch (roleType) {
                         case ConstConfig.SWORDMAN:
-                            prefix = "Character/Hero/Swordman/Animation/";
+                            prefix = "animation/character/swordman/";
                             break;
                         case ConstConfig.ARCHER:
-                            prefix = "Character/Hero/Archer/Animation/";
+                            prefix = "animation/character/archer/";
                             break;
                         case ConstConfig.MAGICIAN:
-                            prefix = "Character/Hero/Magician/Animation/";
+                            prefix = "animation/character/magician/";
                             break;
                         default:
                             DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");
@@ -243,8 +241,8 @@ namespace Solider {
                     } // end switch
                     string[] animPathArr = new string[] { "pose", "wait" };
                     Animation avatar = displayGo.AddComponent<Animation>();
-                    avatar.AddClip(Resources.Load<AnimationClip>(prefix + animPathArr[0]), animPathArr[0]);
-                    avatar.AddClip(Resources.Load<AnimationClip>(prefix + animPathArr[1]), animPathArr[1]);
+                    avatar.AddClip(ResourcesTool.LoadAnimationClip(prefix + animPathArr[0]), animPathArr[0]);
+                    avatar.AddClip(ResourcesTool.LoadAnimationClip(prefix + animPathArr[1]), animPathArr[1]);
                     foreach (AnimationState state in avatar) {
                         state.speed = 0.5f;
                     } // end foreach                

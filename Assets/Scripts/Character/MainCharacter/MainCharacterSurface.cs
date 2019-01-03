@@ -67,14 +67,13 @@ namespace Solider {
                 private void ReloadWeapon(IEquipInfo info) {
                     string id;
                     if (null == info)
-                        id = GameManager.playerInfo.roleType + "0";
+                        id = GameManager.playerInfo.roleType + "_weapon";
                     else
                         id = info.id;
                     // end if             
-                    GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
+                    GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWeapon ID: " + id + " path: " +
-                            Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
+                        DebugTool.ThrowException("ReloadWeapon ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if (null != weaponGo) UnityEngine.Object.Destroy(weaponGo);
@@ -90,10 +89,9 @@ namespace Solider {
                         return;
                     } // end if
                     string id = info.id;
-                    GameObject Go = ObjectTool.InstantiateGo(id, Configs.prefabConfig.GetPath(id));
+                    GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWing ID: " + id + " path: " +
-                            Configs.prefabConfig.GetPath(id) + " prefab is don't exsit!");
+                        DebugTool.ThrowException("ReloadWing ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if (null != wingGo) UnityEngine.Object.Destroy(wingGo);

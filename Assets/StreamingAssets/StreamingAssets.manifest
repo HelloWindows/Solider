@@ -1,13 +1,19 @@
 ManifestFileVersion: 0
-CRC: 1041991619
+CRC: 2239736598
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: atlas/res_sprite.unity3d
+      Name: aduio/res_aduio.unity3d
       Dependencies: {}
     Info_1:
-      Name: config/res_config.unity3d
+      Name: atlas/res_sprite.unity3d
       Dependencies: {}
     Info_2:
-      Name: aduio/res_aduio.unity3d
+      Name: config/res_config.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: prefab/res_prefab.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: animation/res_animation.unity3d
       Dependencies: {}

@@ -22,18 +22,16 @@ using Framework.Interface.Input;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.Character.Skill;
+using Framework.Tools;
 
 namespace Test {
 
     public class Test : MonoBehaviour {
 
-        public delegate ICharacterState CreateInstance(ICharacter character, ISkillInfo skillInfo);
-
-        private static Dictionary<string, CreateInstance> dict;
 
         private void Start() {
-            dict = new Dictionary<string, CreateInstance>();
-            dict["123"] = ArcherSkill1.CreateInstance;
+            AnimationClip clip = ResourcesTool.LoadAnimationClip("Assets/Animation/character/swordman/pose");
+            Debug.Log(clip);
         } // end Start
 
         private void Update() {

@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using UnityEngine;
@@ -15,8 +14,7 @@ namespace Solider {
             public class SwordmanCharacter : MainCharacter {
 
                 public SwordmanCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.SWORDMAN,
-                    ObjectTool.InstantiateGo(name, Configs.prefabConfig.GetPath(ConstConfig.SWORDMAN), 
-                        null, pos, Vector3.zero, Vector3.one)) {
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.SWORDMAN, this);
                     m_avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
