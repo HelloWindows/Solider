@@ -30,7 +30,7 @@ namespace Test {
 
 
         private void Start() {
-            AnimationClip clip = ResourcesTool.LoadAnimationClip("Assets/Animation/character/swordman/pose");
+            AnimationClip clip = ResourcesTool.LoadAnimationClip("swordman_pose");
             Debug.Log(clip);
         } // end Start
 

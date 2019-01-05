@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace CustomEditor {
 	public class ExportAssetBundles {
-        [MenuItem("Custom Editor/Build AssetBundles", false, 1000)]
+        [MenuItem("Custom Editor/Build AssetBundles", false, 30)]
         static void BuildAllAssetBundles() {
             BuildPipeline.BuildAssetBundles("Assets/StreamingAssets",
                 BuildAssetBundleOptions.ChunkBasedCompression, EditorTool.GetBuildTarget());

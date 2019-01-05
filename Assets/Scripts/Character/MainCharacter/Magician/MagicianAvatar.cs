@@ -10,7 +10,7 @@ namespace Solider {
         namespace MainCharacter {
             public class MagicianAvatar : CharacterAvatar {
                 public MagicianAvatar(Animation avatar) : base(avatar) {
-                    string prefix = "Character/Hero/Magician/Animation/";
+                    string prefix = "magician_";
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "idle"), "idle");
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "walk"), "walk");
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "wait"), "wait");

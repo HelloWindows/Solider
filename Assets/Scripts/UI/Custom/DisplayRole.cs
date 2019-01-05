@@ -227,13 +227,13 @@ namespace Solider {
                     string prefix = "";
                     switch (roleType) {
                         case ConstConfig.SWORDMAN:
-                            prefix = "animation/character/swordman/";
+                            prefix = "swordman_";
                             break;
                         case ConstConfig.ARCHER:
-                            prefix = "animation/character/archer/";
+                            prefix = "archer_";
                             break;
                         case ConstConfig.MAGICIAN:
-                            prefix = "animation/character/magician/";
+                            prefix = "magician_";
                             break;
                         default:
                             DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");

@@ -17,7 +17,7 @@ namespace CustomEditor {
         } // end CheckCreateFont
           //本方法是通过BMFont导出的fnt和字体图片来导出字体文件的，使用时，只需要选择图片或者fnt文件即可，但是图片和字体文件的名字必须要保持一致，除了后缀名。  
           //如果不一样，则将两个文件都选中，导出的名字以最后选择的文件为基准，但是推荐把他们的名字统一，预防出现差错。  
-        [MenuItem("Custom Editor/Create Font", false, 200)]
+        [MenuItem("Custom Editor/Create Font", false, 10)]
         private static void CreateFont() {
             if (Selection.objects == null) return;
             if (Selection.objects.Length == 0) {

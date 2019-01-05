@@ -11,7 +11,7 @@ namespace Solider {
         namespace MainCharacter {
             public class ArcherAvatar : CharacterAvatar {
                 public ArcherAvatar(Animation avatar) : base(avatar) {
-                    string prefix = "Character/Hero/Archer/Animation/";
+                    string prefix = "archer_";
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "idle"), "idle");
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "walk"), "walk");
                     avatar.AddClip(Resources.Load<AnimationClip>(prefix + "wait"), "wait");
