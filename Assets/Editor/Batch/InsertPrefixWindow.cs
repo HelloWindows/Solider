@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: InsertPrefixWindow.cs
+ * FileName: BatchFileNameWindow.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -10,10 +10,10 @@ using UnityEngine;
 using UnityEditor;
 
 namespace CustomEditor {
-	public class InsertPrefixWindow : EditorWindow {
+	public class BatchFileNameWindow : EditorWindow {
         [MenuItem("Custom Editor/Window/InsertPrefix", false, 1000)]
         private static void Init() {
-            InsertPrefixWindow window = GetWindow<InsertPrefixWindow>();
+            BatchFileNameWindow window = GetWindow<BatchFileNameWindow>();
             window.titleContent = new GUIContent("InsertPrefix");
             window.Show();
         } // end Init
@@ -22,7 +22,7 @@ namespace CustomEditor {
 
         private void OnGUI() {
             prefix = EditorGUILayout.TextField(new GUIContent("Please input prefix!"), prefix);
-            if (GUILayout.Button("comfirm")) InsertPrefix();
+            if (GUILayout.Button("Comfirm")) InsertPrefix();
             // end if
         } // end OnGUI
 
@@ -40,8 +40,11 @@ namespace CustomEditor {
                 int index = path.LastIndexOf('/') + 1;
                 string name = path.Substring(index, path.Length - index);
                 name = name.Substring(0, name.LastIndexOf('.'));
-                AssetDatabase.RenameAsset(path, prefix + name);
+                string info = AssetDatabase.RenameAsset(path, prefix + name);
+                if (string.IsNullOrEmpty(info)) continue;
+                // end if
+                Debug.LogWarning(info);
             } // end foreach
         } // end InsertPrefixToChilds
-    } // end class InsertPrefixWindow 
+    } // end class BatchFileNameWindow 
 } // end namespace CustomEditor

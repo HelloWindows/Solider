@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2282365912
+CRC: 4134110911
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bdbc3aaf9f6a1ebbe545c09df0c87eee
+    Hash: 3d444fd8a1a447c284da8610bb875946
   TypeTreeHash:
     serializedVersion: 2
     Hash: c516f2a3b2b6b67ef759f6410a790acd
@@ -12,34 +12,34 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/Audio/character/SkillState/audio_500201.wav
-- Assets/Audio/character/Swordman/swordman_die.wav
-- Assets/Audio/scene/LoginScene/login_scene_bgm.ogg
-- Assets/Audio/character/Magician/magician_die.wav
-- Assets/Audio/ui/ui_btn.wav
-- Assets/Audio/character/SkillState/audio_500203.wav
-- Assets/Audio/character/Common/heroRun.wav
-- Assets/Audio/character/Swordman/swordman_attack_3.wav
-- Assets/Audio/character/Swordman/swordman_attack_2.wav
-- Assets/Audio/character/Swordman/swordman_attack_4.wav
-- Assets/Audio/character/Archer/archer_hurt.wav
-- Assets/Audio/scene/NoviceVillage/novice_village_bgm.mp3
-- Assets/Audio/character/SkillState/audio_500102.wav
-- Assets/Audio/character/SkillState/audio_500003.wav
-- Assets/Audio/character/Magician/magician_attack_2.wav
-- Assets/Audio/character/Archer/archer_attack.wav
-- Assets/Audio/character/SkillState/audio_500103.wav
-- Assets/Audio/character/Archer/archer_die.wav
-- Assets/Audio/character/Swordman/swordman_hurt.wav
-- Assets/Audio/character/SkillState/audio_500001.wav
-- Assets/Audio/character/Magician/magician_attack_1.wav
-- Assets/Audio/scene/SelectRoleScene/select_role_scene_bgm.ogg
-- Assets/Audio/character/Archer/archer_crit.wav
-- Assets/Audio/character/SkillState/audio_500101.wav
-- Assets/Audio/character/Swordman/swordman_attack_1.wav
-- Assets/Audio/character/SkillState/audio_500002.wav
-- Assets/Audio/ui/ui_close.mp3
-- Assets/Audio/character/SkillState/audio_500202.wav
-- Assets/Audio/ui/ui_open.wav
-- Assets/Audio/character/Magician/magician_hurt.wav
+- Assets/Audio/Character/SkillState/audio_500201.wav
+- Assets/Audio/Character/Swordman/swordman_die.wav
+- Assets/Audio/Scene/LoginScene/login_scene_bgm.ogg
+- Assets/Audio/Character/Magician/magician_die.wav
+- Assets/Audio/UI/ui_btn.wav
+- Assets/Audio/Character/SkillState/audio_500203.wav
+- Assets/Audio/Character/Common/heroRun.wav
+- Assets/Audio/Character/Swordman/swordman_attack_3.wav
+- Assets/Audio/Character/Swordman/swordman_attack_2.wav
+- Assets/Audio/Character/Swordman/swordman_attack_4.wav
+- Assets/Audio/Character/Archer/archer_hurt.wav
+- Assets/Audio/Scene/NoviceVillage/novice_village_bgm.mp3
+- Assets/Audio/Character/SkillState/audio_500102.wav
+- Assets/Audio/Character/SkillState/audio_500003.wav
+- Assets/Audio/Character/Magician/magician_attack_2.wav
+- Assets/Audio/Character/Archer/archer_attack.wav
+- Assets/Audio/Character/SkillState/audio_500103.wav
+- Assets/Audio/Character/Archer/archer_die.wav
+- Assets/Audio/Character/Swordman/swordman_hurt.wav
+- Assets/Audio/Character/SkillState/audio_500001.wav
+- Assets/Audio/Character/Magician/magician_attack_1.wav
+- Assets/Audio/Scene/SelectRoleScene/select_role_scene_bgm.ogg
+- Assets/Audio/Character/Archer/archer_crit.wav
+- Assets/Audio/Character/SkillState/audio_500101.wav
+- Assets/Audio/Character/Swordman/swordman_attack_1.wav
+- Assets/Audio/Character/SkillState/audio_500002.wav
+- Assets/Audio/UI/ui_close.mp3
+- Assets/Audio/Character/SkillState/audio_500202.wav
+- Assets/Audio/UI/ui_open.wav
+- Assets/Audio/Character/Magician/magician_hurt.wav
 Dependencies: []

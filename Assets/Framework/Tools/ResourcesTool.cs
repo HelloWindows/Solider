@@ -48,6 +48,16 @@ namespace Framework {
                 } // end get
             } // end animationAsset
 
+            private static AssetBundle m_materialAsset;
+            private static AssetBundle materialAsset {
+                get {
+                    if (null == m_materialAsset) {
+                        m_materialAsset = PlatformTool.LoadFromStreamingAssets("material/res_material.unity3d");
+                    } // end if
+                    return m_materialAsset;
+                } // end get
+            } // end materialAsset
+
             public static Sprite LoadSprite(string spriteName) {
                 if (string.IsNullOrEmpty(spriteName)) return null;
                 // end if
@@ -72,6 +82,13 @@ namespace Framework {
                 AnimationClip clip  = animationAsset.LoadAsset<AnimationClip>(animationPath);
                 return clip;
             } // end LoadAnimationClip
+
+            public static Material LoadMaterial(string materialName) {
+                if (string.IsNullOrEmpty(materialName)) return null;
+                // end if
+                Material material  = materialAsset.LoadAsset<Material>(materialName);
+                return material;
+            } // end LoadMaterial
         } // end class ResourcesTool 
     } // end namespace Tools
 } // end namespace Framework

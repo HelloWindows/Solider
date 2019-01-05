@@ -4,9 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config.Audio;
-using Framework.Config.Effect;
-using Framework.Config.Prefab;
 using Framework.Config.Material;
 using Solider.Config.Item;
 using Solider.Config.Icon;
@@ -19,7 +16,6 @@ namespace Framework {
         public static class Configs {
             public static readonly IIconConfig iconConfig = IconConfig.instance;
             public static readonly IItemConfig itemConfig = ItemConfig.instance;
-            public static readonly IPathConfig materialConfig = MaterialConfig.instance;
             public static readonly ICharacterConfigMgr characterConfig = CharacterConfigMgr.instance;
         } // end class Configs 
     } // end  namespace Config

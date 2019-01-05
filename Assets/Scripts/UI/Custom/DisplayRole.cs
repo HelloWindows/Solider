@@ -175,10 +175,9 @@ namespace Solider {
                     else
                         id = info.id;
                     // end if   
-                    Material material = Resources.Load<Material>(Configs.materialConfig.GetPath(roleType + id));
+                    Material material = ResourcesTool.LoadMaterial(roleType + "_" + id);
                     if (null == material) {
-                        DebugTool.ThrowException("ReloadArmor ID: " + id + " path: " +
-                            Configs.materialConfig.GetPath(id) + " prefab is don't exsit!");
+                        DebugTool.ThrowException("ReloadArmor ID: " + id + " material is don't exsit!");
                         return;
                     } // end if
                     meshRenderer.material = material;
