@@ -2,14 +2,14 @@
 # Unity generated #
 # =============== #
 
-Temp/
-Library/
-ProjectSettings/
+/Temp/
+/Library/
+*.meta
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-
+/.vs/
 *.csproj
 *.sln
 
