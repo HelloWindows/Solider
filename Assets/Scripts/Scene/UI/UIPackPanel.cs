@@ -20,7 +20,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIPackPanel : IFSMState {
-                public string id { get { return "UIPackPanel"; } }
+                public string id { get { return "pack_panel_ui"; } }
 
                 private Text infoText;
                 private int currentGid;
@@ -28,15 +28,9 @@ namespace Solider {
                 private IPack currentPack;
                 private UIGrid[] gridArray;
                 private Transform transform;
-                private RectTransform parent;
                 private GameObject gameObject;
 
                 public UIPackPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
-                } // end UIPackPanel
-
-                public UIPackPanel(RectTransform parent) {
-                    this.parent = parent;
                 } // end UIPackPanel
 
                 private void OnToggleEquipment(bool isOn) {
@@ -115,7 +109,7 @@ namespace Solider {
                     if (currentGid == -1) return;
                     // end if
                     int count = currentPack.GetCountForGrid(currentGid);
-                    UIConfirmNumBox box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", "UI/Custom/ConfirmNumBoxUI", 
+                    UIConfirmNumBox box = ObjectTool.InstantiateGo("ConfirmNumBoxUI", ResourcesTool.LoadPrefabUI("confirm_num_box_ui"), 
                         SceneManager.mainCanvas.rectTransform).AddComponent<UIConfirmNumBox>();
                     if (count > 1) {
                         box.InitInfo("输入丢弃的数量", count);
@@ -135,7 +129,7 @@ namespace Solider {
                 } // end OnClickInfoBtn
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("PackPanelUI", "UI/Common/PackPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("PackPanelUI", ResourcesTool.LoadPrefabUI(id), SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.transform;
                     string prefix = "GridPanel/Grids/Grid_";
                     gridArray = new UIGrid[ConstConfig.GRID_COUNT];

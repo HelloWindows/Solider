@@ -18,7 +18,7 @@ namespace Solider {
 
                 public void SetUIItem(Sprite sprite, int count) {
                     if (null == item) {
-                        item = ObjectTool.InstantiateGo("ItemUI", "UI/Custom/ItemUI", transform).AddComponent<UIItem>();
+                        item = ObjectTool.InstantiateGo("ItemUI", ResourcesTool.LoadPrefabUI("item_ui"), transform).AddComponent<UIItem>();
                     } // end if
                     if (!item.gameObject.activeSelf) item.gameObject.SetActive(true);
                     // end if

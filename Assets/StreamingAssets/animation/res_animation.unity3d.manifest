@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3450674010
+CRC: 2983546192
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 332d8610e04e4c5dfcd7ec1c4e0d293e
+    Hash: f7e757cf81003af2bf49afe8e26ed0ff
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2f83f8f92ace07d29cf518d0769d85c5
@@ -12,13 +12,18 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 Assets:
+- Assets/Animation/character/magician/magician_die.anim
+- Assets/Animation/character/magician/magician_idle.anim
 - Assets/Animation/character/swordman/swordman_attack1_3.anim
 - Assets/Animation/character/archer/archer_skill3_3.anim
 - Assets/Animation/character/swordman/swordman_wait.anim
+- Assets/Animation/character/magician/magician_attack3_3.anim
 - Assets/Animation/character/archer/archer_hurt.anim
 - Assets/Animation/character/swordman/swordman_idle.anim
 - Assets/Animation/character/swordman/swordman_skill1.anim
 - Assets/Animation/character/archer/archer_idle.anim
+- Assets/Animation/character/magician/magician_attack3_2.anim
+- Assets/Animation/character/magician/magician_attack1_1.anim
 - Assets/Animation/character/swordman/swordman_hurt.anim
 - Assets/Animation/character/swordman/swordman_run.anim
 - Assets/Animation/character/archer/archer_wait.anim
@@ -36,19 +41,33 @@ Assets:
 - Assets/Animation/character/swordman/swordman_attack4_2.anim
 - Assets/Animation/character/swordman/swordman_attack4_1.anim
 - Assets/Animation/character/swordman/swordman_walk.anim
+- Assets/Animation/character/magician/magician_wait.anim
+- Assets/Animation/character/magician/magician_attack2_1.anim
 - Assets/Animation/character/archer/archer_die.anim
 - Assets/Animation/character/swordman/swordman_attack2_2.anim
 - Assets/Animation/character/archer/archer_skill2_3.anim
 - Assets/Animation/character/swordman/swordman_attack1_2.anim
 - Assets/Animation/character/archer/archer_skill3_2.anim
+- Assets/Animation/character/magician/magician_attack2_2.anim
+- Assets/Animation/character/magician/magician_attack1_3.anim
+- Assets/Animation/character/magician/magician_attack1_2.anim
 - Assets/Animation/character/swordman/swordman_attack1_1.anim
 - Assets/Animation/character/archer/archer_skill2_1.anim
+- Assets/Animation/character/magician/magician_attack2_3.anim
 - Assets/Animation/character/swordman/swordman_attack2_3.anim
 - Assets/Animation/character/archer/archer_skill3_1.anim
+- Assets/Animation/character/magician/magician_skill2.anim
+- Assets/Animation/character/magician/magician_run.anim
+- Assets/Animation/character/magician/magician_skill1.anim
+- Assets/Animation/character/magician/magician_attack3_1.anim
+- Assets/Animation/character/magician/magician_walk.anim
 - Assets/Animation/character/swordman/swordman_attack3_1.anim
 - Assets/Animation/character/swordman/swordman_attack2_1.anim
+- Assets/Animation/character/magician/magician_skill3.anim
+- Assets/Animation/character/magician/magician_hurt.anim
 - Assets/Animation/character/swordman/swordman_skill2.anim
 - Assets/Animation/character/archer/archer_attCrit.anim
+- Assets/Animation/character/magician/magician_pose.anim
 - Assets/Animation/character/archer/archer_pose.anim
 - Assets/Animation/character/swordman/swordman_attack4_3.anim
 Dependencies: []

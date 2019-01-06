@@ -21,7 +21,7 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIInfoPanel : IFSMState {
-                public string id { get { return "UIInfoPanel"; } }
+                public string id { get { return "info_panel_ui"; } }
 
                 private Text cellText;
                 private Text infoText;
@@ -30,17 +30,11 @@ namespace Solider {
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
                 private Transform transform;
-                private RectTransform parent;
                 private GameObject gameObject;
                 private UIDisplayRaw display;
 
                 public UIInfoPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIInfoPanel
-
-                public UIInfoPanel(RectTransform parent) {
-                    this.parent = parent;
-                } // end UITownPanel
 
                 private void UpdateShowInfo() {
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
@@ -84,7 +78,8 @@ namespace Solider {
                 } // end OnClickInfoBtn
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("InfoPanelUI", "UI/Common/InfoPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("InfoPanelUI", ResourcesTool.LoadPrefabUI(id), 
+                        SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.transform;
                     selected = "";
                     infoText = transform.Find("InfoText").GetComponent<Text>();

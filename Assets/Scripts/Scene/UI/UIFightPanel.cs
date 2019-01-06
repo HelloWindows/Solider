@@ -16,30 +16,25 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIFightPanel : IFSMState {
-                public string id { get { return "UIFightPanel"; } }
+                public string id { get { return "fight_panel_ui"; } }
 
                 private RectTransform transform;
-                private RectTransform parent;
                 private GameObject gameObject;
                 private UIBuffPanel buffPanel;
                 private UISkillPanel skillPanel;
 
                 public UIFightPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
-                } // end UIFightPanel
-
-                public UIFightPanel(RectTransform parent) {
-                    this.parent = parent;
                 } // end UIFightPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("UIFightPanel", "UI/Common/FightPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("UIFightPanel", ResourcesTool.LoadPrefabUI(id), 
+                        SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.GetComponent<RectTransform>();
                     buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
                     transform.Find("BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });      
                     transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddListener(OnClickAttackBtn);
                     skillPanel = new UISkillPanel(transform);
-                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
+                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", ResourcesTool.LoadPrefabUI("joystick_ui"), transform);
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                     if (null == SceneManager.mainCharacter) {
                         DebugTool.ThrowException(GetType() + "DoBeforeEntering SceneManager mainCharacter is null!");

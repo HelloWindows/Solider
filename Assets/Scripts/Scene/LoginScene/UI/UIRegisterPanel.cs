@@ -23,13 +23,13 @@ namespace Solider {
                 private GameObject usernameWarningGo;
                 private GameObject comfirmWarningGo;
 
-                public string id { get { return "UIRegisterPanel"; } }
+                public string id { get { return "register_panel_ui"; } }
 
                 public UIRegisterPanel() {
                 } // end UIRegisterPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("RegisterPanelUI", "Scene/LoginScene/RegisterPanelUI", 
+                    gameObject = ObjectTool.InstantiateGo("RegisterPanelUI", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.transform;
                     userNameInput = transform.Find("UserNameInput").GetComponent<InputField>();
@@ -97,10 +97,10 @@ namespace Solider {
                         comfirmWarningGo.SetActive(false);
                     } // end if
                     if (false == SqliteManager.RegisterPlayer(userNameInput.text, comfirmInput.text)) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                        ObjectTool.InstantiateGo("MessageBoxUI", ResourcesTool.LoadPrefabUI("message_box_ui"),
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册失败");
                     } else {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
+                        ObjectTool.InstantiateGo("MessageBoxUI", ResourcesTool.LoadPrefabUI("message_box_ui"),
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("注册成功", OnClickBackBtn);
                     } // end if
                 } // end OnClickRegisterBtn
