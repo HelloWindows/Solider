@@ -38,6 +38,16 @@ namespace Framework {
                 } // end get
             } // end prefabAsset
 
+            private static AssetBundle m_uiPrefabAsset;
+            private static AssetBundle uiPrefabAsset {
+                get {
+                    if (null == m_uiPrefabAsset) {
+                        m_uiPrefabAsset = PlatformTool.LoadFromStreamingAssets("prefab/res_prefab_ui.unity3d");
+                    } // end if
+                    return m_uiPrefabAsset;
+                } // end get
+            } // end uiPrefabAsset
+
             private static AssetBundle m_animationAsset;
             private static AssetBundle animationAsset {
                 get {
@@ -75,6 +85,14 @@ namespace Framework {
                 // end if
                 return prefabAsset.LoadAsset<GameObject>(prefabName);
             } // end LoadPrefab
+
+            public static GameObject LoadPrefabUI(string uiName) {
+                if (string.IsNullOrEmpty(uiName)) return null;
+                // end if
+                if (null == spriteAsset) ConsoleTool.SetError("prefabUI need preload sprite!");
+                // end if
+                return uiPrefabAsset.LoadAsset<GameObject>(uiName);
+            } // end LoadPrefabUI
 
             public static AnimationClip LoadAnimationClip(string animationPath) {
                 if (string.IsNullOrEmpty(animationPath)) return null;

@@ -17,21 +17,15 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UICreateRolePanel : IFSMState {
-                public string id { get { return "UICreateRolePanel"; } }
+                public string id { get { return "create_role_panel_ui"; } }
 
                 private string roleType;
                 private UIDisplayRaw display;
                 private InputField nameInputField;
                 private Transform transform;
-                private RectTransform parent;
                 private GameObject gameObject;
 
                 public UICreateRolePanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
-                } // end UICreateRolePanel 
-
-                public UICreateRolePanel(RectTransform parent) {
-                    this.parent = parent;
                 } // end UICreateRolePanel 
 
                 private void OnSwitchRole(string roleType) {
@@ -43,7 +37,8 @@ namespace Solider {
 
                 private void OnClickCreateBtn() {
                     if (nameInputField.text == "" || nameInputField.text == null) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI", SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
+                        ObjectTool.InstantiateGo("MessageBoxUI", ResourcesTool.LoadPrefabUI("message_box_ui"),
+                            SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入角色名");
                         return;
                     } // end if
                     SqliteManager.CreateRole(GameManager.playerInfo.username, UISelectRolePanel.createIndex, nameInputField.text, roleType);
@@ -55,7 +50,8 @@ namespace Solider {
                 } // end OnClickBackBtn
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("CreateRolePanelUI", "Scene/SelectRoleScene/CreateRolePanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("CreateRolePanelUI", ResourcesTool.LoadPrefabUI(id),
+                        SceneManager.mainCanvas.rectTransform);
                     transform = gameObject.transform;
                     roleType = "";
                     nameInputField = transform.Find("NameInputField").GetComponent<InputField>();

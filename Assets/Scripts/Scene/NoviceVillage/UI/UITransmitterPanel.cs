@@ -15,21 +15,16 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UITransmitterPanel : IFSMState {
-                public string id { get { return "UITransmitterPanel"; } }
+                public string id { get { return "transmitter_panel_ui"; } }
                 private Transform transform { get { return gameObject.transform; } }
-                private RectTransform parent;
                 private GameObject gameObject;
 
                 public UITransmitterPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
-                } // end UITownPanel
-
-                public UITransmitterPanel(RectTransform parent) {
-                    this.parent = parent;
-                } // end UITownPanel
+                } // end UITransmitterPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("TransmitterPanelUI", "Scene/NoviceVillage/UI/TransmitterPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("TransmitterPanelUI", ResourcesTool.LoadPrefabUI(id),
+                        SceneManager.mainCanvas.rectTransform);
                     LinkImageText linkText = transform.Find("LinkImageText").GetComponent<LinkImageText>();
                     linkText.text = "<size=20>  你想传送到哪里？\n\n  <a href=fightscene>[战争学院]</a></size><size=10>\n\n</size><size=20>  <a href=null>[算了..]</a></size>";
                     linkText.onHrefClick.AddListener(OnHrefClick);
@@ -58,7 +53,7 @@ namespace Solider {
                             break;
                     } // end switch
                 } // end OnHrefClick
-            } // end class UITownPanel 
+            } // end class UITransmitterPanel 
         } // end namespace UI
     } // end namespace Scene 
 } // end namespace Solider

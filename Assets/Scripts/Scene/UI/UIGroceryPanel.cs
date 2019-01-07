@@ -15,22 +15,17 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UIGroceryPanel : IFSMState {
-                public string id { get { return "UIGroceryPanel"; } }
+                public string id { get { return "grocery_panel_ui"; } }
 
-                private RectTransform parent;
                 private GameObject gameObject;
                 private Transform transform { get { return gameObject.transform; } }
 
                 public UIGroceryPanel() {
-                    parent = SceneManager.mainCanvas.rectTransform;
                 } // end UIGroceryPanel
 
-                public UIGroceryPanel(RectTransform parent) {
-                    this.parent = parent;
-                } // end UISettingPanel
-
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("GroceryPanelUI", "UI/Common/GroceryPanelUI", parent);
+                    gameObject = ObjectTool.InstantiateGo("GroceryPanelUI", ResourcesTool.LoadPrefabUI(id),
+                        SceneManager.mainCanvas.rectTransform);
                     new UIScrollView(gameObject.transform.Find("Scroll View").GetComponent<ScrollRect>());
                     transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
