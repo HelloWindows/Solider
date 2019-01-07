@@ -23,7 +23,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mainCharacter.avatar.Play(anim);
-                    mainCharacter.surface.LiftWeapon();
+                    mainCharacter.mainSurface.LiftWeapon();
                     mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 

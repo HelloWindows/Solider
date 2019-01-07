@@ -4,13 +4,18 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace NPC {
             public class PeaceNPC : Character {
-                public PeaceNPC(string id, GameObject gameObject) : base(id, gameObject) {
-                    m_fsm = new CharacterFSM();
+                public PeaceNPC(string id, Vector3 position) : base(id, 
+                    ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id), null, position, Vector3.zero, Vector3.one)) {
+                    m_info = new NPCharacterInfo(config.name, this);
+                    m_avatar = new PeaceNPCAvatar(id, gameObject.AddComponent<Animation>());
+                    m_surface = new CharacterSurface(transform.GetComponentInChildren<SkinnedMeshRenderer>());
+                    m_fsm = new PeaceNPCFSM(this);
                 } // end PeaceNPC
             } // end class PeaceNPC 
         } // end namespace NPC

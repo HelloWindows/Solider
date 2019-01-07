@@ -16,22 +16,20 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
-            public class MainCharacterSurface : IMainCharacterSurface, IDisposable {
+            public class MainCharacterSurface : CharacterSurface, IMainCharacterSurface, IDisposable {
                 private GameObject wingGo;
                 private GameObject weaponGo;
 
                 private Transform wingTrans; // 穿戴翅膀的位置
                 private Transform liftTrans; // 拿起武器的位置
                 private Transform furlTrans; // 收起武器的位置
-                private SkinnedMeshRenderer renderer;
                 private IMainCharacter mainCharacter;
 
-                public MainCharacterSurface(IMainCharacter mainCharacter, Transform wingTrans, Transform liftTrans, Transform furlTrans, SkinnedMeshRenderer renderer) {
+                public MainCharacterSurface(IMainCharacter mainCharacter, Transform wingTrans, Transform liftTrans, Transform furlTrans, SkinnedMeshRenderer renderer) : base(renderer) {
                     this.mainCharacter = mainCharacter;
                     this.wingTrans = wingTrans;
                     this.liftTrans = liftTrans;
                     this.furlTrans = furlTrans;
-                    this.renderer = renderer;
                     mainCharacter.center.AddListener(Freshen);
                     Freshen();
                 } // end MainCharacterSurface

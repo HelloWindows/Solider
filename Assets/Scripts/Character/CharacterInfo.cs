@@ -33,7 +33,7 @@ namespace Solider {
             protected IAttributeInfo initArribute;
             protected CharacterData m_charcterData;
 
-            public CharacterInfo(string name, string roleType) {
+            public CharacterInfo(string name) {
                 timer = 0;
                 isLive = true;
                 m_selfTreat = new RealData();
@@ -49,11 +49,6 @@ namespace Solider {
                 m_selfTreat.SetSelfTreat(m_charcterData);
                 m_charcterData.Plus(m_selfTreat);
             } // end SelfHealing
-
-            private void CheckAttributeData(CenterEvent type) {
-                if (CenterEvent.BuffChange != type) return;
-                // end if
-            } // end CheckAttributeData
 
             public void RelockCharacter(string hashID) {
             } // end RelockCharacter

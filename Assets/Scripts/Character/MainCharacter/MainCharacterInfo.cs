@@ -15,7 +15,7 @@ namespace Solider {
             public class MainCharacterInfo : CharacterInfo {
                 private IMainCharacter mainCharacter;
 
-                public MainCharacterInfo(string name, string roleType, IMainCharacter mainCharacter) : base(name, roleType) {
+                public MainCharacterInfo(string name, string roleType, IMainCharacter mainCharacter) : base(name) {
                     this.mainCharacter = mainCharacter;
                     initArribute = mainCharacter.config.initAttribute;
                     m_charcterData = new CharacterData(name, roleType);

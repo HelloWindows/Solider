@@ -22,6 +22,7 @@ namespace Solider {
                 ICharacterAvatar avatar { get; }
                 ICharacterConfig config { get; }
                 ICharacterCenter center { get; }
+                ICharacterSurface surface { get; }
                 Vector3 position { get; }
                 void Update();
             } // end interface ICharacter

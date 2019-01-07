@@ -46,6 +46,10 @@ namespace Solider {
                 public float AVD { get; private set; }
                 public float CRT { get; private set; }
 
+                public CharacterData(string name) {
+                    this.name = name;
+                } // end CharacterData
+
                 public CharacterData(string name, string roleType) {
                     this.name = name;
                     this.roleType = roleType;
@@ -132,25 +136,27 @@ namespace Solider {
                     infoBuilder.Append(name);
                     infoBuilder.Append('\n');
 
-                    infoBuilder.Append("角色：");
-                    switch (roleType) {
-                        case ConstConfig.ARCHER:
-                            infoBuilder.Append("弓箭手");
-                        break;
+                    if (false == string.IsNullOrEmpty(roleType)) {
+                        infoBuilder.Append("角色：");
+                        switch (roleType) {
+                            case ConstConfig.ARCHER:
+                                infoBuilder.Append("弓箭手");
+                                break;
 
-                        case ConstConfig.MAGICIAN:
-                            infoBuilder.Append("魔法师");
-                        break;
+                            case ConstConfig.MAGICIAN:
+                                infoBuilder.Append("魔法师");
+                                break;
 
-                        case ConstConfig.SWORDMAN:
-                            infoBuilder.Append("狂战士");
-                            break;
+                            case ConstConfig.SWORDMAN:
+                                infoBuilder.Append("狂战士");
+                                break;
 
-                        default:
-                            infoBuilder.Append("全部");
-                        break;
-                    } // end switch
-                    infoBuilder.Append('\n');
+                            default:
+                                infoBuilder.Append("全部");
+                                break;
+                        } // end switch
+                        infoBuilder.Append('\n');
+                    } // end if
                     AppendValue("HP：", HP, " / ", XHP);
                     AppendValue("MP：", MP, " / ", XMP);
                     AppendValue("物理攻击：", NATK, " - ", XATK);

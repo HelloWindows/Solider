@@ -5,8 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Config;
-using Framework.FSM;
-using Framework.FSM.Interface;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using System;
@@ -25,6 +23,7 @@ namespace Solider {
             public ICharacterAudio audio { get { return m_audio; } }
             public ICharacterAvatar avatar { get { return m_avatar; } }
             public ICharacterCenter center { get { return m_center; } }
+            public ICharacterSurface surface { get { return m_surface; } }
             public ICharacterConfig config { get; private set; }
             public Vector3 position { get { return null == transform ? Vector3.zero : transform.position; } }
 
@@ -36,6 +35,7 @@ namespace Solider {
             protected CharacterInfo m_info;
             protected CharacterAvatar m_avatar;
             protected CharacterFSM m_fsm;
+            protected CharacterSurface m_surface;
             protected GameObject gameObject { get { return m_gameObject; } }
             protected Transform transform { get { return m_transform; } }
 

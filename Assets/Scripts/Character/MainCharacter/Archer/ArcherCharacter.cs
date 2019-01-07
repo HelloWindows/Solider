@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using UnityEngine;
@@ -41,7 +40,8 @@ namespace Solider {
                             break;
                         } // end if
                     } // end foreach
-                    m_surface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
+                    m_mainSurface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
+                    m_surface = m_mainSurface;
                     m_fsm = new ArcherFSM(this);
                 } // end ArcherCharacter
 
@@ -56,7 +56,7 @@ namespace Solider {
                     // end if
                     if (null != m_avatar) m_avatar.Dispose();
                     // end if
-                    if (null != m_surface) m_surface.Dispose();
+                    if (null != m_mainSurface) m_mainSurface.Dispose();
                     // end if
                     base.Dispose();
                 } // end Dispose

@@ -22,7 +22,7 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     mainCharacter.avatar.Play(anim);
-                    mainCharacter.surface.FurlWeapon();
+                    mainCharacter.mainSurface.FurlWeapon();
                 } // end DoBeforeEntering
 
                 public void Reason() {

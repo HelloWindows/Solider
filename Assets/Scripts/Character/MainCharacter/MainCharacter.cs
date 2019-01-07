@@ -18,11 +18,11 @@ namespace Solider {
                 public IPackInfo pack { get; private set; }
                 public IInputCenter input { get { return m_input; } }
                 public ICharacterSkill skill { get { return m_skill; } }
-                public IMainCharacterSurface surface { get { return m_surface; } }
+                public IMainCharacterSurface mainSurface { get { return m_mainSurface; } }
 
                 private CrossInput m_input;
                 private CharacterSkill m_skill;
-                protected MainCharacterSurface m_surface;
+                protected MainCharacterSurface m_mainSurface;
 
                 protected MainCharacter(string id, string roleType, GameObject gameObject) : base(id, gameObject) {
                     m_input = new CrossInput();

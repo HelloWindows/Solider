@@ -14,7 +14,7 @@ namespace Solider {
                 IPackInfo pack { get; }
                 IInputCenter input { get; }
                 ICharacterSkill skill { get; }
-                IMainCharacterSurface surface { get; }
+                IMainCharacterSurface mainSurface { get; }
             } // end interface IMainCharacter
         } // end namespace Interface
     } // end namespace Character

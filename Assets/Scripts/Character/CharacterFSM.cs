@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Solider {
     namespace Character {
-        public class CharacterFSM : ICharacterFSM {
+        public abstract class CharacterFSM : ICharacterFSM {
             public int currentLayer {
                 get { return null == currentState ? Convert.ToInt32(StateLayer.Default) : currentState.layer; }
             } // end currentLayer
