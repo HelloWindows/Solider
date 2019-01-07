@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1317640165
+CRC: 2972024046
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 292713fd0b9ed690bf9fa93b150d8413
+    Hash: 64aad2af18fdfd82d61d1bc8866fbcbc
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9f139d7b113599a5cf7172b210c708d9
@@ -74,5 +74,4 @@ Assets:
 - Assets/Prefab/equipment/100007.prefab
 - Assets/Prefab/effect/maincharachter_run_effect.prefab
 - Assets/Prefab/character/archer.prefab
-Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/material/res_material.unity3d
+Dependencies: []
