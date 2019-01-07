@@ -14,12 +14,18 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UITownPanel : IFSMState {
-                public string id { get { return "town_panel_ui"; } }
+                public string id { get { return "UITownPanel"; } }
 
                 private Transform transform;
+                private RectTransform parent;
                 private GameObject gameObject;
 
                 public UITownPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UITownPanel
+
+                public UITownPanel(RectTransform parent) {
+                    this.parent = parent;
                 } // end UITownPanel
 
                 private void OnClickInfoBtn() {
@@ -35,13 +41,12 @@ namespace Solider {
                 } // end OnClickSettingBtn
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("TownPanelUI", ResourcesTool.LoadPrefabUI(id),
-                        SceneManager.mainCanvas.rectTransform);
+                    gameObject = ObjectTool.InstantiateGo("TownPanelUI", "UI/Common/TownPanelUI", parent);
                     transform = gameObject.transform;
                     transform.Find("InfoBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickInfoBtn(); });
                     transform.Find("PackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickPackBtn(); });
                     transform.Find("SettingBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickSettingBtn(); });
-                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", ResourcesTool.LoadPrefabUI("joystick_ui"), transform);
+                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", "UI/Common/JoystickUI", transform);
                     ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
 

@@ -4,6 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -80,7 +82,6 @@ namespace CustomEditor {
                 assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
             } // end foreach
             AssetDatabase.Refresh();
-            Debug.Log("ModifyAssetBundleNameForFiles Success!");
         } // end ModifyAssetBundleNameForFiles
 
         private void ModifyAssetBundleNameForDirectory() {
@@ -101,8 +102,6 @@ namespace CustomEditor {
                     assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
                 } // end foreach
             } // end foreach
-            AssetDatabase.Refresh();
-            Debug.Log("ModifyAssetBundleNameForDirectory Success!");
         } // end ModifyAssetBundleNameForDirectory
 
         private void ClearAllAssetBundlesName() {
@@ -118,8 +117,6 @@ namespace CustomEditor {
             for (int i = 0; i < oldAssetBundleNames.Length; i++) {
                 AssetDatabase.RemoveAssetBundleName(oldAssetBundleNames[i], true);
             } // end for
-            AssetDatabase.Refresh();
-            Debug.Log("ClearAllAssetBundlesName Success!");
         } // end ClearAllAssetBundlesName
     } // end class ModifyAssetBundleNameWindow
 } // end namespace CustomEditor

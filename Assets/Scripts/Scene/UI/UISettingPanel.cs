@@ -16,12 +16,18 @@ namespace Solider {
     namespace Scene {
         namespace UI {
             public class UISettingPanel : IFSMState {
-                public string id { get { return "setting_panel_ui"; } }
+                public string id { get { return "UISettingPanel"; } }
 
                 private Transform transform;
+                private RectTransform parent;
                 private GameObject gameObject;
 
                 public UISettingPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UISettingPanel
+
+                public UISettingPanel(RectTransform parent) {
+                    this.parent = parent;
                 } // end UISettingPanel
 
                 void OnMusicSliderChange(float value) {
@@ -57,8 +63,7 @@ namespace Solider {
                 } // end OnClickExitBtn
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("SettingPanelUI", ResourcesTool.LoadPrefabUI(id), 
-                        SceneManager.mainCanvas.rectTransform);
+                    gameObject = ObjectTool.InstantiateGo("SettingPanelUI", "UI/Common/SettingPanelUI", parent);
                     transform = gameObject.transform;
                     transform.Find("ExitBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickExitBtn(); });
                     transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");

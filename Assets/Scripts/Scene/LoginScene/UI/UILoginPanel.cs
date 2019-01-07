@@ -19,17 +19,22 @@ namespace Solider {
             public class UILoginPanel : IFSMState {
                 private GameObject gameObject;
                 private Transform transform;
+                private RectTransform parent;
                 private InputField userNameInput;
                 private InputField passwordInput;
 
-                public string id { get { return "login_panel_ui"; } }
+                public string id { get { return "UILoginPanel"; } }
 
                 public UILoginPanel() {
+                    parent = SceneManager.mainCanvas.rectTransform;
+                } // end UILoginPanel
+
+                public UILoginPanel(RectTransform parent) {
+                    this.parent = parent;
                 } // end UILoginPanel
 
                 public void DoBeforeEntering() {
-                    gameObject = ObjectTool.InstantiateGo("LoginPanelUI", ResourcesTool.LoadPrefabUI(id), 
-                        SceneManager.mainCanvas.rectTransform);
+                    gameObject = ObjectTool.InstantiateGo("LoginPanelUI", "Scene/LoginScene/LoginPanelUI", parent);
                     transform = gameObject.transform;
                     userNameInput = transform.Find("UserNameInput").GetComponent<InputField>();
                     userNameInput.text = "";
@@ -55,7 +60,7 @@ namespace Solider {
                 void OnClickLoginBtn() {
                     if (userNameInput.text == "" || userNameInput.text == null ||
                         passwordInput.text == "" || passwordInput.text == null) {
-                        ObjectTool.InstantiateGo("MessageBoxUI", ResourcesTool.LoadPrefabUI("message_box_ui"),
+                        ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                             SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage("请输入正确的账号密码!");
                         return;
                     } // end if
@@ -67,7 +72,7 @@ namespace Solider {
                         LoaderScene.LoadNextLevel(new SelectRoleScene());
                         return;
                     } // end if
-                    ObjectTool.InstantiateGo("MessageBoxUI", ResourcesTool.LoadPrefabUI("message_box_ui"),
+                    ObjectTool.InstantiateGo("MessageBoxUI", "UI/Custom/MessageBoxUI",
                         SceneManager.mainCanvas.rectTransform).AddComponent<UIMessageBox>().SetMessage(msg);
                 } // end OnClickLoginBtn
 

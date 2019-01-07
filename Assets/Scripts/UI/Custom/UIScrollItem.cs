@@ -21,7 +21,7 @@ namespace Solider {
                 private const int resetGap = 500;
 
                 public UIScrollItem(RectTransform parent, Vector3 localPos, Action<string> onClick) {
-                    gameObject = ObjectTool.InstantiateGo("ScrollItemUI", ResourcesTool.LoadPrefabUI("scroll_item_ui"), 
+                    gameObject = ObjectTool.InstantiateGo("ScrollItemUI", "UI/Custom/ScrollItemUI", 
                         parent, localPos, Vector3.zero, Vector3.one);
                     gameObject.AddComponent<UIButton>().AddListener(delegate() { onClick(id); });
                     infoText = transform.Find("Info").GetComponent<Text>();

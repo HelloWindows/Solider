@@ -46,7 +46,7 @@ namespace Solider {
                 m_mainCanvas = new MainCanvas();
                 m_mainCamera = new MainCamera();
                 m_mainAudio.PlayBackgroundMusic("login_scene_bgm");
-                gameObject = ObjectTool.InstantiateGo("LoginSceneBg", ResourcesTool.LoadPrefabUI("login_scene_bg"), 
+                gameObject = ObjectTool.InstantiateGo("LoginSceneBg", "Scene/LoginScene/LoginSceneBg", 
                     null, new Vector3(0, 0, 5.1f), Vector3.zero, Vector3.one);
                 uiPanelFSM.PerformTransition(new UILoginPanel());
             } // end Initialize
