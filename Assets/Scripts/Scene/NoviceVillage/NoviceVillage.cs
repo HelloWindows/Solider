@@ -11,12 +11,10 @@ using Framework.Interface.UI;
 using Framework.FSM.Interface;
 using Framework.FSM;
 using Solider.Scene.UI;
-using System.Collections.Generic;
 using Solider.Character.Interface;
 using UnityEngine;
 using Solider.Manager;
 using Framework.Tools;
-using Framework.Config;
 using Solider.Character.NPC;
 using Framework.Config.Const;
 using Framework.Config.Game;
@@ -24,7 +22,7 @@ using Framework.Custom.View;
 using Solider.Character.MainCharacter;
 using Framework.Interface.Audio;
 using Framework.Custom.Audio;
-using Solider.Factory;
+using Solider.Character.Manager;
 
 namespace Solider {
     namespace Scene {
@@ -34,27 +32,27 @@ namespace Solider {
             public IMainAudio mainAudio { get { return m_mainAudio; } }
             public IMainCamera mainCamera { get { return m_mainCamera; } }
             public IMainCanvas mainCanvas { get { return m_mainCanvas; } }
-            public IMainCharacter mainCharacter { get { return m_characterFactory.mainCharacter; } }
-            public ICharacterFactory charcterFactory { get { return m_characterFactory; } }
+            public IMainCharacter mainCharacter { get { return m_characterManager.mainCharacter; } }
+            public ICharacterManager characterManager { get { return m_characterManager; } }
 
             private MainAudio m_mainAudio;
             private MainCanvas m_mainCanvas;
             private MainCamera m_mainCamera;
-            private CharacterFactory m_characterFactory;
+            private CharacterManager m_characterManager;
 
             private FSMSystem fsmSystem;
 
             public NoviceVillage() {
                 sceneName = GameConfig.NOVICE_VILLAGE;
                 fsmSystem = new FSMSystem();
-                m_characterFactory = new CharacterFactory();
+                m_characterManager = new CharacterManager();
             } // end NoviceVillage
 
             public void Initialize() {
                 m_mainAudio = new MainAudio();
                 m_mainCanvas = new MainCanvas();
                 m_mainCamera = new MainCamera();
-                m_characterFactory.CreateMainCharacter(new Vector3(0, 0, -20));
+                m_characterManager.factory.CreateMainCharacter(new Vector3(0, 0, -20));
                 m_mainAudio.PlayBackgroundMusic("novice_village_bgm");
                 if (null == mainCharacter) {
                     DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
@@ -73,7 +71,7 @@ namespace Solider {
 
             public void Update() {
                 fsmSystem.Update();
-                m_characterFactory.Update();
+                m_characterManager.Update();
             } // end Update
 
             public void LateUpdate() {
@@ -89,7 +87,7 @@ namespace Solider {
                 // end if
                 if (null != m_mainCamera) m_mainCamera.Dispose();
                 // end if
-                if (null != m_characterFactory) m_characterFactory.Dispose();
+                if (null != m_characterManager) m_characterManager.Dispose();
                 // end if
             } // end Dispose
 

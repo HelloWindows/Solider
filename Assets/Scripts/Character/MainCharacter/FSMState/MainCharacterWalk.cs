@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.FSM.Interface;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Tools;
@@ -18,38 +17,38 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "walk"; } }
                 private string soundPath;
-                private IMainCharacter character;
+                private IMainCharacter mainCharacter;
                 private float[] timeArr;
                 private bool[] signArr;
 
-                public MainCharacterWalk(IMainCharacter character) {
-                    this.character = character;
+                public MainCharacterWalk(IMainCharacter mainCharacter) {
+                    this.mainCharacter = mainCharacter;
                     timeArr = new float[] { 0.35f, 0.8f };
                     signArr = new bool[] { false, false };
-                    character.config.TryGetSoundPath("run", out soundPath);
+                    mainCharacter.config.TryGetSoundPath("run", out soundPath);
                 } // end MainCharacterWalk
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play(anim);
+                    mainCharacter.avatar.Play(anim);
                     for (int i = 0; i < signArr.Length; i++) {
                         signArr[i] = false;
                     } // end for
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (character.input.joystickDir.magnitude == 0f) {
-                        character.fsm.PerformTransition(new MainCharacterIdle(character));
+                    if (mainCharacter.input.joystickDir.magnitude == 0f) {
+                        mainCharacter.fsm.PerformTransition(new MainCharacterIdle(mainCharacter));
                         return;
                     } // end if
-                    if (false == character.avatar.isPlaying) {
-                        character.fsm.PerformTransition(this);
+                    if (false == mainCharacter.avatar.isPlaying) {
+                        mainCharacter.fsm.PerformTransition(this);
                         return;
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    character.move.MoveForward(character.input.joystickDir, Time.deltaTime);
-                    AnimationState state = character.avatar.GetCurrentState(anim);
+                    mainCharacter.move.MoveForward(mainCharacter.input.joystickDir, mainCharacter.info.characterData.MSP);
+                    AnimationState state = mainCharacter.avatar.GetCurrentState(anim);
                     if (null == state) return;
                     // end if
                     for (int i = 0; i < signArr.Length; i++) {
@@ -64,8 +63,8 @@ namespace Solider {
                     if (true == signArr[index] || normalizedTime < timeArr[index]) return;
                     // end if
                     signArr[index] = true;
-                    character.audio.PlaySoundCacheForPath("run", soundPath);
-                    EffectTool.ShowEffectFromPool("maincharachter_run_effect", 0.5f, character.position);
+                    mainCharacter.audio.PlaySoundCacheForPath("run", soundPath);
+                    EffectTool.ShowEffectFromPool("maincharachter_run_effect", 0.5f, mainCharacter.position);
                 } // end PlayRunSound
             } // end class MainCharacterWalk
         } // end namespace MainCharacter

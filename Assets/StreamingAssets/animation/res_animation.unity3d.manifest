@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1414787298
+CRC: 3569106916
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5744ddbae46bd1e7ec410b3bb807cd74
+    Hash: 21d3d8cca9329842e8228dcf48d32910
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2f83f8f92ace07d29cf518d0769d85c5
@@ -13,7 +13,9 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Animation/character/magician/magician_die.anim
+- Assets/Animation/character/900001/900001_attack.anim
 - Assets/Animation/character/magician/magician_idle.anim
+- Assets/Animation/character/900001/900001_birth.anim
 - Assets/Animation/character/swordman/swordman_attack1_3.anim
 - Assets/Animation/character/archer/archer_skill3_3.anim
 - Assets/Animation/character/swordman/swordman_wait.anim
@@ -26,6 +28,7 @@ Assets:
 - Assets/Animation/character/magician/magician_attack1_1.anim
 - Assets/Animation/character/swordman/swordman_hurt.anim
 - Assets/Animation/character/swordman/swordman_run.anim
+- Assets/Animation/character/900001/900001_die.anim
 - Assets/Animation/character/archer/archer_wait.anim
 - Assets/Animation/character/archer/archer_skill1_1.anim
 - Assets/Animation/character/swordman/swordman_attack3_2.anim
@@ -35,6 +38,7 @@ Assets:
 - Assets/Animation/character/swordman/swordman_die.anim
 - Assets/Animation/character/archer/archer_attack.anim
 - Assets/Animation/character/archer/archer_skill1_2.anim
+- Assets/Animation/character/900001/900001_idle.anim
 - Assets/Animation/character/archer/archer_skill2_2.anim
 - Assets/Animation/character/archer/archer_run.anim
 - Assets/Animation/character/archer/archer_walk.anim
@@ -54,6 +58,7 @@ Assets:
 - Assets/Animation/character/swordman/swordman_attack1_1.anim
 - Assets/Animation/character/archer/archer_skill2_1.anim
 - Assets/Animation/character/magician/magician_attack2_3.anim
+- Assets/Animation/character/900001/900001_run.anim
 - Assets/Animation/character/swordman/swordman_attack2_3.anim
 - Assets/Animation/character/archer/archer_skill3_1.anim
 - Assets/Animation/character/magician/magician_skill2.anim
@@ -61,6 +66,7 @@ Assets:
 - Assets/Animation/character/magician/magician_skill1.anim
 - Assets/Animation/character/magician/magician_attack3_1.anim
 - Assets/Animation/character/magician/magician_walk.anim
+- Assets/Animation/character/900001/900001_hurt.anim
 - Assets/Animation/character/swordman/swordman_attack3_1.anim
 - Assets/Animation/character/swordman/swordman_attack2_1.anim
 - Assets/Animation/character/magician/magician_skill3.anim

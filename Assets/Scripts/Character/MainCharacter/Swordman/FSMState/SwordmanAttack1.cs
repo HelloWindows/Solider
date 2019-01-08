@@ -52,7 +52,7 @@ namespace Solider {
 
                 public void Act() {
                     if (mainCharacter.avatar.IsPlaying("attack1_2"))  {
-                        mainCharacter.move.StepForward(step, UnityEngine.Time.deltaTime);
+                        mainCharacter.move.MoveForward(step);
                     } // end if
                 } // end Act
 

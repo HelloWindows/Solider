@@ -12,7 +12,11 @@ namespace Solider {
             public class PeaceNPCFSM : CharacterFSM {
 
                 public PeaceNPCFSM(ICharacter character) {
-
+                    AddState(new PeaceNPCIdle(character));
+                    AddState(new PeaceNPCWalk(character));
+                    AddState(new NPCEscape(character));
+                    AddState(new NPCDie(character));
+                    PerformTransition("idle");
                 } // end SwordmanFSM          
             } // end class PeaceNPCFSM
         } // end namespace NPC

@@ -17,6 +17,20 @@ namespace Solider {
                     m_surface = new CharacterSurface(transform.GetComponentInChildren<SkinnedMeshRenderer>());
                     m_fsm = new PeaceNPCFSM(this);
                 } // end PeaceNPC
+
+                public override void Update() {
+                    base.Update();
+                    m_info.Update();
+                    m_fsm.Update();
+                } // end Update
+
+                public override void Dispose() {
+                    if (null != m_info) m_info.Dispose();
+                    // end if
+                    if (null != m_avatar) m_avatar.Dispose();
+                    // end if
+                    base.Dispose();
+                } // end Dispose
             } // end class PeaceNPC 
         } // end namespace NPC
     } // end namespace Character

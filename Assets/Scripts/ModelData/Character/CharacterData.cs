@@ -13,7 +13,7 @@ using System.Text;
 namespace Solider {
     namespace ModelData {
         namespace Character {
-            public class CharacterData : ICharacterDataAction, ICharacterData, IAttributeData {
+            public class CharacterData : ICharacterDataAction, ICharacterData {
                 private bool isLive;
                 public bool IsLive {
                     get {
@@ -48,12 +48,19 @@ namespace Solider {
 
                 public CharacterData(string name) {
                     this.name = name;
+                    Revive();
                 } // end CharacterData
 
                 public CharacterData(string name, string roleType) {
                     this.name = name;
                     this.roleType = roleType;
+                    Revive();
                 } // end CharacterData
+
+                public void Revive() {
+                    HP = 1;
+                    isLive = true;
+                } // end Revive
 
                 public void Init(IAttributeInfo initAttribute) {
                     if (null == initAttribute) return;
@@ -76,7 +83,7 @@ namespace Solider {
                 } // end Init
 
                 public void Minus(IRealData data) {
-                    if (null == data || false == isLive) return;
+                    if (null == data || false == IsLive) return;
                     // end if
                     HP = HP - data.HP;
                     MP = MP - data.MP;
@@ -93,7 +100,7 @@ namespace Solider {
                 } // end  Minus
 
                 public void Plus(IRealData data) {
-                    if (null == data || HP == XHP && MP == XMP) return;
+                    if (null == data || false == IsLive || HP == XHP && MP == XMP) return;
                     // end if
                     HP = HP + data.HP;
                     MP = MP + data.MP;
@@ -122,8 +129,8 @@ namespace Solider {
                     MOT = MOT + info.attributeInfo.MOT;
                     DEF = DEF + info.attributeInfo.DEF;
                     RGS = RGS + info.attributeInfo.RGS;
-                    ASP = MathTool.Clamp(ASP + info.attributeInfo.ASP, 0.2f, 2f);
-                    MSP = MathTool.Clamp(MSP + info.attributeInfo.MSP, 0.2f, 2f);
+                    if (info.attributeInfo.ASP != 0) ASP = MathTool.Clamp(ASP * (info.attributeInfo.ASP + 100f) / 100f, 0.2f, 2f);
+                    if (info.attributeInfo.MSP != 0) MSP = MathTool.Clamp(MSP * (info.attributeInfo.MSP + 100f) / 100f, 0.2f, 5f);
                     HIT = MathTool.Clamp(HIT + info.attributeInfo.HIT, 0, 100);
                     AVD = MathTool.Clamp(AVD + info.attributeInfo.AVD, 0, 60);
                     CRT = MathTool.Clamp(CRT + info.attributeInfo.CRT, 0, 100);

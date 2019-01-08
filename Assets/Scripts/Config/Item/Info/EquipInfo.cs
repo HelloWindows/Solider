@@ -118,7 +118,30 @@ namespace Solider {
                     infoBuilder.Append('\n');
                     infoBuilder.Append('\n');
                     infoBuilder.Append("<size=20>");
-                    infoBuilder.Append(attributeInfo.ToString());
+                    AppendValue("MaxHp：", attributeInfo.XHP);
+                    AppendValue("MaxMp：", attributeInfo.XMP);
+                    AppendValue("每秒Hp：", attributeInfo.HOT);
+                    AppendValue("每秒Mp：", attributeInfo.MOT);
+                    if (attributeInfo.NATK != 0 || attributeInfo.XATK != 0) {
+                        infoBuilder.Append("物理攻击：");
+                        infoBuilder.Append(attributeInfo.NATK);
+                        infoBuilder.Append(" - ");
+                        infoBuilder.Append(attributeInfo.XATK);
+                        infoBuilder.Append('\n');
+                    } // end if
+                    if (attributeInfo.NMGK != 0 || attributeInfo.XMGK != 0) {
+                        infoBuilder.Append("魔法攻击：");
+                        infoBuilder.Append(attributeInfo.NMGK);
+                        infoBuilder.Append(" - ");
+                        infoBuilder.Append(attributeInfo.XMGK);
+                        infoBuilder.Append('\n');
+                    } // end if
+                    AppendValue("防御力：", attributeInfo.DEF);
+                    AppendValue("攻速：", attributeInfo.ASP, "%");
+                    AppendValue("移速：", attributeInfo.MSP, "%");
+                    AppendValue("命中率：", attributeInfo.HIT);
+                    AppendValue("闪避率：", attributeInfo.AVD);
+                    AppendValue("暴击率：", attributeInfo.CRT);
                     infoBuilder.Append("</size>");
                     infoBuilder.Append('\n');
                     infoBuilder.Append('\n');

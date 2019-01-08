@@ -14,15 +14,9 @@ using System;
 namespace Solider {
     namespace Character {
         public abstract class CharacterInfo : ICharacterInfo, IDisposable {
-            private bool isLive;
             public bool IsLive {
                 get {
-                    if (!isLive) return false;
-                    // end if
-                    if (m_charcterData.HP > 0) return true;
-                    // end if
-                    isLive = false;
-                    return isLive;
+                    return m_charcterData.IsLive;
                 } // end get
             } // end IsLive
             public ICharacter lockCharacter { get; private set; }
@@ -35,7 +29,6 @@ namespace Solider {
 
             public CharacterInfo(string name) {
                 timer = 0;
-                isLive = true;
                 m_selfTreat = new RealData();
             } // end CharacterInfo
 
@@ -54,7 +47,7 @@ namespace Solider {
             } // end RelockCharacter
 
             public void Revive() {
-
+                m_charcterData.Revive();
             } // end Revive
 
             public abstract void Dispose();

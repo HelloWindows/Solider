@@ -7,7 +7,7 @@
 namespace Solider {
     namespace ModelData {
         namespace Interface {
-            public interface ICharacterData {
+            public interface ICharacterData : IAttributeData {
                 /// <summary>
                 /// 名字
                 /// </summary>

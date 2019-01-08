@@ -49,7 +49,7 @@ namespace Solider {
                 } // end Reason
 
                 public void Act() {
-                    mainCharacter.move.MoveForward(mainCharacter.input.joystickDir, Time.deltaTime);
+                    mainCharacter.move.MoveForward(mainCharacter.input.joystickDir, mainCharacter.info.characterData.MSP);
                     AnimationState state = mainCharacter.avatar.GetCurrentState(anim);
                     if (null == state) return;
                     // end if

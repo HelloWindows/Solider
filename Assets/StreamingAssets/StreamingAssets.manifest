@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1513929447
+CRC: 177233149
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -13,10 +13,11 @@ AssetBundleManifest:
       Dependencies: {}
     Info_3:
       Name: prefab/res_prefab.unity3d
-      Dependencies: {}
+      Dependencies:
+        Dependency_0: materia/res_material.unity3d
     Info_4:
-      Name: config/res_config.unity3d
+      Name: materia/res_material.unity3d
       Dependencies: {}
     Info_5:
-      Name: materia/res_material.unity3d
+      Name: config/res_config.unity3d
       Dependencies: {}

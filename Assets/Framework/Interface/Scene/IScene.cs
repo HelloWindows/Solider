@@ -21,7 +21,7 @@ namespace Framework {
                 IMainCamera mainCamera { get; }
                 IMainCanvas mainCanvas { get; }
                 IMainCharacter mainCharacter { get; }
-                ICharacterFactory charcterFactory { get; }
+                ICharacterManager characterManager { get; }
                 void Initialize();
                 void Update();
                 void LateUpdate();

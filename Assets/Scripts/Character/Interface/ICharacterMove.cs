@@ -10,11 +10,10 @@ namespace Solider {
     namespace Character {
         namespace Interface {
             public interface ICharacterMove  {
-                void StepForward(float step, float deltaTime);
-                void StepForward(Vector2 dir, float deltaTime);
-                void MoveForward(Vector2 dir, float deltaTime);
-                void StepBackward(float step, float deltaTime);
-                void MoveBackward(Vector2 dir, float deltaTime);
+                void MoveForward(float speed);
+                void MoveBackward(float speed);
+                void MoveForward(Vector2 dir, float speed);
+                void MoveBackward(Vector2 dir, float speed);
             } // end class ICharacterMove
         } // end namespace Interface 
     } // end namespace Character

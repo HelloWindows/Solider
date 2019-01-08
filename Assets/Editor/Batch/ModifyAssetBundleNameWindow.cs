@@ -76,8 +76,7 @@ namespace CustomEditor {
                 return;
             } // end if
             foreach (Object obj in Selection.objects) {
-                AssetImporter assetImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(obj));
-                assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
+                SetAssetBundleNameAndVariantWithPath(AssetDatabase.GetAssetPath(obj));
             } // end foreach
             AssetDatabase.Refresh();
             Debug.Log("ModifyAssetBundleNameForFiles Success!");
@@ -93,12 +92,16 @@ namespace CustomEditor {
                 return;
             } // end if
             DirectoryInfo rootDirInfo = new DirectoryInfo(selectedDirPath);
+            foreach (FileInfo fileInfo in rootDirInfo.GetFiles("*", SearchOption.AllDirectories)) {
+                if (fileInfo.Name.EndsWith(".meta")) continue;
+                // end if                   
+                SetAssetBundleNameAndVariantWithPath(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")));
+            } // end foreach
             foreach (DirectoryInfo dirInfo in rootDirInfo.GetDirectories()) {
                 foreach (FileInfo fileInfo in dirInfo.GetFiles("*", SearchOption.AllDirectories)) {
                     if (fileInfo.Name.EndsWith(".meta")) continue;
-                    // end if                   
-                    AssetImporter assetImporter = AssetImporter.GetAtPath(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")));
-                    assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
+                    // end if     
+                    SetAssetBundleNameAndVariantWithPath(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")));             
                 } // end foreach
             } // end foreach
             AssetDatabase.Refresh();
@@ -121,5 +124,14 @@ namespace CustomEditor {
             AssetDatabase.Refresh();
             Debug.Log("ClearAllAssetBundlesName Success!");
         } // end ClearAllAssetBundlesName
+
+        private void SetAssetBundleNameAndVariantWithPath(string path) {
+            AssetImporter assetImporter = AssetImporter.GetAtPath(path);
+            if (null == assetImporter) {
+                Debug.LogWarning(path + "is not asset!!");
+                return;
+            } // end if
+            assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
+        } // end SetAssetBundleNameAndVariantWithPath
     } // end class ModifyAssetBundleNameWindow
 } // end namespace CustomEditor

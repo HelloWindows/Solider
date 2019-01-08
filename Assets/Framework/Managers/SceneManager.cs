@@ -23,6 +23,7 @@ namespace Framework {
             public static IMainCamera mainCamera { get { return m_scene.mainCamera; } }
             public static IMainCanvas mainCanvas { get { return m_scene.mainCanvas; } }
             public static IMainCharacter mainCharacter { get { return m_scene.mainCharacter; } }
+            public static ICharacterManager characterManager { get { return m_scene.characterManager; } }
 
             private static IScene m_scene;
 

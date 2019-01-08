@@ -4,10 +4,8 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config.Material;
 using Solider.Config.Item;
 using Solider.Config.Icon;
-using Framework.Config.Interface;
 using Solider.Config.Interface;
 using Solider.Config.Character;
 

@@ -10,41 +10,37 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         public class CharacterMove : ICharacterMove {
-            private float speed;
             private Transform transform;
 
             public CharacterMove(Transform transform) {
-                speed = 3f;
                 this.transform = transform;
             } // end CharacterMove
 
-            public void StepForward(float step, float deltaTime) {
-                transform.Translate(transform.forward * speed * deltaTime, Space.World);
+            public void MoveForward(float speed) {
+                transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            } // end StepForward
+            } // end MoveForward
 
-            public void StepForward(Vector2 dir, float deltaTime) {
-                Vector3 forward = new Vector3(dir.x, 0, dir.y);
-                transform.Translate(forward * speed * deltaTime, Space.World);
+            public void MoveBackward(float speed) {
+                transform.Translate(-transform.forward * speed * Time.deltaTime, Space.World);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            } // end StepForward
+            } // end MoveBackward
 
-            public void MoveForward(Vector2 dir, float deltaTime) {
-                Vector3 forward = new Vector3(dir.x, 0, dir.y);
-                transform.Translate(forward * speed * deltaTime, Space.World);
+            public void MoveForward(Vector2 dir, float speed) {
+                Vector3 forward = new Vector3(dir.x, 0, dir.y).normalized;
+                if (Vector3.zero == forward) return;
+                // end if
+                transform.Translate(forward * speed * Time.deltaTime, Space.World);
                 transform.rotation = Quaternion.LookRotation(forward);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end MoveForward
 
-            public void StepBackward(float step, float deltaTime) {
-                transform.Translate(-transform.forward * speed * deltaTime, Space.World);
-                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            } // end StepBackward
-
-            public void MoveBackward(Vector2 dir, float deltaTime) {
-                Vector3 forward = new Vector3(-dir.x, 0, -dir.y);
-                transform.Translate(forward * speed * deltaTime, Space.World);
-                transform.rotation = Quaternion.LookRotation(forward);
+            public void MoveBackward(Vector2 dir, float speed) {
+                Vector3 forward = new Vector3(-dir.x, 0, -dir.y).normalized;
+                if (Vector3.zero == forward) return;
+                // end if
+                transform.Translate(forward * speed * Time.deltaTime, Space.World);
+                transform.rotation = Quaternion.LookRotation(-forward);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end MoveBackward
         } // end class CharacterMove

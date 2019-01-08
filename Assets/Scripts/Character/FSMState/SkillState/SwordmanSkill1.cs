@@ -43,7 +43,7 @@ namespace Solider {
                 } // end Reason
 
                 public void Act() {
-                    character.move.StepForward(step, UnityEngine.Time.deltaTime);
+                    character.move.MoveForward(step);
                 } // end Act
 
                 public void DoBeforeLeaving() {

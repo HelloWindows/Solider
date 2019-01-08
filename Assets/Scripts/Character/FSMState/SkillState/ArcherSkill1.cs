@@ -46,9 +46,9 @@ namespace Solider {
                     if (null == state) return;
                     // end if
                     if (state.normalizedTime < 0.5f) {
-                        character.move.StepForward(step, Time.deltaTime);
+                        character.move.MoveForward(step);
                     } else {
-                        character.move.StepBackward(step, Time.deltaTime);
+                        character.move.MoveBackward(step);
                     } // end if
                 } // end Act
 

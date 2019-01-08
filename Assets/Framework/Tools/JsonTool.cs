@@ -19,7 +19,7 @@ namespace Framework {
 
             public static float GetJsonData_Float(JsonData data, string key) {
                 try {
-                    return (float)data[key];
+                    return System.Convert.ToSingle((double)data[key]);
                 } catch {
                     return 0;
                 } // end try

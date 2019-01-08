@@ -23,28 +23,28 @@ namespace Solider {
 
                 public string id { get { return ID; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
-                private IMainCharacter character;
+                private IMainCharacter mainCharacter;
                 private ISkillInfo info;
 
-                private SwordmanSkill2(IMainCharacter horeCharacter, ISkillInfo info) {
-                    character = horeCharacter;
+                private SwordmanSkill2(IMainCharacter mainCharacter, ISkillInfo info) {
+                    this.mainCharacter = mainCharacter;
                     this.info = info;
                 } // end SwordmanSkill2
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play("skill2");
-                    character.audio.PlaySoundCacheForPath(id, info.soundPath);
+                    mainCharacter.avatar.Play("skill2");
+                    mainCharacter.audio.PlaySoundCacheForPath(id, info.soundPath);
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    AnimationState state = character.avatar.GetCurrentState("skill2");
+                    AnimationState state = mainCharacter.avatar.GetCurrentState("skill2");
                     if (null != state && state.normalizedTime >= 7) {
-                        character.fsm.PerformTransition("wait");
+                        mainCharacter.fsm.PerformTransition("wait");
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    character.move.StepForward(character.input.joystickDir, Time.deltaTime);
+                    mainCharacter.move.MoveForward(mainCharacter.input.joystickDir, mainCharacter.info.characterData.MSP);
                 } // end Act
 
                 public void DoBeforeLeaving() {

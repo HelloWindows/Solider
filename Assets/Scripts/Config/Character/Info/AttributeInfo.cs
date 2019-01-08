@@ -11,7 +11,7 @@ using Solider.Config.Interface;
 namespace Solider {
     namespace Config {
         namespace Character {
-            public class AttributeInfo : InfoString, IAttributeInfo {
+            public class AttributeInfo : IAttributeInfo {
                 public int XHP { get; protected set; }
                 public int XMP { get; protected set; }
                 public int NATK { get; protected set; }
@@ -45,35 +45,6 @@ namespace Solider {
                     AVD = JsonTool.GetJsonData_Float(data, "AVD");
                     CRT = JsonTool.GetJsonData_Float(data, "CRT");
                 } // end AttributeInfo
-
-                public override string ToString() {
-                    int startIndex = infoBuilder.Length;
-                    AppendValue("MaxHp：", XHP);
-                    AppendValue("MaxMp：", XMP);
-                    AppendValue("每秒Hp：", HOT);
-                    AppendValue("每秒Mp：", MOT);
-                    if (NATK != 0 || XATK != 0) {
-                        infoBuilder.Append("物理攻击：");
-                        infoBuilder.Append(NATK);
-                        infoBuilder.Append(" - ");
-                        infoBuilder.Append(XATK);
-                        infoBuilder.Append('\n');
-                    } // end if
-                    if (NMGK != 0 || XMGK != 0) {
-                        infoBuilder.Append("魔法攻击：");
-                        infoBuilder.Append(NMGK);
-                        infoBuilder.Append(" - ");
-                        infoBuilder.Append(XMGK);
-                        infoBuilder.Append('\n');
-                    } // end if
-                    AppendValue("防御力：", DEF);
-                    AppendValue("攻速：", ASP);
-                    AppendValue("移速：", MSP);
-                    AppendValue("命中率：", HIT);
-                    AppendValue("闪避率：", AVD);
-                    AppendValue("暴击率：", CRT); 
-                    return infoBuilder.ToString(startIndex, infoBuilder.Length - startIndex);
-                } // end ToString
             } // end class AttributeInfo
         } // end namespace Character
     } // end namespace Config
