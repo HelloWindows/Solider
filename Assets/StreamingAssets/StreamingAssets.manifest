@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 177233149
+CRC: 2450387696
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -21,3 +21,7 @@ AssetBundleManifest:
     Info_5:
       Name: config/res_config.unity3d
       Dependencies: {}
+    Info_6:
+      Name: prefab/res_prefab_ui.unity3d
+      Dependencies:
+        Dependency_0: atlas/res_sprite.unity3d

@@ -6,8 +6,8 @@
  *******************************************************************/
 using System;
 using Framework.Interface.Input;
-using Solider.UI.Custom;
 using UnityEngine;
+using Solider.Scene.UI;
 
 namespace Framework {
     namespace Custom {

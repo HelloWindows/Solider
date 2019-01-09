@@ -25,7 +25,7 @@ namespace Solider {
                 private Text t_roleName;
                 private UIDisplayRaw display;
                 private Dictionary<int, string[]> roleDict;
-                private Transform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
                 public static int createIndex { get; private set; }
 
@@ -35,24 +35,25 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("SelectRolePanelUI", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.transform;
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
                     roleindex = 0;
                     createIndex = -1;
                     selectedindex = -1;
                     roleDict = new Dictionary<int, string[]>();
-                    t_roleName = transform.Find("RoleName").GetComponent<Text>();
+                    t_roleName = rectTransform.Find("RoleName").GetComponent<Text>();
                     t_roleName.text = "";
-                    display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
+                    display = rectTransform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
                     string prefix = "RoleList/Role_";
                     for (int i = 0; i < 3; i++) {
                         int index = i;
                         roleDict.Add(index, SqliteManager.GetRoleWithID(GameManager.playerInfo.username, index));
-                        transform.Find(prefix + i).gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(index); });
-                        if (null != roleDict[index]) transform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
+                        rectTransform.Find(prefix + i).gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(index); });
+                        if (null != roleDict[index]) rectTransform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
                         // end if
                     } // end for
-                    transform.Find("DeleteRoleBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickDeleteRoleBtn);
-                    transform.Find("StartGameBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickStartGameBtn);
+                    rectTransform.Find("DeleteRoleBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickDeleteRoleBtn);
+                    rectTransform.Find("StartGameBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickStartGameBtn);
                     InitialSwitchRole();
                 } // end DoBeforeEntering
 
@@ -101,7 +102,7 @@ namespace Solider {
                     if (roleDict.ContainsKey(roleindex)) roleDict[roleindex] = null;
                     // end if
                     t_roleName.text = "";
-                    transform.Find("RoleList/Role_" + roleindex + "/Text").GetComponent<Text>().text = "创建角色";
+                    rectTransform.Find("RoleList/Role_" + roleindex + "/Text").GetComponent<Text>().text = "创建角色";
                     display.ClearDiplay();
                     InitialSwitchRole();
                 } // end DeleteRole
@@ -132,7 +133,7 @@ namespace Solider {
                     // end if
                     Object.Destroy(gameObject);
                     gameObject = null;
-                    transform = null;
+                    rectTransform = null;
                 } // end DoBeforeLeaving
 
                 public void Reason() {

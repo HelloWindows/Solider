@@ -18,6 +18,7 @@ namespace Framework {
             public class MainCanvas : IMainCanvas, IDisposable {
                 public Camera camera { get { return m_uiCamera.camera; } }
                 public Canvas canvas { get; private set; }
+                public Vector2 sizeDelta { get; private set; }
                 public RectTransform rectTransform { get; private set; }
 
                 private UICamera m_uiCamera;
@@ -35,6 +36,7 @@ namespace Framework {
                     scaler.referenceResolution = new Vector2(GameConfig.STANDARD_WIDTH, GameConfig.STANDARD_HEIGHT);
                     scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
                     scaler.referencePixelsPerUnit = GameConfig.PIXEL_PER_UNIT;
+                    sizeDelta = new Vector2(Convert.ToSingle(Screen.width) / Screen.height * GameConfig.STANDARD_HEIGHT, GameConfig.STANDARD_HEIGHT);
                     GraphicRaycaster raycaster = Go.AddComponent<GraphicRaycaster>();
                     raycaster.ignoreReversedGraphics = true;
                     raycaster.blockingObjects = GraphicRaycaster.BlockingObjects.None;

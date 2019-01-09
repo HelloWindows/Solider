@@ -16,7 +16,7 @@ namespace Solider {
         namespace UI {
             public class UITransmitterPanel : IFSMState {
                 public string id { get { return "transmitter_panel_ui"; } }
-                private Transform transform { get { return gameObject.transform; } }
+                private RectTransform rectTransform;
                 private GameObject gameObject;
 
                 public UITransmitterPanel() {
@@ -25,7 +25,9 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("TransmitterPanelUI", ResourcesTool.LoadPrefabUI(id),
                         SceneManager.mainCanvas.rectTransform);
-                    LinkImageText linkText = transform.Find("LinkImageText").GetComponent<LinkImageText>();
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    LinkImageText linkText = rectTransform.Find("LinkImageText").GetComponent<LinkImageText>();
                     linkText.text = "<size=20>  你想传送到哪里？\n\n  <a href=fightscene>[战争学院]</a></size><size=10>\n\n</size><size=20>  <a href=null>[算了..]</a></size>";
                     linkText.onHrefClick.AddListener(OnHrefClick);
                 } // end DoBeforeEntering

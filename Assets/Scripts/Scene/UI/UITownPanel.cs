@@ -16,7 +16,7 @@ namespace Solider {
             public class UITownPanel : IFSMState {
                 public string id { get { return "town_panel_ui"; } }
 
-                private Transform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
 
                 public UITownPanel() {
@@ -37,12 +37,14 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("TownPanelUI", ResourcesTool.LoadPrefabUI(id),
                         SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.transform;
-                    transform.Find("InfoBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickInfoBtn(); });
-                    transform.Find("PackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickPackBtn(); });
-                    transform.Find("SettingBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickSettingBtn(); });
-                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", ResourcesTool.LoadPrefabUI("joystick_ui"), transform);
-                    ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    rectTransform.Find("InfoBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickInfoBtn(); });
+                    rectTransform.Find("PackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickPackBtn(); });
+                    rectTransform.Find("SettingBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickSettingBtn(); });
+                    GameObject joystickUI = ObjectTool.InstantiateGo("Joystick", ResourcesTool.LoadPrefabUI("joystick_ui"), rectTransform);
+                    joystickUI.GetComponent<RectTransform>().sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    joystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {
@@ -50,7 +52,7 @@ namespace Solider {
                     // end if
                     Object.Destroy(gameObject);
                     gameObject = null;
-                    transform = null;
+                    rectTransform = null;
                 } // end DoBeforeLeaving
 
                 public void Reason() {

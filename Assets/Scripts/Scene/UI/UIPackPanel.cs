@@ -10,7 +10,6 @@ using Framework.FSM.Interface;
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
-using Solider.Manager;
 using Solider.Model.Interface;
 using Solider.UI.Custom;
 using UnityEngine;
@@ -27,7 +26,7 @@ namespace Solider {
                 private string packName;
                 private IPack currentPack;
                 private UIGrid[] gridArray;
-                private Transform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
 
                 public UIPackPanel() {
@@ -130,29 +129,30 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("PackPanelUI", ResourcesTool.LoadPrefabUI(id), SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.transform;
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
                     string prefix = "GridPanel/Grids/Grid_";
                     gridArray = new UIGrid[ConstConfig.GRID_COUNT];
-                    infoText = transform.Find("InfoText").GetComponent<Text>();
+                    infoText = rectTransform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     infoText.alignByGeometry = false;
                     LoseItem();
                     for (int i = 0; i < gridArray.Length; i++) {
                         int id = i;
-                        gridArray[i] = transform.Find(prefix + i).gameObject.AddComponent<UIGrid>();
+                        gridArray[i] = rectTransform.Find(prefix + i).gameObject.AddComponent<UIGrid>();
                         gridArray[i].AddAction(delegate () { OnSelectedGrid(id); });
                         gridArray[i].AddAction(OnExchangeGrid);
                         gridArray[i].SetID(i);
                     } // end for
                     OnToggleEquipment(true);
-                    transform.Find("GridPanel/ToggleGroup/Equipment").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleEquipment);
-                    transform.Find("GridPanel/ToggleGroup/Consumable").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleConsumable);
-                    transform.Find("GridPanel/ToggleGroup/Stuff").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleStuff);
-                    transform.Find("GridPanel/ToggleGroup/Blueprint").GetComponent<Toggle>().onValueChanged.AddListener(OnTogglePrint);
-                    transform.Find("ArrangeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnArrangeBtn(); });
-                    transform.Find("UseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickUseBtn(); });
-                    transform.Find("DiscardBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickDiscardBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
+                    rectTransform.Find("GridPanel/ToggleGroup/Equipment").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleEquipment);
+                    rectTransform.Find("GridPanel/ToggleGroup/Consumable").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleConsumable);
+                    rectTransform.Find("GridPanel/ToggleGroup/Stuff").GetComponent<Toggle>().onValueChanged.AddListener(OnToggleStuff);
+                    rectTransform.Find("GridPanel/ToggleGroup/Blueprint").GetComponent<Toggle>().onValueChanged.AddListener(OnTogglePrint);
+                    rectTransform.Find("ArrangeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnArrangeBtn(); });
+                    rectTransform.Find("UseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickUseBtn(); });
+                    rectTransform.Find("DiscardBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickDiscardBtn(); });
+                    rectTransform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 public void DoBeforeLeaving() {

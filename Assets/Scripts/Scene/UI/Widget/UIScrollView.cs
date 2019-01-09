@@ -7,10 +7,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Framework.DataStructure;
+using Solider.UI.Custom;
 
 namespace Solider {
-    namespace UI {
-        namespace Custom {
+    namespace Scene {
+        namespace UI {
             public class UIScrollView {
                 private int index;
                 private int maxIndex;
@@ -76,6 +77,6 @@ namespace Solider {
                     } // end if
                 } // end DragDown
             } // end class UIScrollView 
-        } // end namespace Custom
-    } // end namespace UI 
+        } // end namespace UI
+    } // end namespace Scene 
 } // end namespace Solider

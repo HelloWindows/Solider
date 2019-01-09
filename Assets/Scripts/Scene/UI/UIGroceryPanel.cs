@@ -18,7 +18,7 @@ namespace Solider {
                 public string id { get { return "grocery_panel_ui"; } }
 
                 private GameObject gameObject;
-                private Transform transform { get { return gameObject.transform; } }
+                private RectTransform rectTransform;
 
                 public UIGroceryPanel() {
                 } // end UIGroceryPanel
@@ -26,8 +26,10 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("GroceryPanelUI", ResourcesTool.LoadPrefabUI(id),
                         SceneManager.mainCanvas.rectTransform);
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
                     new UIScrollView(gameObject.transform.Find("Scroll View").GetComponent<ScrollRect>());
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
+                    rectTransform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 private void OnClickCloseBtn() {

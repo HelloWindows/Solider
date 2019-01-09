@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2520207145
+CRC: 531570251
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 29411429f4ffa04b4e2824a2257c6519
+    Hash: 31fdf3e575c0a6b5a3c4018778a44585
   TypeTreeHash:
     serializedVersion: 2
     Hash: 312a087319a5845700c6701ba3f63085
@@ -62,24 +62,24 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
-- Assets/Prefab/ui/custom/confirm_num_box_ui.prefab
-- Assets/Prefab/ui/custom/item_ui.prefab
-- Assets/Prefab/ui/scene/select_role_scene/create_role_panel_ui.prefab
-- Assets/Prefab/ui/common/pack_panel_ui.prefab
-- Assets/Prefab/ui/common/fight_panel_ui.prefab
-- Assets/Prefab/ui/custom/scroll_item_ui.prefab
-- Assets/Prefab/ui/common/setting_panel_ui.prefab
-- Assets/Prefab/ui/common/joystick_ui.prefab
-- Assets/Prefab/ui/scene/novice_village/transmitter_panel_ui.prefab
-- Assets/Prefab/ui/common/town_panel_ui.prefab
 - Assets/Prefab/ui/scene/login_scene/login_panel_ui.prefab
-- Assets/Prefab/ui/custom/message_box_ui.prefab
-- Assets/Prefab/ui/scene/select_role_scene/select_role_panel_ui.prefab
-- Assets/Prefab/ui/common/grocery_panel_ui.prefab
-- Assets/Prefab/ui/custom/dialog_box_ui.prefab
+- Assets/Prefab/ui/common/town_panel_ui.prefab
+- Assets/Prefab/ui/common/pack_panel_ui.prefab
 - Assets/Prefab/ui/scene/login_scene/login_scene_bg.prefab
-- Assets/Prefab/ui/scene/login_scene/register_panel_ui.prefab
-- Assets/Prefab/ui/common/info_panel_ui.prefab
+- Assets/Prefab/ui/scene/select_role_scene/select_role_panel_ui.prefab
+- Assets/Prefab/ui/custom/confirm_num_box_ui.prefab
+- Assets/Prefab/ui/common/setting_panel_ui.prefab
+- Assets/Prefab/ui/scene/novice_village/transmitter_panel_ui.prefab
+- Assets/Prefab/ui/custom/message_box_ui.prefab
 - Assets/Prefab/ui/common/forge_panel_ui.prefab
+- Assets/Prefab/ui/custom/scroll_item_ui.prefab
+- Assets/Prefab/ui/common/grocery_panel_ui.prefab
+- Assets/Prefab/ui/scene/select_role_scene/create_role_panel_ui.prefab
+- Assets/Prefab/ui/custom/item_ui.prefab
+- Assets/Prefab/ui/common/info_panel_ui.prefab
+- Assets/Prefab/ui/common/fight_panel_ui.prefab
+- Assets/Prefab/ui/custom/dialog_box_ui.prefab
+- Assets/Prefab/ui/scene/login_scene/register_panel_ui.prefab
+- Assets/Prefab/ui/common/joystick_ui.prefab
 Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/atlas/res_sprite.unity3d
+- G:/SelfProject/Solider/Assets/StreamingAssets/atlas/res_sprite.unity3d

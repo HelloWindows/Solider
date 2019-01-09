@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Solider.Manager;
 using Solider.UI.Custom;
 using Framework.Config.Const;
@@ -14,7 +13,6 @@ using UnityEngine.UI;
 using Framework.FSM.Interface;
 using Framework.Tools;
 using Framework.Manager;
-using Framework.Broadcast;
 using Solider.Config.Interface;
 
 namespace Solider {
@@ -29,7 +27,7 @@ namespace Solider {
                 private GameObject selector;
                 private GameObject infoPanel;
                 private Dictionary<string, UICell> cellDict;
-                private Transform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
                 private UIDisplayRaw display;
 
@@ -80,26 +78,27 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("InfoPanelUI", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.transform;
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
                     selected = "";
-                    infoText = transform.Find("InfoText").GetComponent<Text>();
+                    infoText = rectTransform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
-                    display = transform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
+                    display = rectTransform.Find("DisplayRaw").gameObject.AddComponent<UIDisplayRaw>();
                     display.SetDisplayGo(new DisplayRole(GameManager.playerInfo.roleType, SceneManager.mainCharacter.pack.GetWearInfo()));
                     cellDict = new Dictionary<string, UICell>();
                     for (int i = 0; i < ConstConfig.EquipTypeList.Length; i++) {
                         string type = ConstConfig.EquipTypeList[i];
-                        cellDict[type] = transform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
+                        cellDict[type] = rectTransform.Find("Cells/Cell_" + i).gameObject.AddComponent<UICell>();
                         cellDict[type].AddAction(delegate () { OnSelectedCell(type); });
                     } // end for
-                    selector = transform.Find("Selector").gameObject;
+                    selector = rectTransform.Find("Selector").gameObject;
                     selector.SetActive(false);
-                    infoPanel = transform.Find("InfoPanel").gameObject;
+                    infoPanel = rectTransform.Find("InfoPanel").gameObject;
                     cellText = infoPanel.transform.Find("InfoText").GetComponent<Text>();
                     cellText.fontSize = 10;
                     infoPanel.SetActive(false);
-                    transform.Find("TakeOffBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickTakeOffBtn);
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); },  "ui_close");
+                    rectTransform.Find("TakeOffBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickTakeOffBtn);
+                    rectTransform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); },  "ui_close");
                     UpdateShowInfo();
                 } // end DoBeforeEntering
 

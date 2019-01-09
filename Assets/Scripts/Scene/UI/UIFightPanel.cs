@@ -18,10 +18,12 @@ namespace Solider {
             public class UIFightPanel : IFSMState {
                 public string id { get { return "fight_panel_ui"; } }
 
-                private RectTransform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
                 private UIBuffPanel buffPanel;
                 private UISkillPanel skillPanel;
+                private UIMainCharacterInfoPanel mainCharacterPanel;
+                private UILockCharacterInfoPanel lockCharacterPanel;
 
                 public UIFightPanel() {
                 } // end UIFightPanel
@@ -29,24 +31,31 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.GetComponent<RectTransform>();
-                    buffPanel = new UIBuffPanel(transform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
-                    transform.Find("BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });      
-                    transform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddListener(OnClickAttackBtn);
-                    skillPanel = new UISkillPanel(transform);
-                    GameObject ioystickUI = ObjectTool.InstantiateGo("MainPanelUI", ResourcesTool.LoadPrefabUI("joystick_ui"), transform);
-                    ioystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    mainCharacterPanel = rectTransform.Find("MainCharacterInfoPanel").gameObject.AddComponent<UIMainCharacterInfoPanel>();
+                    lockCharacterPanel = rectTransform.Find("LockCharacterInfoPanel").gameObject.AddComponent<UILockCharacterInfoPanel>();
+                    lockCharacterPanel.gameObject.SetActive(false);
+                    buffPanel = new UIBuffPanel(rectTransform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
+                    rectTransform.Find("BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });      
+                    rectTransform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddListener(OnClickAttackBtn);
+                    skillPanel = new UISkillPanel(rectTransform);
+                    GameObject joystickUI = ObjectTool.InstantiateGo("Joystick", ResourcesTool.LoadPrefabUI("joystick_ui"), rectTransform);
+                    joystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
+                    joystickUI.GetComponent<RectTransform>().sizeDelta =  SceneManager.mainCanvas.sizeDelta;
                     if (null == SceneManager.mainCharacter) {
                         DebugTool.ThrowException(GetType() + "DoBeforeEntering SceneManager mainCharacter is null!");
                         return;
                     } // end if
                     string roleType = SceneManager.mainCharacter.info.characterData.roleType;
-                    transform.Find("AttackBtn").GetComponent<Image>().sprite = ResourcesTool.LoadSprite(roleType + "_attack");
+                    rectTransform.Find("AttackBtn").GetComponent<Image>().sprite = ResourcesTool.LoadSprite(roleType + "_attack");
                 } // end DoBeforeEntering
 
                 public void Act() {
                     buffPanel.Update();
                     skillPanel.Update();
+                    mainCharacterPanel.Show();
+                    lockCharacterPanel.Show();
                 } // end Act
 
                 public void Reason() {
@@ -56,6 +65,8 @@ namespace Solider {
                     if (null != skillPanel) skillPanel.Dispose();
                     // end if
                     if (null != buffPanel) buffPanel.Dispose();
+                    // end if
+                    if (null != gameObject) Object.Destroy(gameObject);
                     // end if
                 } // end DoBeforeLeaving
 

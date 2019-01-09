@@ -7,12 +7,13 @@
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Model.Interface;
+using Solider.UI.Custom;
 using System;
 using UnityEngine;
 
 namespace Solider {
-    namespace UI {
-        namespace Custom {
+    namespace Scene {
+        namespace UI {
             public class UISkillPanel : IDisposable {
                 private UISkill[] skillUIArr;
                 private RectTransform transform;
@@ -49,6 +50,6 @@ namespace Solider {
                     skillUIArr = null;
                 } // end Dispose
             } // end class UISkillPanel
-        } // end namespace Custom
-    } // end namespace UI
+        } // end namespace UI
+    } // end namespace Scene
 } // end namespace Solider 

@@ -22,7 +22,7 @@ namespace Solider {
 
                 private IPack blueprintPack;
                 private GameObject gameObject;
-                private Transform transform { get { return gameObject.transform; } }
+                private RectTransform rectTransform;
                 private UICell buleprint;
                 private UICell[] cellArray;
                 private UICell[] stuffArray;
@@ -36,9 +36,11 @@ namespace Solider {
                     cellArray = new UICell[ConstConfig.GRID_COUNT];
                     blueprintPack = SceneManager.mainCharacter.pack.GetItemPack(ConstConfig.PRINT);
                     gameObject = ObjectTool.InstantiateGo("ForgePanelUI", ResourcesTool.LoadPrefabUI(id), SceneManager.mainCanvas.rectTransform);
-                    buleprint = transform.Find("Blueprint/Print").gameObject.AddComponent<UICell>();
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    buleprint = rectTransform.Find("Blueprint/Print").gameObject.AddComponent<UICell>();
                     for (int i = 0; i < cellArray.Length; i++) {
-                        cellArray[i] = transform.Find("GridPanel/Grids/Grid_" + i).gameObject.AddComponent<UICell>();
+                        cellArray[i] = rectTransform.Find("GridPanel/Grids/Grid_" + i).gameObject.AddComponent<UICell>();
                         string itemID = blueprintPack.GetItemIDForGrid(i);
                         IItemInfo info = Configs.itemConfig.GetItemInfo(itemID);
                         if (null == info) {
@@ -50,11 +52,11 @@ namespace Solider {
                         cellArray[i].SetUIItem(ResourcesTool.LoadSprite(info.spritepath), 0);
                     } // end for
                     for (int i = 0; i < stuffArray.Length; i++) {
-                        stuffArray[i] = transform.Find("Blueprint/Stuff_" + i).gameObject.AddComponent<UICell>();
+                        stuffArray[i] = rectTransform.Find("Blueprint/Stuff_" + i).gameObject.AddComponent<UICell>();
                         stuffArray[i].gameObject.SetActive(false);
                     } // end for
-                    transform.Find("ForgeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickForgeBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
+                    rectTransform.Find("ForgeBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickForgeBtn(); });
+                    rectTransform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
                 } // end DoBeforeEntering
 
                 private void OnSelectedGrid(int id) {

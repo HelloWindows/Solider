@@ -12,6 +12,7 @@ namespace Framework {
             public interface IMainCanvas {
                 Camera camera { get; }
                 Canvas canvas { get; }
+                Vector2 sizeDelta { get; }
                 RectTransform rectTransform { get; }
                 #region /******** 有些游戏需要把屏幕打开什么的 ********/
                 ///// <summary>

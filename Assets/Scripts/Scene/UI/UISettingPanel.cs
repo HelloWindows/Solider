@@ -18,7 +18,7 @@ namespace Solider {
             public class UISettingPanel : IFSMState {
                 public string id { get { return "setting_panel_ui"; } }
 
-                private Transform transform;
+                private RectTransform rectTransform;
                 private GameObject gameObject;
 
                 public UISettingPanel() {
@@ -59,22 +59,23 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     gameObject = ObjectTool.InstantiateGo("SettingPanelUI", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
-                    transform = gameObject.transform;
-                    transform.Find("ExitBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickExitBtn(); });
-                    transform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
-                    Slider musicSlider = transform.Find("MusicSlider").GetComponent<Slider>();
+                    rectTransform = gameObject.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = SceneManager.mainCanvas.sizeDelta;
+                    rectTransform.Find("ExitBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickExitBtn(); });
+                    rectTransform.Find("CloseBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickCloseBtn(); }, "ui_close");
+                    Slider musicSlider = rectTransform.Find("MusicSlider").GetComponent<Slider>();
                     musicSlider.minValue = 0f;
                     musicSlider.maxValue = 1f;
                     musicSlider.value = GameManager.gameSetting.musicValue;
                     musicSlider.onValueChanged.AddListener(delegate (float value) { OnMusicSliderChange(value); });
-                    Slider soundSlider = transform.Find("SoundSlider").GetComponent<Slider>();
+                    Slider soundSlider = rectTransform.Find("SoundSlider").GetComponent<Slider>();
                     soundSlider.minValue = 0f;
                     soundSlider.maxValue = 1f;
                     soundSlider.value = GameManager.gameSetting.soundValue;
                     soundSlider.onValueChanged.AddListener(delegate (float value) { OnSoundSliderChange(value); });
-                    Toggle simple = transform.Find("GameQuality/NormalToggle").GetComponent<Toggle>();
+                    Toggle simple = rectTransform.Find("GameQuality/NormalToggle").GetComponent<Toggle>();
                     simple.onValueChanged.AddListener(delegate (bool isOn) { OnToggleNormal(isOn); });
-                    Toggle good = transform.Find("GameQuality/GoodToggle").GetComponent<Toggle>();
+                    Toggle good = rectTransform.Find("GameQuality/GoodToggle").GetComponent<Toggle>();
                     good.onValueChanged.AddListener(delegate (bool isOn) { OnToggleGood(isOn); });
                     if (GameManager.gameSetting.currentQuality == "Good") {
                         good.isOn = true;

@@ -13,8 +13,8 @@ using Solider.Config.Icon;
 using Framework.Manager;
 
 namespace Solider {
-    namespace UI {
-        namespace Custom {
+    namespace Scene {
+        namespace UI {
             public class UIBuffPanel : IDisposable {
                 #region /********** 图标 **********/
                 private class Icon : IDisposable {
@@ -56,13 +56,13 @@ namespace Solider {
                     } // end Dispose
                 } // end class Icon
                 #endregion
-                private RectTransform parent;
+                private RectTransform rectTransform;
                 private Vector2 iconSize;
                 private float interval;
                 private List<Icon> iconList;
 
-                public UIBuffPanel(RectTransform parent, Vector2 iconSize) {
-                    this.parent = parent;
+                public UIBuffPanel(RectTransform rectTransform, Vector2 iconSize) {
+                    this.rectTransform = rectTransform;
                     this.iconSize = iconSize;
                     interval = 2f;
                     iconList = new List<Icon>();
@@ -103,7 +103,7 @@ namespace Solider {
                         if (iconList.Count > i)
                             iconList[i].ResetIcon(info.id, localPos, info.spritepath);
                         else
-                            iconList.Add(new Icon(info.id, parent, localPos, info.spritepath, iconSize));
+                            iconList.Add(new Icon(info.id, rectTransform, localPos, info.spritepath, iconSize));
                         // end if
                     } // end for
                     if (iconList.Count == buffList.Count) return;
@@ -124,6 +124,6 @@ namespace Solider {
                     SceneManager.mainCharacter.center.RemoveListener(FreshenIcon);
                 } // end Dispose
             } // end class UIBuffPanel 
-        } // end namespace Custom
-    } // end namespace UI
+        } // end namespace UI
+    } // end namespace Scene
 } // end namespace Custom
