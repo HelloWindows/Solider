@@ -18,8 +18,9 @@ namespace Framework {
                 public UICamera() {
                     GameObject Go = new GameObject("UICamera");
                     camera = Go.AddComponent<Camera>();
+                    Go.layer = LayerConfig.UI;
                     camera.clearFlags = CameraClearFlags.Nothing;
-                    camera.cullingMask = LayerMask.GetMask(LayerConfig.UI); // 显示UI层
+                    camera.cullingMask = LayerConfig.Mask_UI; // 显示UI层
                     camera.orthographic = true;
                     camera.orthographicSize = Convert.ToSingle(Screen.height) / 2f / GameConfig.PIXEL_PER_UNIT;
                     camera.nearClipPlane = 0;

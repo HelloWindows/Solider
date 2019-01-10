@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Config.Const;
+using Framework.Config.Game;
 using Framework.Manager;
 using Framework.Tools;
 using Solider.Config.Interface;
@@ -140,7 +141,7 @@ namespace Solider {
                     Go.transform.localPosition = Vector3.zero;
                     Go.transform.localRotation = Quaternion.identity;
                     foreach (Transform child in Go.transform) {
-                        child.gameObject.layer = 2;
+                        child.gameObject.layer = LayerConfig.IgnoreRaycast;
                     } // end foreach     
                 } // end ReloadWeapon
 
@@ -164,7 +165,7 @@ namespace Solider {
                     Go.transform.localRotation = Quaternion.identity;
                     Transform[] allChildren = Go.transform.GetComponentsInChildren<Transform>();
                     foreach (Transform child in allChildren) {
-                        child.gameObject.layer = 2;
+                        child.gameObject.layer = LayerConfig.IgnoreRaycast;
                     } // end foreach  
                 } // end ReloadWing
 
@@ -219,7 +220,7 @@ namespace Solider {
                         } // end if
                     } // end foreach
                     meshRenderer = displayGo.transform.GetComponentInChildren<SkinnedMeshRenderer>();
-                    meshRenderer.gameObject.layer = 2;
+                    meshRenderer.gameObject.layer = LayerConfig.IgnoreRaycast;
                 } // end Init
 
                 private void InitAvatar(string roleType) {

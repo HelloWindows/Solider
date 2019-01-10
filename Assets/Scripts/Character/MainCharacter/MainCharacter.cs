@@ -4,12 +4,13 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Custom;
+using Framework.Tools;
 using Framework.Custom.Input;
 using Framework.Interface.Input;
 using Solider.Character.Interface;
 using Solider.Model.Interface;
 using UnityEngine;
+using Framework.Manager;
 
 namespace Solider {
     namespace Character {
@@ -20,6 +21,7 @@ namespace Solider {
                 public ICharacterSkill skill { get { return m_skill; } }
                 public IMainCharacterSurface mainSurface { get { return m_mainSurface; } }
 
+                private string lockNPC_hashID;
                 private CrossInput m_input;
                 private CharacterSkill m_skill;
                 protected MainCharacterSurface m_mainSurface;
@@ -33,6 +35,12 @@ namespace Solider {
                 public override void Update() {
                     base.Update();
                     m_skill.Update();
+                    if (RayTool.PointerRaycastNPC(out lockNPC_hashID)) {
+                        ICharacter npc;
+                        if (SceneManager.characterManager.factory.GerNPCharacter(lockNPC_hashID, out npc)) {
+                            info.LockCharacter(npc);
+                        } // end if
+                    } // end if
                 } // end Update
 
                 public override void Dispose() {

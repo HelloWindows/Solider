@@ -12,6 +12,7 @@ namespace Solider {
             public interface ICharacterFactory {
                 void CreateMainCharacter(Vector3 position);
                 void CreateNPC(string id, Vector3 position);
+                bool GerNPCharacter(string hashID, out ICharacter npc);
                 void DisposeNPC(string hashID);
             } // end class ICharacterFactory
         } // end namespace Interface

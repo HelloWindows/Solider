@@ -33,7 +33,7 @@ namespace Solider {
             } // end CharacterInfo
 
             public void Update() {
-                if (!IsLive) return;
+                if (!IsLive || m_charcterData.HP == m_charcterData.XHP && m_charcterData.MP == m_charcterData.XMP) return;
                 // end if
                 timer += UnityEngine.Time.deltaTime;
                 if (timer < 1) return;
@@ -43,8 +43,9 @@ namespace Solider {
                 m_charcterData.Plus(m_selfTreat);
             } // end SelfHealing
 
-            public void RelockCharacter(string hashID) {
-            } // end RelockCharacter
+            public void LockCharacter(ICharacter chracter) {
+                lockCharacter = chracter;
+            } // end LockCharacter
 
             public void Revive() {
                 m_charcterData.Revive();

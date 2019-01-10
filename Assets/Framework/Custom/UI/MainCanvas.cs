@@ -26,7 +26,7 @@ namespace Framework {
                 public MainCanvas() {
                     m_uiCamera = new UICamera();
                     GameObject Go = new GameObject("UICanvas");
-                    Go.layer = LayerMask.NameToLayer(LayerConfig.UI);
+                    Go.layer = LayerConfig.UI;
                     canvas = Go.AddComponent<Canvas>();
                     canvas.renderMode = RenderMode.ScreenSpaceCamera;
                     canvas.worldCamera = camera;

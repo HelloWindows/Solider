@@ -23,7 +23,7 @@ namespace Framework {
                     camera = Go.AddComponent<Camera>();
                     camera.tag = "MainCamera";
                     camera.clearFlags = CameraClearFlags.Skybox;
-                    camera.cullingMask = ~LayerMask.GetMask(LayerConfig.UI); // 不显示UI层
+                    camera.cullingMask = ~LayerConfig.Mask_UI; // 不显示UI层
                     camera.orthographic = false;
                     camera.fieldOfView = 60f;
                     ConsoleTool.SetConsole(camera.fieldOfView.ToString());

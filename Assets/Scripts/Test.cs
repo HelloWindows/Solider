@@ -30,12 +30,19 @@ namespace Test {
 
 
         private void Start() {
-            AnimationClip clip = ResourcesTool.LoadAnimationClip("swordman_pose");
-            Debug.Log(clip);
+
         } // end Start
 
         private void Update() {
-
+            if (Input.GetMouseButtonDown(0)) {
+                if(true == EventSystem.current.IsPointerOverGameObject()) return;
+                Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit mHit;
+                //射线检验  
+                if (Physics.Raycast(mRay, out mHit)) {
+                    Debug.Log(mHit.collider.name);
+                }
+            }
         } // end Update
 
         public void OnClick(string name) {

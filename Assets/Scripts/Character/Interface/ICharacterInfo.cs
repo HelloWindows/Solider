@@ -15,10 +15,10 @@ namespace Solider {
                 /// </summary>
                 ICharacter lockCharacter { get; }
                 /// <summary>
-                /// 重新锁定角色
+                /// 锁定角色
                 /// </summary>
-                /// <param name="hashID"> 锁定角色的 hashID </param>
-                void RelockCharacter(string hashID);
+                /// <param name="hashID"> 锁定的角色 </param>
+                void LockCharacter(ICharacter character);
                 /// <summary>
                 /// 角色数据
                 /// </summary>
