@@ -22,6 +22,8 @@ namespace Solider {
                 private GameObject gameObject;
                 private UIBuffPanel buffPanel;
                 private UISkillPanel skillPanel;
+                private bool isShowBar;
+                private Animator avatar;
                 private UIMainCharacterInfoPanel mainCharacterPanel;
                 private UILockCharacterInfoPanel lockCharacterPanel;
 
@@ -29,6 +31,7 @@ namespace Solider {
                 } // end UIFightPanel
 
                 public void DoBeforeEntering() {
+                    isShowBar = false;
                     gameObject = ObjectTool.InstantiateGo("UIFightPanel", ResourcesTool.LoadPrefabUI(id), 
                         SceneManager.mainCanvas.rectTransform);
                     rectTransform = gameObject.GetComponent<RectTransform>();
@@ -36,8 +39,12 @@ namespace Solider {
                     mainCharacterPanel = rectTransform.Find("MainCharacterInfoPanel").gameObject.AddComponent<UIMainCharacterInfoPanel>();
                     lockCharacterPanel = rectTransform.Find("LockCharacterInfoPanel").gameObject.AddComponent<UILockCharacterInfoPanel>();
                     lockCharacterPanel.gameObject.SetActive(false);
-                    buffPanel = new UIBuffPanel(rectTransform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));    
-                    rectTransform.Find("BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });      
+                    buffPanel = new UIBuffPanel(rectTransform.Find("BuffPanle") as RectTransform, new Vector2(35f, 35f));
+                    avatar = rectTransform.Find("BarPanel").GetComponent<Animator>();
+                    rectTransform.Find("BarPanel/BarBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnClickBarBtn(); });
+                    rectTransform.Find("BarPanel/BtnList/InfoBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickInfoBtn);
+                    rectTransform.Find("BarPanel/BtnList/PackBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickPackBtn);
+                    rectTransform.Find("BarPanel/BtnList/SettingBtn").gameObject.AddComponent<UIButtonNormal>().AddListener(OnClickSettingBtn);
                     rectTransform.Find("AttackBtn").gameObject.AddComponent<UIButton>().AddListener(OnClickAttackBtn);
                     skillPanel = new UISkillPanel(rectTransform);
                     GameObject joystickUI = ObjectTool.InstantiateGo("Joystick", ResourcesTool.LoadPrefabUI("joystick_ui"), rectTransform);
@@ -75,7 +82,26 @@ namespace Solider {
                 } // end OnClickAttackBtn
 
                 private void OnClickBarBtn() {
+                    if (isShowBar) {
+                        avatar.Play("Hide", 0, 0);
+                        isShowBar = false;
+                    } else {
+                        avatar.Play("Show", 0, 0);
+                        isShowBar = true;
+                    } // end if
                 } // end OnClickBarBtn
+
+                private void OnClickInfoBtn() {
+                    SceneManager.uiPanelFMS.PerformTransition(new UIInfoPanel());
+                } // end OnClickInfoBtn
+
+                private void OnClickPackBtn() {
+                    SceneManager.uiPanelFMS.PerformTransition(new UIPackPanel());
+                } // end OnClickInfoBtn
+
+                private void OnClickSettingBtn() {
+                    SceneManager.uiPanelFMS.PerformTransition(new UISettingPanel());
+                } // end OnClickSettingBtn
             } // end class UIFightPanel 
         } // end namespace UI
     } // end namespace Scene

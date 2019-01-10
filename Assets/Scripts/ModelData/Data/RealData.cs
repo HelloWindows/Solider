@@ -28,7 +28,7 @@ namespace Solider {
                     XMR = 100;
                 } // end RealData
 
-                public RealData(IAttackData data) {
+                public RealData(IDamageData data) {
                     HP = data.ATK;
                 } // end RealData
 

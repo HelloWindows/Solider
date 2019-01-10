@@ -56,7 +56,7 @@ namespace Solider {
                     characterList.Add(new PeaceNPC(id, position));
                 } // end CreateNPC
 
-                public bool GerNPCharacter(string hashID, out ICharacter npc) {
+                public bool GetNPCharacter(string hashID, out ICharacter npc) {
                     if (string.IsNullOrEmpty(hashID)) {
                         npc = null;
                         return false;

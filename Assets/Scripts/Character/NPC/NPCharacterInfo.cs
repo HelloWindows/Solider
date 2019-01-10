@@ -4,8 +4,11 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Manager;
 using Solider.Character.Interface;
 using Solider.ModelData.Character;
+using Solider.ModelData.Data;
+using Solider.ModelData.Interface;
 
 namespace Solider {
     namespace Character {
@@ -27,6 +30,21 @@ namespace Solider {
                     // end if
                     m_charcterData.Init(initArribute);
                 } // end CheckAttributeData
+
+                public override void UnderAttack(IDamageData data) {
+                    IRealData realData = new RealData(data);
+                    m_charcterData.Minus(realData);
+                    if (null != lockCharacter) return;
+                    // end if
+                    if (data.id == SceneManager.mainCharacter.hashID) {
+                        LockCharacter(SceneManager.mainCharacter);
+                        return;
+                    } // end if
+                    ICharacter npc;
+                    if (SceneManager.characterManager.factory.GetNPCharacter(data.id, out npc)) {
+                        LockCharacter(npc);
+                    } // end if
+                } // end UnderAttack
 
                 public override void Dispose() {
                     character.center.RemoveListener(CheckAttributeData);

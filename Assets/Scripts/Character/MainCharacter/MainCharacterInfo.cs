@@ -4,10 +4,13 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using System;
 using Framework.Config.Const;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
 using Solider.ModelData.Character;
+using Solider.ModelData.Interface;
+using Solider.ModelData.Data;
 
 namespace Solider {
     namespace Character {
@@ -35,6 +38,11 @@ namespace Solider {
                         m_charcterData.Plus(info);
                     } // end for
                 } // end CheckAttributeData
+
+                public override void UnderAttack(IDamageData data) {
+                    IRealData realData = new RealData(data);
+                    m_charcterData.Minus(realData);
+                } // end UnderAttack
 
                 public override void Dispose() {
                     mainCharacter.center.RemoveListener(CheckAttributeData);

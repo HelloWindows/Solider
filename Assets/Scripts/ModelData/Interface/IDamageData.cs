@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: IAttackData.cs
+ * FileName: IDamageData.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -8,7 +8,7 @@
 namespace Solider {
     namespace ModelData {
         namespace Interface {
-            public interface IAttackData {
+            public interface IDamageData {
                 /// <summary>
                 /// 攻击者 id
                 /// </summary>
@@ -39,7 +39,7 @@ namespace Solider {
                 /// <param name="data"> 被攻击者 </param>
                 /// <returns> 攻击结果 </returns>
                 IRealData AttackTo(IAttributeData data);
-            } // end interface IAttackData
+            } // end interface IDamageData
         } // end namespace Interface
     } // end namespace ModelData
 } // end namespace Solider 

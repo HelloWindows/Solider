@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: AttackInfo.cs
+ * FileName: DamageData.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -10,7 +10,7 @@ using Framework.Tools;
 namespace Solider {
     namespace ModelData {
         namespace Data {
-            public class AttackData : IAttackData {
+            public class DamageData : IDamageData {
                 public string id { get; private set; }
                 public int ATK { get; private set; }
                 public int MGK { get; private set; }
@@ -18,7 +18,7 @@ namespace Solider {
                 public bool ismiss { get; private set; }
                 public bool iscrit { get; private set; } 
 
-                public AttackData(string id, IAttributeData data) {
+                public DamageData(string id, IAttributeData data) {
                     this.id = id;
                     HIT = data.HIT;
                     iscrit = MathTool.Random(0, 100f) < data.CRT ? true : false;
@@ -37,7 +37,7 @@ namespace Solider {
                     MGK = 0;
                     return new RealData(this);
                 } // end AttackTo
-            } // end class AttackData
+            } // end class DamageData
         } // end namespace Data
     } // end namespace ModelData
 } // end namespace Solider 

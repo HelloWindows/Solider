@@ -52,6 +52,7 @@ namespace Solider {
             } // end Revive
 
             public abstract void Dispose();
+            public abstract void UnderAttack(IDamageData data);
             // end Dispose
         } // end class CharacterInfo 
     } // end namespace Character

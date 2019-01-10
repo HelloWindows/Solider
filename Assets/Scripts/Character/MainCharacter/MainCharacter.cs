@@ -36,9 +36,15 @@ namespace Solider {
                     base.Update();
                     m_skill.Update();
                     if (RayTool.PointerRaycastNPC(out lockNPC_hashID)) {
+                        if (string.IsNullOrEmpty(lockNPC_hashID)) {
+                            info.LockCharacter(null);
+                            return;
+                        } // end if
                         ICharacter npc;
-                        if (SceneManager.characterManager.factory.GerNPCharacter(lockNPC_hashID, out npc)) {
+                        if (SceneManager.characterManager.factory.GetNPCharacter(lockNPC_hashID, out npc)) {
                             info.LockCharacter(npc);
+                        } else {
+                            info.LockCharacter(null);
                         } // end if
                     } // end if
                 } // end Update

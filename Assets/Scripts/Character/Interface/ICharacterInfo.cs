@@ -24,6 +24,11 @@ namespace Solider {
                 /// </summary>
                 ICharacterData characterData { get; }
                 /// <summary>
+                /// 遭受攻击
+                /// </summary>
+                /// <param name="data"></param>
+                void UnderAttack(IDamageData data);
+                /// <summary>
                 /// 复活
                 /// </summary>
                 void Revive();                

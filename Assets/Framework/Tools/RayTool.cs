@@ -21,13 +21,15 @@ namespace Framework {
                     if (false == EventSystem.current.IsPointerOverGameObject()) {
                         pointerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 #elif UNITY_ANDROID || UNITY_IPHONE
-                    if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+                    if (false ==  EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
                         pointerRay = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 #endif
-                        if (Physics.Raycast(pointerRay, out pointerHit, LayerConfig.Mask_NPC)) {
+                        if (Physics.Raycast(pointerRay, out pointerHit, 20, LayerConfig.Mask_NPC)) {
                             name = pointerHit.collider.name;
                             return true;
                         } // end if
+                        name = string.Empty;
+                        return true;
                     } // end if
                 } // end if
                 name = string.Empty;
