@@ -35,8 +35,8 @@ namespace Test {
 
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
-                if(true == EventSystem.current.IsPointerOverGameObject()) return;
                 Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawRay(mRay.origin, mRay.direction * 100, Color.red);
                 RaycastHit mHit;
                 //射线检验  
                 if (Physics.Raycast(mRay, out mHit)) {

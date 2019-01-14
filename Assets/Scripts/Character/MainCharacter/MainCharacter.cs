@@ -40,12 +40,8 @@ namespace Solider {
                             info.LockCharacter(null);
                             return;
                         } // end if
-                        ICharacter npc;
-                        if (SceneManager.characterManager.factory.GetNPCharacter(lockNPC_hashID, out npc)) {
-                            info.LockCharacter(npc);
-                        } else {
-                            info.LockCharacter(null);
-                        } // end if
+                        ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(lockNPC_hashID);
+                        info.LockCharacter(npc);
                     } // end if
                 } // end Update
 

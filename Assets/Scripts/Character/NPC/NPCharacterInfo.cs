@@ -36,12 +36,12 @@ namespace Solider {
                     m_charcterData.Minus(realData);
                     if (null != lockCharacter) return;
                     // end if
-                    if (data.id == SceneManager.mainCharacter.hashID) {
+                    if (data.hashID == SceneManager.mainCharacter.hashID) {
                         LockCharacter(SceneManager.mainCharacter);
                         return;
                     } // end if
-                    ICharacter npc;
-                    if (SceneManager.characterManager.factory.GetNPCharacter(data.id, out npc)) {
+                    ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(data.hashID);
+                    if (null != npc) {
                         LockCharacter(npc);
                     } // end if
                 } // end UnderAttack

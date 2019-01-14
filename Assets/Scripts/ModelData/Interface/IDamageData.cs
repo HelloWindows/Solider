@@ -12,7 +12,7 @@ namespace Solider {
                 /// <summary>
                 /// 攻击者 id
                 /// </summary>
-                string id { get; }
+                string hashID { get; }
                 /// <summary>
                 /// 物理伤害
                 /// </summary>

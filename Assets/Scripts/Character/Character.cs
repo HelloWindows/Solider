@@ -25,7 +25,10 @@ namespace Solider {
             public ICharacterCenter center { get { return m_center; } }
             public ICharacterSurface surface { get { return m_surface; } }
             public ICharacterConfig config { get; private set; }
-            public Vector3 position { get { return null == transform ? Vector3.zero : transform.position; } }
+            public Vector3 position { get { return transform.position; } }
+            public Vector3 forward { get { return transform.forward; } }
+            public Quaternion rotation { get { return transform.rotation; } }
+
 
             private CharacterMove m_move;
             private CharacterBuff m_buff;

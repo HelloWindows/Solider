@@ -6,20 +6,31 @@
  *******************************************************************/
 using Solider.ModelData.Interface;
 using Framework.Tools;
+using Solider.Character.Interface;
 
 namespace Solider {
     namespace ModelData {
         namespace Data {
             public class DamageData : IDamageData {
-                public string id { get; private set; }
+                public string hashID { get; private set; }
                 public int ATK { get; private set; }
                 public int MGK { get; private set; }
                 public float HIT { get; private set; } 
                 public bool ismiss { get; private set; }
-                public bool iscrit { get; private set; } 
+                public bool iscrit { get; private set; }
 
-                public DamageData(string id, IAttributeData data) {
-                    this.id = id;
+                public DamageData(ICharacter character) {
+                    if (null == character) {
+                    } // end if
+                    hashID = character.hashID;
+                    HIT = character.info.characterData.HIT;
+                    iscrit = MathTool.Random(0, 100f) < character.info.characterData.CRT ? true : false;
+                    ATK = MathTool.Random(character.info.characterData.NATK, character.info.characterData.XATK) * (iscrit ? 2 : 1);
+                    MGK = MathTool.Random(character.info.characterData.NMGK, character.info.characterData.XMGK) * (iscrit ? 2 : 1);
+                } // end DamageData
+
+                public DamageData(string hashID, IAttributeData data) {
+                    this.hashID = hashID;
                     HIT = data.HIT;
                     iscrit = MathTool.Random(0, 100f) < data.CRT ? true : false;
                     ATK = MathTool.Random(data.NATK, data.XATK) * (iscrit ? 2 : 1);

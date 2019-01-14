@@ -18,14 +18,16 @@ namespace Framework {
             public class MainCanvas : IMainCanvas, IDisposable {
                 public Camera camera { get { return m_uiCamera.camera; } }
                 public Canvas canvas { get; private set; }
+                public Canvas HUD_Canvas { get; private set; }
                 public Vector2 sizeDelta { get; private set; }
                 public RectTransform rectTransform { get; private set; }
+                public RectTransform HUD_rectTRansform { get; private set; }
 
                 private UICamera m_uiCamera;
 
                 public MainCanvas() {
                     m_uiCamera = new UICamera();
-                    GameObject Go = new GameObject("UICanvas");
+                    GameObject Go = new GameObject("MainCanvas");
                     Go.layer = LayerConfig.UI;
                     canvas = Go.AddComponent<Canvas>();
                     canvas.renderMode = RenderMode.ScreenSpaceCamera;
@@ -45,27 +47,18 @@ namespace Framework {
                     GameObject esGo = new GameObject("EventSystem");
                     esGo.AddComponent<EventSystem>();
                     esGo.AddComponent<StandaloneInputModule>();
-                } // end MainCanvas
 
-                /// <summary>
-                /// 简单的适配一下
-                /// </summary>
-                /// <param name="scaler"></param>
-                private void Adjusting(CanvasScaler scaler) {
-                    float adjustor = 0f; //屏幕矫正比例
-                    float device_width = Screen.width; //当前设备宽度
-                    float device_height = Screen.height; //当前设备高度                
-                    float standard_aspect = GameConfig.STANDARD_WIDTH / GameConfig.STANDARD_HEIGHT; //计算宽高比例
-                    float device_aspect = device_width / device_height;
-                    if (device_aspect < standard_aspect) //计算矫正比例
-                        adjustor = standard_aspect / device_aspect;
-                    // end if
-                    if (adjustor == 0) 
-                        scaler.matchWidthOrHeight = 1; // Height 权重
-                    else
-                        scaler.matchWidthOrHeight = 0; // Width 权重
-                    // end if
-                } // end Adjusting
+                    HUD_Canvas = new GameObject("HUDCanvas").AddComponent<Canvas>();
+                    HUD_rectTRansform = HUD_Canvas.transform as RectTransform;
+                    HUD_Canvas.transform.SetParent(canvas.transform);
+                    HUD_rectTRansform.localPosition = Vector3.zero;
+                    HUD_rectTRansform.localRotation = Quaternion.identity;
+                    HUD_rectTRansform.localScale = Vector3.one;
+                    HUD_rectTRansform.sizeDelta = sizeDelta;
+                    HUD_Canvas.overridePixelPerfect = false;
+                    HUD_Canvas.overrideSorting = true;
+                    HUD_Canvas.sortingLayerName = SortingLayerConfig.HUD;
+                } // end MainCanvas
 
                 public void Dispose() {
                     if (null != m_uiCamera) m_uiCamera.Dispose();

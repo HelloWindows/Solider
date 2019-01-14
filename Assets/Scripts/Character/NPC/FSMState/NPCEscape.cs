@@ -35,6 +35,7 @@ namespace Solider {
                     } // end if
                     if (null == character.info.lockCharacter ||
                         Vector3.Distance(character.info.lockCharacter.position, character.position) > scope) {
+                        character.info.LockCharacter(null);
                         character.fsm.PerformTransition("idle");
                         return;
                     } // end if
@@ -42,7 +43,7 @@ namespace Solider {
 
                 public void Act() {
                     Vector3 dir = character.position - character.info.lockCharacter.position;
-                    character.move.MoveForward(dir, character.info.characterData.MSP);
+                    character.move.MoveForward(new Vector2(dir.x, dir.z), character.info.characterData.MSP);
                 } // end Act
 
                 public void DoBeforeLeaving() {

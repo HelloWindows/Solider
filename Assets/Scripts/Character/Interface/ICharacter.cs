@@ -24,6 +24,8 @@ namespace Solider {
                 ICharacterCenter center { get; }
                 ICharacterSurface surface { get; }
                 Vector3 position { get; }
+                Vector3 forward { get; }
+                Quaternion rotation { get; }
                 void Update();
             } // end interface ICharacter
         } // end namespace Interface
