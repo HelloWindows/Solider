@@ -11,7 +11,7 @@ using System.IO;
 namespace CustomEditor {
     public class Postprocessor : AssetPostprocessor {
 
-        void OnPostprocessTexture(Texture2D texture)  {
+        private void OnPostprocessTexture(Texture2D texture)  {
             if (assetPath.Contains("Assets/Atlas")) {
                 string AtlasName = new DirectoryInfo(Path.GetDirectoryName(assetPath)).Name;
                 TextureImporter textureImporter = assetImporter as TextureImporter;
@@ -31,8 +31,16 @@ namespace CustomEditor {
             } // end if
         } // end OnPostprocessTexture
 
-        void OnPreprocessAudio() {
+        private void OnPreprocessAudio() {
 
         } // end OnPreprocessAudio
+
+        /// <summary>
+        /// 禁止模型生成材质文件
+        /// </summary>
+        private void OnPreprocessModel() {
+            ModelImporter modelImporter = assetImporter as ModelImporter;
+            modelImporter.importMaterials = false;
+        } // end OnPreprocessModel
     } // end class Postprocessor
 } // end namespace CustomEditor 

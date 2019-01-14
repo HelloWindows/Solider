@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace CustomEditor {
 	public class ModifyAssetBundleNameWindow : EditorWindow {
-        [MenuItem("Custom Editor/Window/ModifyAssetBundleName", false, 1000)]
+        [MenuItem("Custom Editor/Asset Bundle/Window/ModifyAssetBundleName", false, 100)]
         private static void Init() {
             ModifyAssetBundleNameWindow window = GetWindow<ModifyAssetBundleNameWindow>();
             window.titleContent = new GUIContent("ModifyAssetBundleName");
