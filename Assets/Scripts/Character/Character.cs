@@ -27,6 +27,7 @@ namespace Solider {
             public ICharacterConfig config { get; private set; }
             public Vector3 position { get { return transform.position; } }
             public Vector3 forward { get { return transform.forward; } }
+            public Transform helpTransform { get { return m_helpTransform; } }
             public Quaternion rotation { get { return transform.rotation; } }
 
 
@@ -44,12 +45,14 @@ namespace Solider {
 
             private GameObject m_gameObject;
             private Transform m_transform;
+            private Transform m_helpTransform;
 
             protected Character(string id, GameObject gameObject) {
                 this.id = id;
                 isDisposed = false;
                 m_gameObject = gameObject;
                 m_transform = gameObject.transform;
+                m_helpTransform = m_transform.Find("help_hp");
                 hashID = gameObject.GetHashCode().ToString();
                 gameObject.name = hashID;
                 config = Configs.characterConfig.GetCharacterConfig(id);

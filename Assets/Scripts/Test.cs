@@ -30,7 +30,6 @@ namespace Test {
 
 
         private void Start() {
-
         } // end Start
 
         private void Update() {

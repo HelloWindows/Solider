@@ -13,14 +13,12 @@ namespace Framework {
         public class ObjectManager {
             private Transform poolParent;
             private Queue<ObjectTimer> objQueue;
-            private Dictionary<string, List<GameObject>> objListDict;
+            private Dictionary<string, Stack<GameObject>> objectsMap;
 
             public ObjectManager() {
                 objQueue = new Queue<ObjectTimer>();
-                poolParent = new GameObject("ObjectManager").transform;    
-                objListDict = new Dictionary<string, List<GameObject>>();
-
-                BuildPool("maincharachter_run_effect");
+                poolParent = new GameObject("ObjectManager").transform;
+                objectsMap = new Dictionary<string, Stack<GameObject>>();
             } // end AudioManager
 
             public void Update(float deltaTime) {
@@ -33,95 +31,69 @@ namespace Framework {
                 } // end for
             } // end Update
 
-            public GameObject GetGameObject(string name, float time) {
-                if (!objListDict.ContainsKey(name)) {
+            public GameObject GetGameObject(string name) {
+                Stack<GameObject> objects;
+                if (false == objectsMap.TryGetValue(name, out objects)) {
 #if __MY_DEBUG__
-                    Debug.LogError(GetType() + "GetGameObject Name:" + name + " Don't exsit!");
+                    Debug.Log(GetType() + "GetGameObject Name:" + name + " build a pool!");
 #endif
-                    return null;
+                    objects = new Stack<GameObject>();
+                    objectsMap[name] = objects;
                 } // end if
-                GameObject Go;
-                if (objListDict[name].Count > 0) {
-                    Go = objListDict[name][0];
-                    objListDict[name].RemoveAt(0);
-                    objQueue.Enqueue(new ObjectTimer(name, Go, time));
-                    return Go;
-                } // end if
+                GameObject Go = objects.Count > 0 ? objects.Pop() : null;
+                if (Go != null) return Go;
+                // end if
                 GameObject prefab = ResourcesTool.LoadPrefab(name);
                 if (null == prefab) {
 #if __MY_DEBUG__
-                    Debug.LogError(GetType() + "GetGameObject prefab is null! name:" + name);
+                    ConsoleTool.SetError(GetType() + "GetGameObject prefab is null! name:" + name);
 #endif
                     return null;
                 } // end if
                 Go = ObjectTool.InstantiateGo(name, prefab, poolParent);
-                Go.SetActive(false);
+                return Go;
+            } // end GetGameObject
+
+            public GameObject GetGameObject(string name, float time) {
+                GameObject Go = GetGameObject(name);
                 objQueue.Enqueue(new ObjectTimer(name, Go, time));
                 return Go;
             } // end GetGameObject
 
-            public GameObject GetGameObject(string name) {
-                if (!objListDict.ContainsKey(name)) {
-#if __MY_DEBUG__
-                    Debug.LogError("ObjectPool GetGameObject Name:" + name + " Don't exsit!");
-#endif
-                    return null;
-                } // end if
-                GameObject Go;
-                if (objListDict[name].Count > 0) {
-                    Go = objListDict[name][0];
-                    objListDict[name].RemoveAt(0);
-                    return Go;
-                } // end if
-                GameObject prefab = ResourcesTool.LoadPrefab(name);
-                if (null == prefab) {
-#if __MY_DEBUG__
-                    Debug.LogError(GetType() + "GetGameObject prefab is null! name:" + name);
-#endif
-                    return null;
-                } // end if
-                Go = ObjectTool.InstantiateGo(name, prefab, poolParent);
-                Go.SetActive(false);
-                return Go;
+            public T GetGameObject<T>(string name) where T : MonoBehaviour {
+                GameObject Go = GetGameObject(name);
+                T component = Go.GetComponent<T>();
+                if (null != component) return component;
+                // end if
+                return Go.AddComponent<T>();
             } // end GetGameObject
 
             public void Recycling(string name, GameObject Go) {
-
-                if (null == Go) {
+                if (null == Go || string.IsNullOrEmpty(name)) {
 #if __MY_DEBUG__
-                    ConsoleTool.SetError("ObjectPool Recycling Go is NULL");
+                    ConsoleTool.SetError(GetType() + "Recycling GameObject Name:" + name + " is NULL");
 #endif
                     return;
                 } // end if
-
-                if (!objListDict.ContainsKey(name)) {
+                Stack<GameObject> objects;
+                if (false == objectsMap.TryGetValue(name, out objects)) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetError(GetType() + "Recycling GameObject Name:" + name + " dosn't build!!");
+#endif
                     Object.Destroy(Go);
-#if __MY_DEBUG__
-                    Debug.LogWarning("ObjectPool Recycling Name:" + name + " Don't exist!!");
-#endif
                     return;
                 } // end if
-                if (objListDict[name].Contains(Go)) {
+                if (objects.Contains(Go)) {
 #if __MY_DEBUG__
-                    Debug.LogWarning("ObjectPool Recycling Name:" + name + " replace recycling!!");
+                    ConsoleTool.SetError(GetType() + "Recycling GameObject Name:" + name + " replace recycling!!");
 #endif
+                    Object.Destroy(Go);
                     return;
                 }  // end if
-                Go.transform.SetParent(poolParent);
-                objListDict[name].Add(Go);
                 Go.SetActive(false);
+                Go.transform.SetParent(poolParent, false);
+                objects.Push(Go);
             } // end Recycling
-
-            private void BuildPool(string name) {
-
-                if (objListDict.ContainsKey(name)) {
-#if __MY_DEBUG__
-                    Debug.LogWarning("ObjectPool BuildPool Name:" + name + " is exist!!");
-#endif
-                    return;
-                } // end if
-                objListDict[name] = new List<GameObject>();
-            } // end BuildPool
         } // end class ObjectManager
     } // end namespace Manager
 } // end namespace Framework

@@ -5,7 +5,7 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using UnityEngine;
-namespace Custom {
+namespace Solider {
 	public class UIManager : MonoBehaviour {
 
 		// Use this for initialization
@@ -18,4 +18,4 @@ namespace Custom {
 			
 		} // end Update
 	} // end class UIManager 
-} // end namespace Custom
+} // end namespace Solider

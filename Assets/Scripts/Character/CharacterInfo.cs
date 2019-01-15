@@ -27,7 +27,7 @@ namespace Solider {
             protected IAttributeInfo initArribute;
             protected CharacterData m_charcterData;
 
-            public CharacterInfo(string name) {
+            public CharacterInfo() {
                 timer = 0;
                 m_selfTreat = new RealData();
             } // end CharacterInfo
@@ -43,7 +43,7 @@ namespace Solider {
                 m_charcterData.Plus(m_selfTreat);
             } // end SelfHealing
 
-            public void LockCharacter(ICharacter chracter) {
+            public virtual void LockCharacter(ICharacter chracter) {
                 lockCharacter = chracter;
             } // end LockCharacter
 
@@ -53,6 +53,7 @@ namespace Solider {
 
             public abstract void Dispose();
             public abstract void UnderAttack(IDamageData data);
+            public abstract void SwitchHpBar(bool isShow);
             // end Dispose
         } // end class CharacterInfo 
     } // end namespace Character

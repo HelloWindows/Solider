@@ -18,7 +18,7 @@ namespace Solider {
             public class MainCharacterInfo : CharacterInfo {
                 private IMainCharacter mainCharacter;
 
-                public MainCharacterInfo(string name, string roleType, IMainCharacter mainCharacter) : base(name) {
+                public MainCharacterInfo(string name, string roleType, IMainCharacter mainCharacter) : base() {
                     this.mainCharacter = mainCharacter;
                     initArribute = mainCharacter.config.initAttribute;
                     m_charcterData = new CharacterData(name, roleType);
@@ -39,10 +39,23 @@ namespace Solider {
                     } // end for
                 } // end CheckAttributeData
 
+                public override void LockCharacter(ICharacter character) {
+                    base.LockCharacter(character);
+                    if (null == character) {
+                        if (null != lockCharacter) lockCharacter.info.SwitchHpBar(false);
+                        // end if
+                        return;
+                    } // end if
+                    character.info.SwitchHpBar(true);
+                } // end LockCharacter
+
                 public override void UnderAttack(IDamageData data) {
                     IRealData realData = new RealData(data);
                     m_charcterData.Minus(realData);
                 } // end UnderAttack
+
+                public override void SwitchHpBar(bool isShow) {
+                } // end SwitchHpBar
 
                 public override void Dispose() {
                     mainCharacter.center.RemoveListener(CheckAttributeData);

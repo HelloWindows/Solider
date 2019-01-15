@@ -29,6 +29,10 @@ namespace Solider {
                 /// <param name="data"></param>
                 void UnderAttack(IDamageData data);
                 /// <summary>
+                /// 显示或隐藏血条
+                /// </summary>
+                void SwitchHpBar(bool isShow);
+                /// <summary>
                 /// 复活
                 /// </summary>
                 void Revive();                

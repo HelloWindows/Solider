@@ -4,7 +4,7 @@ Shader "Custom/Sprites/SliderSprites"
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
-			_Fill("Fill Amount", Range(0.0, 1.0)) = 1.0
+		_Fill("Fill Amount", Range(0.0, 1.0)) = 1.0
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 	}
 

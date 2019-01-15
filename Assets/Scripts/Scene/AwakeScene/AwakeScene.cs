@@ -16,6 +16,7 @@ namespace Solider {
                 InstanceMgr.Init();
                 SqliteManager.Init();
                 Application.targetFrameRate = 30;
+                Resources.Load<ShaderVariantCollection>("Shader/ShaderVariants").WarmUp();
                 yield return null;
                 LoaderScene.LoadNextLevel(new LoginScene());
             } // end Start
