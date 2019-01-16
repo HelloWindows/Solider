@@ -43,14 +43,15 @@ namespace Framework {
                 GameObject Go = objects.Count > 0 ? objects.Pop() : null;
                 if (Go != null) return Go;
                 // end if
-                GameObject prefab = ResourcesTool.LoadPrefab(name);
+                GameObject prefab = ResourcesTool.LoadPrefabPool(name);
                 if (null == prefab) {
 #if __MY_DEBUG__
                     ConsoleTool.SetError(GetType() + "GetGameObject prefab is null! name:" + name);
 #endif
                     return null;
                 } // end if
-                Go = ObjectTool.InstantiateGo(name, prefab, poolParent);
+                Go = Object.Instantiate(prefab, poolParent);
+                Go.name = name;
                 return Go;
             } // end GetGameObject
 
@@ -69,10 +70,17 @@ namespace Framework {
             } // end GetGameObject
 
             public void Recycling(string name, GameObject Go) {
-                if (null == Go || string.IsNullOrEmpty(name)) {
+                if (null == Go) {
 #if __MY_DEBUG__
-                    ConsoleTool.SetError(GetType() + "Recycling GameObject Name:" + name + " is NULL");
+                    ConsoleTool.SetError(GetType() + "Recycling GameObject is NULL! Name:" + name);
 #endif
+                    return;
+                } // end if
+                if (string.IsNullOrEmpty(name)) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetError(GetType() + "Recycling GameObject Name:" + name + " is null or empty!");
+#endif
+                    Object.Destroy(Go);
                     return;
                 } // end if
                 Stack<GameObject> objects;

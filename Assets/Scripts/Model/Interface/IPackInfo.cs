@@ -9,6 +9,10 @@ namespace Solider {
         namespace Interface {
             public interface IPackInfo {
                 /// <summary>
+                /// 金币数量
+                /// </summary>
+                int coin { get; }
+                /// <summary>
                 /// 获取角色穿戴接口
                 /// </summary>
                 /// <returns> 角色穿戴接口 </returns>
@@ -25,6 +29,17 @@ namespace Solider {
                 /// <param name="id"> 物品id </param>
                 /// <param name="count"> 物品数量 </param>
                 bool PackItem(string id, int count);
+                /// <summary>
+                /// 获得金币
+                /// </summary>
+                /// <param name="count"> 获得数量 </param>
+                void PackCoin(int count);
+                /// <summary>
+                /// 花费金币
+                /// </summary>
+                /// <param name="count"> 花费数量 </param>
+                /// <returns> 花费失败返回 false </returns>
+                bool SpendCoin(int count);
             } // end class IPackInfo
         } // end namespace Interface 
     } // end namespace Model

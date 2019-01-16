@@ -22,6 +22,7 @@ namespace Solider {
                 public string id { get { return "pack_panel_ui"; } }
 
                 private Text infoText;
+                private Text coinText;
                 private int currentGid;
                 private string packName;
                 private IPack currentPack;
@@ -136,6 +137,9 @@ namespace Solider {
                     infoText = rectTransform.Find("InfoText").GetComponent<Text>();
                     infoText.fontSize = 10;
                     infoText.alignByGeometry = false;
+                    coinText = rectTransform.Find("Coin/Counter").GetComponent<Text>();
+                    coinText.fontSize = 36;
+                    coinText.text = SceneManager.mainCharacter.pack.coin.ToString();
                     LoseItem();
                     for (int i = 0; i < gridArray.Length; i++) {
                         int id = i;

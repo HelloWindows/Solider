@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2793813971
+CRC: 2385516090
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: da6d88afad5b92ca9a38255c90c2f57c
+    Hash: 54fd0f3184e099730b526a6e5d2cef81
   TypeTreeHash:
     serializedVersion: 2
     Hash: 0b04a37228feb7b9c312fb0cfbaa19c4
@@ -16,22 +16,22 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 Assets:
-- Assets/Material/character/magician/skin/magician_103004.mat
+- Assets/Material/character/swordman/skin/swordman_103004.mat
 - Assets/Material/character/magician/skin/magician_103005.mat
-- Assets/Material/character/swordman/skin/swordman_103001.mat
-- Assets/Material/character/swordman/skin/swordman_103002.mat
-- Assets/Material/character/magician/skin/magician_0.mat
-- Assets/Material/character/swordman/skin/swordman_0.mat
-- Assets/Material/character/magician/skin/magician_103001.mat
-- Assets/Material/character/magician/skin/magician_103003.mat
 - Assets/Material/character/archer/skin/archer_0.mat
+- Assets/Material/character/swordman/skin/swordman_103002.mat
+- Assets/Material/character/magician/skin/magician_103003.mat
+- Assets/Material/character/swordman/skin/swordman_103005.mat
+- Assets/Material/character/archer/skin/archer_103003.mat
+- Assets/Material/character/swordman/skin/swordman_103001.mat
+- Assets/Material/character/magician/skin/magician_103002.mat
 - Assets/Material/character/archer/skin/archer_103005.mat
 - Assets/Material/character/archer/skin/archer_103002.mat
-- Assets/Material/character/archer/skin/archer_103001.mat
-- Assets/Material/character/swordman/skin/swordman_103004.mat
-- Assets/Material/character/magician/skin/magician_103002.mat
-- Assets/Material/character/swordman/skin/swordman_103005.mat
-- Assets/Material/character/archer/skin/archer_103004.mat
+- Assets/Material/character/magician/skin/magician_103001.mat
 - Assets/Material/character/swordman/skin/swordman_103003.mat
-- Assets/Material/character/archer/skin/archer_103003.mat
+- Assets/Material/character/magician/skin/magician_0.mat
+- Assets/Material/character/archer/skin/archer_103001.mat
+- Assets/Material/character/swordman/skin/swordman_0.mat
+- Assets/Material/character/magician/skin/magician_103004.mat
+- Assets/Material/character/archer/skin/archer_103004.mat
 Dependencies: []

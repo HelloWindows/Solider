@@ -11,17 +11,22 @@ using Solider.Model.Interface;
 using Solider.Model;
 using Solider.Manager;
 using Solider.Character.Interface;
+using Framework.Manager;
 
 namespace Solider {
     namespace Character {
         namespace MainCharacter {
             public class MainCharacterPack : IPackInfo {
+                public int coin { get; private set; }
                 private IWearInfo wearInfo;
                 private Dictionary<string, IPack> packDict;
+                private string username;
+                private int roleindex;
 
                 public MainCharacterPack(string roleType, ICharacterCenter center) {
-                    string username = GameManager.playerInfo.username;
-                    int roleindex = GameManager.playerInfo.roleindex;
+                    username = GameManager.playerInfo.username;
+                    roleindex = GameManager.playerInfo.roleindex;
+                    coin = SqliteManager.GetRoleCoinWithID(username, roleindex);
                     packDict = new Dictionary<string, IPack>();
                     IEquipPack equipPack = new EquipPack(username, roleindex, ConstConfig.EQUIP, roleType, center);
                     wearInfo = equipPack;
@@ -48,6 +53,21 @@ namespace Solider {
                     } // end if
                     return null;
                 } // end GetItemPack
+
+                public void PackCoin(int count) {
+                    if (count <= 0) return;
+                    // end if
+                    coin = coin + count;
+                    SqliteManager.SetRoleCoinWithID(username, roleindex, coin);
+                } // end PackCoin
+
+                public bool SpendCoin(int count) {
+                    if (count < 0 || coin < count) return false;
+                    // end if
+                    coin = coin - count;
+                    SqliteManager.SetRoleCoinWithID(username, roleindex, coin);
+                    return true;
+                } // end SpendCoin
             } // end class MainCharacterPack 
         } // end namespace MainCharacter
     } // end namespace Character

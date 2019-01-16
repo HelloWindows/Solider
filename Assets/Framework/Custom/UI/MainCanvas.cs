@@ -49,6 +49,7 @@ namespace Framework {
                     esGo.AddComponent<StandaloneInputModule>();
 
                     HUD_Canvas = new GameObject("HUDCanvas").AddComponent<Canvas>();
+                    HUD_Canvas.gameObject.layer = LayerConfig.UI;
                     HUD_rectTRansform = HUD_Canvas.transform as RectTransform;
                     HUD_Canvas.transform.SetParent(canvas.transform);
                     HUD_rectTRansform.localPosition = Vector3.zero;

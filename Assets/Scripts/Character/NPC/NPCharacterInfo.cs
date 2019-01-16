@@ -10,6 +10,7 @@ using Solider.ModelData.Character;
 using Solider.ModelData.Data;
 using Solider.ModelData.Interface;
 using Solider.Widget;
+using UnityEngine;
 
 namespace Solider {
     namespace Character {
@@ -27,6 +28,13 @@ namespace Solider {
                     character.center.AddListener(CheckAttributeData);
                 } // end MainCharacterInfo
 
+                public override void Update() {
+                    base.Update();
+                    if (null == hpBar) return;
+                    // end if
+                    hpBar.SetFillAmount(System.Convert.ToSingle(m_charcterData.HP) / m_charcterData.XHP);
+                } // end Update
+
                 private void CheckAttributeData(CenterEvent type) {
                     if (CenterEvent.BuffChange != type && CenterEvent.ReloadEquip != type) return;
                     // end if
@@ -36,6 +44,16 @@ namespace Solider {
                 public override void UnderAttack(IDamageData data) {
                     IRealData realData = new RealData(data);
                     m_charcterData.Minus(realData);
+                    Vector2 screenPoint = SceneManager.mainCamera.camera.WorldToScreenPoint(character.helpTransform.position);
+                    Vector2 hud_pos;
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.mainCanvas.HUD_rectTRansform, screenPoint,
+                        SceneManager.mainCanvas.camera, out hud_pos)) {
+                        HUD_Damage hud = InstanceMgr.GetObjectManager().GetGameObject<HUD_Damage>("hud_damage");
+                        hud.SetNumber(realData.HP);
+                        hud.transform.SetParent(SceneManager.mainCanvas.HUD_rectTRansform, false);
+                        hud.transform.localPosition = hud_pos;
+                        hud.gameObject.SetActive(true);
+                    } // end if
                     if (null != lockCharacter) return;
                     // end if
                     if (data.hashID == SceneManager.mainCharacter.hashID) {
@@ -52,17 +70,22 @@ namespace Solider {
                     if (isShow) {
                         if (null == hpBar) {
                             hpBar = InstanceMgr.GetObjectManager().GetGameObject<HPBar>("hp_bar");
+                            hpBar.transform.SetParent(character.helpTransform, false);
                             hpBar.gameObject.SetActive(true);
                         } // end if
-                        hpBar.SetFollow(character.helpTransform);
                     } else {
                         if (null == hpBar) return;
                         // end if
                         hpBar.Recycling();
+                        hpBar = null;
                     } // end if
                 } // end SwitchHpBar
 
                 public override void Dispose() {
+                    if (null != hpBar) {
+                        hpBar.Recycling();
+                        hpBar = null;
+                    } // end if
                     character.center.RemoveListener(CheckAttributeData);
                 } // end Dispose
             } // end class NPCharacterInfo

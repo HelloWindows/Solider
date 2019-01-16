@@ -40,13 +40,14 @@ namespace Solider {
                 } // end CheckAttributeData
 
                 public override void LockCharacter(ICharacter character) {
-                    base.LockCharacter(character);
                     if (null == character) {
                         if (null != lockCharacter) lockCharacter.info.SwitchHpBar(false);
                         // end if
+                        base.LockCharacter(null);
                         return;
                     } // end if
                     character.info.SwitchHpBar(true);
+                    base.LockCharacter(character);
                 } // end LockCharacter
 
                 public override void UnderAttack(IDamageData data) {

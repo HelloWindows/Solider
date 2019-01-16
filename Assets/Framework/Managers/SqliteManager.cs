@@ -93,8 +93,8 @@ namespace Framework {
                 // end if
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 sqliteDB.Insert("player_table", new string[] { ToValue(username), ToValue(passwords) });
-                sqliteDB.CreateTable("role_list_table_" + username, new string[] { "roleindex", "name", "roletype" },
-                    new string[] { "int", "text", "text" });
+                sqliteDB.CreateTable("role_list_table_" + username, new string[] { "roleindex", "name", "roletype", "coin" },
+                    new string[] { "int", "text", "text", "int" });
                 sqliteDB.CreateTable("role_equip_table_" + username, new string[] { "roleindex",
                     ConstConfig.WEAPON, ConstConfig.NECKLACE, ConstConfig.RING, ConstConfig.WING, ConstConfig.ARMOR, ConstConfig.PANTS, ConstConfig.SHOES }, 
                     new string[] { "int", "text", "text", "text", "text", "text", "text", "text" });
@@ -112,7 +112,7 @@ namespace Framework {
             /// <param name="roleType"> 角色类型 </param>
             public static void CreateRole(string username, int roleindex, string name, string roleType) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
-                sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(roleindex), ToValue(name), ToValue(roleType) });
+                sqliteDB.Insert("role_list_table_" + username, new string[] { ToValue(roleindex), ToValue(name), ToValue(roleType), ToValue(0) });
                 sqliteDB.Insert("role_equip_table_" + username , new string[] { ToValue(roleindex), ToValue("0"), ToValue("0"),
                     ToValue("0"), ToValue("0"), ToValue("0"), ToValue("0"), ToValue("0") });                          
                 string[] packTypeList = { ConstConfig.EQUIP, ConstConfig.CONSUME, ConstConfig.STUFF, ConstConfig.PRINT };
@@ -162,7 +162,7 @@ namespace Framework {
             /// <param name="roleindex"> 用户名 </param>
             /// <param name="roleindex"> 角色索引 </param>
             /// <returns> 角色基本信息 [0] 为姓名,[1] 角色类型。不存在返回null </returns>
-            public static string[] GetRoleWithID(string username, int roleindex) {
+            public static string[] GetRoleInfoWithID(string username, int roleindex) {
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 SqliteDataReader reader =sqliteDB.SelectWhere("role_list_table_" + username, new string[] { "name", "roletype" }, 
                     new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
@@ -183,7 +183,56 @@ namespace Framework {
                     ConsoleTool.SetConsole(ex.ToString());
                 } // end try
                 return null;
-            } // end GetRoleWithID
+            } // end GetRoleInfoWithID
+              /// <summary>
+              /// 获取角色金币数量
+              /// </summary>
+              /// <param name="username"> 用户名 </param>
+              /// <param name="roleindex"> 角色索引 </param>
+              /// <returns>金币数量</returns>
+            public static int GetRoleCoinWithID(string username, int roleindex) {
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                SqliteDataReader reader =sqliteDB.SelectWhere("role_list_table_" + username, new string[] { "coin" }, 
+                    new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
+                if (null == reader) {
+                    sqliteDB.Disconnect();
+                    return 0;
+                } // end if
+                try {
+                    while (reader.Read()) {
+                        int result;
+                        result = reader.GetInt32(reader.GetOrdinal("coin"));
+                        if (result < 0) result = 0;
+                        // end if
+                        sqliteDB.Disconnect();
+                        return result;
+                    } // end while
+                } catch (Exception ex) {
+                    sqliteDB.Disconnect();
+                    ConsoleTool.SetConsole(ex.ToString());
+                } // end try
+                sqliteDB.Disconnect();
+                return 0;
+            } // end GetRoleCoinWithID
+
+            /// <summary>
+            /// 设置角色金币数量
+            /// </summary>
+            /// <param name="username"> 用户名 </param>
+            /// <param name="roleindex"> 角色索引 </param>
+            /// <param name="coin"> 金币数量 </param>
+            public static void SetRoleCoinWithID(string username, int roleindex, int coin) {
+                string tableName = "role_list_table_" + username;
+                SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
+                try {
+                    sqliteDB.Update(tableName, new string[] { "coin" }, new string[] { ToValue(coin) }, 
+                        new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
+                } catch (Exception ex) {
+                    ConsoleTool.SetConsole(ex.ToString());
+                } // end try              
+                sqliteDB.Disconnect();
+            } // end SetRoleCoinWithID
+
             /// <summary>
             /// 获取角色穿戴的装备数据
             /// </summary>
@@ -227,7 +276,7 @@ namespace Framework {
                 string tableName = "role_equip_table_" + username;
                 SqliteDatabase sqliteDB = new SqliteDatabase("slidergame.db");
                 try {
-                    sqliteDB.Update(tableName, new string[] { type }, new string[] { id }, 
+                    sqliteDB.Update(tableName, new string[] { type }, new string[] { ToValue(id) }, 
                         new string[] { "roleindex" }, new string[] { "=" }, new string[] { ToValue(roleindex) });
                 } catch (Exception ex) {
                     ConsoleTool.SetConsole(ex.ToString());

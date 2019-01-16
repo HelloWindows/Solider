@@ -10,27 +10,21 @@ using UnityEngine;
 namespace Solider {
     namespace Widget {
         public class HPBar : MonoBehaviour {
-            private Transform follow;
             private SpriteRenderer sprite;
 
-            private void Start() {
+            private void Awake() {
                 sprite = GetComponent<SpriteRenderer>();
                 sprite.material = new Material(Shader.Find("Custom/Sprites/SliderSprites"));
             } // end Start
 
-            public void SetFollow(Transform follow) {
-                this.follow = follow;
-            } // end SetFollow
-
             // Update is called once per frame
             void Update() {
-                if (null == follow) {
-                    Recycling();
-                    return;
-                } // end if
-                transform.position = follow.position;
                 transform.rotation = SceneManager.mainCamera.camera.transform.rotation;
             } // end Update
+
+            public void SetFillAmount(float amount) {
+                sprite.material.SetFloat("_Fill", amount);
+            } // end SetFillAmount
 
             public void Recycling() {
                 InstanceMgr.GetObjectManager().Recycling("hp_bar", gameObject);

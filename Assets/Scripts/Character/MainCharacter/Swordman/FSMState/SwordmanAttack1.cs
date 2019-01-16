@@ -10,7 +10,6 @@ using Framework.Manager;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.ModelData.Data;
-using Solider.ModelData.Interface;
 using UnityEngine;
 
 namespace Solider {
@@ -22,7 +21,7 @@ namespace Solider {
                 private float step;
                 private bool isCarom;
                 private bool isFinish;
-                private Vector3 halfExtents;
+                private readonly float radius;
                 private Collider[] results;
                 private IMainCharacter mainCharacter;
                 private ICharacterState caromState;
@@ -30,7 +29,7 @@ namespace Solider {
 
                 public SwordmanAttack1(IMainCharacter mainCharacter) {
                     step = 1f;
-                    halfExtents = new Vector3(0.5f, 0.5f, 0.5f);
+                    radius = 1f;
                     results = new Collider[5];
                     this.mainCharacter = mainCharacter;
                     caromState = new SwordmanAttack2(mainCharacter);
@@ -51,10 +50,10 @@ namespace Solider {
                         mainCharacter.fsm.PerformTransition("wait");
                         return;
                     } // end if
-                    int count = Physics.OverlapBoxNonAlloc(mainCharacter.position + mainCharacter.forward * 0.5f, 
-                        halfExtents, results, mainCharacter.rotation, LayerConfig.Mask_NPC);
+                    int count = Physics.OverlapSphereNonAlloc(mainCharacter.position + mainCharacter.forward * 0.5f,
+                        radius, results, LayerConfig.Mask_NPC);
                     if (count > 0) {
-                        IDamageData damage = new DamageData(mainCharacter);
+                        DamageData damage = new DamageData(mainCharacter);
                         for (int i = 0; i < count; i++) {
                             ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(results[i].gameObject.name);
                             if (null == npc) continue;

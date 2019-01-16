@@ -48,6 +48,16 @@ namespace Framework {
                 } // end get
             } // end uiPrefabAsset
 
+            private static AssetBundle m_poolPrefabAsset;
+            private static AssetBundle poolPrefabAsset {
+                get {
+                    if (null == m_poolPrefabAsset) {
+                        m_poolPrefabAsset = PlatformTool.LoadFromStreamingAssets("prefab/res_prefab_pool.unity3d");
+                    } // end if
+                    return m_poolPrefabAsset;
+                } // end get
+            } // end poolPrefabAsset
+
             private static AssetBundle m_animationAsset;
             private static AssetBundle animationAsset {
                 get {
@@ -93,6 +103,12 @@ namespace Framework {
                 // end if
                 return uiPrefabAsset.LoadAsset<GameObject>(uiName);
             } // end LoadPrefabUI
+
+            public static GameObject LoadPrefabPool(string name) {
+                if (string.IsNullOrEmpty(name)) return null;
+                // end if
+                return poolPrefabAsset.LoadAsset<GameObject>(name);
+            } // end LoadPrefabPool
 
             public static AnimationClip LoadAnimationClip(string animationPath) {
                 if (string.IsNullOrEmpty(animationPath)) return null;

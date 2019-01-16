@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2785098470
+CRC: 2226230514
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 705b7f5820bc579cea128105e1944157
+    Hash: fdbb49bfaac181bcbf97b81b8e35a558
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9056ce6229d298146016b7464db3ce4f
+    Hash: 9f139d7b113599a5cf7172b210c708d9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -43,10 +43,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
-- Class: 212
-  Script: {instanceID: 0}
-- Class: 213
-  Script: {instanceID: 0}
 Assets:
 - Assets/Prefab/equipment/magician_weapon.prefab
 - Assets/Prefab/character/900001.prefab
@@ -77,8 +73,6 @@ Assets:
 - Assets/Prefab/character/npc_transmitter.prefab
 - Assets/Prefab/character/magician.prefab
 - Assets/Prefab/equipment/100007.prefab
-- Assets/Prefab/widget/hp_bar.prefab
-- Assets/Prefab/effect/maincharachter_run_effect.prefab
 - Assets/Prefab/character/archer.prefab
 Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/materia/res_material.unity3d
+- G:/SelfProject/Solider/Assets/StreamingAssets/material/res_material.unity3d

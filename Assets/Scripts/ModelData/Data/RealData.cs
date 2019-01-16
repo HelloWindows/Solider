@@ -17,8 +17,6 @@ namespace Solider {
                 public float MPR { get; private set; }
                 public float XHR { get; private set; }
                 public float XMR { get; private set; }
-                public bool ismiss { get; private set; }
-                public bool iscrit { get; private set; } 
 
                 /// <summary>
                 /// 满 HP 和 MP 的效果
@@ -50,8 +48,6 @@ namespace Solider {
                     MPR = 0;
                     XHR = 0;
                     XMR = 0;
-                    ismiss = false;
-                    iscrit = false;
                 } // end SetSelfTreat
             } // end class RealData
         } // end namespace Data

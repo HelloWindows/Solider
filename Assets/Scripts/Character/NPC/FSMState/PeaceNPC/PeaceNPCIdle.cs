@@ -21,7 +21,7 @@ namespace Solider {
                 private float scope;
 
                 public PeaceNPCIdle(ICharacter character) {
-                    scope = 10f;
+                    scope = 8f;
                     this.character = character;
                 } // end PeaceNPCIdle
 
@@ -35,16 +35,16 @@ namespace Solider {
                         character.fsm.PerformTransition("die");
                         return;
                     } // end if
-                    if (null != character.info.lockCharacter &&
-                        Vector3.Distance(character.info.lockCharacter.position, character.position) < scope) {
-                        character.fsm.PerformTransition("escape");
-                        return;
-                    } // end if
-                    if (timer > 0) {
-                        timer -= Time.deltaTime;
-                        return;
-                    } // end if
-                    character.fsm.PerformTransition("walk");
+                    //if (null != character.info.lockCharacter &&
+                    //    Vector3.Distance(character.info.lockCharacter.position, character.position) < scope) {
+                    //    character.fsm.PerformTransition("escape");
+                    //    return;
+                    //} // end if
+                    //if (timer > 0) {
+                    //    timer -= Time.deltaTime;
+                    //    return;
+                    //} // end if
+                    //character.fsm.PerformTransition("walk");
                 } // end Reason
 
                 public void Act() {

@@ -32,7 +32,7 @@ namespace Solider {
                 m_selfTreat = new RealData();
             } // end CharacterInfo
 
-            public void Update() {
+            public virtual void Update() {
                 if (!IsLive || m_charcterData.HP == m_charcterData.XHP && m_charcterData.MP == m_charcterData.XMP) return;
                 // end if
                 timer += UnityEngine.Time.deltaTime;

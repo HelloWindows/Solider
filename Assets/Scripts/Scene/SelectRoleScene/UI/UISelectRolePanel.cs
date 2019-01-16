@@ -47,7 +47,7 @@ namespace Solider {
                     string prefix = "RoleList/Role_";
                     for (int i = 0; i < 3; i++) {
                         int index = i;
-                        roleDict.Add(index, SqliteManager.GetRoleWithID(GameManager.playerInfo.username, index));
+                        roleDict.Add(index, SqliteManager.GetRoleInfoWithID(GameManager.playerInfo.username, index));
                         rectTransform.Find(prefix + i).gameObject.AddComponent<UIButtonNormal>().AddListener(delegate () { OnSwitchRole(index); });
                         if (null != roleDict[index]) rectTransform.Find(prefix + i + "/Text").GetComponent<Text>().text = roleDict[index][0];
                         // end if

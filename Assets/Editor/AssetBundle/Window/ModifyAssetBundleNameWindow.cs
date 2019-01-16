@@ -21,18 +21,34 @@ namespace CustomEditor {
         private string variant;
         private string selectedDirPath;
         private string comfirmClear;
+        private string[] nameOptions;
+        private string[] variantOptions;
+        private int index;
+
+        private void InitNameOptions() {
+            string[] names = AssetDatabase.GetAllAssetBundleNames();
+            int length = null == names ? 0 : names.Length;
+            nameOptions = new string[length + 1];
+            nameOptions[0] = "None";
+            for (int i = 0; i < length; i++) {
+                nameOptions[i + 1] = names[i];
+            } // end for
+        } // end if
+
+        private void OnEnable() {
+            InitNameOptions();
+        } // end OnEnable
 
         private void OnGUI() {
-            if (false == string.IsNullOrEmpty(abName)) {
-                EditorGUILayout.LabelField(abName + ".unity3d");
-            } else {
-                EditorGUILayout.LabelField("");
-            } // end if       
-            abName = EditorGUILayout.TextField(new GUIContent("Assetbundle name:"), string.IsNullOrEmpty(abName) ? "" : abName.ToLower());
-            variant = EditorGUILayout.TextField(new GUIContent("Assetbundle variant:"), variant);
-            if (GUILayout.Button("Modify for files")) {
-                ModifyAssetBundleNameForFiles();
-            } // end if
+            EditorGUILayout.BeginHorizontal();
+            index = EditorGUILayout.Popup("Assetbundle", index, nameOptions);
+            abName = index == 0 ? string.Empty : nameOptions[index];
+            variant = EditorGUILayout.TextField(new GUIContent("variant"), string.IsNullOrEmpty(variant) ? "" : variant.ToLower());
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Name:", abName);
+            EditorGUILayout.LabelField("variant:", variant);
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("directory path:", selectedDirPath);
             if (GUILayout.Button("Browse")) {
@@ -44,6 +60,7 @@ namespace CustomEditor {
             } // end if
             if (GUILayout.Button("Remove unused names")) {
                 AssetDatabase.RemoveUnusedAssetBundleNames();
+                InitNameOptions();
             } // end if
             comfirmClear = EditorGUILayout.TextField(new GUIContent("Comfirm clear:"), comfirmClear);
             if (GUILayout.Button("Remove all assetbundle names")) {
@@ -65,22 +82,6 @@ namespace CustomEditor {
                 EditorUtility.FocusProjectWindow();
             } // end if
         } // end OpenFolder
-
-        private void ModifyAssetBundleNameForFiles() {
-            if (string.IsNullOrEmpty(abName)) {
-                Debug.LogWarning("Please input Assetbundle name!");
-                return;
-            } // end if
-            if (Selection.objects == null || Selection.objects.Length == 0) {
-                Debug.LogWarning("Please select files that need modify");
-                return;
-            } // end if
-            foreach (Object obj in Selection.objects) {
-                SetAssetBundleNameAndVariantWithPath(AssetDatabase.GetAssetPath(obj));
-            } // end foreach
-            AssetDatabase.Refresh();
-            Debug.Log("ModifyAssetBundleNameForFiles Success!");
-        } // end ModifyAssetBundleNameForFiles
 
         private void ModifyAssetBundleNameForDirectory() {
             if (string.IsNullOrEmpty(abName)) {
@@ -105,6 +106,7 @@ namespace CustomEditor {
                 } // end foreach
             } // end foreach
             AssetDatabase.Refresh();
+            InitNameOptions();
             Debug.Log("ModifyAssetBundleNameForDirectory Success!");
         } // end ModifyAssetBundleNameForDirectory
 
@@ -122,6 +124,7 @@ namespace CustomEditor {
                 AssetDatabase.RemoveAssetBundleName(oldAssetBundleNames[i], true);
             } // end for
             AssetDatabase.Refresh();
+            InitNameOptions();
             Debug.Log("ClearAllAssetBundlesName Success!");
         } // end ClearAllAssetBundlesName
 
@@ -131,7 +134,7 @@ namespace CustomEditor {
                 Debug.LogWarning(path + "is not asset!!");
                 return;
             } // end if
-            assetImporter.SetAssetBundleNameAndVariant(abName + ".unity3d", variant);
+            assetImporter.SetAssetBundleNameAndVariant(abName, variant);
         } // end SetAssetBundleNameAndVariantWithPath
     } // end class ModifyAssetBundleNameWindow
 } // end namespace CustomEditor
