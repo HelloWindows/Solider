@@ -6,14 +6,14 @@
       "spritepath": "skill_500001",
       "intro": "先前方向翻滚一段距离。",
       "soundPath": "audio_500001",
+      "CD": 5,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 0,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 5
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -24,14 +24,14 @@
       "spritepath": "skill_500002",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500002",
+      "CD": 12,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 175,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 12
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -42,14 +42,14 @@
       "spritepath": "skill_500003",
       "intro": "对正前方敌人造成",
       "soundPath": "audio_500003",
+      "CD": 20,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 325,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 20
+        "RGSR": 0
       },
       "buff": true,
       "passive": false,
@@ -82,14 +82,14 @@
       "spritepath": "skill_500101",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500101",
+      "CD": 12,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 0,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 12
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -100,14 +100,14 @@
       "spritepath": "skill_500102",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500102",
+	  "CD": 20,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 0,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 20
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -118,14 +118,14 @@
       "spritepath": "skill_500103",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500103",
+      "CD": 26,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 0,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 26
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -136,14 +136,14 @@
       "spritepath": "skill_500201",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500201",
+      "CD": 12,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 175,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 12
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -154,14 +154,14 @@
       "spritepath": "skill_500202",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500202",
+      "CD": 12,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 175,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 12
+        "RGSR": 0
       },
       "buff": false,
       "passive": false
@@ -172,14 +172,14 @@
       "spritepath": "skill_500203",
       "intro": "对周围敌人造成",
       "soundPath": "audio_500203",
+      "CD": 25,
       "property": {
         "ATK": 0,
         "MGK": 0,
         "ATKR": 175,
         "MGKR": 0,
         "DEFR": 0,
-        "RGSR": 0,
-        "CD": 25
+        "RGSR": 0
       },
       "buff": false,
       "passive": false

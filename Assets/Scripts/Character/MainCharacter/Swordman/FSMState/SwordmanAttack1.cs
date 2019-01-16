@@ -21,7 +21,7 @@ namespace Solider {
                 private float step;
                 private bool isCarom;
                 private bool isFinish;
-                private readonly float radius;
+                private const float radius = 1f;
                 private Collider[] results;
                 private IMainCharacter mainCharacter;
                 private ICharacterState caromState;
@@ -29,7 +29,6 @@ namespace Solider {
 
                 public SwordmanAttack1(IMainCharacter mainCharacter) {
                     step = 1f;
-                    radius = 1f;
                     results = new Collider[5];
                     this.mainCharacter = mainCharacter;
                     caromState = new SwordmanAttack2(mainCharacter);

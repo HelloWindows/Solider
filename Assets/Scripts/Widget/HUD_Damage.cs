@@ -30,8 +30,10 @@ namespace Solider {
 
             IEnumerator PlayAnimation() {
                 float smooth = 0f;
+                Color col = new Color(1f, 1f, 1f, 1f);
+                m_text.color = col;
                 m_text.rectTransform.localPosition = Vector3.zero;
-                m_text.rectTransform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                m_text.rectTransform.localScale = Vector3.zero;
                 WaitForEndOfFrame wait = new WaitForEndOfFrame();
                 while (smooth < 1f) {
                     smooth += Time.deltaTime * 3f;
@@ -39,7 +41,6 @@ namespace Solider {
                     yield return wait;
                 } // end while
                 smooth = 0;
-                Color col = new Color(1f, 1f, 1f, 1f);
                 while (smooth < 1f) {
                     smooth += Time.deltaTime * 2f;
                     m_text.rectTransform.localPosition = Vector3.up * smooth * 30f;

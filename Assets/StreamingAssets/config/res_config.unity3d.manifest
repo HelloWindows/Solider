@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1252859892
+CRC: 1980418681
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 017382568c94913b346866db5704c748
+    Hash: 00b301b33f4432358f7b6ee99c914338
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -15,7 +15,7 @@ Assets:
 - Assets/Config/consumable_res_config.json
 - Assets/Config/character_config.json
 - Assets/Config/blueprint_res_config.json
-- Assets/Config/skill_info_config.json
 - Assets/Config/equipment_res_config.json
+- Assets/Config/skill_info_config.json
 - Assets/Config/stuff_res_config.json
 Dependencies: []

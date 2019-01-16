@@ -7,11 +7,12 @@
 using Framework.Tools;
 using LitJson;
 using Solider.Config.Interface;
+using Solider.ModelData.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public class SkillInfo : IconInfo, ISkillInfo {
+            public class SkillInfo : IconInfo, ISkillInfo, ISKillData {
                 public bool isBuff { get; private set; } 
                 public bool isPassive { get; private set; }
                 public int ATK { get; private set; } 
@@ -31,6 +32,7 @@ namespace Solider {
                     intro = (string)data["intro"];
                     soundPath = JsonTool.GetJsonData_String(data, "soundPath");
                     isBuff = (bool)data["buff"];
+                    CD = (float)data["CD"];
                     isPassive = (bool)data["passive"];
                     JsonData property = data["property"];
                     ATK = JsonTool.GetJsonData_Int(property, "ATK");
@@ -39,7 +41,6 @@ namespace Solider {
                     MGKR = JsonTool.GetJsonData_Float(property, "MGKR");
                     DEFR = JsonTool.GetJsonData_Float(property, "DEFR");
                     RGSR = JsonTool.GetJsonData_Float(property, "RGSR");
-                    CD = JsonTool.GetJsonData_Float(property, "CD");
                     buff = null;
                     if (isBuff || isPassive) buff = new BuffInfo(data);
                     // end if
