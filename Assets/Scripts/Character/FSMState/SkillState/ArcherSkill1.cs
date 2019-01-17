@@ -4,9 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
+using Solider.ModelData.Data;
+using Solider.Widget;
 using UnityEngine;
 
 namespace Solider {
@@ -23,6 +26,8 @@ namespace Solider {
                 private float step;
                 private ICharacter character;
                 private ISkillInfo info;
+                private bool isFlight;
+                private bool isFinish;
 
                 private ArcherSkill1(ICharacter character, ISkillInfo info) {
                     step = 2f;
@@ -31,29 +36,51 @@ namespace Solider {
                 } // end ArcherSkill1
 
                 public void DoBeforeEntering() {
+                    isFlight = false;
+                    isFinish = false;
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
-                    character.avatar.PlayQueued(new string[] { "skill1_1", "skill1_2" });
+                    character.avatar.Play("skill1_1");
                 } // end DoBeforeEntering
 
                 public void Reason() {
-                    if (false == character.avatar.isPlaying) {
+                    if (character.avatar.isPlaying) return;
+                    // end if
+                    if (isFinish) {
                         character.fsm.PerformTransition("wait");
+                    } else {
+                        character.avatar.Play("skill1_2");
+                        isFinish = true;
                     } // end if
                 } // end Reason
 
                 public void Act() {
-                    AnimationState state = character.avatar.GetCurrentState("skill1_1");
-                    if (null == state) return;
+                    if (isFlight) return;
                     // end if
-                    if (state.normalizedTime < 0.5f) {
-                        character.move.MoveForward(step);
-                    } else {
-                        character.move.MoveBackward(step);
-                    } // end if
+                    MoveBackward();
+                    FlightArrow();
                 } // end Act
 
                 public void DoBeforeLeaving() {
                 } // end DoBeforeLeaving
+
+                private void MoveBackward() {
+                    AnimationState state = character.avatar.GetCurrentState("skill1_1");
+                    if (null == state) return;
+                    // end if
+                    character.move.MoveBackward(step);
+                } // end MoveBackward
+
+                private void FlightArrow() {
+                    AnimationState state = character.avatar.GetCurrentState("skill1_2");
+                    if (null == state || state.normalizedTime < 0.3f) return;
+                    // end if
+                    isFlight = true;
+                    DamageData damage = new DamageData(character);
+                    PierceArrow arrow = Object.Instantiate(ResourcesTool.LoadPrefab("pierce_arrow")).AddComponent<PierceArrow>();
+                    arrow.transform.position = character.position + Vector3.up * 0.8f;
+                    arrow.transform.rotation = character.rotation;
+                    arrow.SetDamage(damage);
+                } // end FlightArrow
             } // end class ArcherSkill1
         } // end namespace Skill
     } // end namespace Character

@@ -4,9 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Manager;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
+using Solider.ModelData.Data;
+using Solider.Widget;
 using UnityEngine;
 
 namespace Solider {
@@ -86,6 +89,12 @@ namespace Solider {
                     if (true == signArr[index]) return;
                     // end if
                     signArr[index] = true;
+                    DamageData damage = new DamageData(character);
+                    Arrow arrow = InstanceMgr.GetObjectManager().GetGameObject<Arrow>("arrow");
+                    arrow.transform.position = character.position + Vector3.up * 0.8f;
+                    arrow.transform.rotation = character.rotation;
+                    arrow.SetDamage(damage);
+                    arrow.gameObject.SetActive(true);
                 } // end Act
 
                 public void DoBeforeLeaving() {

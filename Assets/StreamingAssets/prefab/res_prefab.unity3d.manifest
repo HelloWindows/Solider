@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2226230514
+CRC: 3290131511
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fdbb49bfaac181bcbf97b81b8e35a558
+    Hash: b16f54e449135c6e3df95df36ebbdaea
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9f139d7b113599a5cf7172b210c708d9
+    Hash: 098ebe69f42f369ab3d950ab4de29a94
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -32,6 +32,8 @@ ClassTypes:
 - Class: 90
   Script: {instanceID: 0}
 - Class: 95
+  Script: {instanceID: 0}
+- Class: 96
   Script: {instanceID: 0}
 - Class: 111
   Script: {instanceID: 0}
@@ -68,11 +70,13 @@ Assets:
 - Assets/Prefab/equipment/106004.prefab
 - Assets/Prefab/equipment/100010.prefab
 - Assets/Prefab/equipment/100014.prefab
+- Assets/Prefab/widget/pierce_arrow.prefab
 - Assets/Prefab/equipment/100011.prefab
 - Assets/Prefab/equipment/swordman_weapon.prefab
 - Assets/Prefab/character/npc_transmitter.prefab
 - Assets/Prefab/character/magician.prefab
 - Assets/Prefab/equipment/100007.prefab
 - Assets/Prefab/character/archer.prefab
+- Assets/Prefab/widget/explosive_arrow.prefab
 Dependencies:
-- G:/SelfProject/Solider/Assets/StreamingAssets/material/res_material.unity3d
+- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/material/res_material.unity3d

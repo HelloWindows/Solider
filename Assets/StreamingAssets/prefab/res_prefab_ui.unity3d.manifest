@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 96602478
+CRC: 249229619
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 60e40d408d6df48d4e324282fdcb0a25
+    Hash: deb9d923a32adf40a88feb8f25cf7d6a
   TypeTreeHash:
     serializedVersion: 2
     Hash: f6a499f9114159c443390e356b9ea8b3
@@ -88,4 +88,4 @@ Assets:
 - Assets/Prefab/ui/scene/login_scene/register_panel_ui.prefab
 - Assets/Prefab/ui/common/joystick_ui.prefab
 Dependencies:
-- G:/SelfProject/Solider/Assets/StreamingAssets/atlas/res_sprite.unity3d
+- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/atlas/res_sprite.unity3d
