@@ -16,7 +16,7 @@ namespace Solider {
                     AddState(new MainCharacterWalk(character));
                     AddState(new MainCharacterIdle(character));
                     AddState(new MainCharacterRun(character));
-                    AddState(new ArcherAttack(character));
+                    AddState(new ArcherAttack1(character));
                     AddState(new MainCharacterDie(character));
                     AddState(new MainCharacterHurt(character));
                 } // end ArcherFSM

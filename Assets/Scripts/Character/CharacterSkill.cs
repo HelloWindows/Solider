@@ -55,9 +55,9 @@ namespace Solider {
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillModle>();
-                PushSkill("500001");
-                PushSkill("500002");
-                PushSkill("500003");
+                PushSkill("500201");
+                PushSkill("500202");
+                PushSkill("500203");
             } // end CharacterSkill
 
             public void Update() {

@@ -97,16 +97,30 @@ ShaderVariantCollection:
       first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
       second:
         variants:
+        - keywords: DIRECTIONAL
+          passType: 4
+        - keywords: DIRECTIONAL SHADOWS_SCREEN
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _NORMALMAP
+          passType: 4
         - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _NORMALMAP
           passType: 4
         - keywords: DIRECTIONAL _EMISSION _NORMALMAP
           passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _NORMALMAP
+          passType: 4
         - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
             _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
           passType: 4
         - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
             _METALLICGLOSSMAP _NORMALMAP
           passType: 4
+        - keywords: DIRECTIONAL
+          passType: 5
         - keywords: DIRECTIONAL _NORMALMAP
           passType: 5
         - keywords: SHADOWS_DEPTH
@@ -186,4 +200,12 @@ ShaderVariantCollection:
       second:
         variants:
         - keywords: FOG_EXP2
+          passType: 0
+    data:
+      first: {fileID: 4800000, guid: 23f213ff6109f334f8cc879ed1f4bdcc, type: 3}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+        - keywords: PIXELSNAP_ON
           passType: 0

@@ -4,6 +4,7 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Tools;
 using Solider.Config.Interface;
 using Solider.ModelData.Interface;
 
@@ -17,6 +18,7 @@ namespace Solider {
                 public float MPR { get; private set; }
                 public float XHR { get; private set; }
                 public float XMR { get; private set; }
+                public bool ismiss { get; private set; }
 
                 /// <summary>
                 /// 满 HP 和 MP 的效果
@@ -26,8 +28,11 @@ namespace Solider {
                     XMR = 100;
                 } // end RealData
 
-                public RealData(IDamageData data) {
-                    HP = data.ATK;
+                public RealData(IDamageData damage, ICharacterData target) {
+                    if (null == damage || null == target) return;
+                    // end if
+                    HP = MathTool.LimitZero(damage.ATK -  MathTool.Percent(target.DEF, damage.DEFR + 100f)) +
+                        MathTool.LimitZero(damage.MGK - MathTool.Percent(target.RGS, damage.RGSR + 100f));
                 } // end RealData
 
                 public RealData(IConsumeInfo info) {

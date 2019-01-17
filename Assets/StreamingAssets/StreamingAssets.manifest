@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 197258025
+CRC: 1318631226
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -9,22 +9,22 @@ AssetBundleManifest:
       Name: atlas/res_sprite.unity3d
       Dependencies: {}
     Info_2:
+      Name: animation/res_animation.unity3d
+      Dependencies: {}
+    Info_3:
       Name: prefab/res_prefab.unity3d
       Dependencies:
         Dependency_0: material/res_material.unity3d
-    Info_3:
-      Name: animation/res_animation.unity3d
-      Dependencies: {}
     Info_4:
-      Name: config/res_config.unity3d
-      Dependencies: {}
-    Info_5:
-      Name: material/res_material.unity3d
-      Dependencies: {}
-    Info_6:
       Name: prefab/res_prefab_ui.unity3d
       Dependencies:
         Dependency_0: atlas/res_sprite.unity3d
-    Info_7:
+    Info_5:
+      Name: config/res_config.unity3d
+      Dependencies: {}
+    Info_6:
       Name: prefab/res_prefab_pool.unity3d
+      Dependencies: {}
+    Info_7:
+      Name: material/res_material.unity3d
       Dependencies: {}

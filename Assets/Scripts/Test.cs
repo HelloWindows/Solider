@@ -28,19 +28,23 @@ namespace Test {
 
     public class Test : MonoBehaviour {
 
+        private SpriteRenderer sprite;
+        private float amount;
 
         private void Start() {
+            sprite = GetComponent<SpriteRenderer>();
+            sprite.material = new Material(Shader.Find("Custom/Sprites/SliderSprites"));
         } // end Start
 
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
-                Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.DrawRay(mRay.origin, mRay.direction * 100, Color.red);
-                RaycastHit mHit;
-                //射线检验  
-                if (Physics.Raycast(mRay, out mHit)) {
-                    Debug.Log(mHit.collider.name);
-                }
+                amount += 0.1f;
+                sprite.material.SetFloat("_Fill", amount);
+            }
+
+            if (Input.GetMouseButtonDown(1)) {
+                amount -= 0.1f;
+                sprite.material.SetFloat("_Fill", amount);
             }
         } // end Update
 

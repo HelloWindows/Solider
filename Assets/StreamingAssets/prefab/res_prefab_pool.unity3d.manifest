@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3206223828
+CRC: 3713858643
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ef974d325dc2087b445ef9aa9dd5b628
+    Hash: 2c31e7bc489281e8a22e91d6ee393160
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 11d0beee4ad2782cd60c661a822c0b8e
+    Hash: d3afe12c86bf270eff7fd24a4c037221
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,9 +15,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 96
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -29,16 +37,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
-- Class: 212
-  Script: {instanceID: 0}
-- Class: 213
-  Script: {instanceID: 0}
 - Class: 222
   Script: {instanceID: 0}
 - Class: 224
   Script: {instanceID: 0}
 Assets:
 - Assets/Prefab/pool/ui/hud_damage.prefab
+- Assets/Prefab/pool/widget/arrow.prefab
 - Assets/Prefab/pool/widget/hp_bar.prefab
 - Assets/Prefab/pool/effect/maincharachter_run_effect.prefab
 Dependencies: []

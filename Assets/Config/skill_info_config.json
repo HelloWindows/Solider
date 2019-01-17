@@ -44,7 +44,7 @@
       "soundPath": "audio_500003",
       "CD": 20,
       "property": {
-        "ATK": 0,
+        "ATK": 100,
         "MGK": 0,
         "ATKR": 325,
         "MGKR": 0,

@@ -41,8 +41,10 @@ namespace Solider {
                     m_charcterData.Init(initArribute);
                 } // end CheckAttributeData
 
-                public override void UnderAttack(IDamageData data) {
-                    IRealData realData = new RealData(data);
+                public override void UnderAttack(IDamageData damage) {
+                    if (null == damage) return;
+                    // end if
+                    IRealData realData = new RealData(damage, m_charcterData);
                     m_charcterData.Minus(realData);
                     Vector2 screenPoint = SceneManager.mainCamera.camera.WorldToScreenPoint(character.helpTransform.position);
                     Vector2 hud_pos;
@@ -56,11 +58,11 @@ namespace Solider {
                     } // end if
                     if (null != lockCharacter) return;
                     // end if
-                    if (data.hashID == SceneManager.mainCharacter.hashID) {
+                    if (damage.hashID == SceneManager.mainCharacter.hashID) {
                         LockCharacter(SceneManager.mainCharacter);
                         return;
                     } // end if
-                    ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(data.hashID);
+                    ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(damage.hashID);
                     if (null != npc) {
                         LockCharacter(npc);
                     } // end if

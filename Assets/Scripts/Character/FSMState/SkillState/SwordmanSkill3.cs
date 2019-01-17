@@ -4,9 +4,13 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Framework.Config.Game;
+using Framework.Manager;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Solider.Config.Interface;
+using Solider.ModelData.Data;
+using UnityEngine;
 
 namespace Solider {
     namespace Character {
@@ -18,23 +22,50 @@ namespace Solider {
                 } // end CreateInstance
 
                 public string id { get { return ID; } }
+                private string anim { get { return "skill3"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;
+                private Vector3 halfExtents;
+                private Collider[] results;
+                private bool isFinish;
 
                 public SwordmanSkill3( ICharacter character, ISkillInfo info) {
                     this.character = character;
                     this.info = info;
+                    halfExtents = new Vector3(0.3f, 0.5f, 0.6f);
+                    results = new Collider[5];
                 } // end SwordmanSkill3
 
                 public void DoBeforeEntering() {
-                    character.avatar.Play("skill3");
+                    isFinish = false;
+                    character.avatar.Play(anim);
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
                 } // end DoBeforeEntering
 
                 public void Reason() {
                     if (false == character.avatar.isPlaying) {
                         character.fsm.PerformTransition("wait");
+                        return;
+                    } // end if
+                    AnimationState state = character.avatar.GetCurrentState(anim);
+                    if (null == state) {
+                        character.fsm.PerformTransition("wait");
+                        return;
+                    } // end if
+                    if (true == isFinish || state.normalizedTime < 0.6f) return;
+                    // end if
+                    isFinish = true;
+                    int count = Physics.OverlapBoxNonAlloc(character.position + character.forward * 0.6f,
+                        halfExtents, results, character.rotation, LayerConfig.Mask_NPC);
+                    if (count > 0) {
+                        DamageData damage = new DamageData(character, info);
+                        for (int i = 0; i < count; i++) {
+                            ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(results[i].gameObject.name);
+                            if (null == npc) continue;
+                            // end if
+                            npc.info.UnderAttack(damage);
+                        } // end for
                     } // end if
                 } // end Reason
 

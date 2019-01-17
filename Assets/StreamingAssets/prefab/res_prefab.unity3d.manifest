@@ -3,7 +3,7 @@ CRC: 2226230514
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d9192c0100756d07dd010e67468bb0d0
+    Hash: fdbb49bfaac181bcbf97b81b8e35a558
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9f139d7b113599a5cf7172b210c708d9
@@ -75,4 +75,4 @@ Assets:
 - Assets/Prefab/equipment/100007.prefab
 - Assets/Prefab/character/archer.prefab
 Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/material/res_material.unity3d
+- G:/SelfProject/Solider/Assets/StreamingAssets/material/res_material.unity3d

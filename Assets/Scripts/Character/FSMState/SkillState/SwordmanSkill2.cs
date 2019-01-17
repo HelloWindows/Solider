@@ -56,7 +56,7 @@ namespace Solider {
                         int count = Physics.OverlapSphereNonAlloc(mainCharacter.position + mainCharacter.forward * 0.5f,
                             radius, results, LayerConfig.Mask_NPC);
                         if (count > 0) {
-                            DamageData damage = new DamageData(mainCharacter);
+                            DamageData damage = new DamageData(mainCharacter, info);
                             for (int i = 0; i < count; i++) {
                                 ICharacter npc = SceneManager.characterManager.factory.GetNPCharacter(results[i].gameObject.name);
                                 if (null == npc) continue;

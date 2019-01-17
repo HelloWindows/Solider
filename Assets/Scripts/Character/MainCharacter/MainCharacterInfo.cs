@@ -51,7 +51,7 @@ namespace Solider {
                 } // end LockCharacter
 
                 public override void UnderAttack(IDamageData data) {
-                    IRealData realData = new RealData(data);
+                    IRealData realData = new RealData(data, m_charcterData);
                     m_charcterData.Minus(realData);
                 } // end UnderAttack
 

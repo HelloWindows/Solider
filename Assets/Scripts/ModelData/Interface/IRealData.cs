@@ -32,6 +32,10 @@ namespace Solider {
                 /// 最大 mp 百分率
                 /// </summary>
                 float XMR { get; }
+                /// <summary>
+                /// 是否命中
+                /// </summary>
+                bool ismiss { get; }
             } // end class IRealData
         } // end namespace Interface
     } // end namespace ModelData

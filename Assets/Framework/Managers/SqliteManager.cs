@@ -132,6 +132,8 @@ namespace Framework {
                 SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "104001", "E", 0);
                 SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "105001", "E", 0);
                 SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "106001", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "100006", "E", 0);
+                SetPackInfoWithID(username, roleindex, ConstConfig.EQUIP, index++, "100011", "E", 0);
                 index = 0;
                 SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "200001", "D", 10);
                 SetPackInfoWithID(username, roleindex, ConstConfig.CONSUME, index++, "200002", "C", 5);

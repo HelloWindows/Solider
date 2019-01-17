@@ -4,10 +4,12 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
+using Solider.ModelData.Interface;
+
 namespace Solider {
     namespace Config {
         namespace Interface {
-            public interface ISkillInfo : IIconInfo {
+            public interface ISkillInfo : IIconInfo, ISKillData {
                 bool isBuff { get; } // 判断是否是 buff 技能
                 bool isPassive { get; } // 是否是被动技能
                 float CD { get; } // 冷却时间

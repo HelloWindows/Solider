@@ -10,11 +10,12 @@ using UnityEngine;
 namespace Solider {
     namespace Widget {
         public class HPBar : MonoBehaviour {
-            private SpriteRenderer sprite;
+            private MeshRenderer meshRenderer;
 
             private void Awake() {
-                sprite = GetComponent<SpriteRenderer>();
-                sprite.material = new Material(Shader.Find("Custom/Sprites/SliderSprites"));
+                meshRenderer = GetComponent<MeshRenderer>();
+                meshRenderer.material = new Material(Shader.Find("Custom/Color/SliderBar"));
+                meshRenderer.material.SetColor("_Color", Color.red);
             } // end Start
 
             // Update is called once per frame
@@ -23,7 +24,7 @@ namespace Solider {
             } // end Update
 
             public void SetFillAmount(float amount) {
-                sprite.material.SetFloat("_Fill", amount);
+                meshRenderer.material.SetFloat("_Fill", amount);
             } // end SetFillAmount
 
             public void Recycling() {

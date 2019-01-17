@@ -7,12 +7,11 @@
 using Framework.Tools;
 using LitJson;
 using Solider.Config.Interface;
-using Solider.ModelData.Interface;
 
 namespace Solider {
     namespace Config {
         namespace Icon {
-            public class SkillInfo : IconInfo, ISkillInfo, ISKillData {
+            public class SkillInfo : IconInfo, ISkillInfo {
                 public bool isBuff { get; private set; } 
                 public bool isPassive { get; private set; }
                 public int ATK { get; private set; } 
