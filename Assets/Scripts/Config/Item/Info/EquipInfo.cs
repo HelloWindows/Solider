@@ -87,7 +87,7 @@ namespace Solider {
                             break;
                     } // end swtich
                     infoBuilder.Append("                          ");
-                    if (role != ConstConfig.ALLROLE && role != GameManager.playerInfo.roleType) {
+                    if (role != ConstConfig.ALLROLE && role != GameManager.playerInfo.roletype) {
                         infoBuilder.Append("<color=#FF0000FF>");
                     } else {
                         infoBuilder.Append("<color=#FFFFFFFF>");

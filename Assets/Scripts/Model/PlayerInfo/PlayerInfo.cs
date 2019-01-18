@@ -11,13 +11,13 @@ namespace Solider {
         public class PlayerInfo : IPlayerInfo {
             public int roleindex { get; private set; }
             public string rolename { get; private set; }
-            public string roleType { get; private set; }
+            public string roletype { get; private set; }
             public string username { get; private set; }
 
             public PlayerInfo() {
                 roleindex = -1;
                 rolename = "";
-                roleType = "";
+                roletype = "";
                 username = "";
             } // end PlayerInfo
 
@@ -27,7 +27,7 @@ namespace Solider {
 
             public void SelectedRole(int roleindex, string rolename, string roleType) {
                 this.rolename = rolename;
-                this.roleType = roleType;
+                this.roletype = roleType;
                 this.roleindex = roleindex;
             } // end SelectedRole
         } // end class PlayerInfo 

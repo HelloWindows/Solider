@@ -45,7 +45,7 @@ namespace Solider {
                     isFinish = true;
                     DamageData damage = new DamageData(character);
                     damage.CertainCrit();
-                    Arrow arrow = InstanceMgr.GetObjectManager().GetGameObject<Arrow>("arrow");
+                    Arrow arrow = InstanceMgr.GetObjectManager().GetGameObject<Arrow>(Arrow.poolName);
                     arrow.transform.position = character.position + Vector3.up * 0.8f;
                     arrow.transform.rotation = character.rotation;
                     arrow.SetDamage(damage);

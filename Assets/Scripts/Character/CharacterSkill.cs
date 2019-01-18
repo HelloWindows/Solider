@@ -55,9 +55,9 @@ namespace Solider {
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillModle>();
-                PushSkill("500201");
-                PushSkill("500202");
-                PushSkill("500203");
+                PushSkill("500101");
+                PushSkill("500102");
+                PushSkill("500103");
             } // end CharacterSkill
 
             public void Update() {
@@ -82,12 +82,7 @@ namespace Solider {
                         return;
                     } // end if
                 // end for         
-                SkillStateProxy proxy = CharacterStateProxy.GetSkillStateProxy(id);
-                if (null == proxy) {
-                    DebugTool.ThrowException("CharacterSkill PushSkill CharacterStateProxy configure error!!! ID:" + id);
-                    return;
-                } // end if
-                ICharacterState state = proxy(character, info);
+                ICharacterState state = CharacterStateProxy.CreateSkillState(id, character, info);
                 if (null == state) {
                     DebugTool.ThrowException("CharacterSkill PushSkill character state is null!!! ID:" + id);
                     return;

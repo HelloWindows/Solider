@@ -1,8 +1,6 @@
-﻿using Framework.Config.Const;
-using Framework.Tools;
+﻿using Framework.Tools;
 using Solider.Character.Interface;
-using Solider.Character.MainCharacter;
-using Solider.Character.NPC;
+using Solider.Factory.Proxy;
 using Solider.Manager;
 using System;
 using System.Collections.Generic;
@@ -27,33 +25,27 @@ namespace Solider {
                 } // end Update
 
                 public void CreateMainCharacter(Vector3 position) {
-                    if (null == GameManager.playerInfo || null == GameManager.playerInfo.roleType ||
-                        GameManager.playerInfo.roleType == "" || null != m_mainCharacter) {
+                    if (null == GameManager.playerInfo || null == GameManager.playerInfo.roletype ||
+                        GameManager.playerInfo.roletype == "" || null != m_mainCharacter) {
                         DebugTool.ThrowException(GetType() + "CreateMainCharacter mainCharacter is exist!");
                         return;
                     } // end if
-                    switch (GameManager.playerInfo.roleType) {
-                        case ConstConfig.SWORDMAN:
-                            m_mainCharacter = new SwordmanCharacter(ConstConfig.SWORDMAN, position, GameManager.playerInfo.rolename);
-                            break;
-
-                        case ConstConfig.ARCHER:
-                            m_mainCharacter = new ArcherCharacter(ConstConfig.ARCHER, position, GameManager.playerInfo.rolename);
-                            break;
-
-                        case ConstConfig.MAGICIAN:
-                            m_mainCharacter = new MagicianCharacter(ConstConfig.MAGICIAN, position, GameManager.playerInfo.rolename);
-                            break;
-                    } // end switch
+                    m_mainCharacter = MainCharacterProxy.CreateMainCharacter(GameManager.playerInfo.roletype, 
+                        GameManager.playerInfo.rolename, position);
                     if (null == m_mainCharacter) {
-                        DebugTool.ThrowException(GetType() + "CreateMainCharacter mainCharacter is create fail! roleType:" + GameManager.playerInfo.roleType);
+                        DebugTool.ThrowException(GetType() + "CreateMainCharacter mainCharacter is create fail! roleType:" + GameManager.playerInfo.roletype);
                         return;
                     } // end if
                     characterList.Add(m_mainCharacter);
                 } // end CreateMainCharacter
 
                 public void CreateNPC(string id, Vector3 position) {
-                    characterList.Add(new PeaceNPC(id, position));
+                    Character npc = NPCharacterProxy.CreateNPCharacter(id, position);
+                    if (null == npc) {
+                        DebugTool.ThrowException(GetType() + "CreateNPC result is null!! id:" + id);
+                        return;
+                    } // end if
+                    characterList.Add(npc);
                 } // end CreateNPC
 
                 public ICharacter GetNPCharacter(string hashID) {

@@ -15,12 +15,14 @@ namespace Solider {
             public class CharacterConfig : ICharacterConfig {
                 public string id { get; private set; }
                 public string name { get; private set; }
+                public int npc_type { get; private set; }
                 public IAttributeInfo initAttribute { get; private set; }
                 private Dictionary<string, string> characterSoundConfig;
 
                 public CharacterConfig(JsonData data) {
                     id = JsonTool.GetJsonData_String(data, "id");
                     name = JsonTool.GetJsonData_String(data, "name");
+                    npc_type = JsonTool.GetJsonData_Int(data, "npc_type");
                     InitAttribute(data["attribute"]);
                     InitCharacterSoundConfig(data["sound"]);
                 } // end CharacterConfig
@@ -38,7 +40,7 @@ namespace Solider {
                 } // end InitCharacterSoundConfig
 
                 public bool TryGetSoundPath(string name, out string path) {
-                    if (characterSoundConfig.TryGetValue(name, out path)) return true;
+                    if (characterSoundConfig.TryGetValue(name, out path) && string.IsNullOrEmpty(path)) return true;
                     // end if
                     path = "";
                     return false;

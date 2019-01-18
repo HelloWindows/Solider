@@ -43,6 +43,14 @@ namespace Solider {
                 transform.rotation = Quaternion.LookRotation(-forward);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end MoveBackward
+
+            public void FlashMove(Vector3 dir, float distance) {
+                Vector3 forward = new Vector3(dir.x, 0, dir.z).normalized;
+                if (Vector3.zero == forward) return;
+                // end if
+                transform.Translate(forward * distance, Space.World);
+                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            } // end FlashMove
         } // end class CharacterMove
     } // end namespace Character
 } // end namespace Solider 

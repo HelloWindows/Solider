@@ -65,7 +65,7 @@ namespace Solider {
                 private void ReloadWeapon(IEquipInfo info) {
                     string id;
                     if (null == info)
-                        id = GameManager.playerInfo.roleType + "_weapon";
+                        id = GameManager.playerInfo.roletype + "_weapon";
                     else
                         id = info.id;
                     // end if             
@@ -107,7 +107,7 @@ namespace Solider {
                     else
                         id = info.id;
                     // end if    
-                    Material material = ResourcesTool.LoadMaterial(GameManager.playerInfo.roleType + "_" + id);
+                    Material material = ResourcesTool.LoadMaterial(GameManager.playerInfo.roletype + "_" + id);
                     if (null == material) {
                         DebugTool.ThrowException("ReloadArmor ID: " + id + " material is don't exsit!");
                         return;

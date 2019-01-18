@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1463325366
+CRC: 3085886542
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f28d5f5b2070c47cbc35233a54e52cc9
+    Hash: f9ef2327e1e74062f1f1d376ec035956
   TypeTreeHash:
     serializedVersion: 2
     Hash: d3afe12c86bf270eff7fd24a4c037221
@@ -43,6 +43,9 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Prefab/pool/ui/hud_damage.prefab
+- Assets/Prefab/pool/widget/magic_0.prefab
+- Assets/Prefab/pool/effect/blood.prefab
+- Assets/Prefab/pool/widget/magic_1.prefab
 - Assets/Prefab/pool/widget/arrow.prefab
 - Assets/Prefab/pool/widget/hp_bar.prefab
 - Assets/Prefab/pool/effect/maincharachter_run_effect.prefab

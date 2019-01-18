@@ -12,7 +12,7 @@ using UnityEngine.UI;
 namespace Solider {
     namespace Widget {
         public class HUD_Damage : MonoBehaviour {
-
+            public const string poolName = "hud_damage";
             private Text m_text;
 
             private void Awake() {
@@ -52,7 +52,7 @@ namespace Solider {
             } // end PlayAnimation
 
             public void Recycling() {
-                InstanceMgr.GetObjectManager().Recycling("hud_damage", gameObject);
+                InstanceMgr.GetObjectManager().Recycling(poolName, gameObject);
             } // end Recycling
         } // end class HUD_Damage 
     } // end namespace Widget

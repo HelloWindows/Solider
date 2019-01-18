@@ -28,24 +28,22 @@ namespace Test {
 
     public class Test : MonoBehaviour {
 
-        private SpriteRenderer sprite;
-        private float amount;
+        private enum TestT : int {
+            Null = 0,
+            NN = 1
+        }
 
         private void Start() {
-            sprite = GetComponent<SpriteRenderer>();
-            sprite.material = new Material(Shader.Find("Custom/Sprites/SliderSprites"));
+            Dictionary<TestT, string> dict = new Dictionary<TestT, string>();
+            dict[TestT.Null] = "null";
+            dict[TestT.NN] = "nn";
+            Debug.Log((TestT)10);
+            Debug.Log(dict.ContainsKey(0));
+            Debug.Log(dict.ContainsKey((TestT)10));
         } // end Start
 
         private void Update() {
-            if (Input.GetMouseButtonDown(0)) {
-                amount += 0.1f;
-                sprite.material.SetFloat("_Fill", amount);
-            }
 
-            if (Input.GetMouseButtonDown(1)) {
-                amount -= 0.1f;
-                sprite.material.SetFloat("_Fill", amount);
-            }
         } // end Update
 
         public void OnClick(string name) {

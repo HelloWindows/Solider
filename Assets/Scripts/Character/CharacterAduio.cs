@@ -65,10 +65,10 @@ namespace Solider {
             } // end PlaySoundOnceAtPoint
 
             public void Dispose() {
-                if (null == clipCache) return;
-                // end if
-                clipCache.Clear();
-                clipCache = null;
+                //if (null == clipCache) return;
+                //// end if
+                //clipCache.Clear();
+                //clipCache = null;
             } // end ClearSoundCache
         } // end class CharacterAduio
     } // end namespace Character

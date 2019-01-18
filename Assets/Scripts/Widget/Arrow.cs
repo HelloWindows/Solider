@@ -13,7 +13,7 @@ using UnityEngine;
 namespace Solider {
     namespace Widget {
         public class Arrow : MonoBehaviour {
-
+            public const string poolName = "arrow";
             private float timer;
             private Collider[] results;
             private const float speed = 20f;
@@ -57,7 +57,7 @@ namespace Solider {
                 foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>()) {
                     trail.Clear();
                 } // end foreach
-                InstanceMgr.GetObjectManager().Recycling("arrow", gameObject);
+                InstanceMgr.GetObjectManager().Recycling(poolName, gameObject);
             } // end Recycling
         } // end class Arrow 
     } // end namespace Widget

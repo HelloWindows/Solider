@@ -21,8 +21,10 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Skill); } }
                 private ICharacter character;
                 private ISkillInfo info;
+                private float flashDistance;
 
                 private MagicianSkill1(ICharacter character, ISkillInfo info) {
+                    flashDistance = 4f;
                     this.character = character;
                     this.info = info;
                 } // end MagicianSkill1
@@ -30,6 +32,7 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     character.audio.PlaySoundCacheForPath(id, info.soundPath);
                     character.avatar.Play("skill1");
+                    character.move.FlashMove(character.forward, flashDistance);
                 } // end DoBeforeEntering
 
                 public void Reason() {

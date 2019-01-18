@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2282365912
+CRC: 1205978626
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5421014a9e9e9b9b6b0af3918d191dca
+    Hash: 6319aca72b73370fdcbd7a69e197c9a7
   TypeTreeHash:
     serializedVersion: 2
     Hash: c516f2a3b2b6b67ef759f6410a790acd
@@ -13,15 +13,23 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Audio/Character/SkillState/audio_500201.wav
+- Assets/Audio/Character/npc/npc_die.wav
 - Assets/Audio/Character/Swordman/swordman_die.wav
 - Assets/Audio/Scene/LoginScene/login_scene_bgm.ogg
 - Assets/Audio/Character/Magician/magician_die.wav
 - Assets/Audio/UI/ui_btn.wav
+- Assets/Audio/Character/npc/firestone_down.wav
 - Assets/Audio/Character/SkillState/audio_500203.wav
+- Assets/Audio/Character/npc/npc_hurt.wav
 - Assets/Audio/Character/Common/heroRun.wav
+- Assets/Audio/Character/npc/Class04_shengdianqishi_say.wav
+- Assets/Audio/Character/npc/Class04_kelaimeng_say.wav
+- Assets/Audio/Character/npc/fireball.wav
 - Assets/Audio/Character/Swordman/swordman_attack_3.wav
+- Assets/Audio/Character/npc/monster_birth.wav
 - Assets/Audio/Character/Swordman/swordman_attack_2.wav
 - Assets/Audio/Character/Swordman/swordman_attack_4.wav
+- Assets/Audio/Character/npc/Class03_mogannan_say.wav
 - Assets/Audio/Character/Archer/archer_hurt.wav
 - Assets/Audio/Scene/NoviceVillage/novice_village_bgm.mp3
 - Assets/Audio/Character/SkillState/audio_500102.wav
@@ -36,8 +44,11 @@ Assets:
 - Assets/Audio/Scene/SelectRoleScene/select_role_scene_bgm.ogg
 - Assets/Audio/Character/Archer/archer_crit.wav
 - Assets/Audio/Character/SkillState/audio_500101.wav
+- Assets/Audio/Character/npc/str_boss_skill_strat.wav
+- Assets/Audio/Character/npc/npc_attack.wav
 - Assets/Audio/Character/Swordman/swordman_attack_1.wav
 - Assets/Audio/Character/SkillState/audio_500002.wav
+- Assets/Audio/Character/npc/Class03_telisitan_say.wav
 - Assets/Audio/UI/ui_close.mp3
 - Assets/Audio/Character/SkillState/audio_500202.wav
 - Assets/Audio/UI/ui_open.wav

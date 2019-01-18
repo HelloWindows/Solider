@@ -13,8 +13,12 @@ namespace Solider {
         namespace MainCharacter {
             public class SwordmanCharacter : MainCharacter {
 
-                public SwordmanCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.SWORDMAN,
-                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
+                public static MainCharacter CreateInstance(string name, Vector3 pos) {
+                    return new SwordmanCharacter(name, pos);
+                } // end CreateInstance
+
+                private SwordmanCharacter(string name, Vector3 pos) : base(ConstConfig.SWORDMAN, ConstConfig.SWORDMAN,
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(ConstConfig.SWORDMAN), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.SWORDMAN, this);
                     m_avatar = new SwordmanAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();

@@ -17,7 +17,7 @@ namespace Solider {
         namespace NPC {
             public class NPCharacterInfo : CharacterInfo {
                 private ICharacter character;
-                private HPBar hpBar;
+                private HP_Bar hpBar;
 
                 public NPCharacterInfo(string name, ICharacter character) : base() {
                     this.character = character;
@@ -50,7 +50,7 @@ namespace Solider {
                     Vector2 hud_pos;
                     if (RectTransformUtility.ScreenPointToLocalPointInRectangle(SceneManager.mainCanvas.HUD_rectTRansform, screenPoint,
                         SceneManager.mainCanvas.camera, out hud_pos)) {
-                        HUD_Damage hud = InstanceMgr.GetObjectManager().GetGameObject<HUD_Damage>("hud_damage");
+                        HUD_Damage hud = InstanceMgr.GetObjectManager().GetGameObject<HUD_Damage>(HUD_Damage.poolName);
                         hud.SetNumber(realData.HP);
                         hud.transform.SetParent(SceneManager.mainCanvas.HUD_rectTRansform, false);
                         hud.transform.localPosition = hud_pos;
@@ -71,7 +71,7 @@ namespace Solider {
                 public override void SwitchHpBar(bool isShow) {
                     if (isShow) {
                         if (null == hpBar) {
-                            hpBar = InstanceMgr.GetObjectManager().GetGameObject<HPBar>("hp_bar");
+                            hpBar = InstanceMgr.GetObjectManager().GetGameObject<HP_Bar>(HP_Bar.poolName);
                             hpBar.transform.SetParent(character.helpTransform, false);
                             hpBar.gameObject.SetActive(true);
                         } // end if

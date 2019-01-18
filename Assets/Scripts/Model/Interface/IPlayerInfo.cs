@@ -10,7 +10,7 @@ namespace Solider {
             public interface IPlayerInfo {
                 int roleindex { get; }
                 string rolename { get; }
-                string roleType { get; }
+                string roletype { get; }
                 string username { get; }
                 void LoginGame(string username);
                 void SelectedRole(int roleindex, string rolename, string roleType);

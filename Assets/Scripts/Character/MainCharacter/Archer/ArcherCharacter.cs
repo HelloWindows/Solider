@@ -13,8 +13,12 @@ namespace Solider {
         namespace MainCharacter {
             public class ArcherCharacter : MainCharacter {
 
-                public ArcherCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.ARCHER,
-                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
+                public static MainCharacter CreateInstance(string name, Vector3 pos) {
+                    return new ArcherCharacter(name, pos);
+                } // end CreateInstance
+
+                private ArcherCharacter(string name, Vector3 pos) : base(ConstConfig.ARCHER, ConstConfig.ARCHER,
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(ConstConfig.ARCHER), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.ARCHER, this);
                     m_avatar = new ArcherAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();

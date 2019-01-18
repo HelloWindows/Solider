@@ -3,6 +3,7 @@
     {
       "id": "swordman",
       "name": "狂战士",
+      "npc_type" : 0,
       "attribute": {
         "XHP": 900,
         "XMP": 300,
@@ -30,6 +31,7 @@
     {  
       "id": "archer",
       "name": "弓箭手",
+      "npc_type" : 0,
       "attribute": {
         "XHP": 800,
         "XMP": 400,
@@ -57,6 +59,7 @@
     {
       "id": "magician",
       "name": "魔法师",
+        "npc_type" : 0,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -84,6 +87,7 @@
     {
       "id": "900001",
       "name": "水牛",
+      "npc_type" : 1,
       "attribute": {
         "XHP": 600,
         "XMP": 600,

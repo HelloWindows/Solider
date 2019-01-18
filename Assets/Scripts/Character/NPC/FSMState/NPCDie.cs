@@ -29,6 +29,11 @@ namespace Solider {
                 public void DoBeforeEntering() {
                     isDispoed = false;
                     character.avatar.Play(anim);
+                    string soundPath;
+                    if (character.config.TryGetSoundPath("die", out soundPath))
+                        character.audio.PlaySoundCacheForPath("die", soundPath);
+                    // end if
+                    InstanceMgr.GetObjectManager().GetGameObject("blood", 2f);
                 } // end DoBeforeEntering
 
                 public void Reason() {

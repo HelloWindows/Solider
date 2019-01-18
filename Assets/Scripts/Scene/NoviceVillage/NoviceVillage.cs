@@ -90,23 +90,6 @@ namespace Solider {
                 if (null != m_characterManager) m_characterManager.Dispose();
                 // end if
             } // end Dispose
-
-            public MainCharacter CreateMainCharacter(Vector3 position) {
-                if (null == GameManager.playerInfo || null == GameManager.playerInfo.roleType ||
-                    GameManager.playerInfo.roleType == "" || null != mainCharacter) return null;
-                // end if
-                switch (GameManager.playerInfo.roleType) {
-                    case ConstConfig.SWORDMAN:
-                        return new SwordmanCharacter(ConstConfig.SWORDMAN, position, GameManager.playerInfo.rolename);
-
-                    case ConstConfig.ARCHER:
-                        return new ArcherCharacter(ConstConfig.ARCHER, position, GameManager.playerInfo.rolename);
-
-                    case ConstConfig.MAGICIAN:
-                        return new MagicianCharacter(ConstConfig.MAGICIAN, position, GameManager.playerInfo.rolename);
-                } // end switch
-                return null;
-            } // end CreateMainCharacter
         } // end class NoviceVillage 
     } // end namespace Scene
 } // end namespace Solider

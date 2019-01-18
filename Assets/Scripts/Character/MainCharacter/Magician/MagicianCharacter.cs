@@ -4,7 +4,6 @@
  * Creat Date:
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
-using Framework.Config;
 using Framework.Config.Const;
 using Framework.Tools;
 using UnityEngine;
@@ -13,9 +12,13 @@ namespace Solider {
     namespace Character {
         namespace MainCharacter {
             public class MagicianCharacter : MainCharacter {
+                            
+                public static MainCharacter CreateInstance(string name, Vector3 pos) {
+                    return new MagicianCharacter(name, pos);
+                } // end CreateInstance
 
-                public MagicianCharacter(string id, Vector3 pos, string name) : base(id, ConstConfig.MAGICIAN,
-                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(id), null, pos, Vector3.zero, Vector3.one)) {
+                private MagicianCharacter(string name, Vector3 pos) : base(ConstConfig.MAGICIAN, ConstConfig.MAGICIAN,
+                    ObjectTool.InstantiateGo(name, ResourcesTool.LoadPrefab(ConstConfig.MAGICIAN), null, pos, Vector3.zero, Vector3.one)) {
                     m_info = new MainCharacterInfo(name, ConstConfig.MAGICIAN, this);
                     m_avatar = new MagicianAvatar(gameObject.AddComponent<Animation>());
                     SkinnedMeshRenderer meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();

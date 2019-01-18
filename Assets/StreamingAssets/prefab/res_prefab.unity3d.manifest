@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3290131511
+CRC: 1847351794
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b16f54e449135c6e3df95df36ebbdaea
+    Hash: 1c5244eb2f00eeb99b6b877b537d499e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 098ebe69f42f369ab3d950ab4de29a94
@@ -76,7 +76,8 @@ Assets:
 - Assets/Prefab/character/npc_transmitter.prefab
 - Assets/Prefab/character/magician.prefab
 - Assets/Prefab/equipment/100007.prefab
+- Assets/Prefab/widget/thunder.prefab
 - Assets/Prefab/character/archer.prefab
 - Assets/Prefab/widget/explosive_arrow.prefab
 Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/material/res_material.unity3d
+- G:/SelfProject/Solider/Assets/StreamingAssets/material/res_material.unity3d

@@ -5,8 +5,12 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Framework.Interface.Input;
+using Framework.Manager;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
+using Solider.ModelData.Data;
+using Solider.Widget;
+using UnityEngine;
 
 namespace Solider {
     namespace Character {
@@ -15,6 +19,7 @@ namespace Solider {
                 public string id { get { return "attack2"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private bool isCarom;
+                private bool isFlight;
                 private bool isFinish;
                 private ICharacterState caromState;
                 private IMainCharacter mainCharacter;
@@ -27,14 +32,17 @@ namespace Solider {
 
                 public void DoBeforeEntering() {
                     isCarom = false;
+                    isFlight = false;
                     isFinish = false;
                     mainCharacter.audio.PlaySoundCacheForPath(id, soundPath);
-                    mainCharacter.avatar.PlayQueued(new string[] { "attack2_1", "attack2_2" });
+                    mainCharacter.avatar.Play("attack2_1");
                     mainCharacter.input.AddListener(OnClickAttack);
                 } // end DoBeforeEntering
 
                 public void Reason() {
                     if (mainCharacter.avatar.isPlaying) return;
+                    // end if
+                    if(Flight()) return;
                     // end if
                     if (isFinish) {
                         mainCharacter.fsm.PerformTransition("wait");
@@ -61,6 +69,20 @@ namespace Solider {
                     if (mainCharacter.avatar.IsPlaying("attack2_2")) isCarom = true;
                     // end if   
                 } // end OnClickAttack
+
+                private bool Flight() {
+                    if (isFlight) return false;
+                    // end if
+                    isFlight = true;
+                    mainCharacter.avatar.Play("attack2_2");
+                    DamageData damage = new DamageData(mainCharacter);
+                    Magic_0 arrow = InstanceMgr.GetObjectManager().GetGameObject<Magic_0>(Magic_0.poolName);
+                    arrow.transform.position = mainCharacter.position + Vector3.up * 0.8f;
+                    arrow.transform.rotation = mainCharacter.rotation;
+                    arrow.SetDamage(damage);
+                    arrow.gameObject.SetActive(true);
+                    return true;
+                } // end Flight
             } // end class MagicianAttack2 
         } // end namespace MainCharacter
     } // end namespace Character
