@@ -20,20 +20,21 @@ namespace Solider {
                 private ICharacter character;
                 private float timer;
                 private bool isDispoed;
+                private string soundPath;
+                private string effectPath;
 
                 public NPCDie(ICharacter character) {
                     this.character = character;
                     timer = 3f;
+                    character.config.TryGetSoundPath("die", out soundPath);
+                    character.config.TryGetEffectPath("die", out effectPath);
                 } // end NPCDie
 
                 public void DoBeforeEntering() {
                     isDispoed = false;
                     character.avatar.Play(anim);
-                    string soundPath;
-                    if (character.config.TryGetSoundPath("die", out soundPath))
-                        character.audio.PlaySoundCacheForPath("die", soundPath);
-                    // end if
-                    InstanceMgr.GetObjectManager().GetGameObject("blood", 2f);
+                    character.audio.PlaySoundCacheForPath("die", soundPath);
+                    InstanceMgr.GetObjectManager().GetGameObject(effectPath, 2f);
                 } // end DoBeforeEntering
 
                 public void Reason() {

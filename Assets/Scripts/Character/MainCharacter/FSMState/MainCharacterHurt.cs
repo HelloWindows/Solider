@@ -15,17 +15,16 @@ namespace Solider {
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
                 private string anim { get { return "hurt"; } }
                 private IMainCharacter mainCharacter;
+                private string soundPath;
 
                 public MainCharacterHurt(IMainCharacter mainCharacter) {
                     this.mainCharacter = mainCharacter;
+                    mainCharacter.config.TryGetSoundPath("hurt", out soundPath);
                 } // end MainCharacterHurt
 
                 public void DoBeforeEntering() {
                     mainCharacter.avatar.Play(anim);
-                    string soundPath;
-                    if (mainCharacter.config.TryGetSoundPath("hurt", out soundPath))
-                        mainCharacter.audio.PlaySoundCacheForPath("hurt", soundPath);
-                    // end if
+                    mainCharacter.audio.PlaySoundCacheForPath("hurt", soundPath);
                 } // end DoBeforeEntering
 
                 public void Reason() {

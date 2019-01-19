@@ -18,6 +18,7 @@ namespace Solider {
                 public int npc_type { get; private set; }
                 public IAttributeInfo initAttribute { get; private set; }
                 private Dictionary<string, string> characterSoundConfig;
+                private Dictionary<string, string> characterEffectConfig;
 
                 public CharacterConfig(JsonData data) {
                     id = JsonTool.GetJsonData_String(data, "id");
@@ -25,6 +26,7 @@ namespace Solider {
                     npc_type = JsonTool.GetJsonData_Int(data, "npc_type");
                     InitAttribute(data["attribute"]);
                     InitCharacterSoundConfig(data["sound"]);
+                    InitCharacterEffectConfig(data["effect"]);
                 } // end CharacterConfig
 
                 private void InitAttribute(JsonData data) {
@@ -33,18 +35,49 @@ namespace Solider {
 
                 private void InitCharacterSoundConfig(JsonData data) {
                     characterSoundConfig = new Dictionary<string, string>();
-                    characterSoundConfig["attack"] = JsonTool.GetJsonData_String(data, "attack");
-                    characterSoundConfig["hurt"] = JsonTool.GetJsonData_String(data, "hurt");
-                    characterSoundConfig["die"] = JsonTool.GetJsonData_String(data, "die");
-                    characterSoundConfig["run"] = JsonTool.GetJsonData_String(data, "run");
+                    string[] keys = new string[] { "attack1", "attack2", "attack3", "attack4", "hurt", "die", "run" };
+                    for (int i = 0; i < keys.Length; i++) {
+                        string key = keys[i];
+                        string value = JsonTool.GetJsonData_String(data, key);
+                        if (string.IsNullOrEmpty(value)) continue;
+                        // end if
+                        characterSoundConfig[key] = value;
+                    } // end if
                 } // end InitCharacterSoundConfig
 
+                private void InitCharacterEffectConfig(JsonData data) {
+                    characterEffectConfig = new Dictionary<string, string>();
+                    string[] keys = new string[] { "attack1", "attack2", "attack3", "attack4", "hurt", "die", "run" };
+                    for (int i = 0; i < keys.Length; i++) {
+                        string key = keys[i];
+                        string value = JsonTool.GetJsonData_String(data, key);
+                        if (string.IsNullOrEmpty(value)) continue;
+                        // end if
+                        characterEffectConfig[key] = value;
+                    } // end if
+                } // end InitCharacterEffectConfig
+
                 public bool TryGetSoundPath(string name, out string path) {
-                    if (characterSoundConfig.TryGetValue(name, out path) && string.IsNullOrEmpty(path)) return true;
-                    // end if
+                    if (characterSoundConfig.TryGetValue(name, out path)) {
+                        if (false == string.IsNullOrEmpty(path)) return true;
+                        // end if
+                        DebugTool.ThrowException(GetType() + "TryGetSoundPath path is null or empty! Name:" + name);
+                    } // end if
                     path = "";
+                    DebugTool.ThrowException(GetType() + "TryGetSoundPath name is don't configure! Name:" + name);
                     return false;
-                } // end GetSoundInfo
+                } // end TryGetSoundPath
+
+                public bool TryGetEffectPath(string name, out string path) {
+                    if (characterEffectConfig.TryGetValue(name, out path)) {
+                        if (false == string.IsNullOrEmpty(path)) return true;
+                        // end if
+                        DebugTool.ThrowException(GetType() + "TryGetEffectPath path is null or empty! Name:" + name);
+                    } // end if
+                    path = "";
+                    DebugTool.ThrowException(GetType() + "TryGetEffectPath name is don't configure! Name:" + name);
+                    return false;
+                } // end TryGetEffectPath
             } // end class CharacterConfig 
         } // end namespace Character
     } // end namespace Config

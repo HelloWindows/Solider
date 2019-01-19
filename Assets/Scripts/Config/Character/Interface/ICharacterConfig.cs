@@ -13,6 +13,7 @@ namespace Solider {
                 int npc_type { get; }
                 IAttributeInfo initAttribute { get; }
                 bool TryGetSoundPath(string name, out string path);
+                bool TryGetEffectPath(string name, out string path);
             } // end interface ICharacterConfig 
         } // end namespace Interface
     } // end namespace Config

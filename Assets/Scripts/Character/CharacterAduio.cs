@@ -43,7 +43,7 @@ namespace Solider {
             } // end PlaySoundOnceForPath
 
             public void PlaySoundCacheForPath(string name, string path) {
-                if (null == name || null == path) return;
+                if (string.IsNullOrEmpty(name)) return;
                 // end if
                 AudioClip clip;
                 if (false == clipCache.TryGetValue(name, out clip)) {

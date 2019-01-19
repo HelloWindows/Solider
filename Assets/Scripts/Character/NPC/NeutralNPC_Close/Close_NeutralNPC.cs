@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: NeutralNPC.cs
+ * FileName: Close_NeutralNPC.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -10,20 +10,20 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace NPC {
-            public class NeutralNPC : Character {
+            public class Close_NeutralNPC : Character {
 
                 public static Character CreateInstance(string id, Vector3 position) {
-                    return new NeutralNPC(id, position);
+                    return new Close_NeutralNPC(id, position);
                 } // end CreateInstance
 
-                private NeutralNPC(string id, Vector3 position) : base(id, 
+                private Close_NeutralNPC(string id, Vector3 position) : base(id, 
                     ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id), null, position, Vector3.zero, Vector3.one)) {
                     gameObject.layer = LayerConfig.NPC;
                     m_info = new NPCharacterInfo(config.name, this);
-                    m_avatar = new PeaceNPCAvatar(id, gameObject.AddComponent<Animation>());
+                    m_avatar = new Close_NeutralNPCAvatar(id, gameObject.AddComponent<Animation>());
                     m_surface = new CharacterSurface(transform.GetComponentInChildren<SkinnedMeshRenderer>());
                     m_fsm = new PeaceNPCFSM(this);
-                } // end NeutralNPC
+                } // end Close_NeutralNPC
 
                 public override void Update() {
                     base.Update();
@@ -38,7 +38,7 @@ namespace Solider {
                     // end if
                     base.Dispose();
                 } // end Dispose
-            } // end class NeutralNPC 
+            } // end class Close_NeutralNPC 
         } // end namespace NPC
     } // end namespace Character
 } // end namespace Solider

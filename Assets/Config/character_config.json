@@ -26,7 +26,10 @@
         "hurt": "swordman_hurt",
         "die": "swordman_die",
         "run": "heroRun"
-      }
+      },
+	  "effect": {
+		"die": "blood"
+	  }
     },
     {  
       "id": "archer",
@@ -54,7 +57,10 @@
         "hurt": "archer_hurt",
         "die": "archer_die",
         "run": "heroRun"
-      }
+      }, 
+	  "effect": {
+		"die": "blood"
+	  }
     },
     {
       "id": "magician",
@@ -82,7 +88,10 @@
         "hurt": "magician_hurt",
         "die": "magician_die",
         "run": "heroRun"
-      }
+      },
+	  "effect": {
+	    "die": "blood"
+	  }
     },
     {
       "id": "900001",
@@ -110,7 +119,10 @@
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
-      }
+      },
+	  "effect": {
+	     "die": "blood"
+	  }
     }
   ]
 }
