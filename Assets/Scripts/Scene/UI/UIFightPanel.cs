@@ -51,7 +51,7 @@ namespace Solider {
                     joystickUI.transform.Find("JoystickUI").gameObject.AddComponent<UIJoystick>();
                     joystickUI.GetComponent<RectTransform>().sizeDelta =  SceneManager.mainCanvas.sizeDelta;
                     if (null == SceneManager.mainCharacter) {
-                        DebugTool.ThrowException(GetType() + "DoBeforeEntering SceneManager mainCharacter is null!");
+                        DebugTool.LogError(GetType() + "DoBeforeEntering SceneManager mainCharacter is null!");
                         return;
                     } // end if
                     string roleType = SceneManager.mainCharacter.info.characterData.roleType;

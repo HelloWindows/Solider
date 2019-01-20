@@ -8,6 +8,7 @@ using UnityEngine;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Framework.Manager;
+using Solider.Tools;
 
 namespace Solider {
     namespace Character {
@@ -34,7 +35,7 @@ namespace Solider {
                     isDispoed = false;
                     character.avatar.Play(anim);
                     character.audio.PlaySoundCacheForPath("die", soundPath);
-                    InstanceMgr.GetObjectManager().GetGameObject(effectPath, 2f);
+                    EffectTool.ShowEffectFromPool(effectPath, 2f, character.position, character.rotation);
                 } // end DoBeforeEntering
 
                 public void Reason() {

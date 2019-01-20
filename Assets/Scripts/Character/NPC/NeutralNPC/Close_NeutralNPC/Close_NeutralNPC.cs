@@ -22,7 +22,7 @@ namespace Solider {
                     m_info = new NPCharacterInfo(config.name, this);
                     m_avatar = new Close_NeutralNPCAvatar(id, gameObject.AddComponent<Animation>());
                     m_surface = new CharacterSurface(transform.GetComponentInChildren<SkinnedMeshRenderer>());
-                    m_fsm = new PeaceNPCFSM(this);
+                    m_fsm = new Close_NeutralNPCFSM(this);
                 } // end Close_NeutralNPC
 
                 public override void Update() {

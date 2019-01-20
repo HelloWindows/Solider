@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3051316453
+CRC: 1597166973
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 484efa342fd8c430d61359b7856ef97d
+    Hash: 6445ef0b48b92f586101160ad28b0e8b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 098ebe69f42f369ab3d950ab4de29a94
@@ -74,6 +74,7 @@ Assets:
 - Assets/Prefab/equipment/100011.prefab
 - Assets/Prefab/equipment/swordman_weapon.prefab
 - Assets/Prefab/character/npc_transmitter.prefab
+- Assets/Prefab/character/901001.prefab
 - Assets/Prefab/character/magician.prefab
 - Assets/Prefab/equipment/100007.prefab
 - Assets/Prefab/widget/thunder.prefab

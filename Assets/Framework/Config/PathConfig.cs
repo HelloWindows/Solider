@@ -20,7 +20,7 @@ namespace Framework {
             public string GetPath(string name) {
                 if (pathDict.ContainsKey(name)) return pathDict[name];
                 // end if
-                DebugTool.ThrowException("PathConfig GetPath name: " + name + " is don't config!");
+                DebugTool.LogError("PathConfig GetPath name: " + name + " is don't config!");
                 return "";
             } // end GetPath
         } // end class PathConfig

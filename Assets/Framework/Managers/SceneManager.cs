@@ -34,7 +34,7 @@ namespace Framework {
                 } // end if
                 if (null == scene) {
                     ConsoleTool.SetError("SceneManager SetScene scene is null!");
-                    DebugTool.ThrowException("don't have scene can play!");
+                    DebugTool.LogError("don't have scene can play!");
                     return;
                 } // end if
                 m_scene = scene;

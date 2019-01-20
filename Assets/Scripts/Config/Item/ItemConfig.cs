@@ -47,7 +47,7 @@ namespace Solider {
                     for (int i = 0; i < list.Count; i++) {
                         string id = (string)list[i]["id"];
                         if (ConstConfig.STUFF != GetItemType(id)) {
-                            DebugTool.ThrowException("ItemConfig InitStuffConfig id is error!!! ID:" + id);
+                            DebugTool.LogError("ItemConfig InitStuffConfig id is error!!! ID:" + id);
                             continue;
                         } // end if
                         stuffConfig.Add(id, new StuffInfo(list[i]));
@@ -62,7 +62,7 @@ namespace Solider {
                     for (int i = 0; i < list.Count; i++) {
                         string id = (string)list[i]["id"];
                         if (ConstConfig.EQUIP != GetItemType(id)) {
-                            DebugTool.ThrowException("ItemConfig InitEquipConfig id is error!!! ID:" + id);
+                            DebugTool.LogError("ItemConfig InitEquipConfig id is error!!! ID:" + id);
                             continue;
                         } // end if
                         equipConfig.Add(id, new EquipInfo(list[i]));
@@ -77,7 +77,7 @@ namespace Solider {
                     for (int i = 0; i < list.Count; i++) {
                         string id = (string)list[i]["id"];
                         if (ConstConfig.CONSUME != GetItemType(id)) {
-                            DebugTool.ThrowException("ItemConfig InitConsumeConfig id is error!!! ID:" + id);
+                            DebugTool.LogError("ItemConfig InitConsumeConfig id is error!!! ID:" + id);
                             continue;
                         } // end if
                         consumeConfig.Add(id, new ConsumeInfo(list[i]));
@@ -92,7 +92,7 @@ namespace Solider {
                     for (int i = 0; i < list.Count; i++) {
                         string id = (string)list[i]["id"];
                         if (ConstConfig.PRINT != GetItemType(id)) {
-                            DebugTool.ThrowException("ItemConfig InitBluePrintConfig id is error!!! ID:" + id);
+                            DebugTool.LogError("ItemConfig InitBluePrintConfig id is error!!! ID:" + id);
                             continue;
                         } // end if
                         bluePrintConfig.Add(id, new BluePrintInfo(list[i]));
@@ -108,7 +108,7 @@ namespace Solider {
                     IItemInfo info;
                     if (itemConfig[type].TryGetValue(id, out info)) return info;
                     // end if
-                    DebugTool.ThrowException("ItemConfig GetItemInfo id is not config!!!" + " ID:" + id);
+                    DebugTool.LogError("ItemConfig GetItemInfo id is not config!!!" + " ID:" + id);
                     return null;
                 } // end GetItemInfo
 
@@ -119,13 +119,13 @@ namespace Solider {
                     IItemInfo info;
                     if (itemConfig[type].TryGetValue(id, out info)) return info.grade;
                     // end if
-                    DebugTool.ThrowException("ItemConfig GetItemGrade id is not config!!!" + " ID:" + id);
+                    DebugTool.LogError("ItemConfig GetItemGrade id is not config!!!" + " ID:" + id);
                     return "Z";
                 } // end GetItemGradeWithID
 
                 public string GetItemType(string id) {
                     if (null == id) {
-                        DebugTool.ThrowException("ItemConfig GetItemType id is null!!!");
+                        DebugTool.LogError("ItemConfig GetItemType id is null!!!");
                         return "null";
                     } // end if
                     if (id.Length < 2) {
@@ -135,7 +135,7 @@ namespace Solider {
                     string prefix = id.Substring(0, 2);
                     switch (prefix) {
                         default:
-                            DebugTool.ThrowException("ItemConfig GetItemType id error!!!" + " ID:" + id);
+                            DebugTool.LogError("ItemConfig GetItemType id error!!!" + " ID:" + id);
                             return "null";
                         case "10": return ConstConfig.EQUIP;
                         case "20": return ConstConfig.CONSUME;

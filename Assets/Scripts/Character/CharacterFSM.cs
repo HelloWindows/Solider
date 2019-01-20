@@ -39,20 +39,20 @@ namespace Solider {
 
             public void PerformTransition(string name) {
                 if (null == stateDict) {
-                    DebugTool.ThrowException(GetType() + "stateDict is null");
+                    DebugTool.LogError(GetType() + "stateDict is null");
                     return;
                 } // end if
                 if (stateDict.ContainsKey(name)) {
                     PerformTransition(stateDict[name]);
                 } else {
-                    DebugTool.ThrowException(GetType() + "stateDict is don't exsit " + name);
+                    DebugTool.LogError(GetType() + "stateDict is don't exsit " + name);
                     return;
                 }// end if
             } // end PerformTransitions
 
             public bool TransitionOnLayer(ICharacterState state) {
                 if (null == state) {
-                    DebugTool.ThrowException("CharacterFSM TransitionOnLayer state is null!!!");
+                    DebugTool.LogError("CharacterFSM TransitionOnLayer state is null!!!");
                     return false;
                 } // end if
                 if (null == currentState) {
@@ -69,11 +69,11 @@ namespace Solider {
                 if (null == stateDict) stateDict = new Dictionary<string, ICharacterState>();
                 // end if
                 if (null == state) {
-                    DebugTool.ThrowException(GetType() + "AddState state is null!");
+                    DebugTool.LogError(GetType() + "AddState state is null!");
                     return;
                 } // end if
                 if (stateDict.ContainsKey(state.id)) {
-                    DebugTool.ThrowException("SwordmanFSM AddState have repeat state!");
+                    DebugTool.LogError("SwordmanFSM AddState have repeat state!");
                     return;
                 } // end if
                 stateDict[state.id] = state;

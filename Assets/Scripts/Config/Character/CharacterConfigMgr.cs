@@ -41,7 +41,7 @@ namespace Solider {
                 public ICharacterConfig GetCharacterConfig(string id) {
                     if (characterConfig.ContainsKey(id)) return characterConfig[id];
                     // end if
-                    DebugTool.ThrowException("CharacterConfigMgr character was configure error!!! ID:" + id);
+                    DebugTool.LogError("CharacterConfigMgr character was configure error!!! ID:" + id);
                     return null;
                 } // end GetCharacterConfig
             } // end interface ICharacterConfigMgr

@@ -39,11 +39,11 @@ namespace Solider {
                     // end if
                     NPCharacterFunc proxy;
                     if (false == proxyDict.TryGetValue((NPCType)config.npc_type, out proxy)) {
-                        DebugTool.ThrowException("NPCharacterProxy CreateNPCharacter id is don't configure!! id:" + id + " NPCType:" + config.npc_type);
+                        DebugTool.LogError("NPCharacterProxy CreateNPCharacter id is don't configure!! id:" + id + " NPCType:" + config.npc_type);
                         return null;
                     } // end if
                     if (null == proxy) {
-                        DebugTool.ThrowException("NPCharacterProxy CreateNPCharacter id was configure Error!! id:" + id);
+                        DebugTool.LogError("NPCharacterProxy CreateNPCharacter id was configure Error!! id:" + id);
                         return null;
                     } // end if
                     return proxy(id, position);

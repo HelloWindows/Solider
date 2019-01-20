@@ -69,22 +69,22 @@ namespace Solider {
             public void PushSkill(string id) {
                 ISkillInfo info;
                 if (false == Configs.iconConfig.TryGetSkillInfo(id, out info)) {
-                    DebugTool.ThrowException("CharacterSkill PushSkill IconConfig is don't configure!");
+                    DebugTool.LogError("CharacterSkill PushSkill IconConfig is don't configure!");
                     return;
                 } // end if
                 if (null == info) {
-                    DebugTool.ThrowException("CharacterSkill PushSkill IconConfig configure error!!! ID:" + id);
+                    DebugTool.LogError("CharacterSkill PushSkill IconConfig configure error!!! ID:" + id);
                     return;
                 } // end if
                 for (int i = 0; i < skillList.Count; i++)
                     if (skillList[i].info.id == id) {
-                        DebugTool.ThrowException("CharacterSkill PushSkill id is repeat!!! ID:" + id);
+                        DebugTool.LogError("CharacterSkill PushSkill id is repeat!!! ID:" + id);
                         return;
                     } // end if
                 // end for         
                 ICharacterState state = CharacterStateProxy.CreateSkillState(id, character, info);
                 if (null == state) {
-                    DebugTool.ThrowException("CharacterSkill PushSkill character state is null!!! ID:" + id);
+                    DebugTool.LogError("CharacterSkill PushSkill character state is null!!! ID:" + id);
                     return;
                 } // end if
                 skillList.Add(new SkillModle(info, state));

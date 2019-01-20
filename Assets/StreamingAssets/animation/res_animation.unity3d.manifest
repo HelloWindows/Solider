@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1213363074
+CRC: 4289029266
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 51f9471b77ac6547e1c2357ceb83edcf
+    Hash: 5025999b1c5df8d0769825800285d8bf
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2f83f8f92ace07d29cf518d0769d85c5
@@ -13,7 +13,7 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Animation/character/magician/magician_die.anim
-- Assets/Animation/character/900001/900001_attack.anim
+- Assets/Animation/character/900001/900001_attack_1.anim
 - Assets/Animation/character/magician/magician_idle.anim
 - Assets/Animation/character/900001/900001_birth.anim
 - Assets/Animation/character/swordman/swordman_attack1_3.anim
@@ -46,6 +46,8 @@ Assets:
 - Assets/Animation/character/swordman/swordman_attack4_1.anim
 - Assets/Animation/character/swordman/swordman_walk.anim
 - Assets/Animation/character/magician/magician_wait.anim
+- Assets/Animation/character/901001/901001_hurt.anim
+- Assets/Animation/character/901001/901001_attack_1.anim
 - Assets/Animation/character/magician/magician_attack2_1.anim
 - Assets/Animation/character/archer/archer_die.anim
 - Assets/Animation/character/swordman/swordman_attack2_2.anim
@@ -57,6 +59,7 @@ Assets:
 - Assets/Animation/character/magician/magician_attack1_2.anim
 - Assets/Animation/character/swordman/swordman_attack1_1.anim
 - Assets/Animation/character/archer/archer_skill2_1.anim
+- Assets/Animation/character/901001/901001_birth.anim
 - Assets/Animation/character/magician/magician_attack2_3.anim
 - Assets/Animation/character/900001/900001_run.anim
 - Assets/Animation/character/swordman/swordman_attack2_3.anim
@@ -67,9 +70,12 @@ Assets:
 - Assets/Animation/character/magician/magician_attack3_1.anim
 - Assets/Animation/character/magician/magician_walk.anim
 - Assets/Animation/character/900001/900001_hurt.anim
+- Assets/Animation/character/901001/901001_die.anim
 - Assets/Animation/character/swordman/swordman_attack3_1.anim
 - Assets/Animation/character/swordman/swordman_attack2_1.anim
+- Assets/Animation/character/901001/901001_run.anim
 - Assets/Animation/character/magician/magician_skill3.anim
+- Assets/Animation/character/901001/901001_idle.anim
 - Assets/Animation/character/magician/magician_hurt.anim
 - Assets/Animation/character/swordman/swordman_skill2.anim
 - Assets/Animation/character/archer/archer_attCrit.anim

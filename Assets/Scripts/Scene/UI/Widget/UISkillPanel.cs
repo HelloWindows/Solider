@@ -23,7 +23,7 @@ namespace Solider {
                     transform = CanvasTool.InstantiateEmptyUI("UISkillPanel", parent, Vector3.zero).GetComponent<RectTransform>();
                     ISkillModle[] modleArr =  SceneManager.mainCharacter.skill.GetSkillModleArray();
                     if (null == modleArr || modleArr.Length == 0 || modleArr.Length > localPosArr.Length) {
-                        DebugTool.ThrowException("UISkillPanel UISkillPanel modleArr is error!!!");
+                        DebugTool.LogError("UISkillPanel UISkillPanel modleArr is error!!!");
                         return;
                     } // end if
                     skillUIArr = new UISkill[modleArr.Length];

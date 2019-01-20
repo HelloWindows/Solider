@@ -32,6 +32,12 @@ namespace Framework {
             } // end Update
 
             public GameObject GetGameObject(string name) {
+                if (string.IsNullOrEmpty(name)) {
+#if __MY_DEBUG__
+                    ConsoleTool.SetError(GetType() + "GetGameObject name is null or empty! Name:" + name);
+#endif
+                    return null;
+                } // end if
                 Stack<GameObject> objects;
                 if (false == objectsMap.TryGetValue(name, out objects)) {
 #if __MY_DEBUG__

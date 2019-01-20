@@ -31,11 +31,11 @@ namespace Solider {
                 public static MainCharacter CreateMainCharacter(string id, string name, Vector3 position) {
                     MainCharacterFunc proxy;
                     if (false == proxyDict.TryGetValue(id, out proxy)) {
-                        DebugTool.ThrowException("MainCharacterProxy CreateMainCharacter id is don't configure!! id:" + id);
+                        DebugTool.LogError("MainCharacterProxy CreateMainCharacter id is don't configure!! id:" + id);
                         return null;
                     } // end if
                     if (null == proxy) {
-                        DebugTool.ThrowException("MainCharacterProxy CreateMainCharacter id was configure Error!! id:" + id);
+                        DebugTool.LogError("MainCharacterProxy CreateMainCharacter id was configure Error!! id:" + id);
                         return null;
                     } // end if
                     return proxy(name, position);

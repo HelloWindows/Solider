@@ -37,11 +37,11 @@ namespace Solider {
                 public static ICharacterState CreateSkillState(string id, ICharacter character, ISkillInfo info) {
                     SkillStateFunc proxy;
                     if (false == proxyDict.TryGetValue(id, out proxy)) {
-                        DebugTool.ThrowException("CharacterStateProxy CreateSkillState id is don't configure!! id:" + id);
+                        DebugTool.LogError("CharacterStateProxy CreateSkillState id is don't configure!! id:" + id);
                         return null;
                     } // end if         
                     if (null == proxy) {
-                        DebugTool.ThrowException("CharacterStateProxy CreateSkillState id was configure Error!! id:" + id);
+                        DebugTool.LogError("CharacterStateProxy CreateSkillState id was configure Error!! id:" + id);
                         return null;
                     } // end if
                     return proxy(character, info);

@@ -48,9 +48,10 @@ namespace Solider {
                 m_mainCamera = new MainCamera();
                 m_characterManager.factory.CreateMainCharacter(new UnityEngine.Vector3(0, 0, -20));
                 m_characterManager.factory.CreateNPC("900001", new UnityEngine.Vector3(0, 0, 0));
+                m_characterManager.factory.CreateNPC("901001", new UnityEngine.Vector3(0, 0, 0));
                 m_mainAudio.PlayBackgroundMusic("fight_scene_bgm");
                 if (null == mainCharacter) {
-                    DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
+                    DebugTool.LogError("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
                 m_mainCamera.SetTarget(mainCharacter);

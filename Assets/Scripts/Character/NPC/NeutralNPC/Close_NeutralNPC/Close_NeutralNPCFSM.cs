@@ -12,9 +12,10 @@ namespace Solider {
             public class Close_NeutralNPCFSM : CharacterFSM {
 
                 public Close_NeutralNPCFSM(ICharacter character) {
-                    AddState(new PeaceNPCIdle(character));
-                    AddState(new PeaceNPCWalk(character));
-                    AddState(new NPCEscape(character));
+                    AddState(new NeutralNPCIdle(character));
+                    AddState(new NeutralNPCWalk(character));
+                    AddState(new Close_NeutralNPCChase(character));
+                    AddState(new Close_NeutralNPCAttack(character));
                     AddState(new NPCDie(character));
                     PerformTransition("idle");
                 } // end Close_NeutralNPCFSM          

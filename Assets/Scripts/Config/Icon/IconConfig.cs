@@ -46,7 +46,7 @@ namespace Solider {
                     if (skillConfig.TryGetValue(id, out info)) return true;
                     // end if
                     info = null;
-                    DebugTool.ThrowException("IconConfig TryGetSkillInfo ISkillInfo is null!!! ID:" + id);
+                    DebugTool.LogError("IconConfig TryGetSkillInfo ISkillInfo is null!!! ID:" + id);
                     return false;
                 } // end TryGetSkillInfo
             } // end class IconConfig 

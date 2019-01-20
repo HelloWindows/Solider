@@ -27,13 +27,13 @@ namespace Solider {
                 public void CreateMainCharacter(Vector3 position) {
                     if (null == GameManager.playerInfo || null == GameManager.playerInfo.roletype ||
                         GameManager.playerInfo.roletype == "" || null != m_mainCharacter) {
-                        DebugTool.ThrowException(GetType() + "CreateMainCharacter mainCharacter is exist!");
+                        DebugTool.LogError(GetType() + "CreateMainCharacter mainCharacter is exist!");
                         return;
                     } // end if
                     m_mainCharacter = MainCharacterProxy.CreateMainCharacter(GameManager.playerInfo.roletype, 
                         GameManager.playerInfo.rolename, position);
                     if (null == m_mainCharacter) {
-                        DebugTool.ThrowException(GetType() + "CreateMainCharacter mainCharacter is create fail! roleType:" + GameManager.playerInfo.roletype);
+                        DebugTool.LogError(GetType() + "CreateMainCharacter mainCharacter is create fail! roleType:" + GameManager.playerInfo.roletype);
                         return;
                     } // end if
                     characterList.Add(m_mainCharacter);
@@ -42,7 +42,7 @@ namespace Solider {
                 public void CreateNPC(string id, Vector3 position) {
                     Character npc = NPCharacterProxy.CreateNPCharacter(id, position);
                     if (null == npc) {
-                        DebugTool.ThrowException(GetType() + "CreateNPC result is null!! id:" + id);
+                        DebugTool.LogError(GetType() + "CreateNPC result is null!! id:" + id);
                         return;
                     } // end if
                     characterList.Add(npc);

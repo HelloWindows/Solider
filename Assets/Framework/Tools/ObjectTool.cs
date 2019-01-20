@@ -37,7 +37,7 @@ namespace Framework {
 
             public static GameObject InstantiateGo(string name, GameObject prefab, Transform parent, Vector3 localPos, Vector3 localRot, Vector3 localSca) {
                 if (null == prefab) {
-                    DebugTool.ThrowException("ObjectTool InstantiateGo prefab is null!");
+                    DebugTool.LogError("ObjectTool InstantiateGo prefab is null!");
                     return null;
                 } // end if
                 GameObject Go = Object.Instantiate(prefab, parent);

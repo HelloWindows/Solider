@@ -27,9 +27,9 @@
         "die": "swordman_die",
         "run": "heroRun"
       },
-	  "effect": {
-		"die": "blood"
-	  }
+      "effect": {
+        "die": "blood"
+      }
     },
     {  
       "id": "archer",
@@ -58,14 +58,14 @@
         "die": "archer_die",
         "run": "heroRun"
       }, 
-	  "effect": {
-		"die": "blood"
-	  }
+      "effect": {
+        "die": "blood"
+      }
     },
     {
       "id": "magician",
       "name": "魔法师",
-        "npc_type" : 0,
+      "npc_type" : 0,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -102,6 +102,37 @@
         "XMP": 600,
         "NATK": 5,
         "XATK": 8,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+	  "effect": {
+	     "die": "blood"
+	  }
+    },
+	{
+      "id": "901001",
+      "name": "蝙蝠",
+      "npc_type" : 2,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
         "NMGK": 6,
         "XMGK": 10,
         "HOT": 6,

@@ -624,10 +624,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400082}
-  - component: {fileID: 11100000}
   - component: {fileID: 13600000}
   m_Layer: 0
-  m_Name: 900002
+  m_Name: 901001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1380,26 +1379,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100084}
   m_Mesh: {fileID: 4300000, guid: b2133c94cc8b080498d1ab3638be50f7, type: 3}
---- !u!111 &11100000
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100082}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 74f04b1f2075456459bd32ba70ad4980, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 051ab9c8d493a8e44ae1b5b0da5c2a22, type: 2}
-  - {fileID: 7400000, guid: 4bddc80bd52bb8a42ad88ab51ce49d79, type: 2}
-  - {fileID: 7400000, guid: 18ac761ef9ded74408dcba9703c11b40, type: 2}
-  - {fileID: 7400000, guid: 7a01e1885031e9447b11a46b76077a71, type: 2}
-  - {fileID: 7400000, guid: 74f04b1f2075456459bd32ba70ad4980, type: 2}
-  - {fileID: 7400000, guid: ae8c896e7dfa52142baf50601cedaaa2, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!111 &11100002
 Animation:
   m_ObjectHideFlags: 1

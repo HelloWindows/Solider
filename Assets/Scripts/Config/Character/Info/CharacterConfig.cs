@@ -61,10 +61,10 @@ namespace Solider {
                     if (characterSoundConfig.TryGetValue(name, out path)) {
                         if (false == string.IsNullOrEmpty(path)) return true;
                         // end if
-                        DebugTool.ThrowException(GetType() + "TryGetSoundPath path is null or empty! Name:" + name);
+                        DebugTool.LoaWarning(GetType() + "TryGetSoundPath path is null or empty! Name:" + name);
                     } // end if
                     path = "";
-                    DebugTool.ThrowException(GetType() + "TryGetSoundPath name is don't configure! Name:" + name);
+                    DebugTool.LoaWarning(GetType() + "TryGetSoundPath name is don't configure! Name:" + name);
                     return false;
                 } // end TryGetSoundPath
 
@@ -72,10 +72,10 @@ namespace Solider {
                     if (characterEffectConfig.TryGetValue(name, out path)) {
                         if (false == string.IsNullOrEmpty(path)) return true;
                         // end if
-                        DebugTool.ThrowException(GetType() + "TryGetEffectPath path is null or empty! Name:" + name);
+                        DebugTool.LoaWarning(GetType() + "TryGetEffectPath path is null or empty! Name:" + name);
                     } // end if
                     path = "";
-                    DebugTool.ThrowException(GetType() + "TryGetEffectPath name is don't configure! Name:" + name);
+                    DebugTool.LoaWarning(GetType() + "TryGetEffectPath name is don't configure! Name:" + name);
                     return false;
                 } // end TryGetEffectPath
             } // end class CharacterConfig 

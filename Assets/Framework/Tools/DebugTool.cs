@@ -25,11 +25,17 @@ namespace Framework {
                 return null == obj;
             } // end CheckNullObject
 
-            public static void ThrowException(string errorMsg) {
+            public static void LogError(string errorMsg) {
 #if __MY_DEBUG__
-                throw new Exception(errorMsg);
+                UnityEngine.Debug.LogError(errorMsg);
 #endif
-            } // end ThrowException
+            } // end LogError
+
+            public static void LoaWarning(string warningMsg) {
+#if __MY_DEBUG__
+                UnityEngine.Debug.LogWarning(warningMsg);
+#endif
+            } // end LoaWarning
 
             public static void CheckNullDictionary<T, V>(Dictionary<T, V> dict) {
 #if __MY_DEBUG__

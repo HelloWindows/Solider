@@ -55,7 +55,7 @@ namespace Solider {
                 m_characterManager.factory.CreateMainCharacter(new Vector3(0, 0, -20));
                 m_mainAudio.PlayBackgroundMusic("novice_village_bgm");
                 if (null == mainCharacter) {
-                    DebugTool.ThrowException("NoviceVillage CreateMainCharacter is null!!");
+                    DebugTool.LogError("NoviceVillage CreateMainCharacter is null!!");
                     return;
                 } // end if
                 ObjectTool.InstantiateGo("npc_grocery", ResourcesTool.LoadPrefab("npc_grocery"),

@@ -48,7 +48,7 @@ namespace Solider {
                             weaponID = "100015";
                             break;
                         default:
-                            DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");
+                            DebugTool.LogError("DisplayRole roleType: " + roleType + "is not config!!");
                             return;
                     } // end switch
                     ReloadWing(Configs.itemConfig.GetItemInfo("106005") as IEquipInfo);
@@ -130,7 +130,7 @@ namespace Solider {
                     // end if            
                     GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWeapon ID: " + id + " prefab is don't exsit!");
+                        DebugTool.LogError("ReloadWeapon ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if (null != weaponGo) Object.Destroy(weaponGo);
@@ -153,7 +153,7 @@ namespace Solider {
                     string id = info.id;
                     GameObject Go = ObjectTool.InstantiateGo(id, ResourcesTool.LoadPrefab(id));
                     if (null == Go) {
-                        DebugTool.ThrowException("ReloadWing ID: " + id + " prefab is don't exsit!");
+                        DebugTool.LogError("ReloadWing ID: " + id + " prefab is don't exsit!");
                         return;
                     } // end if
                     if(null != wingGo) Object.Destroy(wingGo);
@@ -178,7 +178,7 @@ namespace Solider {
                     // end if   
                     Material material = ResourcesTool.LoadMaterial(roleType + "_" + id);
                     if (null == material) {
-                        DebugTool.ThrowException("ReloadArmor ID: " + id + " material is don't exsit!");
+                        DebugTool.LogError("ReloadArmor ID: " + id + " material is don't exsit!");
                         return;
                     } // end if
                     meshRenderer.material = material;
@@ -203,7 +203,7 @@ namespace Solider {
                             liftHand = "right_hand";
                             break;
                         default:
-                            DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");
+                            DebugTool.LogError("DisplayRole roleType: " + roleType + "is not config!!");
                             return;
                     } // end switch
                     Transform[] allChildren = displayGo.transform.GetComponentsInChildren<Transform>();
@@ -236,7 +236,7 @@ namespace Solider {
                             prefix = "magician_";
                             break;
                         default:
-                            DebugTool.ThrowException("DisplayRole roleType: " + roleType + "is not config!!");
+                            DebugTool.LogError("DisplayRole roleType: " + roleType + "is not config!!");
                             return;
                     } // end switch
                     string[] animPathArr = new string[] { "pose", "wait" };
