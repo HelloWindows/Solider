@@ -49,6 +49,16 @@ namespace Solider {
                 m_characterManager.factory.CreateMainCharacter(new UnityEngine.Vector3(0, 0, -20));
                 m_characterManager.factory.CreateNPC("900001", new UnityEngine.Vector3(0, 0, 0));
                 m_characterManager.factory.CreateNPC("901001", new UnityEngine.Vector3(0, 0, 0));
+                m_characterManager.factory.CreateNPC("901002", new UnityEngine.Vector3(0, 0, 10));
+                m_characterManager.factory.CreateNPC("901003", new UnityEngine.Vector3(5, 0, 10));
+                m_characterManager.factory.CreateNPC("901004", new UnityEngine.Vector3(10, 0, 10));
+                m_characterManager.factory.CreateNPC("901005", new UnityEngine.Vector3(15, 0, 10));
+                m_characterManager.factory.CreateNPC("901006", new UnityEngine.Vector3(15, 0, 15));
+                m_characterManager.factory.CreateNPC("901007", new UnityEngine.Vector3(20, 0, 15));
+                m_characterManager.factory.CreateNPC("901008", new UnityEngine.Vector3(20, 0, 20));
+                m_characterManager.factory.CreateNPC("901009", new UnityEngine.Vector3(25, 0, 20));
+                m_characterManager.factory.CreateNPC("901010", new UnityEngine.Vector3(25, 0, 25));
+                m_characterManager.factory.CreateNPC("901011", new UnityEngine.Vector3(30, 0, 25));
                 m_mainAudio.PlayBackgroundMusic("fight_scene_bgm");
                 if (null == mainCharacter) {
                     DebugTool.LogError("NoviceVillage CreateMainCharacter is null!!");

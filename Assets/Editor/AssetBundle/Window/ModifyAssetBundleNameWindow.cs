@@ -20,6 +20,7 @@ namespace CustomEditor {
         private string abName;
         private string variant;
         private string selectedDirPath;
+        private string browsedDirPath;
         private string comfirmClear;
         private string[] nameOptions;
         private string[] variantOptions;
@@ -50,13 +51,18 @@ namespace CustomEditor {
             EditorGUILayout.LabelField("variant:", variant);
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("directory path:", selectedDirPath);
-            if (GUILayout.Button("Browse")) {
-                OpenFolder();
+            if (GUILayout.Button("Refresh")) {
+                RefreshSelectedDirectoryPath();
             } // end if
+            EditorGUILayout.LabelField("selected directory path:", selectedDirPath);
             EditorGUILayout.EndHorizontal();
-            if (GUILayout.Button("Modify for directory")) {
-                ModifyAssetBundleNameForDirectory();
+            if (GUILayout.Button("Modify for selected single directory")) {
+                if (string.IsNullOrEmpty(abName)) {
+                    Debug.LogWarning("Please select Assetbundle name!");
+                    return;
+                } // end if
+                RefreshSelectedDirectoryPath();
+                ModifyAssetBundleNameForDirectory(selectedDirPath);
             } // end if
             if (GUILayout.Button("Remove unused names")) {
                 AssetDatabase.RemoveUnusedAssetBundleNames();
@@ -66,44 +72,51 @@ namespace CustomEditor {
             if (GUILayout.Button("Remove all assetbundle names")) {
                 ClearAllAssetBundlesName();
             } // end if
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("browsed directory path:", browsedDirPath);
+            if (GUILayout.Button("Browse")) {
+                OpenFolder();
+            } // end if
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Modify for browsed directory")) {
+                if (string.IsNullOrEmpty(abName)) {
+                    Debug.LogWarning("Please input Assetbundle name!");
+                    return;
+                } // end if
+                ModifyAssetBundleNameForDirectory(browsedDirPath);
+            } // end if
+            if (GUILayout.Button("Remove for browsed directory")) {
+                ModifyAssetBundleNameForDirectory(browsedDirPath);
+            } // end if
+            EditorGUILayout.EndHorizontal();
         } // end OnGUI
 
         private void OpenFolder() {
             string path = EditorUtility.OpenFolderPanel("selecte directory", "", "");
             if (string.IsNullOrEmpty(path)) return;
             // end if
-            if (!path.Contains(Application.dataPath)) {
+            if (false == path.Contains(Application.dataPath)) {
                 Debug.LogWarning("directory is don't at current project");
                 return;
             } // end if
             if (path.Length != 0) {
                 int firstindex = path.IndexOf("Assets");
-                selectedDirPath = path.Substring(firstindex) + "/";
+                browsedDirPath = path.Substring(firstindex) + "/";
                 EditorUtility.FocusProjectWindow();
             } // end if
         } // end OpenFolder
 
-        private void ModifyAssetBundleNameForDirectory() {
-            if (string.IsNullOrEmpty(abName)) {
-                Debug.LogWarning("Please input Assetbundle name!");
+        private void ModifyAssetBundleNameForDirectory(string path) {
+            if (false == Directory.Exists(path)) {
+                Debug.LogWarning("selectedDirPath is don't exsit! path:" + path);
                 return;
             } // end if
-            if (false == Directory.Exists(selectedDirPath)) {
-                Debug.LogWarning("selectedDirPath is don't exsit! path:" + selectedDirPath);
-                return;
-            } // end if
-            DirectoryInfo rootDirInfo = new DirectoryInfo(selectedDirPath);
+            DirectoryInfo rootDirInfo = new DirectoryInfo(path);
             foreach (FileInfo fileInfo in rootDirInfo.GetFiles("*", SearchOption.AllDirectories)) {
                 if (fileInfo.Name.EndsWith(".meta")) continue;
                 // end if                   
                 SetAssetBundleNameAndVariantWithPath(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")));
-            } // end foreach
-            foreach (DirectoryInfo dirInfo in rootDirInfo.GetDirectories()) {
-                foreach (FileInfo fileInfo in dirInfo.GetFiles("*", SearchOption.AllDirectories)) {
-                    if (fileInfo.Name.EndsWith(".meta")) continue;
-                    // end if     
-                    SetAssetBundleNameAndVariantWithPath(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")));             
-                } // end foreach
             } // end foreach
             AssetDatabase.Refresh();
             InitNameOptions();
@@ -136,5 +149,13 @@ namespace CustomEditor {
             } // end if
             assetImporter.SetAssetBundleNameAndVariant(abName, variant);
         } // end SetAssetBundleNameAndVariantWithPath
+
+        private void RefreshSelectedDirectoryPath() {
+            if (Selection.assetGUIDs.Length != 1) {
+                Debug.LogWarning("selected is null or don't single directory");
+                return;
+            } // end if  
+            selectedDirPath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[0]);
+        } // end RefreshSelectedDirectoryPath
     } // end class ModifyAssetBundleNameWindow
 } // end namespace CustomEditor

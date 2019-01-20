@@ -17,6 +17,10 @@ namespace Solider {
                 /// </summary>
                 Skill = 1,
                 /// <summary>
+                /// 强制层
+                /// </summary>
+                Force = 2,
+                /// <summary>
                 /// 最高层
                 /// </summary>
                 Highest = 100

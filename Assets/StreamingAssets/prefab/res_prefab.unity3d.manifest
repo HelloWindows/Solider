@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1597166973
+CRC: 2804355449
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6445ef0b48b92f586101160ad28b0e8b
+    Hash: 6251c372af39a6d337e73f3f07400f47
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 098ebe69f42f369ab3d950ab4de29a94
+    Hash: eead35a9b24f650a6c8f9c44d80f795f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,8 +24,6 @@ ClassTypes:
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
-  Script: {instanceID: 0}
-- Class: 54
   Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
@@ -49,21 +47,35 @@ Assets:
 - Assets/Prefab/equipment/magician_weapon.prefab
 - Assets/Prefab/character/900001.prefab
 - Assets/Prefab/equipment/archer_weapon.prefab
+- Assets/Prefab/character/902002.prefab
+- Assets/Prefab/character/902003.prefab
 - Assets/Prefab/equipment/100013.prefab
 - Assets/Prefab/equipment/100015.prefab
 - Assets/Prefab/equipment/106003.prefab
 - Assets/Prefab/equipment/100001.prefab
+- Assets/Prefab/character/901003.prefab
 - Assets/Prefab/character/npc_grocery.prefab
 - Assets/Prefab/equipment/100006.prefab
 - Assets/Prefab/equipment/100008.prefab
+- Assets/Prefab/character/902001.prefab
 - Assets/Prefab/character/npc_forge.prefab
+- Assets/Prefab/character/901010.prefab
+- Assets/Prefab/character/901006.prefab
 - Assets/Prefab/equipment/100003.prefab
+- Assets/Prefab/character/901009.prefab
 - Assets/Prefab/character/swordman.prefab
+- Assets/Prefab/character/901007.prefab
+- Assets/Prefab/character/901011.prefab
 - Assets/Prefab/equipment/106001.prefab
+- Assets/Prefab/character/901002.prefab
 - Assets/Prefab/equipment/106002.prefab
+- Assets/Prefab/character/902004.prefab
+- Assets/Prefab/character/901005.prefab
 - Assets/Prefab/equipment/100005.prefab
+- Assets/Prefab/character/901008.prefab
 - Assets/Prefab/equipment/100002.prefab
 - Assets/Prefab/equipment/100009.prefab
+- Assets/Prefab/character/901004.prefab
 - Assets/Prefab/equipment/100012.prefab
 - Assets/Prefab/equipment/106005.prefab
 - Assets/Prefab/equipment/100004.prefab
