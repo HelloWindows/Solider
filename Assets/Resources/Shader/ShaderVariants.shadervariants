@@ -8,6 +8,74 @@ ShaderVariantCollection:
   m_Name: ShaderVariants
   m_Shaders:
     data:
+      first: {fileID: 4800000, guid: 23f213ff6109f334f8cc879ed1f4bdcc, type: 3}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+    data:
+      first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+    data:
+      first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: DIRECTIONAL
+          passType: 4
+        - keywords: DIRECTIONAL SHADOWS_SCREEN
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2
+          passType: 4
+        - keywords: DIRECTIONAL _EMISSION
+          passType: 4
+        - keywords: DIRECTIONAL _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL _EMISSION _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
+            _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL _EMISSION _METALLICGLOSSMAP _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
+            _METALLICGLOSSMAP _NORMALMAP
+          passType: 4
+        - keywords: DIRECTIONAL
+          passType: 5
+        - keywords: DIRECTIONAL _NORMALMAP
+          passType: 5
+        - keywords: DIRECTIONAL _METALLICGLOSSMAP _NORMALMAP
+          passType: 5
+        - keywords: SHADOWS_DEPTH
+          passType: 8
+        - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP
+          passType: 8
+        - keywords: 
+          passType: 11
+        - keywords: _EMISSION
+          passType: 11
+        - keywords: _EMISSION _METALLICGLOSSMAP
+          passType: 11
+    data:
+      first: {fileID: 64, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: SHADOWS_SPLIT_SPHERES
+          passType: 0
+        - keywords: SHADOWS_SINGLE_CASCADE SHADOWS_SPLIT_SPHERES
+          passType: 0
+    data:
       first: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
       second:
         variants:
@@ -15,42 +83,10 @@ ShaderVariantCollection:
           passType: 4
         - keywords: DIRECTIONAL FOG_EXP2
           passType: 4
+        - keywords: DIRECTIONAL
+          passType: 5
         - keywords: SHADOWS_DEPTH
           passType: 8
-    data:
-      first: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: 
-          passType: 0
-    data:
-      first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: 
-          passType: 0
-    data:
-      first: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: 
-          passType: 0
-        - keywords: FOG_EXP2
-          passType: 0
-    data:
-      first: {fileID: 10512, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: 
-          passType: 0
-        - keywords: FOG_EXP2
-          passType: 0
-    data:
-      first: {fileID: 208, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: FOG_EXP2
-          passType: 1
     data:
       first: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
       second:
@@ -76,69 +112,51 @@ ShaderVariantCollection:
         - keywords: SHADOWS_DEPTH
           passType: 8
     data:
-      first: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: DIRECTIONAL
-          passType: 4
-        - keywords: DIRECTIONAL SHADOWS_SCREEN
-          passType: 4
-        - keywords: DIRECTIONAL FOG_EXP2
-          passType: 4
-        - keywords: SHADOWS_DEPTH
-          passType: 8
-    data:
-      first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+      first: {fileID: 10512, guid: 0000000000000000f000000000000000, type: 0}
       second:
         variants:
         - keywords: 
           passType: 0
-    data:
-      first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      second:
-        variants:
-        - keywords: DIRECTIONAL
-          passType: 4
-        - keywords: DIRECTIONAL SHADOWS_SCREEN
-          passType: 4
-        - keywords: DIRECTIONAL FOG_EXP2
-          passType: 4
-        - keywords: DIRECTIONAL FOG_EXP2 _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL _EMISSION _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
-            _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL FOG_EXP2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL DYNAMICLIGHTMAP_ON FOG_EXP2 LIGHTMAP_ON _EMISSION
-            _METALLICGLOSSMAP _NORMALMAP
-          passType: 4
-        - keywords: DIRECTIONAL
-          passType: 5
-        - keywords: DIRECTIONAL _NORMALMAP
-          passType: 5
-        - keywords: SHADOWS_DEPTH
-          passType: 8
-        - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP
-          passType: 8
-        - keywords: 
-          passType: 11
-        - keywords: _EMISSION
-          passType: 11
-        - keywords: _EMISSION _METALLICGLOSSMAP
-          passType: 11
+        - keywords: FOG_EXP2
+          passType: 0
     data:
       first: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
       second:
         variants:
         - keywords: _SUNDISK_SIMPLE
           passType: 0
+    data:
+      first: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+        - keywords: FOG_EXP2
+          passType: 0
+        - keywords: SOFTPARTICLES_ON
+          passType: 0
+    data:
+      first: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+        - keywords: SOFTPARTICLES_ON
+          passType: 0
+    data:
+      first: {fileID: 208, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 1
+        - keywords: FOG_EXP2
+          passType: 1
+    data:
+      first: {fileID: 10500, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: SHADOWS_DEPTH
+          passType: 8
     data:
       first: {fileID: 10501, guid: 0000000000000000f000000000000000, type: 0}
       second:
@@ -190,7 +208,59 @@ ShaderVariantCollection:
         - keywords: 
           passType: 11
     data:
+      first: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: DIRECTIONAL
+          passType: 4
+        - keywords: DIRECTIONAL SHADOWS_SCREEN
+          passType: 4
+        - keywords: DIRECTIONAL FOG_EXP2
+          passType: 4
+        - keywords: SHADOWS_DEPTH
+          passType: 8
+    data:
+      first: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+        - keywords: FOG_EXP2
+          passType: 0
+    data:
+      first: {fileID: 10721, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+        - keywords: FOG_EXP2
+          passType: 0
+    data:
+      first: {fileID: 10722, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 1
+    data:
+      first: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+    data:
+      first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+    data:
       first: {fileID: 4800000, guid: 65521a60d06fad14baa50b964b06b14b, type: 3}
+      second:
+        variants:
+        - keywords: 
+          passType: 0
+    data:
+      first: {fileID: 4800000, guid: 88ad1f1cdce080447b76986271130418, type: 3}
       second:
         variants:
         - keywords: 
@@ -199,13 +269,21 @@ ShaderVariantCollection:
       first: {fileID: 4800000, guid: 9dccc8e8f0da4494991c26ef59019551, type: 3}
       second:
         variants:
+        - keywords: 
+          passType: 0
         - keywords: FOG_EXP2
           passType: 0
     data:
-      first: {fileID: 4800000, guid: 23f213ff6109f334f8cc879ed1f4bdcc, type: 3}
+      first: {fileID: 4800000, guid: e22d4f71d889b8c4db2b0581b8d86f53, type: 3}
       second:
         variants:
         - keywords: 
           passType: 0
-        - keywords: PIXELSNAP_ON
-          passType: 0
+        - keywords: 
+          passType: 4
+    data:
+      first: {fileID: 0}
+      second:
+        variants:
+        - keywords: FOG_EXP2
+          passType: 1

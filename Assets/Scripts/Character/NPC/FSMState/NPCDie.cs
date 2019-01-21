@@ -9,12 +9,13 @@ using Solider.Character.FSM;
 using Solider.Character.Interface;
 using Framework.Manager;
 using Solider.Tools;
+using Solider.Config.Common;
 
 namespace Solider {
     namespace Character {
         namespace NPC {
             public class NPCDie : ICharacterState {
-                public string id { get { return "die"; } }
+                public string id { get { return NPCStateID.Die; } }
                 public string anim { get { return "die"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Highest); } }
 
@@ -27,14 +28,14 @@ namespace Solider {
                 public NPCDie(ICharacter character) {
                     this.character = character;
                     timer = 3f;
-                    character.config.TryGetSoundPath("die", out soundPath);
-                    character.config.TryGetEffectPath("die", out effectPath);
+                    character.config.TryGetSoundPath(id, out soundPath);
+                    character.config.TryGetEffectPath(id, out effectPath);
                 } // end NPCDie
 
                 public void DoBeforeEntering() {
                     isDispoed = false;
                     character.avatar.Play(anim);
-                    character.audio.PlaySoundCacheForPath("die", soundPath);
+                    character.audio.PlaySoundCacheForPath(id, soundPath);
                     EffectTool.ShowEffectFromPool(effectPath, 2f, character.position, character.rotation);
                 } // end DoBeforeEntering
 

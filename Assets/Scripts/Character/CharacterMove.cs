@@ -51,6 +51,11 @@ namespace Solider {
                 transform.Translate(forward * distance, Space.World);
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             } // end FlashMove
+
+            public void LookAt(Vector3 position) {
+                Vector3 target = new Vector3(position.x, transform.position.y, position.z);
+                transform.LookAt(target);
+            } // end LookAts
         } // end class CharacterMove
     } // end namespace Character
 } // end namespace Solider 

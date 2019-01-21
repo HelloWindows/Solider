@@ -15,6 +15,7 @@ namespace Solider {
                 void MoveForward(Vector2 dir, float speed);
                 void MoveBackward(Vector2 dir, float speed);
                 void FlashMove(Vector3 dir, float distance);
+                void LookAt(Vector3 position);
             } // end class ICharacterMove
         } // end namespace Interface 
     } // end namespace Character

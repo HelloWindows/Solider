@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2804355449
+CRC: 3434686163
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6251c372af39a6d337e73f3f07400f47
+    Hash: 3fea48fbc03bccef005bec79a4cf338e
   TypeTreeHash:
     serializedVersion: 2
     Hash: eead35a9b24f650a6c8f9c44d80f795f
@@ -93,4 +93,4 @@ Assets:
 - Assets/Prefab/character/archer.prefab
 - Assets/Prefab/widget/explosive_arrow.prefab
 Dependencies:
-- F:/ProjectFiles/Unity/Solider/Assets/StreamingAssets/material/res_material.unity3d
+- G:/SelfProject/Solider/Assets/StreamingAssets/material/res_material.unity3d

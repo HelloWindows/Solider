@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3085886542
+CRC: 2811265656
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 732a4702ee1fe341ab1169ba4ff8679c
+    Hash: 9874f814121d6f2a0156c91f7b3aa5b2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: d3afe12c86bf270eff7fd24a4c037221
+    Hash: abde56237414d14ca5e9e0edec868d15
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,7 +25,11 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
 - Class: 96
+  Script: {instanceID: 0}
+- Class: 111
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -42,11 +46,23 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
+- Assets/Prefab/pool/widget/902001_attack_1.prefab
+- Assets/Prefab/pool/effect/901004_attack_1.prefab
+- Assets/Prefab/pool/widget/npc_arrow.prefab
+- Assets/Prefab/pool/effect/901001_attack_1.prefab
 - Assets/Prefab/pool/ui/hud_damage.prefab
+- Assets/Prefab/pool/effect/901003_attack_1.prefab
 - Assets/Prefab/pool/widget/magic_0.prefab
+- Assets/Prefab/pool/effect/901011_attack_1.prefab
+- Assets/Prefab/pool/effect/901005_attack_1.prefab
+- Assets/Prefab/pool/widget/902004_attack_1.prefab
+- Assets/Prefab/pool/effect/901008_attack_1.prefab
+- Assets/Prefab/pool/effect/901002_attack_1.prefab
 - Assets/Prefab/pool/effect/blood.prefab
 - Assets/Prefab/pool/widget/magic_1.prefab
+- Assets/Prefab/pool/effect/901006_attack_1.prefab
 - Assets/Prefab/pool/widget/arrow.prefab
 - Assets/Prefab/pool/widget/hp_bar.prefab
 - Assets/Prefab/pool/effect/maincharachter_run_effect.prefab
+- Assets/Prefab/pool/effect/901007_attack_1.prefab
 Dependencies: []

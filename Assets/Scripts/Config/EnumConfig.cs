@@ -26,5 +26,23 @@ namespace Solider {
                 Highest = 100
             } // end enum StateLayer
         } // end namespace FSM
+
+        namespace NPC {
+            public enum NPCType : int {
+                Null = 0,
+                /// <summary>
+                /// 和平
+                /// </summary>
+                Peace = 1,
+                /// <summary>
+                /// 中立—近战
+                /// </summary>
+                Melee_Neutral = 2,
+                /// <summary>
+                /// 中立—远程
+                /// </summary>
+                Range_Neutral = 3,
+            } // end enum NPCType
+        } // end namespace NPC
     } // end namespace Character
 } // end namespace Solider

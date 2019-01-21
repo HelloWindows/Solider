@@ -22,7 +22,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "swordman_attack_1",
+        "attack_1": "swordman_attack_1",
         "hurt": "swordman_hurt",
         "die": "swordman_die",
         "run": "heroRun"
@@ -53,7 +53,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "archer_attack",
+        "attack_1": "archer_attack",
         "hurt": "archer_hurt",
         "die": "archer_die",
         "run": "heroRun"
@@ -84,7 +84,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "magician_attack1",
+        "attack_1": "magician_attack1",
         "hurt": "magician_hurt",
         "die": "magician_die",
         "run": "heroRun"
@@ -115,7 +115,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
@@ -146,12 +146,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901001_attack_1",
         "die": "blood"
       }
     },
@@ -177,12 +178,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901002_attack_1",
         "die": "blood"
       }
     },
@@ -208,12 +210,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901003_attack_1",
         "die": "blood"
       }
     },
@@ -239,12 +242,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901004_attack_1",
         "die": "blood"
       }
     },
@@ -270,12 +274,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901005_attack_1",
         "die": "blood"
       }
     },
@@ -301,12 +306,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901006_attack_1",
         "die": "blood"
       }
     },
@@ -332,12 +338,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901007_attack_1",
         "die": "blood"
       }
     },
@@ -363,12 +370,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901008_attack_1",
         "die": "blood"
       }
     },
@@ -394,7 +402,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
@@ -425,7 +433,7 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
@@ -456,19 +464,20 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "901011_attack_1",
         "die": "blood"
       }
     },
     {
       "id": "902001",
       "name": "食人花",
-      "npc_type" : 2,
+      "npc_type" : 3,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -487,19 +496,20 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "902001_attack_1",
         "die": "blood"
       }
     },
     {
       "id": "902002",
       "name": "哥布林法师",
-      "npc_type" : 2,
+      "npc_type" : 3,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -518,19 +528,20 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "npc_arrow",
         "die": "blood"
       }
     },
     {
       "id": "902003",
       "name": "野蛮射手",
-      "npc_type" : 2,
+      "npc_type" : 3,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -549,19 +560,20 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "npc_arrow",
         "die": "blood"
       }
     },
     {
       "id": "902004",
       "name": "邪恶法师",
-      "npc_type" : 2,
+      "npc_type" : 3,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -580,12 +592,13 @@
         "CRT": 0
       },
       "sound": {
-        "attack": "npc_attack",
+        "attack_1": "npc_attack",
         "hurt": "npc_hurt",
         "die": "npc_die",
         "run": "heroRun"
       },
       "effect": {
+        "attack_1": "902004_attack_1",
         "die": "blood"
       }
     }

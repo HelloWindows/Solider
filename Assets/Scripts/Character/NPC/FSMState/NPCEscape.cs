@@ -7,12 +7,13 @@
 using UnityEngine;
 using Solider.Character.FSM;
 using Solider.Character.Interface;
+using Solider.Config.Common;
 
 namespace Solider {
     namespace Character {
         namespace NPC {
             public class NPCEscape : ICharacterState {
-                public string id { get { return "escape"; } }
+                public string id { get { return NPCStateID.Escape; } }
                 public string anim { get { return "run"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
 
@@ -30,16 +31,16 @@ namespace Solider {
 
                 public void Reason() {
                     if (false == character.info.characterData.IsLive) {
-                        character.fsm.PerformTransition("die");
+                        character.fsm.PerformTransition(NPCStateID.Die);
                         return;
                     } // end if
                     if (null == character.info.lockCharacter) {
-                        character.fsm.PerformTransition("idle");
+                        character.fsm.PerformTransition(NPCStateID.Idle);
                         return;
                     } // end if
                     if (Vector3.Distance(character.info.lockCharacter.position, character.position) > scope) {
                         character.info.LockCharacter(null);
-                        character.fsm.PerformTransition("idle");
+                        character.fsm.PerformTransition(NPCStateID.Idle);
                         return;
                     } // end if
                     Vector3 dir = character.position - character.info.lockCharacter.position;

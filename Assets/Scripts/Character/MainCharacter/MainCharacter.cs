@@ -11,6 +11,7 @@ using Solider.Character.Interface;
 using Solider.Model.Interface;
 using UnityEngine;
 using Framework.Manager;
+using Framework.Config.Game;
 
 namespace Solider {
     namespace Character {
@@ -29,6 +30,7 @@ namespace Solider {
                 protected MainCharacter(string id, string roleType, GameObject gameObject) : base(id, gameObject) {
                     m_input = new CrossInput();
                     m_skill = new CharacterSkill(this);
+                    gameObject.layer = LayerConfig.Main;
                     pack = new MainCharacterPack(roleType, center);
                 } // end MainCharacter
 

@@ -16,6 +16,7 @@ namespace Framework {
                 private const string m_Water = "Water";
                 private const string m_UI = "UI";
                 private const string m_NPC = "NPC";
+                private const string m_Main = "Main";
 
                 public static int Default = LayerMask.NameToLayer(m_Default);
                 public static int TransparentFX = LayerMask.NameToLayer(m_TransparentFX);
@@ -23,6 +24,7 @@ namespace Framework {
                 public static int Water = LayerMask.NameToLayer(m_Water);
                 public static int UI = LayerMask.NameToLayer(m_UI);
                 public static int NPC = LayerMask.NameToLayer(m_NPC);
+                public static int Main = LayerMask.NameToLayer(m_Main);
 
                 public static int Mask_Default= LayerMask.GetMask(m_Default);
                 public static int Mask_TransparentFX = LayerMask.GetMask(m_TransparentFX);
@@ -30,6 +32,7 @@ namespace Framework {
                 public static int Mask_Water = LayerMask.GetMask(m_Water);
                 public static int Mask_UI = LayerMask.GetMask(m_UI);
                 public static int Mask_NPC = LayerMask.GetMask(m_NPC);
+                public static int Mask_Main = LayerMask.GetMask(m_Main);
             } // end class LayerConfig 
         } // end namespace Game
     } // end namespace Config 

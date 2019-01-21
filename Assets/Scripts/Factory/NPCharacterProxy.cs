@@ -15,11 +15,6 @@ namespace Solider {
     namespace Factory {
         namespace Proxy {
             public static class NPCharacterProxy {
-                private enum NPCType : int {
-                    Null = 0,
-                    Peace = 1,
-                    Close_Neutral = 2
-                } // end enum NPCType
                 private delegate Character.Character NPCharacterFunc(string id, Vector3 position);
                 private static Dictionary<NPCType, NPCharacterFunc> m_proxyDict;
                 private static Dictionary<NPCType, NPCharacterFunc> proxyDict {
@@ -28,7 +23,8 @@ namespace Solider {
                         // end if
                         m_proxyDict = new Dictionary<NPCType, NPCharacterFunc>();
                         m_proxyDict[NPCType.Peace] = PeaceNPC.CreateInstance;
-                        m_proxyDict[NPCType.Close_Neutral] = Close_NeutralNPC.CreateInstance;
+                        m_proxyDict[NPCType.Melee_Neutral] = Melee_NeutralNPC.CreateInstance;
+                        m_proxyDict[NPCType.Range_Neutral] = Range_NeutralNPC.CreateInstance;
                         return m_proxyDict;
                     } // end if
                 } // end ProxyDict

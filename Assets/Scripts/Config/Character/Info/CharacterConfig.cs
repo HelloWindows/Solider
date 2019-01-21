@@ -17,6 +17,7 @@ namespace Solider {
                 public string name { get; private set; }
                 public int npc_type { get; private set; }
                 public IAttributeInfo initAttribute { get; private set; }
+                private Dictionary<string, float> characterParamConfig;
                 private Dictionary<string, string> characterSoundConfig;
                 private Dictionary<string, string> characterEffectConfig;
 
@@ -33,9 +34,21 @@ namespace Solider {
                     initAttribute = new AttributeInfo(data);
                 } // end InitAttribute
 
+                private void InitCharacterParamConfig(JsonData data) {
+                    characterParamConfig = new Dictionary<string, float>();
+                    string[] keys = new string[] { "reach" };
+                    for (int i = 0; i < keys.Length; i++) {
+                        string key = keys[i];
+                        float value = JsonTool.GetJsonData_Float(data, key);
+                        if (0 == value) continue;
+                        // end if
+                        characterParamConfig[key] = value;
+                    } // end if
+                } // end InitCharacterParamConfig
+
                 private void InitCharacterSoundConfig(JsonData data) {
                     characterSoundConfig = new Dictionary<string, string>();
-                    string[] keys = new string[] { "attack1", "attack2", "attack3", "attack4", "hurt", "die", "run" };
+                    string[] keys = new string[] { "attack_1", "attack_2", "attack_3", "attack_4", "hurt", "die", "run" };
                     for (int i = 0; i < keys.Length; i++) {
                         string key = keys[i];
                         string value = JsonTool.GetJsonData_String(data, key);
@@ -47,7 +60,7 @@ namespace Solider {
 
                 private void InitCharacterEffectConfig(JsonData data) {
                     characterEffectConfig = new Dictionary<string, string>();
-                    string[] keys = new string[] { "attack1", "attack2", "attack3", "attack4", "hurt", "die", "run" };
+                    string[] keys = new string[] { "attack_1", "attack_2", "attack_3", "attack_4", "hurt", "die", "run" };
                     for (int i = 0; i < keys.Length; i++) {
                         string key = keys[i];
                         string value = JsonTool.GetJsonData_String(data, key);

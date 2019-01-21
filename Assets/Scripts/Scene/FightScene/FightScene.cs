@@ -59,6 +59,10 @@ namespace Solider {
                 m_characterManager.factory.CreateNPC("901009", new UnityEngine.Vector3(25, 0, 20));
                 m_characterManager.factory.CreateNPC("901010", new UnityEngine.Vector3(25, 0, 25));
                 m_characterManager.factory.CreateNPC("901011", new UnityEngine.Vector3(30, 0, 25));
+                m_characterManager.factory.CreateNPC("902001", new UnityEngine.Vector3(30, 0, 30));
+                m_characterManager.factory.CreateNPC("902002", new UnityEngine.Vector3(35, 0, 30));
+                m_characterManager.factory.CreateNPC("902003", new UnityEngine.Vector3(35, 0, 35));
+                m_characterManager.factory.CreateNPC("902004", new UnityEngine.Vector3(40, 0, 35));
                 m_mainAudio.PlayBackgroundMusic("fight_scene_bgm");
                 if (null == mainCharacter) {
                     DebugTool.LogError("NoviceVillage CreateMainCharacter is null!!");
