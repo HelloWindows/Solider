@@ -77,9 +77,9 @@ namespace Solider {
                     RGS = initAttribute.RGS;
                     ASP = initAttribute.ASP;
                     MSP = initAttribute.MSP;
-                    HIT = initAttribute.HIT;
-                    AVD = initAttribute.AVD;
-                    CRT = initAttribute.CRT;
+                    HIT = MathTool.Clamp(initAttribute.HIT, 0, 100);
+                    AVD = MathTool.Clamp(initAttribute.AVD, 0, 60);
+                    CRT = MathTool.Clamp(initAttribute.CRT, 0, 100);
                 } // end Init
 
                 public void Minus(IRealData data) {

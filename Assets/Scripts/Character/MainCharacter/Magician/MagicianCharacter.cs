@@ -47,6 +47,9 @@ namespace Solider {
                     m_mainSurface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
                     m_surface = m_mainSurface;
                     m_fsm = new MagicianFSM(this);
+                    skill.PushSkill("500101");
+                    skill.PushSkill("500102");
+                    skill.PushSkill("500103");
                 } // end MagicianCharacter
 
                 public override void Update() {

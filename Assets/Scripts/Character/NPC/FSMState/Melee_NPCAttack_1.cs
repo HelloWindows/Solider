@@ -23,20 +23,23 @@ namespace Solider {
                 private bool isFlight;
                 private string soundPath;
                 private string effectPath;
-                private ICharacter character;
+                protected ICharacter character { get; private set; }
 
                 public Melee_NPCAttack_1(ICharacter character) {
-                    if (false == ParamConfig.TryGetNPCReach((NPCType)character.config.npc_type, out reach)) reach = 1;
+                    if (false == ParamConfig.TryGetNPCReach((NPCType)character.config.npc_type, out reach)) reach = 2;
                     // end if
                     this.character = character;
                     character.config.TryGetSoundPath(id, out soundPath);
                     character.config.TryGetEffectPath(id, out effectPath);
                 } // end Melee_NPCAttack_1
 
-                public void DoBeforeEntering() {
+                public virtual void DoBeforeEntering() {
                     isFlight = false;
                     character.avatar.Play(anim);
                     character.audio.PlaySoundCacheForPath(id, soundPath);
+                    if (null != character.info.lockCharacter) {
+                        character.move.LookAt(character.info.lockCharacter.position);
+                    } //end if
                     if (string.IsNullOrEmpty(effectPath)) return;
                     // end if
                     EffectTool.ShowEffectFromPool(effectPath, 1f, character.position, character.rotation);

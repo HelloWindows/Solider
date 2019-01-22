@@ -35,6 +35,11 @@ namespace CustomEditor {
                 RefreshSelectedDirectoryPath();
                 InsertPrefixForSelectedDirectoryAndPrefixIsDirectoryName();
             } // end if
+
+            if (GUILayout.Button("Remove for selected directory and prefix is directory's name")) {
+                RefreshSelectedDirectoryPath();
+                RemovePrefixForSelectedDirectoryAndPrefixIsDirectoryName();
+            } // end if
         } // end OnGUI
 
         private void InsertPrefixForSelectedObjects() {
@@ -90,6 +95,26 @@ namespace CustomEditor {
             Debug.Log("Insert prefix is success!");
             AssetDatabase.Refresh();
         } // end InsertPrefixForSelectedDirectoryAndPrefixIsDirectoryName
+
+        private void RemovePrefixForSelectedDirectoryAndPrefixIsDirectoryName() {
+            if (false == Directory.Exists(selectedDirPath)) {
+                Debug.LogWarning("selectedDirPath is don't exsit! path:" + selectedDirPath);
+                return;
+            } // end if
+            DirectoryInfo rootDirInfo = new DirectoryInfo(selectedDirPath);
+            foreach (FileInfo fileInfo in rootDirInfo.GetFiles("*", SearchOption.AllDirectories)) {
+                string name = fileInfo.Name;
+                if (name.EndsWith(".meta")) continue;
+                // end if   
+                int index = name.IndexOf("_");
+                if (index >= 0 && name.Substring(0, index) != fileInfo.Directory.Name) continue;
+                // end if
+                string newName = name.Substring(index + 1);
+                RenameAsset(fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets")), newName.Substring(0, newName.LastIndexOf('.')));
+            } // end foreach
+            Debug.Log("Remove prefix is success!");
+            AssetDatabase.Refresh();
+        } // end RemovePrefixForSelectedDirectoryAndPrefixIsDirectoryName
 
         private void RefreshSelectedDirectoryPath() {
             if (Selection.assetGUIDs.Length != 1) {

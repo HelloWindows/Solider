@@ -47,6 +47,10 @@ namespace Solider {
                             m_npcReachDict[NPCType.Peace] = 1;
                             m_npcReachDict[NPCType.Melee_Neutral] = 1f;
                             m_npcReachDict[NPCType.Range_Neutral] = 10f;
+                            m_npcReachDict[NPCType.Melee_Enemy] = 1f;
+                            m_npcReachDict[NPCType.Range_Enemy] = 10f;
+
+                            m_npcReachDict[NPCType.Sfix] = 2f;
                         } // end if
                         return m_npcReachDict;
                     } // end get

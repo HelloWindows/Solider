@@ -30,6 +30,9 @@ namespace Solider {
                         m_proxyDict[SwordmanSkill1.ID] = SwordmanSkill1.CreateInstance;
                         m_proxyDict[SwordmanSkill2.ID] = SwordmanSkill2.CreateInstance;
                         m_proxyDict[SwordmanSkill3.ID] = SwordmanSkill3.CreateInstance;
+                        m_proxyDict[SfixSkill_1.ID] = SfixSkill_1.CreateInstance;
+                        m_proxyDict[GledeSkill_1.ID] = GledeSkill_1.CreateInstance;
+                        m_proxyDict[DemonSkill_1.ID] = DemonSkill_1.CreateInstance;
                         return m_proxyDict;
                     } // end if
                 } // end ProxyDict

@@ -17,24 +17,25 @@ namespace Solider {
                 public string anim { get { return "run"; } }
                 public int layer { get { return System.Convert.ToInt32(StateLayer.Default); } }
 
-                private float scope;
-                private float reach;
-                private ICharacter character;
+                protected float scope;
+                protected float reach;
+                protected ICharacter character { get; private set; }
                 private Vector3 dir;
                 private float distance;
 
                 public NPCChase(ICharacter character) {
-                    if (false == ParamConfig.TryGetNPCReach((NPCType)character.config.npc_type, out reach)) reach = 1;
+                    if (false == ParamConfig.TryGetNPCReach((NPCType)character.config.npc_type, out reach)) reach = 2;
                     // end if
-                    scope = 10f;
+                    scope = reach + 2;
+                    scope = scope < 10 ? 10 : scope;
                     this.character = character;
                 } // end NPCChase
 
-                public void DoBeforeEntering() {
+                public virtual void DoBeforeEntering() {
                     character.avatar.Play(anim);
                 } // end DoBeforeEntering
 
-                public void Reason() {
+                public virtual void Reason() {
                     if (false == character.info.characterData.IsLive) {
                         character.fsm.PerformTransition(NPCStateID.Die);
                         return;

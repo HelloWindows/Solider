@@ -31,6 +31,9 @@ Material:
     - first:
         name: _Cutoff
       second: 0.5
+    - first:
+        name: _Shininess
+      second: 0.078125
     m_Colors:
     - first:
         name: _Color

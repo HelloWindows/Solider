@@ -11,7 +11,6 @@ using Solider.ModelData.Data;
 using Solider.Config.Common;
 using Solider.Widget;
 using Framework.Manager;
-using Framework.Tools;
 
 namespace Solider {
     namespace Character {
@@ -74,7 +73,6 @@ namespace Solider {
                     if (Vector3.Distance(character.info.lockCharacter.position, character.position) > reach) return;
                     // end if
                     DamageData damage = new DamageData(character);
-                    Debug.Log(effectPath);
                     NPC_Arrow arrow = InstanceMgr.GetObjectManager().GetGameObject<NPC_Arrow>(effectPath);
                     arrow.transform.position = character.position + Vector3.up * 0.5f;
                     arrow.transform.rotation = character.rotation;

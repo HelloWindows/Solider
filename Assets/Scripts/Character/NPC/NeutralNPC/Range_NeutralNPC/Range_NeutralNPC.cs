@@ -21,7 +21,7 @@ namespace Solider {
                     transform.position = position;
                     transform.rotation = Quaternion.identity;
                     m_info = new NPCharacterInfo(config.name, this);
-                    m_avatar = new Range_NeutralNPCAvatar(id, gameObject.AddComponent<Animation>());
+                    m_avatar = new NormalNPCAvatar(id, gameObject.AddComponent<Animation>());
                     m_surface = new CharacterSurface(transform.GetComponentInChildren<SkinnedMeshRenderer>());
                     m_fsm = new Range_NeutralNPCFSM(this);
                 } // end Range_NeutralNPC

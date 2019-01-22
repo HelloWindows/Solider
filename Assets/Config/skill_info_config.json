@@ -183,6 +183,60 @@
       },
       "buff": false,
       "passive": false
+    },
+    {
+      "id": "502001",
+      "name": "扑杀",
+      "spritepath": "skill_500203",
+      "intro": "对周围敌人造成",
+      "soundPath": "npc_attack",
+      "CD": 5,
+      "property": {
+        "ATK": 100,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "502002",
+      "name": "致命一击",
+      "spritepath": "skill_500203",
+      "intro": "对敌人造成",
+      "soundPath": "npc_attack",
+      "CD": 5,
+      "property": {
+        "ATK": 100,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0
+      },
+      "buff": false,
+      "passive": false
+    },
+    {
+      "id": "502003",
+      "name": "钩子",
+      "spritepath": "skill_500203",
+      "intro": "对敌人造成",
+      "soundPath": "npc_attack",
+      "CD": 5,
+      "property": {
+        "ATK": 100,
+        "MGK": 0,
+        "ATKR": 175,
+        "MGKR": 0,
+        "DEFR": 0,
+        "RGSR": 0
+      },
+      "buff": false,
+      "passive": false
     }
   ]
 }

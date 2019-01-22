@@ -38,6 +38,10 @@ namespace Solider {
                 } // end DoBeforeEntering
 
                 public void Reason() {
+                    if (false == mainCharacter.info.characterData.IsLive) {
+                        mainCharacter.fsm.PerformTransition("die");
+                        return;
+                    } // end if
                     if (mainCharacter.input.joystickDir.magnitude == 0f) {
                         mainCharacter.fsm.PerformTransition("wait");
                         return;

@@ -42,6 +42,26 @@ namespace Solider {
                 /// 中立—远程
                 /// </summary>
                 Range_Neutral = 3,
+                /// <summary>
+                /// 敌队-近战
+                /// </summary>
+                Melee_Enemy = 4,
+                /// <summary>
+                /// 敌队-远程
+                /// </summary>
+                Range_Enemy = 5,
+                /// <summary>
+                /// 斯菲克斯
+                /// </summary>
+                Sfix = 906001,
+                /// <summary>
+                /// 老鹰
+                /// </summary>
+                Glede = 906002,
+                /// <summary>
+                /// 恶煞
+                /// </summary>
+                Demon = 906003
             } // end enum NPCType
         } // end namespace NPC
     } // end namespace Character

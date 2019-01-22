@@ -5,7 +5,6 @@
  * Copyright (c) 2018-xxxx 
  *******************************************************************/
 using Solider.Model.Interface;
-using Solider.ModelData.Interface;
 
 namespace Solider {
     namespace Character {
@@ -19,6 +18,7 @@ namespace Solider {
                 void InstantCooldownAll();
                 void InstantCooldownAll(params string[] ignoreList);
                 ISkillModle[] GetSkillModleArray();
+                ISkillModle GetSkillModle(string id);
             } // end interface ICharacterSkill 
         } // end namespace Interface
     } // end namespace Character

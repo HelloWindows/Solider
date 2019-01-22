@@ -94,7 +94,7 @@
       }
     },
     {
-      "id": "900001",
+      "id": "901001",
       "name": "水牛",
       "npc_type" : 1,
       "attribute": {
@@ -125,9 +125,9 @@
       }
     },
     {
-      "id": "901001",
+      "id": "902001",
       "name": "蝙蝠",
-      "npc_type" : 2,
+      "npc_type": 2,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -157,357 +157,7 @@
       }
     },
     {
-      "id": "901002",
-      "name": "独角兽",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901002_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901003",
-      "name": "牛头人",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901003_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901004",
-      "name": "飞甲虫",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901004_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901005",
-      "name": "骷髅战士",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901005_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901006",
-      "name": "娜迦",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901006_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901007",
-      "name": "鸟人",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901007_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901008",
-      "name": "胖子",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901008_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901009",
-      "name": "黑暗骑士",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901010",
-      "name": "野人",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "die": "blood"
-      }
-    },
-    {
-      "id": "901011",
-      "name": "毒蛇",
-      "npc_type" : 2,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "901011_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "902001",
-      "name": "食人花",
-      "npc_type" : 3,
-      "attribute": {
-        "XHP": 600,
-        "XMP": 600,
-        "NATK": 30,
-        "XATK": 40,
-        "NMGK": 6,
-        "XMGK": 10,
-        "HOT": 6,
-        "MOT": 10,
-        "DEF": 3,
-        "RGS": 3,
-        "ASP": 0,
-        "MSP": 2,
-        "HIT": 0,
-        "AVD": 0,
-        "CRT": 0
-      },
-      "sound": {
-        "attack_1": "npc_attack",
-        "hurt": "npc_hurt",
-        "die": "npc_die",
-        "run": "heroRun"
-      },
-      "effect": {
-        "attack_1": "902001_attack_1",
-        "die": "blood"
-      }
-    },
-    {
-      "id": "902002",
+      "id": "903001",
       "name": "哥布林法师",
       "npc_type" : 3,
       "attribute": {
@@ -539,9 +189,359 @@
       }
     },
     {
-      "id": "902003",
+      "id": "904001",
+      "name": "独角兽",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901002_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904002",
+      "name": "牛头人",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901003_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904003",
+      "name": "飞甲虫",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901004_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904004",
+      "name": "骷髅战士",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901005_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904005",
+      "name": "娜迦",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901006_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904006",
+      "name": "鸟人",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901007_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904007",
+      "name": "胖子",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901008_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904008",
+      "name": "黑暗骑士",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904009",
+      "name": "野人",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "die": "blood"
+      }
+    },
+    {
+      "id": "904010",
+      "name": "毒蛇",
+      "npc_type" : 4,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "901011_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "905001",
+      "name": "食人花",
+      "npc_type" : 5,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "attack_1": "902001_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "905002",
       "name": "野蛮射手",
-      "npc_type" : 3,
+      "npc_type" : 5,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -571,9 +571,9 @@
       }
     },
     {
-      "id": "902004",
+      "id": "905003",
       "name": "邪恶法师",
-      "npc_type" : 3,
+      "npc_type": 5,
       "attribute": {
         "XHP": 600,
         "XMP": 600,
@@ -599,6 +599,99 @@
       },
       "effect": {
         "attack_1": "902004_attack_1",
+        "die": "blood"
+      }
+    },
+    {
+      "id": "906001",
+      "name": "斯菲克斯",
+      "npc_type": 906001,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "die": "blood"
+      }
+    },
+    {
+      "id": "906002",
+      "name": "老鹰",
+      "npc_type": 906002,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
+        "die": "blood"
+      }
+    },
+    {
+      "id": "906003",
+      "name": "恶煞",
+      "npc_type" : 906003,
+      "attribute": {
+        "XHP": 600,
+        "XMP": 600,
+        "NATK": 30,
+        "XATK": 40,
+        "NMGK": 6,
+        "XMGK": 10,
+        "HOT": 6,
+        "MOT": 10,
+        "DEF": 3,
+        "RGS": 3,
+        "ASP": 0,
+        "MSP": 2,
+        "HIT": 0,
+        "AVD": 0,
+        "CRT": 0
+      },
+      "sound": {
+        "attack_1": "npc_attack",
+        "hurt": "npc_hurt",
+        "die": "npc_die",
+        "run": "heroRun"
+      },
+      "effect": {
         "die": "blood"
       }
     }

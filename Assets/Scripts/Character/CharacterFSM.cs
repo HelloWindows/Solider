@@ -39,13 +39,13 @@ namespace Solider {
 
             public void PerformTransition(string name) {
                 if (null == stateDict) {
-                    DebugTool.LogError(GetType() + "stateDict is null");
+                    DebugTool.LogError(GetType() + " stateDict is null");
                     return;
                 } // end if
                 if (stateDict.ContainsKey(name)) {
                     PerformTransition(stateDict[name]);
                 } else {
-                    DebugTool.LogError(GetType() + "stateDict is don't exsit " + name);
+                    DebugTool.LogError(GetType() + " stateDict is don't exsit " + name);
                     return;
                 }// end if
             } // end PerformTransitions

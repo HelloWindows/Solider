@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3434686163
+CRC: 4220411140
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3fea48fbc03bccef005bec79a4cf338e
+    Hash: 2a39d4eec76c3819c8b440deec36d9d1
   TypeTreeHash:
     serializedVersion: 2
     Hash: eead35a9b24f650a6c8f9c44d80f795f
@@ -45,37 +45,38 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Prefab/equipment/magician_weapon.prefab
-- Assets/Prefab/character/900001.prefab
+- Assets/Prefab/character/901001.prefab
 - Assets/Prefab/equipment/archer_weapon.prefab
-- Assets/Prefab/character/902002.prefab
-- Assets/Prefab/character/902003.prefab
+- Assets/Prefab/character/903001.prefab
+- Assets/Prefab/character/905002.prefab
 - Assets/Prefab/equipment/100013.prefab
 - Assets/Prefab/equipment/100015.prefab
 - Assets/Prefab/equipment/106003.prefab
 - Assets/Prefab/equipment/100001.prefab
-- Assets/Prefab/character/901003.prefab
+- Assets/Prefab/character/904002.prefab
 - Assets/Prefab/character/npc_grocery.prefab
 - Assets/Prefab/equipment/100006.prefab
 - Assets/Prefab/equipment/100008.prefab
-- Assets/Prefab/character/902001.prefab
+- Assets/Prefab/character/905001.prefab
 - Assets/Prefab/character/npc_forge.prefab
-- Assets/Prefab/character/901010.prefab
-- Assets/Prefab/character/901006.prefab
+- Assets/Prefab/character/904009.prefab
+- Assets/Prefab/character/906001.prefab
+- Assets/Prefab/character/904005.prefab
 - Assets/Prefab/equipment/100003.prefab
-- Assets/Prefab/character/901009.prefab
+- Assets/Prefab/character/904008.prefab
 - Assets/Prefab/character/swordman.prefab
-- Assets/Prefab/character/901007.prefab
-- Assets/Prefab/character/901011.prefab
+- Assets/Prefab/character/904006.prefab
+- Assets/Prefab/character/904010.prefab
 - Assets/Prefab/equipment/106001.prefab
-- Assets/Prefab/character/901002.prefab
+- Assets/Prefab/character/904001.prefab
 - Assets/Prefab/equipment/106002.prefab
-- Assets/Prefab/character/902004.prefab
-- Assets/Prefab/character/901005.prefab
+- Assets/Prefab/character/905003.prefab
+- Assets/Prefab/character/904004.prefab
 - Assets/Prefab/equipment/100005.prefab
-- Assets/Prefab/character/901008.prefab
+- Assets/Prefab/character/904007.prefab
 - Assets/Prefab/equipment/100002.prefab
 - Assets/Prefab/equipment/100009.prefab
-- Assets/Prefab/character/901004.prefab
+- Assets/Prefab/character/904003.prefab
 - Assets/Prefab/equipment/100012.prefab
 - Assets/Prefab/equipment/106005.prefab
 - Assets/Prefab/equipment/100004.prefab
@@ -86,10 +87,12 @@ Assets:
 - Assets/Prefab/equipment/100011.prefab
 - Assets/Prefab/equipment/swordman_weapon.prefab
 - Assets/Prefab/character/npc_transmitter.prefab
-- Assets/Prefab/character/901001.prefab
+- Assets/Prefab/character/902001.prefab
+- Assets/Prefab/character/906002.prefab
 - Assets/Prefab/character/magician.prefab
 - Assets/Prefab/equipment/100007.prefab
 - Assets/Prefab/widget/thunder.prefab
+- Assets/Prefab/character/906003.prefab
 - Assets/Prefab/character/archer.prefab
 - Assets/Prefab/widget/explosive_arrow.prefab
 Dependencies:

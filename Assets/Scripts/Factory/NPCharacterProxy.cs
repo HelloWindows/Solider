@@ -6,6 +6,7 @@
  *******************************************************************/
 using Framework.Config;
 using Framework.Tools;
+using Solider.Character.Boss;
 using Solider.Character.NPC;
 using Solider.Config.Interface;
 using System.Collections.Generic;
@@ -25,6 +26,12 @@ namespace Solider {
                         m_proxyDict[NPCType.Peace] = PeaceNPC.CreateInstance;
                         m_proxyDict[NPCType.Melee_Neutral] = Melee_NeutralNPC.CreateInstance;
                         m_proxyDict[NPCType.Range_Neutral] = Range_NeutralNPC.CreateInstance;
+                        m_proxyDict[NPCType.Melee_Enemy] = Melee_EnemyNPC.CreateInstance;
+                        m_proxyDict[NPCType.Range_Enemy] = Range_EnemyNPC.CreateInstance;
+
+                        m_proxyDict[NPCType.Sfix] = SfixBoss.CreateInstance;
+                        m_proxyDict[NPCType.Glede] = GledeBoss.CreateInstance;
+                        m_proxyDict[NPCType.Demon] = DemonBoss.CreateInstance;
                         return m_proxyDict;
                     } // end if
                 } // end ProxyDict

@@ -55,9 +55,6 @@ namespace Solider {
             public CharacterSkill(ICharacter character) {
                 this.character = character;
                 skillList = new List<SkillModle>();
-                PushSkill("500101");
-                PushSkill("500102");
-                PushSkill("500103");
             } // end CharacterSkill
 
             public void Update() {
@@ -99,6 +96,15 @@ namespace Solider {
                 } // end for
                 return modleArr;
             } // end GetSkillIDArray
+
+            public ISkillModle GetSkillModle(string id) {
+                for (int i = 0; i < skillList.Count; i++) {
+                    if (skillList[i].info.id != id) continue;
+                    // end if
+                    return skillList[i];
+                } // end for
+                return null;
+            } // end GetSkillModle
 
             public bool CastSkill(string id, bool ignoreCD = false) {
                 for (int i = 0; i < skillList.Count; i++) {

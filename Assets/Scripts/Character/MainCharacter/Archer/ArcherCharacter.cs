@@ -47,6 +47,9 @@ namespace Solider {
                     m_mainSurface = new MainCharacterSurface(this, wingTrans, liftTrans, furlTrans, meshRenderer);
                     m_surface = m_mainSurface;
                     m_fsm = new ArcherFSM(this);
+                    skill.PushSkill("500201");
+                    skill.PushSkill("500202");
+                    skill.PushSkill("500203");
                 } // end ArcherCharacter
 
                 public override void Update() {

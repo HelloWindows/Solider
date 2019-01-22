@@ -10,10 +10,9 @@ using Solider.Model.Interface;
 namespace Solider {
     namespace Character {
         namespace Interface {
-            public interface IMainCharacter : ICharacter {
+            public interface IMainCharacter : ISkillCharacter {
                 IPackInfo pack { get; }
                 IInputCenter input { get; }
-                ICharacterSkill skill { get; }
                 IMainCharacterSurface mainSurface { get; }
             } // end interface IMainCharacter
         } // end namespace Interface

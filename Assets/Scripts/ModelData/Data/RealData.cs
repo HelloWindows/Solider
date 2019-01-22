@@ -29,8 +29,11 @@ namespace Solider {
                 } // end RealData
 
                 public RealData(IDamageData damage, ICharacterData target) {
-                    if (null == damage || null == target) return;
-                    // end if
+                    if (null == damage || null == target) {
+                        ismiss = true;
+                        return;
+                    } // end if
+                    ismiss = UnityEngine.Random.Range(0, 100f + damage.HIT) < target.AVD;
                     HP = MathTool.LimitZero(damage.ATK -  MathTool.Percent(target.DEF, damage.DEFR + 100f)) +
                         MathTool.LimitZero(damage.MGK - MathTool.Percent(target.RGS, damage.RGSR + 100f));
                 } // end RealData
