@@ -33,7 +33,11 @@ namespace Solider {
 
                 public void OnPointerDown(PointerEventData data) {
                     downPos = data.position;
-                    joystickTrans.localPosition = downPos;
+                    Vector2 pos;
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform,
+                        downPos, data.pressEventCamera, out pos))
+                        joystickTrans.localPosition = pos;
+                    // end if 
                     joystickTrans.gameObject.SetActive(true);
                 } // end OnPointerDown
 

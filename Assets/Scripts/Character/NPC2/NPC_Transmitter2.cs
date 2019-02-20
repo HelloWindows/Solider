@@ -1,5 +1,5 @@
 ﻿/*******************************************************************
- * FileName: NPC_Transmitter.cs
+ * FileName: NPC_Transmitter2.cs
  * Author: Yogi
  * Creat Date:
  * Copyright (c) 2018-xxxx 
@@ -12,7 +12,7 @@ using UnityEngine;
 namespace Solider {
     namespace Character {
         namespace NPC {
-            public class NPC_Transmitter : MonoBehaviour {
+            public class NPC_Transmitter2 : MonoBehaviour {
                 // Use this for initialization
                 void Start() {
                     Animation anim = GetComponent<Animation>();
@@ -24,7 +24,7 @@ namespace Solider {
                 private void OnMouseDown() {
                     if (Vector3.Distance(transform.position, SceneManager.mainCharacter.position) < 4) {
                         Dictionary<string, string> mitterDict = new Dictionary<string, string>();
-                        mitterDict[GameConfig.FIGHT_SCENE] = "战争学院";
+                        mitterDict[GameConfig.NOVICE_VILLAGE] = "城镇";
                         SceneManager.uiPanelFMS.PerformTransition(new UITransmitterPanel(mitterDict));
                         if (null == SceneManager.mainCharacter) return;
                         // end if
@@ -32,7 +32,7 @@ namespace Solider {
                         transform.LookAt(position);
                     } // end if
                 } // end OnMouseDown
-            } // end class NPC_Transmitter 
+            } // end class NPC_Transmitter2 
         } // end namespace NPC
     } // end namespace Character
 } // end namespace Solider

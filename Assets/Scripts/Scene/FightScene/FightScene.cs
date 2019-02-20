@@ -18,6 +18,7 @@ using Framework.Config.Game;
 using Framework.Interface.Audio;
 using Framework.Custom.Audio;
 using Solider.Character.Manager;
+using Solider.Character.NPC;
 
 namespace Solider {
     namespace Scene {
@@ -46,24 +47,28 @@ namespace Solider {
                 m_mainCanvas = new MainCanvas();
                 m_mainAudio = new MainAudio();
                 m_mainCamera = new MainCamera();
-                m_characterManager.factory.CreateMainCharacter(new UnityEngine.Vector3(0, 0, -20));
-                m_characterManager.factory.CreateNPC("906003", new UnityEngine.Vector3(0, 0, 0));
-                //m_characterManager.factory.CreateNPC("901001", new UnityEngine.Vector3(0, 0, 0));
-                //m_characterManager.factory.CreateNPC("902001", new UnityEngine.Vector3(0, 0, 0));
-                //m_characterManager.factory.CreateNPC("903001", new UnityEngine.Vector3(0, 0, 10));
-                //m_characterManager.factory.CreateNPC("904001", new UnityEngine.Vector3(5, 0, 10));
-                //m_characterManager.factory.CreateNPC("904002", new UnityEngine.Vector3(10, 0, 10));
-                //m_characterManager.factory.CreateNPC("904003", new UnityEngine.Vector3(15, 0, 10));
-                //m_characterManager.factory.CreateNPC("904004", new UnityEngine.Vector3(15, 0, 15));
-                //m_characterManager.factory.CreateNPC("904005", new UnityEngine.Vector3(20, 0, 15));
-                //m_characterManager.factory.CreateNPC("904006", new UnityEngine.Vector3(20, 0, 20));
-                //m_characterManager.factory.CreateNPC("904007", new UnityEngine.Vector3(25, 0, 20));
-                //m_characterManager.factory.CreateNPC("904008", new UnityEngine.Vector3(25, 0, 25));
-                //m_characterManager.factory.CreateNPC("904009", new UnityEngine.Vector3(30, 0, 25));
-                //m_characterManager.factory.CreateNPC("904010", new UnityEngine.Vector3(30, 0, 30));
-                //m_characterManager.factory.CreateNPC("905001", new UnityEngine.Vector3(35, 0, 30));
-                //m_characterManager.factory.CreateNPC("905002", new UnityEngine.Vector3(35, 0, 35));
-                //m_characterManager.factory.CreateNPC("905003", new UnityEngine.Vector3(40, 0, 35));
+                ObjectTool.InstantiateGo("npc_transmitter", ResourcesTool.LoadPrefab("npc_transmitter"),
+                    null, new UnityEngine.Vector3(0, 0, 10), new UnityEngine.Vector3(0, 270, 0), UnityEngine.Vector3.one).AddComponent<NPC_Transmitter2>();
+                m_characterManager.factory.CreateMainCharacter(new UnityEngine.Vector3(0, 0, 0));
+                m_characterManager.factory.CreateNPC("901001", new UnityEngine.Vector3(20, 0, 0));
+                m_characterManager.factory.CreateNPC("902001", new UnityEngine.Vector3(20, 0, 10));
+                m_characterManager.factory.CreateNPC("903001", new UnityEngine.Vector3(20, 0, 20));
+                m_characterManager.factory.CreateNPC("904001", new UnityEngine.Vector3(10, 0, 20));
+                m_characterManager.factory.CreateNPC("904002", new UnityEngine.Vector3(0, 0, 20));
+                m_characterManager.factory.CreateNPC("904003", new UnityEngine.Vector3(-10, 0, 20));
+                m_characterManager.factory.CreateNPC("904004", new UnityEngine.Vector3(-20, 0, 20));
+                m_characterManager.factory.CreateNPC("904005", new UnityEngine.Vector3(-20, 0, 10));
+                m_characterManager.factory.CreateNPC("904006", new UnityEngine.Vector3(-20, 0, 0));
+                m_characterManager.factory.CreateNPC("904007", new UnityEngine.Vector3(-20, 0, -10));
+                m_characterManager.factory.CreateNPC("904008", new UnityEngine.Vector3(-20, 0, -20));
+                m_characterManager.factory.CreateNPC("904009", new UnityEngine.Vector3(-10, 0, -20));
+                m_characterManager.factory.CreateNPC("904010", new UnityEngine.Vector3(0, 0, -20));
+                m_characterManager.factory.CreateNPC("905001", new UnityEngine.Vector3(10, 0, -20));
+                m_characterManager.factory.CreateNPC("905002", new UnityEngine.Vector3(20, 0, -20));
+                m_characterManager.factory.CreateNPC("905003", new UnityEngine.Vector3(20, 0, -10));
+                m_characterManager.factory.CreateNPC("906001", new UnityEngine.Vector3(30, 0, 0));
+                m_characterManager.factory.CreateNPC("906002", new UnityEngine.Vector3(0, 0, 30));
+                m_characterManager.factory.CreateNPC("906003", new UnityEngine.Vector3(-30, 0, 0));
                 m_mainAudio.PlayBackgroundMusic("fight_scene_bgm");
                 if (null == mainCharacter) {
                     DebugTool.LogError("NoviceVillage CreateMainCharacter is null!!");
