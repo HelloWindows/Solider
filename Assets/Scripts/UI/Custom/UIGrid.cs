@@ -33,8 +33,10 @@ namespace Solider {
                 } // end SetUIItem
 
                 public void HideItem() {
-                    if (null != item) item.gameObject.SetActive(false);
-                    // end if
+                    if (null != item) {
+                        item.SetCount(0);
+                        item.gameObject.SetActive(false);
+                    } // end if
                 } // end HideItem
 
                 public void OnBeginDrag(PointerEventData eventData) {

@@ -33,6 +33,7 @@ namespace Solider {
                 public void SetCount(int count) {
                     if (count <= 1) {
                         text.text = "";
+                        this.count = 0;
                         return;
                     } // end if
                     this.count = count;
